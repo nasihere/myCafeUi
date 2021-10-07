@@ -1,0 +1,33 @@
+
+     <div class="opacity-70 bg-white p-1 flex justify-between">
+        <div class="flex  p-2">
+             <mat-icon>toll</mat-icon>
+             <span class="title">Cyber Cafe</span>
+             
+        </div>
+       
+        </div>
+        <mat-card class="flex justify-between mt-2">
+             <div class="label-field">Check IN/Out</div>
+             <div class="logo-pic"><img src="assets/229660-200.png"></div>
+          
+             <div class="flex">
+               <button routerLink="/customer" mat-flat-button color="primary" class="w-100">New Customer</button>
+          </div>
+        </mat-card>
+        <mat-card class="mt-1 p-3 opacity-90">
+           
+            <span class="label-field">Customer Identification (e.g: cell number, email id, driving license no.)</span>
+            <mat-form-field appearance="outline">
+                 <mat-icon matSuffix>search</mat-icon>
+                 <input matInput>
+            </mat-form-field>
+
+             <mat-card-actions>
+                  
+                <div class="flex">
+                    <button routerLink="/customerlookup" mat-flat-button color="primary" class="text-center"><mat-icon>search</mat-icon>Search</button>
+               </div>
+             </mat-card-actions>
+          
+           </mat-card>

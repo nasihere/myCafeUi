@@ -13,10 +13,13 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './home';
 import { CustomerComponent } from './customer/customer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardV2Component } from './dashboard-v2/dashboard-v2.component';
+import { CheckInOutComponent } from './check-in-out/check-in-out.component';
+
 import { LoginComponent } from './login';;
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-;
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module'
+import { CustomerLookupComponent } from './customer-lookup/customer-lookup.component';
 
 @NgModule({
     imports: [
@@ -31,7 +34,10 @@ import { MaterialModule } from './material/material.module'
         HomeComponent,
         LoginComponent,
         CustomerComponent,
-        DashboardComponent
+        DashboardComponent,
+        DashboardV2Component,
+        CheckInOutComponent,
+        CustomerLookupComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -8,8 +8,15 @@
         <mat-card class="flex justify-between mt-2">
              <div class="label-field">New Customer</div>
              <div class="logo-pic"><img src="assets/cafe-menu-2663913-2219954.png"></div>
-          
+             
+
         </mat-card>
+        <mat-card class="flex justify-between mt-2" >
+          <span>Already have account?</span>
+          <button mat-flat-button color="primary" routerLink="/checkinout"  >Find Customer</button>
+          </mat-card>
+
+     
         <mat-card class="mt-1 p-3 opacity-90">
                   
              <mat-card-actions>
@@ -58,13 +65,34 @@
 
                     <span class="label-field">Identification Proof (Required)</span>
                     <mat-form-field appearance="outline">
+                         
+                              <mat-icon matSuffix>cloud_upload</mat-icon>
+                              <span class="label-field">Driving License</span>
+                              <input matInput placeholder="number">
+                              <input type="file" #UploadFileInput id="fileUpload" (change)="fileChangeEvent($event)" name="fileUpload"
+                         multiple="multiple" accept="image/*" />
+               
+                         <br />
                          <mat-icon matSuffix>cloud_upload</mat-icon>
+                         <span class="label-field">PAN Card</span>
+                         <input matInput placeholder="number">
+                         
                          <input type="file" #UploadFileInput id="fileUpload" (change)="fileChangeEvent($event)" name="fileUpload"
-                        multiple="multiple" accept="image/*" />
+                         multiple="multiple" accept="image/*" />
+               
+                         <br />
+                         <mat-icon matSuffix>cloud_upload</mat-icon>
+                         <span class="label-field">Adhar Card</span>
+                         <input matInput placeholder="number">
+
                         <input type="file" #UploadFileInput id="fileUpload" (change)="fileChangeEvent($event)" name="fileUpload"
                         multiple="multiple" accept="image/*" />
-                        <input type="file" #UploadFileInput id="fileUpload" (change)="fileChangeEvent($event)" name="fileUpload"
-                        multiple="multiple" accept="image/*" />
+
+                        <br />
+                        <mat-icon matSuffix>cloud_upload</mat-icon>
+                        <span class="label-field">Other ID - 1</span>
+                        <input matInput placeholder="number">
+                        
                         <input type="file" #UploadFileInput id="fileUpload" (change)="fileChangeEvent($event)" name="fileUpload"
                         multiple="multiple" accept="image/*" />
                         

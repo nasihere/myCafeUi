@@ -1,0 +1,33 @@
+<div class="opacity-70 bg-white p-1 flex justify-between">
+    <div class="flex  p-2">
+         <mat-icon>toll</mat-icon>
+         <span class="title">Cyber Cafe</span>
+    </div>
+   
+    </div>
+    <mat-card class="flex justify-between mt-2">
+         <div class="label-field">Dashboard / Control Panel</div>
+      
+    </mat-card>
+    <mat-card class="mt-1  opacity-90 " *ngFor="let row of dataSource">
+        <div>
+            <div class="flex justify-between">
+                
+                <span class="flex"><button color="warn" mat-icon-button><mat-icon>verified_user</mat-icon>{{row.customer}}</button></span>
+                <div class="flex"><mat-icon>monetization_on</mat-icon>{{row.cost}}</div>
+                <span><button color="warn" mat-icon-button><mat-icon>lock</mat-icon></button></span>
+            </div> 
+            <div class="flex justify-between">
+                <div  class="flex"><mat-icon>av_timer</mat-icon>IN: {{row.timeIN}}</div>
+                <div  class="flex"><mat-icon>access_alarms</mat-icon>Out: {{row.timeOUT}}</div>
+                <div  class="flex"><mat-icon>access_time</mat-icon>{{row.duration}}</div>
+                
+            </div>
+            
+        </div>
+         <mat-card-actions>
+           
+         </mat-card-actions>
+         
+
+       </mat-card>
