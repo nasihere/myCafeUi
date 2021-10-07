@@ -1,0 +1,84 @@
+     <div class="opacity-70 bg-white p-1 flex justify-between">
+        <div class="flex  p-2">
+             <mat-icon>toll</mat-icon>
+             <span class="title">Cyber Cafe</span>
+        </div>
+       
+        </div>
+        <mat-card class="flex justify-between mt-2">
+             <div class="label-field">Add New Customer</div>
+             <div class="logo-pic"><img src="assets/cafe-menu-2663913-2219954.png"></div>
+          
+        </mat-card>
+        <mat-card class="mt-1 p-3 opacity-90">
+                  
+             <mat-card-actions>
+                  <div *ngIf="step <= 1">
+                  <span class="label-field">Name (Required)</span>
+                  <mat-form-field appearance="outline">
+                       <mat-icon matSuffix>account_circle</mat-icon>
+                       <input matInput>
+                  </mat-form-field>
+                </div>            
+                <div *ngIf="step == 2">
+                  <span class="label-field">Email Address (Optional)</span>
+                  <mat-form-field appearance="outline">
+                       <mat-icon matSuffix>alternate_email</mat-icon>
+                       
+                       <input matInput>
+                  </mat-form-field>
+                </div>
+                <div *ngIf="step == 3">
+                  <span class="label-field">Cell Phone Number (Required)</span>
+                  <mat-form-field appearance="outline">
+                       <mat-icon matSuffix>phone_android</mat-icon>
+                       
+                       <input matInput>
+                  </mat-form-field>
+                </div>
+                  <div *ngIf="step == 4">
+                  <span class="label-field">Home Address Of Your Current Residence (Optional)</span>
+                  <mat-form-field appearance="outline">
+                       <mat-icon matSuffix>book</mat-icon>
+                       <input matInput>
+                  </mat-form-field>
+                </div>
+                  <div *ngIf="step == 5">
+
+                  <span class="label-field">Gender (Required)</span>
+                  <mat-form-field appearance="outline">
+                       <mat-icon matSuffix>face</mat-icon>
+                       <mat-radio-group>
+                        <mat-radio-button value="m">Male </mat-radio-button>
+                        <mat-radio-button value="f">Female</mat-radio-button>
+                      </mat-radio-group> 
+                  </mat-form-field>
+                </div>
+                <div *ngIf="step == 6">
+
+                    <span class="label-field">Identification Proof (Required)</span>
+                    <mat-form-field appearance="outline">
+                         <mat-icon matSuffix>cloud_upload</mat-icon>
+                         <input type="file" #UploadFileInput id="fileUpload" (change)="fileChangeEvent($event)" name="fileUpload"
+                        multiple="multiple" accept="image/*" />
+                        <input type="file" #UploadFileInput id="fileUpload" (change)="fileChangeEvent($event)" name="fileUpload"
+                        multiple="multiple" accept="image/*" />
+                        <input type="file" #UploadFileInput id="fileUpload" (change)="fileChangeEvent($event)" name="fileUpload"
+                        multiple="multiple" accept="image/*" />
+                        <input type="file" #UploadFileInput id="fileUpload" (change)="fileChangeEvent($event)" name="fileUpload"
+                        multiple="multiple" accept="image/*" />
+                        
+                    </mat-form-field>
+                  </div>
+             </mat-card-actions>
+             <div class="flex justify-between"  *ngIf="step != 6">
+                <button mat-stroked-button color="primary"  (click)="step = step - 1; step = step == 0 ? 1 : step">Back</button>
+                <button mat-flat-button color="primary"  (click)="step = step + 1">Next</button>
+           </div>
+
+             <div class="flex justify-between"  *ngIf="step == 6">
+                    <button mat-stroked-button color="primary" (click)="step = step - 1">Back</button>
+
+                  <button mat-flat-button color="primary" >Create Customer</button>
+             </div>
+           </mat-card>
