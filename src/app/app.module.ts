@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './home';
 import { CustomerComponent } from './customer/customer.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login';;
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 ;
@@ -29,7 +30,8 @@ import { MaterialModule } from './material/material.module'
         AppComponent,
         HomeComponent,
         LoginComponent,
-        CustomerComponent
+        CustomerComponent,
+        DashboardComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

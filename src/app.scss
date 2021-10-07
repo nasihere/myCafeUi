@@ -118,7 +118,36 @@
 }
 .logo-pic {
  height: 1rem;
+ opacity: 0.30;
 }
 .flex-direction {
     flex-direction: column;
 }
+.mat-row:hover {
+    background-color: #E4DEFC;
+  }
+  td.mat-cell {
+    /* row padding */
+    padding: 16px 0;
+    /* row border */
+    border-bottom: 1px solid #9D93F4;
+    border-top: 1px solid #9D93F4;
+   }
+   
+   td.mat-cell:first-child {
+     /* row border */
+     border-left: 1px solid #9D93F4;
+   }
+   
+   td.mat-cell:last-child {
+     /* row border */
+     border-right: 1px solid #9D93F4;
+   }
+   
+   table {
+     /* row spacing / margin */
+     border-spacing: 0 8px !important;
+   } 
+   .overflow-scroll {
+       overflow: scroll;
+   }
