@@ -1,0 +1,93 @@
+﻿<!-- nav -->
+<nav class="navbar navbar-expand navbar-dark bg-dark flex-hor"  style="justify-content: space-between;">
+    <div class="navbar-nav  ">
+        <div>
+
+            <button mat-icon-button color="accent">
+                <mat-icon>keyboard_backspace</mat-icon>
+            </button>
+
+        </div>
+    </div>
+    <div style="width: -webkit-fill-available;">
+        <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+            <div class="form-group" style="margin: 0;">
+               
+                <input matInput placeholder="search" type="text" formControlName="findByText" class="form-control search-text" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+              
+            </div>
+            <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+        </form>
+        <div style="cursor: pointer;text-align: center;color: antiquewhite;margin-top: -1rem;">
+            <span>_____</span>
+        </div>
+    </div>
+    <div class="navbar-nav  " >
+        <div class="flex-hor">
+            <button mat-icon-button color="accent" style="background: #256148;color: antiquewhite;">
+                <mat-icon>add</mat-icon>
+            </button>
+            <button mat-icon-button color="accent">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+        </div>
+    </div>
+</nav>
+<div>
+    <div class="flex-hor just-between">
+        <div class="title">
+            <h5>Fruits</h5>
+        </div>
+
+        <div class="title">
+            <button mat-stroked-button color="accent">
+                <mat-icon>compare_arrows</mat-icon>
+                Sorting
+            </button>
+        </div>
+    </div>
+    <div class="flex-hor flex-grow-4">
+
+        <div class="card card-sel" *ngFor="let item of collections">
+            <div class="card-body">
+                <button mat-stroked-button  class="flex-ver" style="text-align: center; outline: none; border: none;padding-right: 2rem">
+                    <div class="flex-ver">
+                        <img height="50vh" width="50vw" style="margin-left: 1.3rem;" [src]="item.src" />
+                        <span style="font-size: larger; font-weight: bolder;">{{item.label}}</span>
+                    </div>
+                    <div class="flex-hor dp">
+                        <span>{{item.details}}</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    
+    </div>
+</div>
+
+
+<div>
+    <div class="flex-hor just-between">
+        <div class="expand-section">
+            <button mat-stroked-button color="accent">
+                <mat-icon>keyboard_arrow_down</mat-icon>Recently Used
+            </button>
+        </div>
+    </div>
+    <div class="flex-hor flex-grow-4">
+        
+        <div mat-button class="card card-nor" *ngFor="let item of recently">
+            <div class="card-body ">
+                <button mat-stroked-button  class="flex-ver" style="text-align: center; outline: none; border: none;padding-right: 2rem">
+                    <div class="flex-ver">
+                        <img height="50vh" width="50vw" style="margin-left: 1.3rem;" [src]="item.src" />
+                        <span style="font-size: larger; font-weight: bolder;">{{item.label}}</span>
+                    </div>
+                    <div class="flex-hor dp">
+                        <span>{{item.details}}</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
