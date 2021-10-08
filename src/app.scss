@@ -13,11 +13,16 @@
     padding: 0;
     margin: 0;
 }
-
+.fs-smaller {
+    font-size: 1.1526rem;
+}
 .header {
     opacity: 1;
     background-color: #1154AA;
     color: #fff;
+}
+.green {
+    color: #299976;
 }
 .nav {
     box-shadow: 0 5px 9px rgb(0 0 0 / 9%);
@@ -49,6 +54,10 @@
 }
 .pl-2 {
     padding-left: 2rem;
+}
+.pr-1 {
+    padding-right: 1rem;
+    
 }
 .mlr-1 {
     margin-left: 1rem;
