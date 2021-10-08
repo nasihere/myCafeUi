@@ -11,7 +11,7 @@
      <div class="flex justify-between nav">
           <div class="page-name">Access Cafe - Check IN</div>
      </div>
-     <div class="notify flex ">
+     <div class="notify flex " *ngIf="step == 1">
           <mat-icon>info</mat-icon> 
           <div class="flex flex-column"><span class="text-medium"></span><span class="text-smaller">Welcome to cyber cafe, To access cafe computer, We request you to please sign-in first. If you have already account created? Feel free to search your account by your mobile number, driving licenses, email address.</span></div>
      </div>
@@ -22,7 +22,63 @@
      </div>
      <div class="border-line "></div>
         <mat-card class="p-3 opacity-90 mlr-1">
-           
+          <div *ngIf="step==1" class="flex justify-between flex-column">
+               <div class="options-prompt flex">
+                    <button (click)="step = 2" mat-button><mat-icon>smartphone</mat-icon>
+                    <span>Self Check IN</span></button>
+               </div>
+               <div class="options-prompt flex">
+                    <button  (click)="step = 4" mat-button><mat-icon>tag_faces</mat-icon>
+                    <span>Need Assistance</span></button>
+               </div>
+          </div>
+          <div *ngIf="step==2">
+               <span class="label-field">Cell Phone Number</span>
+               <mat-form-field appearance="outline" [formGroup]="form">
+                    <mat-icon matSuffix>smartphone</mat-icon>
+                    <input matInput  formControlName="cellphone" >
+                    <mat-error *ngIf="hasError('cellphone','required')">
+                         Phone Number is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf="hasError('cellphone', 'minlength')">phone number should be 7 digit</mat-error>
+                    <mat-error *ngIf="hasError('cellphone', 'maxlength')">phone number should be 12 digit</mat-error>
+                    
+   
+                  </mat-form-field>
+   
+                <mat-card-actions>
+                     
+                   <div class="flex">
+                       <button (click)="onSendOTP()" mat-flat-button color="primary" class="text-center"><mat-icon>textsms</mat-icon>Send OTP</button>
+                  </div>
+                </mat-card-actions>
+             </div>
+             <div *ngIf="step==3">
+                  
+               <div class="notify flex ">
+                    <mat-icon>info</mat-icon> 
+                    <div class="flex flex-column"><span class="text-medium"></span><span class="text-smaller">OTP has been sent to your cell phone number. We need to verify your identity through OTP</span></div>
+               </div>
+
+               <span class="label-field">Verify OTP</span>
+               <mat-form-field appearance="outline" [formGroup]="form">
+                    <mat-icon matSuffix>textsms</mat-icon>
+                    <input matInput  formControlName="otpverify" >
+                    <mat-error *ngIf="hasError('otpverify','required')">
+                         OTP Number is <strong>required</strong>
+                    </mat-error>
+                    
+   
+                  </mat-form-field>
+   
+                <mat-card-actions>
+                     
+                   <div class="flex">
+                       <button (click)="onVerifyOTP()" mat-flat-button color="primary" class="text-center"><mat-icon>dialpad</mat-icon>Verify OTP</button>
+                  </div>
+                </mat-card-actions>
+             </div>
+          <div *ngIf="step==4">
             <span class="label-field">Customer Identification (e.g: cell number, email id, driving license no.)</span>
             <mat-form-field appearance="outline" [formGroup]="form">
                  <mat-icon matSuffix>search</mat-icon>
@@ -39,5 +95,5 @@
                     <button (click)="onSubmit()" mat-flat-button color="primary" class="text-center"><mat-icon>search</mat-icon>Search</button>
                </div>
              </mat-card-actions>
-          
-           </mat-card>
+          </div>
+     </mat-card>
