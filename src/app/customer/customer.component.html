@@ -148,12 +148,12 @@
              </mat-card-actions>
 
              <div class="flex justify-between"  *ngIf="step != 6">
-                <button mat-stroked-button color="primary"  (click)="step = step - 1; step = step == 0 ? 1 : step">Back</button>
+                <button mat-stroked-button color="primary"  (click)="step = step - 1; step = step == 0 ? 1 : step"><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
                 <button mat-flat-button color="primary"  (click)="step = step + 1">Next</button>
            </div>
 
              <div class="flex justify-between"  *ngIf="step == 6">
-                    <button mat-stroked-button color="primary" (click)="step = step - 1">Back</button>
+                    <button mat-stroked-button color="primary" (click)="step = step - 1"><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
 
                   <button  (click)="onSubmit()" mat-flat-button color="primary" >Create Customer</button>
              </div>
