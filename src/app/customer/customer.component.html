@@ -27,7 +27,21 @@
                        <mat-icon matSuffix>account_circle</mat-icon>
                        <input matInput>
                   </mat-form-field>
-                </div>            
+
+                  
+                </div>    
+                <div *ngIf="step <= 1">
+                   
+                    
+                    <div class="profilepic" (click)="picUploader('myFileInput')">
+                         <span>Camera Profile Picture</span>
+                         <button mat-icon-button><mat-icon matSuffix>camera_enhance</mat-icon></button>
+                         <input id="myFileInput" hidden type="file" accept="image/*;capture=camera">
+                    </div>
+                    
+
+  
+                  </div>            
                 <div *ngIf="step == 2">
                   <span class="label-field">Email Address (Optional)</span>
                   <mat-form-field appearance="outline">
@@ -62,42 +76,42 @@
                       </mat-radio-group> 
                   </mat-form-field>
                 </div>
-                <div *ngIf="step == 6">
-
+                <div *ngIf="step == 6" class="">
                     <span class="label-field">Identification Proof (Required)</span>
-                    <mat-form-field appearance="outline">
-                         
-                              <mat-icon matSuffix>cloud_upload</mat-icon>
-                              <span class="label-field">Driving License</span>
-                              <input matInput placeholder="number">
-                              <input type="file" #UploadFileInput id="fileUpload" (change)="fileChangeEvent($event)" name="fileUpload"
-                         multiple="multiple" accept="image/*" />
-               
-                         <br />
-                         <mat-icon matSuffix>cloud_upload</mat-icon>
-                         <span class="label-field">PAN Card</span>
-                         <input matInput placeholder="number">
-                         
-                         <input type="file" #UploadFileInput id="fileUpload" (change)="fileChangeEvent($event)" name="fileUpload"
-                         multiple="multiple" accept="image/*" />
-               
-                         <br />
-                         <mat-icon matSuffix>cloud_upload</mat-icon>
-                         <span class="label-field">Adhar Card</span>
-                         <input matInput placeholder="number">
 
-                        <input type="file" #UploadFileInput id="fileUpload" (change)="fileChangeEvent($event)" name="fileUpload"
-                        multiple="multiple" accept="image/*" />
+                    <div class="flex">
+                         <div class="profilepic" (click)="picUploader('myFileInputDL')">
+                              <span>Driving License</span>
+                              <button mat-icon-button><mat-icon matSuffix>camera_enhance</mat-icon></button>
+                              <input id="myFileInputDL" hidden type="file" accept="image/*;capture=camera">
+                         </div>
+                         <input matInput placeholder="number">
+                    </div>
+                    <div class="flex">
+                    <div class="profilepic" (click)="picUploader('myFileInputPN')">
+                         <span>PAN Card</span>
+                         <button mat-icon-button><mat-icon matSuffix>camera_enhance</mat-icon></button>
+                         <input id="myFileInputPN" hidden type="file" accept="image/*;capture=camera">
+                    </div>
+                    <input matInput placeholder="description">
+               </div>
+                    <div class="flex">
+                    <div class="profilepic" (click)="picUploader('myFileInputAD')">
+                         <span>Adhar Card</span>
+                         <button mat-icon-button><mat-icon matSuffix>camera_enhance</mat-icon></button>
+                         <input id="myFileInputAD" hidden type="file" accept="image/*;capture=camera">
+                    </div>
+                    <input matInput placeholder="description">
+               </div>
+               <div class="flex">
+                    <div class="profilepic" (click)="picUploader('myFileInputODID')">
+                         <span>Other ID</span>
+                         <button mat-icon-button><mat-icon matSuffix>camera_enhance</mat-icon></button>
+                         <input id="myFileInputODID" hidden type="file" accept="image/*;capture=camera">
+                    </div>
+                    <input matInput placeholder="description">
+               </div>
 
-                        <br />
-                        <mat-icon matSuffix>cloud_upload</mat-icon>
-                        <span class="label-field">Other ID - 1</span>
-                        <input matInput placeholder="number">
-                        
-                        <input type="file" #UploadFileInput id="fileUpload" (change)="fileChangeEvent($event)" name="fileUpload"
-                        multiple="multiple" accept="image/*" />
-                        
-                    </mat-form-field>
                   </div>
                   <div class="border-line "></div>
 
@@ -111,6 +125,6 @@
              <div class="flex justify-between"  *ngIf="step == 6">
                     <button mat-stroked-button color="primary" (click)="step = step - 1">Back</button>
 
-                  <button mat-flat-button color="primary" >Create Customer</button>
+                  <button  routerLink="/checkinout" mat-flat-button color="primary" >Create Customer</button>
              </div>
            </mat-card>

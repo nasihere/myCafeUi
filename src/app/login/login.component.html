@@ -1,30 +1,39 @@
-﻿<div class="mar-auto pad-25-percent login ">
-  
-    <div class="card">
+﻿
+     <div class="header opacity-0 p-1  flex justify-between">
+        <div class="flex  p-2">
+             <mat-icon>toll</mat-icon>
+             <span class="title">Cyber Cafe</span>
+        </div>
+       
+        </div>
+        <div class="flex justify-between nav">
+             <div class="page-name">Cafe Owner Login Account</div>
+        </div>
+        <div class="border-line "></div>
         
-        <mat-card class="card-body">
-           
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                        <div *ngIf="f.username.errors.required">Username is required</div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                        <div *ngIf="f.password.errors.required">Password is required</div>
-                    </div>
-                </div>
-                <button mat-stroked-button  color="primary" [disabled]="loading" >
-                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                    Login
-                </button>
-                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
-            </form>
-        </mat-card>
-    </div>
-</div>
+        <div class="bg-white pl-1 flex justify-between pr-1 mlr-1">
+             <span class="heading">Don't have an account?</span>
+             <button mat-stroked-button color="primary" routerLink="/register"  >Create Account</button>
+        </div>
+        <mat-card class="p-3 opacity-90 mlr-1">
+                  
+             <mat-card-actions>
+                  
+                  <span class="label-field">Username (required)</span>
+                  <mat-form-field appearance="outline">
+                       <mat-icon matSuffix>account_circle</mat-icon>
+                       <input matInput>
+                  </mat-form-field>
+                  <span class="label-field">Password (required)</span>
+                  <mat-form-field appearance="outline">
+                       <mat-icon matSuffix>lock</mat-icon>
+                  
+                       <input matInput type="password"  required>
+                       
+                  </mat-form-field>
+   
+             </mat-card-actions>
+             <div class="flex">
+                  <button  routerLink="/checkinout" mat-flat-button color="primary" class="w-100">Login</button>
+             </div>
+           </mat-card>
