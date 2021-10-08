@@ -104,10 +104,28 @@
     color: #000;
     font-size: 0.9rem;
     text-align: center;
-    height: 5rem;
+    height: 12rem;
     -webkit-box-shadow: 5px 5px 14px -5px #000000; 
     box-shadow: 5px 5px 14px -5px #000000;
-    margin: 1rem;
+    margin: .5rem;
+    width: 10rem;
+    
+}
+.flex-warp {
+    flex-wrap: wrap;
+}
+.computer-prompt-icon {
+    font-size: 3rem;
+    margin-left: 2.1rem;
+    margin-top: unset;
+    margin-bottom: 2rem;
+    
+}
+.orange {
+    color: orange
+}
+.red {
+    color: red;
 }
 .profilepic {
     background-color: #fcf9f9;

@@ -11,53 +11,63 @@
     <button mat-stroked-button color="primary"  >Settings</button>
 </div>
 <div class="border-line"></div>
+<div class="flex flex-warp">
 <mat-card class="mt-1  s-smaller computer-prompt">
-   <div class="flex flex-row justify-between">
-       <span  class="heading profile-heading "><strong>PC - 001</strong></span>
-       <span>Ready</span>
+   <div class="flex flex-column  ">
+    <span  class="heading profile-heading "><strong>PC - 001</strong></span>
+    <mat-icon class="computer-prompt-icon green">desktop_mac</mat-icon>
        
-       <button color="primary" mat-stroked-button><mat-icon>desktop_mac</mat-icon>Available</button>
+       <span class="green">Ready</span>
+       
+       <button color="primary" mat-stroked-button>Available</button>
    </div>
    
 
 </mat-card>
+
 <mat-card class="mt-1  s-smaller computer-prompt">
+    <div class="flex flex-column  ">
+     <span  class="heading profile-heading "><strong>PC - 006</strong></span>
+     <mat-icon class="computer-prompt-icon green">desktop_mac</mat-icon>
+        
+        <span class="green">Ready</span>
+        
+        <button color="primary" mat-stroked-button>Available</button>
+    </div>
+    
+ 
+ </mat-card>
+ 
+
+<mat-card class="mt-1  s-smaller computer-prompt">
+    <div class="flex flex-column  ">
+     <span  class="heading profile-heading "><strong>PC - 002</strong></span>
+     <span>(1hr 30m)</span>
+     <mat-icon class="computer-prompt-icon red">desktop_mac</mat-icon>
+        <span class="red">Busy</span>
+        <button color="warn" mat-stroked-button>Not Available</button>
+    </div>
+ </mat-card>
+
+ <mat-card class="mt-1  s-smaller computer-prompt">
+    <div class="flex flex-column  ">
+     <span  class="heading profile-heading "><strong>PC - 003</strong></span>
+     <span>(1hr 30m)</span>
+     <mat-icon class="computer-prompt-icon red">desktop_mac</mat-icon>
+        <span class="orange">Broken</span>
+        <button color="accent" mat-stroked-button>Need Maintaince</button>
+    </div>
+ </mat-card>
+
 
  
-<div class="flex flex-row justify-between">
-    <span  class="heading profile-heading"><strong>PC - 002</strong></span>
-    <span>Ready</span>
-    <button color="primary" mat-stroked-button><mat-icon>desktop_mac</mat-icon>Available</button>
+ <mat-card class="mt-1  s-smaller computer-prompt">
+    <div class="flex flex-column  ">
+     <span  class="heading profile-heading "><strong>PC - NEW</strong></span>
+     <span>New</span>
+     <mat-icon class="computer-prompt-icon">desktop_mac</mat-icon>
+        <span >Setup</span>
+        <button color="primary" mat-flat-button>Go</button>
+    </div>
+ </mat-card>
 </div>
- 
-</mat-card>
-<mat-card class="mt-1  s-smaller computer-prompt">
-
-<div class="flex flex-row justify-between">
-     <span  class="heading profile-heading flex flex-column"><strong>PC - 003</strong>Sabah Shaikh</span>
-     <div class="border-line"></div>
-     <span>2 hr 29min</span>
-     <button color="warn" mat-stroked-button><mat-icon>timelapse</mat-icon>Not Available</button>
- </div>
-  
-</mat-card>
-<mat-card class="mt-1  s-smaller computer-prompt">
-
- <div class="flex flex-row justify-between">
-      <span  class="heading profile-heading flex flex-column"><strong>PC - 004</strong>Nasir Sayed</span>
-      <div class="border-line"></div>
-      <span>1 hr 14min</span>
-      <button color="warn" mat-stroked-button><mat-icon>timelapse</mat-icon>Not Available</button>
-  </div>
-</mat-card>
-
-<mat-card class="mt-1  s-smaller computer-prompt">
-
-    <div class="flex flex-row justify-between">
-         <span  class="heading profile-heading flex flex-column"><strong>PC - 005</strong>Broken</span>
-         <div class="border-line"></div>
-         <span>Not Available</span>
-         <button color="accent" mat-stroked-button><mat-icon>settings</mat-icon>Repair</button>
-     </div>
-   </mat-card>
-   
