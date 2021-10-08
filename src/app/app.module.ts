@@ -20,6 +20,7 @@ import { LoginComponent } from './login';;
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module'
 import { CustomerLookupComponent } from './customer-lookup/customer-lookup.component';
+import { ComputerSelectionComponent } from './computer-selection/computer-selection.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
@@ -43,7 +44,8 @@ import { MatInputModule } from '@angular/material/input';
         DashboardComponent,
         DashboardV2Component,
         CheckInOutComponent,
-        CustomerLookupComponent
+        CustomerLookupComponent,
+        ComputerSelectionComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

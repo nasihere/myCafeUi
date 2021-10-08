@@ -17,10 +17,12 @@ export class CheckInOutComponent implements OnInit  {
        
     }
     ngOnInit() {
+
+        let MOBILE_PATTERN = /[0-9\+\-\ ]/;
         this.form = new FormGroup({
             otpverify: new FormControl('', [Validators.required]),
              search: new FormControl('', [Validators.required]),
-            cellphone: new FormControl('', [Validators.required,  Validators.minLength(7), Validators.maxLength(12)]),
+            cellphone: new FormControl('', [Validators.required,  Validators.minLength(10), Validators.maxLength(10),Validators.pattern(MOBILE_PATTERN)]),
                
           });
 

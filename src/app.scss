@@ -92,7 +92,22 @@
     color: #000;
     font-size: 0.7rem;
     text-align: center;
+    height: 5rem;
+    -webkit-box-shadow: 5px 5px 14px -5px #000000; 
+    box-shadow: 5px 5px 14px -5px #000000;
     
+}
+.computer-prompt {
+    background-color: #fff;
+    border: 2px solid #5791e7;
+    margin: 0 0 1rem 0;
+    color: #000;
+    font-size: 0.9rem;
+    text-align: center;
+    height: 5rem;
+    -webkit-box-shadow: 5px 5px 14px -5px #000000; 
+    box-shadow: 5px 5px 14px -5px #000000;
+    margin: 1rem;
 }
 .profilepic {
     background-color: #fcf9f9;

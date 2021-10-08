@@ -9,9 +9,11 @@ import { AuthGuard } from './_helpers';
 import { DashboardV2Component } from './dashboard-v2/dashboard-v2.component';
 import { CheckInOutComponent } from './check-in-out/check-in-out.component';
 import { CustomerLookupComponent } from './customer-lookup/customer-lookup.component';
+import { ComputerSelectionComponent } from './computer-selection/computer-selection.component';
 
 const routes: Routes = [
     { path: '', component: LoginComponent, canActivate: [AuthGuard] },
+    { path: 'computerselection', component: ComputerSelectionComponent, canActivate: [AuthGuard] },
     { path: 'customerlookup', component: CustomerLookupComponent, canActivate: [AuthGuard] },
 
     { path: 'checkinout', component: CheckInOutComponent, canActivate: [AuthGuard] },
