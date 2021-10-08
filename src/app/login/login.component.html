@@ -20,20 +20,26 @@
              <mat-card-actions>
                   
                   <span class="label-field">Username (required)</span>
-                  <mat-form-field appearance="outline">
+                  <mat-form-field  [formGroup]="loginForm" appearance="outline">
                        <mat-icon matSuffix>account_circle</mat-icon>
-                       <input matInput>
+                       <input matInput formControlName="username">
+                       <mat-error *ngIf="hasError('username', 'required')">Username is required</mat-error>
+                       <mat-error *ngIf="hasError('username', 'minlength')">Username should be minimum 5 character length</mat-error>
+                       <mat-error *ngIf="hasError('username', 'maxlength')">Username should be below 30 character length</mat-error>
+
                   </mat-form-field>
                   <span class="label-field">Password (required)</span>
-                  <mat-form-field appearance="outline">
+                  <mat-form-field [formGroup]="loginForm" appearance="outline">
                        <mat-icon matSuffix>lock</mat-icon>
                   
-                       <input matInput type="password"  required>
+                       <input matInput type="password" formControlName="password" required>
+                       <mat-error *ngIf="hasError('password', 'required')">Password is required</mat-error>
+                       <mat-error *ngIf="hasError('password', 'minlength')">Password should be minimum 5 character length</mat-error>
                        
                   </mat-form-field>
    
              </mat-card-actions>
              <div class="flex">
-                  <button  routerLink="/checkinout" mat-flat-button color="primary" class="w-100">Login</button>
+                  <button (click)="onSubmit()" mat-flat-button color="primary" class="w-100">Login</button>
              </div>
            </mat-card>

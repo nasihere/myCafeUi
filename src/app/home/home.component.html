@@ -15,7 +15,7 @@
      </div>
      <div class="border-line "></div>
      
-     <div class="bg-white pl-1 flex justify-between pr-1 mlr-1">
+     <div class="bg-white pl-1 flex justify-between pr-1 mlr-1 pt-2">
           <span class="heading">Already have account?</span>
           <button mat-stroked-button color="primary" routerLink="/login"  >Login</button>
      </div>
@@ -24,37 +24,56 @@
           <mat-card-actions>
                
                <span class="label-field">Username (required)</span>
-               <mat-form-field appearance="outline">
+               <mat-form-field appearance="outline"  [formGroup]="form">
                     <mat-icon matSuffix>account_circle</mat-icon>
-                    <input matInput>
+                    <input matInput formControlName="username">
+                    <mat-error *ngIf="hasError('username', 'required')">Username is <strong>required</strong></mat-error>
+                    <mat-error *ngIf="hasError('username', 'minlength')">Username should be minimum 5 character length</mat-error>
+                    <mat-error *ngIf="hasError('username', 'maxlength')">Username should be below 30 character length</mat-error>
+
                </mat-form-field>
                <span class="label-field">Email Address (required)</span>
-               <mat-form-field appearance="outline">
+               <mat-form-field appearance="outline"   [formGroup]="form">
                     <mat-icon matSuffix>alternate_email</mat-icon>
+                    <input matInput  formControlName="email">
+                    <mat-error *ngIf="hasError('email', 'required')">Email is <strong>required</strong></mat-error>
+                    <mat-error *ngIf="hasError('email', 'email')">Enter a valid email address</mat-error>
                     
-                    <input matInput>
-               </mat-form-field>
+
+               </mat-form-field >
                <span class="label-field">Password (required)</span>
-               <mat-form-field appearance="outline">
+               <mat-form-field appearance="outline"  [formGroup]="form">
                     <mat-icon matSuffix>lock</mat-icon>
                
-                    <input matInput type="password"  required>
+                    <input matInput type="password"  required formControlName="password">
+                    <mat-error *ngIf="hasError('password', 'required')">Email is <strong>required</strong></mat-error>
+                    <mat-error *ngIf="hasError('password', 'minlength')">password should be minimum 5 character length</mat-error>
+                    <mat-error *ngIf="hasError('password', 'maxlength')">password should be below 30 character length</mat-error>
+                    
                     
                </mat-form-field>
 
                <span class="label-field">Cafe Name (required)</span>
-               <mat-form-field appearance="outline">
+               <mat-form-field appearance="outline"  [formGroup]="form">
                     <mat-icon matSuffix>book</mat-icon>
-                    <input matInput>
+                    <input matInput  formControlName="orgname" >
+                    <mat-error *ngIf="hasError('orgname', 'required')">Organization name is <strong>required</strong></mat-error>
+
                </mat-form-field>
 
                <span class="label-field">Cell Number (required)</span>
-               <mat-form-field appearance="outline">
+               <mat-form-field appearance="outline"  [formGroup]="form">
                     <mat-icon matSuffix>dialer_sip</mat-icon>
-                    <input matInput>
+                    <input matInput required  formControlName="cellphone" maxlength="12">
+                    <mat-error *ngIf="hasError('cellphone','required')">
+                         Phone Number is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf="hasError('cellphone', 'minlength')">phone number should be 7 digit</mat-error>
+                    <mat-error *ngIf="hasError('cellphone', 'maxlength')">phone number should be 12 digit</mat-error>
+                    
                </mat-form-field>
           </mat-card-actions>
           <div class="flex">
-               <button  mat-flat-button color="primary" class="w-100">Register</button>
+               <button  mat-flat-button color="primary" class="w-100" (click)="onSubmit()">Register</button>
           </div>
         </mat-card>

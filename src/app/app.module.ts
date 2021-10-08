@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
-import { HomeComponent } from './home';
+import { HomeComponent } from './home/home.component';
 import { CustomerComponent } from './customer/customer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DashboardV2Component } from './dashboard-v2/dashboard-v2.component';

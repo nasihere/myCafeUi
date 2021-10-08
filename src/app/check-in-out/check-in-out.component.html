@@ -24,15 +24,19 @@
         <mat-card class="p-3 opacity-90 mlr-1">
            
             <span class="label-field">Customer Identification (e.g: cell number, email id, driving license no.)</span>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" [formGroup]="form">
                  <mat-icon matSuffix>search</mat-icon>
-                 <input matInput>
-            </mat-form-field>
+                 <input matInput  formControlName="search" >
+                 <mat-error *ngIf="hasError('search','required')">
+                    search is <strong>required</strong>
+               </mat-error>
+
+               </mat-form-field>
 
              <mat-card-actions>
                   
                 <div class="flex">
-                    <button routerLink="/customerlookup" mat-flat-button color="primary" class="text-center"><mat-icon>search</mat-icon>Search</button>
+                    <button (click)="onSubmit()" mat-flat-button color="primary" class="text-center"><mat-icon>search</mat-icon>Search</button>
                </div>
              </mat-card-actions>
           
