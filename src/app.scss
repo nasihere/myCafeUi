@@ -1,13 +1,81 @@
 @font-face {
     font-family: lato;
-    src: url(assets/cc44d5f0a55bb8ccd6f63353c1fca0a0.woff2) format("opentype");
+    src: url(assets/PayPalSansBig-Regular.woff2) format("opentype");
 }
   
 .app {
     font-family: lato;
-    background-image: url("assets/app-background.jpg");
-    background-repeat: repeat;
-      
+    background: #f2f2f2;
+    overflow: auto;
+    font-family: "PayPalSansBig-Regular",Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-weight: 400;
+    color: #000;
+    padding: 0;
+    margin: 0;
+}
+
+.header {
+    opacity: 1;
+    background-color: #1154AA;
+    color: #fff;
+}
+.nav {
+    box-shadow: 0 5px 9px rgb(0 0 0 / 9%);
+    border-bottom: 1px solid #cbd2d6;
+    background-color: #fff;
+    height: 2.625rem;
+    font-size: .875rem;
+}
+.heading {
+    font-size: 1.21rem;
+    font-family: "lato",Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-weight: 500;
+    margin-bottom: 7px;
+}
+.text-medium {
+    font-size: 0.78rem;
+}
+.text-smaller {
+    font-size: 0.66rem;
+}
+.pr-1 {
+    padding-right: 1rem;
+}
+.pr-2 {
+    padding-right: 2rem;
+}
+.pl-1 {
+    padding-left: 1rem;
+}
+.pl-2 {
+    padding-left: 2rem;
+}
+.mlr-1 {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.mlr-2 {
+    
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+.border-line {
+    border: 1px solid #efefef;
+}
+.notify {
+    background-color: #f5fdfb;
+    border: 2px solid #299976;
+    min-height: 62px;
+    margin: 1rem;
+    padding: 1rem;
+    float: left;
+    width: 92%;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+.page-name {
+    margin: auto;
+
 }
 .opacity-10 {
     opacity: 0.10;
@@ -85,7 +153,7 @@
 }
 .title {
     
-    font-weight: bold;
+    font-weight: 100;
     margin-left: 1rem;
 }
 .justify-between {
@@ -98,12 +166,22 @@
     opacity: 0.4;
     background-color:#BFB8E3;
 }
+.mat-form-field-infix  {
+
+    padding: 0 2px 11px 0!important;
+    margin: 0px!important;
+}
 .mat-form-field {
     width: 100%;
-    
-    font-size: small!important;
-    font-family: lato!important;
-    line-height: 2!important;
+    font-size: 14px;
+    font-size: .875rem;
+    font-weight: normal;
+    padding: 0 0 5px 0;
+    text-align: left;
+    float: none;
+    display: block;
+    line-height: normal;
+    color: #393939;
 }
 .w-100{
     width: 100%;
@@ -112,8 +190,14 @@
     color: unset !important;
 }
 .label-field {
-    font-size: small;
-    font-weight: 600;
+    font-size: .875rem;
+    font-weight: normal;
+    padding: 0 0 5px 0;
+    text-align: left;
+    float: none;
+    display: block;
+    line-height: normal;
+    color: #393939;
     font-family: lato;
 }
 .logo-pic {
@@ -122,6 +206,13 @@
 }
 .flex-direction {
     flex-direction: column;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+.flex-row {
+    flex-direction: row;
 }
 .mat-row:hover {
     background-color: #E4DEFC;

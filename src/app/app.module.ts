@@ -1,4 +1,4 @@
-﻿import { NgModule } from '@angular/core';
+﻿import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -22,6 +22,8 @@ import { MaterialModule } from './material/material.module'
 import { CustomerLookupComponent } from './customer-lookup/customer-lookup.component';
 
 @NgModule({
+    
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
     imports: [
         BrowserModule,
         ReactiveFormsModule,
