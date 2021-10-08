@@ -12,7 +12,7 @@
           <div class="flex flex-column"><span class="text-medium">The government of India issues a gazettes notifying that no cyber café can run freely without any registration, registration from appropriate authority is very needful and compulsory. The owner running the cafe must contain the records of all the users and the staffs working inside the cafe.</span><span class="text-smaller">On 11 September 2011,</span></div>
         </div>
 
-        <div class="bg-white pl-1 flex justify-between pr-1 mlr-1">
+        <div class="bg-white pl-1 flex justify-between pr-1 mlr-1 pt-2">
              <span class="heading">Already have account?</span>
              <button mat-stroked-button color="primary" routerLink="/checkinout"  >Find Customer</button>
         </div>
@@ -21,95 +21,125 @@
         <mat-card class="p-3 opacity-90 mlr-1">
                   
              <mat-card-actions>
-                  <div *ngIf="step <= 1">
+               <div *ngIf="step <= 1">
                   <span class="label-field">Name (Required)</span>
-                  <mat-form-field appearance="outline">
+                  <mat-form-field appearance="outline"  [formGroup]="form">
                        <mat-icon matSuffix>account_circle</mat-icon>
-                       <input matInput>
+                       <input matInput  formControlName="name" >
+                       <mat-error *ngIf="hasError('name','required')">
+                         name is <strong>required</strong>
+                    </mat-error>
                   </mat-form-field>
 
                   
                 </div>    
                 <div *ngIf="step <= 1">
                    
-                    
+                    <mat-form-field  [formGroup]="form">
+
                     <div class="profilepic" (click)="picUploader('myFileInput')">
-                         <span>Camera Profile Picture</span>
+                         <span>Profile Picture</span>
                          <button mat-icon-button><mat-icon matSuffix>camera_enhance</mat-icon></button>
-                         <input id="myFileInput" hidden type="file" accept="image/*;capture=camera">
+                         <input id="myFileInput" formControlName="profilepic" hidden type="file" accept="image/*;capture=camera">
+
                     </div>
-                    
+                    <input formControlName="idprofilepic" matInput hidden>
+
+               </mat-form-field>
+
 
   
                   </div>            
                 <div *ngIf="step == 2">
                   <span class="label-field">Email Address (Optional)</span>
-                  <mat-form-field appearance="outline">
+                  <mat-form-field appearance="outline"   [formGroup]="form">
                        <mat-icon matSuffix>alternate_email</mat-icon>
                        
-                       <input matInput>
+                       <input matInput formControlName="email">
+                       <mat-error *ngIf="hasError('email', 'required')">Email is <strong>required</strong></mat-error>
+                       <mat-error *ngIf="hasError('email', 'email')">Enter a valid email address</mat-error>
+                       
                   </mat-form-field>
                 </div>
                 <div *ngIf="step == 3">
                   <span class="label-field">Cell Phone Number (Required)</span>
-                  <mat-form-field appearance="outline">
+                  <mat-form-field appearance="outline"  [formGroup]="form">
                        <mat-icon matSuffix>phone_android</mat-icon>
+                       <input matInput required  formControlName="cellphone" maxlength="12">
+                       <mat-error *ngIf="hasError('cellphone','required')">
+                            Phone Number is <strong>required</strong>
+                       </mat-error>
+                       <mat-error *ngIf="hasError('cellphone', 'minlength')">phone number should be 7 digit</mat-error>
+                       <mat-error *ngIf="hasError('cellphone', 'maxlength')">phone number should be 12 digit</mat-error>
                        
-                       <input matInput>
                   </mat-form-field>
                 </div>
                   <div *ngIf="step == 4">
                   <span class="label-field">Home Address Of Your Current Residence (Optional)</span>
-                  <mat-form-field appearance="outline">
+                  <mat-form-field appearance="outline"  [formGroup]="form">
                        <mat-icon matSuffix>book</mat-icon>
-                       <input matInput>
+                       <input matInput  formControlName="address">
+                       <mat-error *ngIf="hasError('address', 'required')">address is <strong>required</strong></mat-error>
+                     
                   </mat-form-field>
                 </div>
                   <div *ngIf="step == 5">
 
-                  <span class="label-field">Gender (Required)</span>
-                  <mat-form-field appearance="outline">
-                       <mat-icon matSuffix>face</mat-icon>
-                       <mat-radio-group>
-                        <mat-radio-button value="m">Male </mat-radio-button>
-                        <mat-radio-button value="f">Female</mat-radio-button>
+                  <span class="label-field"><mat-icon matSuffix>face</mat-icon>Gender</span>
+                  <div class="mt-2"  [formGroup]="form">
+                       <mat-radio-group class="flex justify-between" formControlName="gender">
+                        <mat-radio-button value="m" checked=true name="gender">Male </mat-radio-button>
+                        <mat-radio-button value="f" name="gender">Female</mat-radio-button>
                       </mat-radio-group> 
-                  </mat-form-field>
+                    </div>
                 </div>
-                <div *ngIf="step == 6" class="">
+                <div *ngIf="step == 6">
                     <span class="label-field">Identification Proof (Required)</span>
 
                     <div class="flex">
+                         <mat-form-field  [formGroup]="form">
                          <div class="profilepic" (click)="picUploader('myFileInputDL')">
                               <span>Driving License</span>
                               <button mat-icon-button><mat-icon matSuffix>camera_enhance</mat-icon></button>
-                              <input id="myFileInputDL" hidden type="file" accept="image/*;capture=camera">
+                              <input id="myFileInputDL" hidden formControlName="picdirivinlicenseno" type="file" accept="image/*;capture=camera">
                          </div>
-                         <input matInput placeholder="number">
+                         <input formControlName="iddirivinlicenseno" matInput placeholder="number">
+                         </mat-form-field>
                     </div>
+                    <div class="border-line"></div>
                     <div class="flex">
+                         <mat-form-field  [formGroup]="form">
+
                     <div class="profilepic" (click)="picUploader('myFileInputPN')">
                          <span>PAN Card</span>
                          <button mat-icon-button><mat-icon matSuffix>camera_enhance</mat-icon></button>
-                         <input id="myFileInputPN" hidden type="file" accept="image/*;capture=camera">
+                         <input formControlName="picpancard" id="myFileInputPN" hidden type="file" accept="image/*;capture=camera">
                     </div>
-                    <input matInput placeholder="description">
+                    <input formControlName="idpancard" matInput placeholder="description">
+                    </mat-form-field>
+
                </div>
+               <div class="border-line"></div>
                     <div class="flex">
+                    <mat-form-field  [formGroup]="form">
                     <div class="profilepic" (click)="picUploader('myFileInputAD')">
                          <span>Adhar Card</span>
                          <button mat-icon-button><mat-icon matSuffix>camera_enhance</mat-icon></button>
-                         <input id="myFileInputAD" hidden type="file" accept="image/*;capture=camera">
+                         <input formControlName="picadharcard" id="myFileInputAD" hidden type="file" accept="image/*;capture=camera">
                     </div>
-                    <input matInput placeholder="description">
+                    <input formControlName="idcadharcard" matInput placeholder="description">
+               </mat-form-field>
                </div>
+               <div class="border-line"></div>
                <div class="flex">
+                    <mat-form-field  [formGroup]="form">
                     <div class="profilepic" (click)="picUploader('myFileInputODID')">
                          <span>Other ID</span>
                          <button mat-icon-button><mat-icon matSuffix>camera_enhance</mat-icon></button>
-                         <input id="myFileInputODID" hidden type="file" accept="image/*;capture=camera">
+                         <input formControlName="picothercard"  id="myFileInputODID" hidden type="file" accept="image/*;capture=camera">
                     </div>
-                    <input matInput placeholder="description">
+                    <input formControlName="idothercard" matInput placeholder="description">
+               </mat-form-field>
                </div>
 
                   </div>
@@ -125,6 +155,6 @@
              <div class="flex justify-between"  *ngIf="step == 6">
                     <button mat-stroked-button color="primary" (click)="step = step - 1">Back</button>
 
-                  <button  routerLink="/checkinout" mat-flat-button color="primary" >Create Customer</button>
+                  <button  (click)="onSubmit()" mat-flat-button color="primary" >Create Customer</button>
              </div>
            </mat-card>

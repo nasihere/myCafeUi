@@ -20,6 +20,8 @@ import { LoginComponent } from './login';;
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module'
 import { CustomerLookupComponent } from './customer-lookup/customer-lookup.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
     
@@ -27,6 +29,8 @@ import { CustomerLookupComponent } from './customer-lookup/customer-lookup.compo
     imports: [
         BrowserModule,
         ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
         HttpClientModule,
         AppRoutingModule,
         BrowserAnimationsModule,
