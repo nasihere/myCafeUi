@@ -23,6 +23,7 @@ import { CustomerLookupComponent } from './customer-lookup/customer-lookup.compo
 import { ComputerSelectionComponent } from './computer-selection/computer-selection.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { AgentSetupComponent } from './agent-setup/agent-setup.component';
 
 @NgModule({
     
@@ -45,7 +46,8 @@ import { MatInputModule } from '@angular/material/input';
         DashboardV2Component,
         CheckInOutComponent,
         CustomerLookupComponent,
-        ComputerSelectionComponent
+        ComputerSelectionComponent,
+        AgentSetupComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

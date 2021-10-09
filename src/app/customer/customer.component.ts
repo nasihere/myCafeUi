@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({ templateUrl: 'customer.component.html' })
-export class CustomerComponent {
+export class CustomerComponent implements OnInit {
     step:number = 1;
     form: FormGroup;
     loading: boolean;

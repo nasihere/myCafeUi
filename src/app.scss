@@ -84,6 +84,18 @@
     border-radius: 6px;
     margin-bottom: 20px;
 }
+.access-code {
+    text-align: center;
+    font-size: 5rem;
+}
+.admin-password {
+    position: absolute;
+    top: 10rem;
+    width: 100%;
+    -webkit-box-shadow: 5px 5px 35px 5px #000000; 
+box-shadow: 5px 5px 35px 5px #000000;
+}
+
 .options-prompt {
     background-color: #e2e6f3;
     border: 2px solid #172f52;
@@ -114,9 +126,15 @@
 .flex-warp {
     flex-wrap: wrap;
 }
+.justify-center {
+    justify-content: center;
+}
+.blue {
+    color: #1154AA;
+}
 .computer-prompt-icon {
     font-size: 3rem;
-    margin-left: 2.1rem;
+    margin-left: 2.5rem;
     margin-top: unset;
     margin-bottom: 2rem;
     

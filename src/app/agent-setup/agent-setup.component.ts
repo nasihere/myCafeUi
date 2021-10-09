@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-@Component({ templateUrl: 'computer-selection.component.html' })
-export class ComputerSelectionComponent  implements OnInit {
+@Component({ templateUrl: 'agent-setup.component.html' })
+export class AgentSetupComponent implements OnInit {
     form: FormGroup;
     step: number = 1;
-    pcCode: number = 0;
     constructor(        private router: Router,
 
         ) { 
@@ -15,6 +14,7 @@ export class ComputerSelectionComponent  implements OnInit {
 
         ngOnInit() {
             this.form = new FormGroup({
+                email: new FormControl('', [Validators.required, Validators.email]),
                 password: new FormControl('',[Validators.required,
                     Validators.minLength(5),
                     Validators.maxLength(30)])
@@ -29,22 +29,26 @@ export class ComputerSelectionComponent  implements OnInit {
         get f() { return this.form.controls; }
     
 
-        onVerifyAdminPassword() {
-        console.log('onVerifyAdminPassword terminal ');
+    onVerifyAdminPassword() {
         console.log(this.f.password.value)
+        this.step = 2;
+        // const returnUrl = '/computerselection';
+        // this.router.navigate([returnUrl]);
+        // stop here if form is invalid
+        if (this.form.invalid) {
+            return;
+        }
 
+    }
+    onDownloadLinkEmail() {
+        console.log(this.f.email.value)
+        this.step = 3;
+        // const returnUrl = '/computerselection';
+        // this.router.navigate([returnUrl]);
+        // stop here if form is invalid
         if (this.form.invalid) {
             return;
         }
     }
-    onAvailablePC() {
-        console.log('onAvailablePC');
-        this.pcCode = Math.floor(1000 + Math.random() * 9000);
-    }
-    onPCCodeVerify() {
-        console.log('onPCCodeVerify');
-        this.pcCode = 0;
-          const returnUrl = '/checkinout';
-        this.router.navigate([returnUrl]);
-    }
+
 }

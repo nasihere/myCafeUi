@@ -21,7 +21,7 @@
           <button routerLink="/customer" mat-stroked-button color="primary" >New Customer</button>
      </div>
      <div class="border-line "></div>
-        <mat-card class="p-3 opacity-90 mlr-1">
+        <mat-card class="p-3 mlr-1"  [ngClass]="adminPassword ? 'opacity-20' : ''">
           <div *ngIf="step==1" class="flex justify-between flex-column">
                <div class="options-prompt flex">
                     <button (click)="step = 2" class="w-100" mat-button><mat-icon>smartphone</mat-icon>
@@ -29,7 +29,12 @@
                </div>
                <div class="options-prompt flex">
                     <button  (click)="step = 4"  class="w-100" mat-button><mat-icon>tag_faces</mat-icon>
-                    <span>Need Assistance</span></button>
+                    <span>Need Assistance in Check IN</span></button>
+               </div>
+               
+               <div class="options-prompt flex">
+                    <button  (click)="adminPassword = true"  class="w-100" mat-button><mat-icon>lock</mat-icon>
+                    <span>Check Out</span></button>
                </div>
           </div>
           <div *ngIf="step==2">
@@ -100,3 +105,28 @@
              </mat-card-actions>
           </div>
      </mat-card>
+
+     
+<div class="flex flex-warp admin-password" *ngIf="adminPassword">
+     <mat-card class="mt-1  w-100 m-2 ">
+         <div class="flex flex-column  ">
+             <span  class="heading profile-heading  flex justify-between "><strong>Verify the administrator password</strong></span>
+             <span class="label-field">Password (required)</span>
+             <mat-form-field appearance="outline"  [formGroup]="form">
+                 <mat-icon matSuffix>lock</mat-icon>
+             
+                 <input matInput type="password"  required formControlName="password">
+                 <mat-error *ngIf="hasError('password', 'required')">Email is <strong>required</strong></mat-error>
+                 <mat-error *ngIf="hasError('password', 'minlength')">password should be minimum 5 character length</mat-error>
+                 <mat-error *ngIf="hasError('password', 'maxlength')">password should be below 30 character length</mat-error>
+                 
+                 
+             </mat-form-field>
+             <button color="primary" (click)="onVerifyAdminPassword()" mat-stroked-button>Verify</button>
+         </div>
+     
+ 
+     </mat-card>
+ 
+ 
+ </div>

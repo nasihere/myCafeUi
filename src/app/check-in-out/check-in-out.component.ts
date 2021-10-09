@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 @Component({ templateUrl: 'check-in-out.component.html' })
 export class CheckInOutComponent implements OnInit  {
+    adminPassword: boolean = false;
     step: number = 1;
     form: FormGroup;
     submitted: boolean;
@@ -23,7 +24,9 @@ export class CheckInOutComponent implements OnInit  {
             otpverify: new FormControl('', [Validators.required]),
              search: new FormControl('', [Validators.required]),
             cellphone: new FormControl('', [Validators.required,  Validators.minLength(10), Validators.maxLength(10),Validators.pattern(MOBILE_PATTERN)]),
-               
+            password: new FormControl('',[Validators.required,
+                Validators.minLength(5),
+                Validators.maxLength(30)])
           });
 
     }
@@ -58,6 +61,13 @@ export class CheckInOutComponent implements OnInit  {
         console.log(this.f.otpverify.value)
         console.log('onVerifyOTP');
         const returnUrl = '/customerlookup';
+        this.router.navigate([returnUrl]);
+    }
+    onVerifyAdminPassword() {
+        
+        console.log(this.f.password.value)
+        console.log('onVerifyAdminPassword');
+        const returnUrl = '/computerselection';
         this.router.navigate([returnUrl]);
     }
 }

@@ -1,0 +1,82 @@
+<div class="header opacity-0 p-1  flex justify-between">
+    <div class="flex  p-2">
+        <mat-icon>toll</mat-icon>
+        <span class="title">Cyber Cafe</span>
+    </div>
+</div>
+
+<div class="flex justify-between nav">
+    <button mat-stroked-button color="primary" routerLink="/computerselection"  ><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
+    <div class="page-name">Agent Setup</div>
+    
+</div>
+<div class="border-line"></div>
+
+<div class="flex flex-warp" *ngIf="step == 1">
+    <mat-card class="mt-1  w-100 m-2 ">
+        <div class="flex flex-column  ">
+            <span  class="heading profile-heading  flex justify-between "><strong>Verify the administrator password</strong></span>
+            <span class="label-field">Password (required)</span>
+            <mat-form-field appearance="outline"  [formGroup]="form">
+                <mat-icon matSuffix>lock</mat-icon>
+            
+                <input matInput type="password"  required formControlName="password">
+                <mat-error *ngIf="hasError('password', 'required')">Email is <strong>required</strong></mat-error>
+                <mat-error *ngIf="hasError('password', 'minlength')">password should be minimum 5 character length</mat-error>
+                <mat-error *ngIf="hasError('password', 'maxlength')">password should be below 30 character length</mat-error>
+                
+                
+            </mat-form-field>
+            <button color="primary" (click)="onVerifyAdminPassword()" mat-stroked-button>Verify</button>
+        </div>
+    
+
+    </mat-card>
+
+
+</div>
+<div class="flex flex-warp" *ngIf="step == 2">
+   
+        <div class="notify flex justify-between ">
+            <mat-icon>devices</mat-icon>
+            <div class="flex flex-column"><span class="text-medium">Cafe agent application needs to be install in the client PC for controling the lock/unlock remotely.</span><span class="text-smaller">Please follow the below instructions to setup the app in the desktop.</span></div>
+          </div>
+  
+    <mat-card class="mt-1  w-100 m-2 ">
+        <h3 class="flex justify-center"><mat-icon>cloud_download</mat-icon><strong>Downloads</strong></h3>
+        <div class="border-line"></div>
+        <span class="flex blue"><mat-icon>file_copy</mat-icon>cafe-agent.exe (windows)</span>
+        <small>Last Updated: 10/8/2021</small>
+    </mat-card>
+
+
+      <mat-card class="mt-1  w-100 m-2 ">
+        <div class="flex flex-column  ">
+            <span  class="heading profile-heading  flex justify-between "><strong>To download cafe-agent software though download link, system will send download link address to your email account directly.</strong></span>
+            <span class="label-field">Email</span>
+            <mat-form-field appearance="outline"   [formGroup]="form">
+                <mat-icon matSuffix>alternate_email</mat-icon>
+                
+                <input matInput formControlName="email">
+                <mat-error *ngIf="hasError('email', 'required')">Email is <strong>required</strong></mat-error>
+                <mat-error *ngIf="hasError('email', 'email')">Enter a valid email address</mat-error>
+                
+           </mat-form-field>
+            <button color="primary" (click)="onDownloadLinkEmail()" mat-flat-button>Download link</button>
+        </div>
+    
+
+    </mat-card>
+
+</div>
+
+<div class="flex flex-warp" *ngIf="step == 3">
+   
+    <div class="notify flex justify-between ">
+        <mat-icon>info</mat-icon>
+        <div class="flex flex-column"><span class="text-medium">Check your email account for download cafe-agent link and instructions.</span><span class="text-smaller"></span></div>
+    </div>
+    <mat-card class="mt-1  w-100 m-2 ">
+        <span>After your finished downloading the cafe-agent application in the desktop and authenticate with your admin account in the cafe-agent window application. That client machine will automatically shows up in the mobile app for customer selection.</span>
+    </mat-card>
+</div>

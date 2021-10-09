@@ -8,18 +8,26 @@
 <div class="flex justify-between nav">
     <button mat-stroked-button color="primary" routerLink="/checkinout"  ><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
     <div class="page-name">Terminal Available</div>
-    <button mat-stroked-button color="primary"  >Settings</button>
+    <button mat-button color="primary"  ><mat-icon>refresh</mat-icon>Refresh</button>
 </div>
 <div class="border-line"></div>
-<div class="flex flex-warp">
+<div class="flex flex-warp"  [ngClass]="pcCode || step != 1 ? 'opacity-20' : ''">
 <mat-card class="mt-1  s-smaller computer-prompt">
    <div class="flex flex-column  ">
-    <span  class="heading profile-heading "><strong>PC - 001</strong></span>
+    <span  class="heading profile-heading  flex justify-between "><strong>PC - 001</strong><mat-icon [matMenuTriggerFor]="menuAvail" >more_vert</mat-icon></span>
     <mat-icon class="computer-prompt-icon green">desktop_mac</mat-icon>
-       
+    <mat-menu #menuAvail="matMenu">
+        
+        <button (click)="step = 2" mat-menu-item>
+          <span>Not Available</span>
+        </button>
+        <button  (click)="step = 3" mat-menu-item >
+          <span>Broken</span>
+        </button>
+      </mat-menu>
        <span class="green">Ready</span>
        
-       <button color="primary" mat-stroked-button>Available</button>
+       <button (click)="onAvailablePC()" color="primary" mat-stroked-button>Available</button>
    </div>
    
 
@@ -27,9 +35,17 @@
 
 <mat-card class="mt-1  s-smaller computer-prompt">
     <div class="flex flex-column  ">
-     <span  class="heading profile-heading "><strong>PC - 006</strong></span>
+     <span  class="heading profile-heading flex justify-between"><strong>PC - 006</strong><mat-icon [matMenuTriggerFor]="menuAvail" >more_vert</mat-icon></span>
      <mat-icon class="computer-prompt-icon green">desktop_mac</mat-icon>
+     <mat-menu #menuAvail="matMenu">
         
+        <button (click)="step = 2" mat-menu-item>
+          <span>Not Available</span>
+        </button>
+        <button  (click)="step = 3" mat-menu-item >
+          <span>Broken</span>
+        </button>
+      </mat-menu>
         <span class="green">Ready</span>
         
         <button color="primary" mat-stroked-button>Available</button>
@@ -41,8 +57,20 @@
 
 <mat-card class="mt-1  s-smaller computer-prompt">
     <div class="flex flex-column  ">
-     <span  class="heading profile-heading "><strong>PC - 002</strong></span>
-     <span>(1hr 30m)</span>
+        
+        <span  class="heading profile-heading flex justify-between "><strong>PC - 002</strong><mat-icon [matMenuTriggerFor]="menu" >more_vert</mat-icon></span>
+        <mat-menu #menu="matMenu">
+            <button  (click)="step = 6" mat-menu-item >
+                <span>Lock</span>
+              </button>
+            <button (click)="step = 2" mat-menu-item>
+              <span>Available</span>
+            </button>
+            <button  (click)="step = 3" mat-menu-item >
+              <span>Broken</span>
+            </button>
+          </mat-menu>
+        <span>(1hr 30m)</span>
      <mat-icon class="computer-prompt-icon red">desktop_mac</mat-icon>
         <span class="red">Busy</span>
         <button color="warn" mat-stroked-button>Not Available</button>
@@ -51,11 +79,11 @@
 
  <mat-card class="mt-1  s-smaller computer-prompt">
     <div class="flex flex-column  ">
-     <span  class="heading profile-heading "><strong>PC - 003</strong></span>
+     <span  class="heading profile-heading  flex justify-between"><strong>PC - 003</strong><mat-icon>more_vert</mat-icon></span>
      <span>(1hr 30m)</span>
-     <mat-icon class="computer-prompt-icon red">desktop_mac</mat-icon>
+     <mat-icon class="computer-prompt-icon orange">desktop_mac</mat-icon>
         <span class="orange">Broken</span>
-        <button color="accent" mat-stroked-button>Need Maintaince</button>
+        <button class="orange" mat-stroked-button>Maintenance</button>
     </div>
  </mat-card>
 
@@ -67,7 +95,60 @@
      <span>New</span>
      <mat-icon class="computer-prompt-icon">desktop_mac</mat-icon>
         <span >Setup</span>
-        <button color="primary" mat-flat-button>Go</button>
+        <button routerLink="/agentsetup" color="primary" mat-flat-button>Go</button>
     </div>
  </mat-card>
+</div>
+
+
+<div class="flex flex-warp admin-password" *ngIf="step != 1">
+    <mat-card class="mt-1  w-100 m-2 ">
+        <div class="flex flex-column  ">
+
+            <span  class="heading profile-heading  flex justify-between "><strong>Verify the administrator password</strong></span>
+            <span class="label-field">Password (required)</span>
+            <mat-form-field appearance="outline"  [formGroup]="form">
+                <mat-icon matSuffix>lock</mat-icon>
+            
+                <input matInput type="password"  required formControlName="password">
+                <mat-error *ngIf="hasError('password', 'required')">Email is <strong>required</strong></mat-error>
+                <mat-error *ngIf="hasError('password', 'minlength')">password should be minimum 5 character length</mat-error>
+                <mat-error *ngIf="hasError('password', 'maxlength')">password should be below 30 character length</mat-error>
+                
+                
+            </mat-form-field>
+            <div class="flex justify-center">
+                <button mat-stroked-button color="primary" (click)="step = 1"  ><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
+
+                <button color="primary" (click)="onVerifyAdminPassword()" mat-flat-button>Verify</button>
+            </div>
+        </div>
+    
+
+    </mat-card>
+
+
+</div>
+
+
+<div class="flex flex-warp admin-password" *ngIf="pcCode">
+    <mat-card class="mt-1  w-100 m-2 ">
+        <div class="flex flex-column  ">
+
+            <span  class="heading profile-heading  flex justify-center "><mat-icon>security</mat-icon><strong>PC - 001 Access code generated</strong></span>
+            <div class="border-line"></div>
+            <span class="access-code">{{pcCode}}</span>
+            <div class="notify flex justify-between ">
+                <mat-icon>devices</mat-icon>
+                <div class="flex flex-column"><span class="text-medium">Go to the PC - 001 and enter the above code to unlock the computer.</span><span class="text-smaller"></span></div>
+              </div>
+            <div class="flex justify-center">
+                <button color="primary" (click)="onPCCodeVerify()" mat-flat-button>Ok</button>
+            </div>
+        </div>
+    
+
+    </mat-card>
+
+
 </div>
