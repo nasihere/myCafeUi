@@ -9,7 +9,7 @@
    </div>
    
    <div class="flex justify-between nav">
-        <div class="page-name">Admin Dashboard</div>
+        <div class="page-name">Administrator</div>
    </div>
    <div class="notify flex " *ngIf="step == 1">
         <mat-icon>info</mat-icon> 
@@ -17,7 +17,7 @@
    </div>
 
    <div class="bg-white pl-1 flex justify-between pr-1 mlr-1">
-        <span class="heading">Don't have an account?</span>
+        <span class="heading">Don't have an customer account?</span>
         <button routerLink="/customer" mat-stroked-button color="primary" >New Customer</button>
    </div>
    <div class="border-line "></div>
@@ -33,6 +33,12 @@
                   <button  routerLink="/dashboardv2"  class="w-100" mat-button><mat-icon>pages</mat-icon>
                   <span>Terminal Status</span></button>
              </div>
+
+             
+             <div class="options-prompt flex">
+               <button  routerLink="/settings"  class="w-100" mat-button><mat-icon>settings</mat-icon>
+               <span>Settings</span></button>
+          </div>
         </div>
         <div *ngIf="step==2">
              <span class="label-field">Cell Phone Number</span>

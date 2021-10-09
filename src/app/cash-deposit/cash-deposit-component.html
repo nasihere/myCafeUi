@@ -13,12 +13,115 @@
    </div>
    <div class="border-line "></div>
 
+   <div class="flex justify-center  mt-3">
+    <img src="assets/billing-icon.png" height="100" />
+</div>
+<div class="flex justify-center">
+    <span  class="heading profile-heading"><strong>Payment Deposit</strong></span>
+</div>
 <div class="border-line"></div>
-<mat-card class="mt-1  s-smaller" [ngClass]="disconnectSession ? 'opacity-20' : ''">
+<mat-card class="mt-1  s-smaller" [ngClass]="(paymentMaking || overlaybackground) ? 'opacity-20' : ''">
    <div class="flex flex-row justify-between">
        <span  class="heading profile-heading"><strong>Nasir Sayed</strong></span>
        <div class="border-line"></div>
        <img src="assets/1586650.png" height="50" />
    </div>
    <div class="border-line"></div>
+   <div class="flex flex-column justify-between">
+    <span  class="label-field">327 West Side Drive #302, Gaithersburg MD 20878</span>
+    <span  class="label-field">Cell: +1 408-477-7455</span>
+    <span  class="label-field">Email: nasir.us@gmail.com</span>
+</div>
+<div class="border-line"></div>
+
 </mat-card>
+
+<mat-card class="mt-1  s-smaller" [ngClass]="(paymentMaking || overlaybackground) ? 'opacity-20' : ''">
+
+    <div class="flex flex-column justify-between">
+    <span  class="heading profile-heading"><strong>Billing</strong></span>
+    
+    <div>
+        <div class="flex justify-between">
+            <span  class="label-field w-min-25">Internet Access</span>
+            <span  class="label-field w-min-25">$10 per hour</span>
+            <span>x</span>
+            <input type="text" class="mb-3 w-10"/> 
+            <span>=</span>
+            <span  class="label-field w-min-25 green text-right">$ 30</span>
+        </div>
+        <div class="border-line"></div>
+    </div>
+
+      
+    <div>
+        <div class="flex justify-between">
+            <span  class="label-field w-min-25">Printer</span>
+            <span  class="label-field w-min-25">$0.23 per page</span>
+            <span>x</span>
+            <input type="text" class="mb-3 w-10"/>
+            <span>=</span>
+            <span  class="label-field w-min-25 green text-right">$ 0</span>
+        </div>
+        <div class="border-line"></div>
+    </div>
+
+    <div>
+        <div class="flex justify-between">
+            <span  class="label-field w-min-25">Scanner</span>
+            <span  class="label-field w-min-25">$0.20 per page</span>
+            <span>x</span>
+            <input type="text" class="mb-3 w-10"/>
+            <span>=</span>
+            <span  class="label-field w-min-25 green text-right">$ 0</span>
+        </div>
+        <div class="border-line"></div>
+    </div>
+
+    
+    <div>
+        <div class="flex justify-between">
+            <span  class="label-field w-min-25">Game</span>
+            <span  class="label-field w-min-25">$2 per hour</span>
+            <span>x</span>
+            <input type="text" class="mb-3 w-10"/>
+            <span>=</span>
+            <span  class="label-field w-min-25 green text-right">$ 15</span>
+        </div>
+        <div class="border-line"></div>
+    </div>
+
+    <div class="flex justify-between">
+        <span  class="heading profile-heading"><strong>Total</strong></span>
+        <span  class="heading profile-heading"><strong>$150.00</strong></span>
+    </div>
+    <div class="border-line"></div>
+
+    <mat-card-actions>
+                   
+        <div class="flex justify-between">
+         <button routerLink="/admindashboard"  mat-button color="primary" class="text-center"><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
+         <button (click)="onPaidMoney()" mat-flat-button color="primary" class=" green text-center"><mat-icon>paid</mat-icon>Paid</button>
+       </div>
+     </mat-card-actions>
+     
+ </div>
+
+ </mat-card>
+
+ 
+   
+<div class="flex flex-warp admin-password" *ngIf="paymentMaking">
+    <mat-card class="mt-1  w-100 m-2 ">
+        <div class="flex flex-column  ">
+            <span  class="heading profile-heading  flex justify-between "><strong>Thanks for the payment</strong></span>
+            <span class="label-field">Account Updated for that session. </span>
+            
+            <button color="primary" (click)="onRouteAdminDashboard()" mat-flat-button>Ok</button>
+        </div>
+    
+ 
+    </mat-card>
+ 
+ 
+ </div>

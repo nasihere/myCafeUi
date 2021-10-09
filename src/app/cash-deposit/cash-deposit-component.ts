@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 
 @Component({ templateUrl: 'cash-deposit-component.html' })
 export class CashDepositComponent implements OnInit  {
-    adminPassword: boolean = false;
-    disconnectSession: boolean = false;
+    overlaybackground:boolean = false;  
+    paymentMaking: boolean = false;
     step: number = 1;
     form: FormGroup;
     submitted: boolean;
@@ -32,10 +32,17 @@ export class CashDepositComponent implements OnInit  {
       }
     // convenience getter for easy access to form fields
     get f() { return this.form.controls; }
-    // onDisconnectSession() {
-    //     console.log('onDisconnectSession');
-    //     const returnUrl = '/checkinout';
-    //     this.router.navigate([returnUrl]);
+    onPaidMoney() {
+        console.log('onPaidMoney');
+        this.paymentMaking = true;
+        // const returnUrl = '/admindashboard';
+        // this.router.navigate([returnUrl]);
 
-    // }
+    }
+    onRouteAdminDashboard() {
+      console.log('onRouteAdminDashboard');
+        this.paymentMaking = false;
+        const returnUrl = '/admindashboard';
+        this.router.navigate([returnUrl]);
+    }
 }
