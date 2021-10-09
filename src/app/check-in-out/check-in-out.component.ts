@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 @Component({ templateUrl: 'check-in-out.component.html' })
 export class CheckInOutComponent implements OnInit  {
     adminPassword: boolean = false;
+    helpPageNewCustomer: boolean = false;
     step: number = 1;
     form: FormGroup;
     submitted: boolean;
@@ -21,6 +22,7 @@ export class CheckInOutComponent implements OnInit  {
 
         let MOBILE_PATTERN = /[0-9\+\-\ ]/;
         this.form = new FormGroup({
+            accessCode: new FormControl('', [Validators.required]),
             otpverify: new FormControl('', [Validators.required]),
              search: new FormControl('', [Validators.required]),
             cellphone: new FormControl('', [Validators.required,  Validators.minLength(10), Validators.maxLength(10),Validators.pattern(MOBILE_PATTERN)]),
@@ -61,13 +63,19 @@ export class CheckInOutComponent implements OnInit  {
         console.log(this.f.otpverify.value)
         console.log('onVerifyOTP');
         const returnUrl = '/customerlookup';
-        this.router.navigate([returnUrl]);
+        this.router.navigate([returnUrl, {ref:'selfcheckin'}]);
     }
     onVerifyAdminPassword() {
         
         console.log(this.f.password.value)
         console.log('onVerifyAdminPassword');
         const returnUrl = '/computerselection';
+        this.router.navigate([returnUrl]);
+    }
+    onAccessCodeLogin() {
+        console.log(this.f.accessCode.value)
+        console.log('onAccessCodeLogin');
+        const returnUrl = '/connectedcomputer';
         this.router.navigate([returnUrl]);
     }
 }

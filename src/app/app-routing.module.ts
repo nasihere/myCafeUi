@@ -12,14 +12,18 @@ import { CustomerLookupComponent } from './customer-lookup/customer-lookup.compo
 import { ComputerSelectionComponent } from './computer-selection/computer-selection.component';
 import { AgentSetupComponent } from './agent-setup/agent-setup.component';
 import {  AdminDashboardComponent } from './admin-dashboard/admin-dashboard-component';
+import { ConnectedComputerComponent } from './connected-computer/connection-computer.component';
+import { CashDepositComponent } from './cash-deposit/cash-deposit-component';
 const routes: Routes = [
     { path: '', component: LoginComponent, canActivate: [AuthGuard] },
+    { path: 'connectedcomputer', component: ConnectedComputerComponent, canActivate: [AuthGuard] },
     { path: 'admindashboard', component: AdminDashboardComponent, canActivate: [AuthGuard] },
     { path: 'agentsetup', component: AgentSetupComponent, canActivate: [AuthGuard] },
-
+    { path: 'cashdeposit', component: CashDepositComponent, canActivate: [AuthGuard] },
+    
     { path: 'computerselection', component: ComputerSelectionComponent, canActivate: [AuthGuard] },
     { path: 'customerlookup', component: CustomerLookupComponent, canActivate: [AuthGuard] },
-
+    { path: 'customerlookup/:ref', component: CustomerLookupComponent, canActivate: [AuthGuard] },
     { path: 'checkinout', component: CheckInOutComponent, canActivate: [AuthGuard] },
     { path: 'dashboardv2', component: DashboardV2Component, canActivate: [AuthGuard] },
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },

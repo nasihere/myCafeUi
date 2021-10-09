@@ -25,6 +25,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AgentSetupComponent } from './agent-setup/agent-setup.component';
 import {  AdminDashboardComponent } from './admin-dashboard/admin-dashboard-component';
+import { ConnectedComputerComponent } from './connected-computer/connection-computer.component';
+
+import { CashDepositComponent } from './cash-deposit/cash-deposit-component';
+
 @NgModule({
     
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -48,7 +52,9 @@ import {  AdminDashboardComponent } from './admin-dashboard/admin-dashboard-comp
         CustomerLookupComponent,
         ComputerSelectionComponent,
         AgentSetupComponent,
-        AdminDashboardComponent
+        AdminDashboardComponent,
+        ConnectedComputerComponent,
+        CashDepositComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

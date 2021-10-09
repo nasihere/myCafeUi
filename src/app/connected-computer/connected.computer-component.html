@@ -1,0 +1,81 @@
+
+     <div class="header opacity-0 p-1  flex justify-between">
+        <div class="flex  p-2">
+             <mat-icon>toll</mat-icon>
+             <span class="title">Cyber Cafe</span>
+             
+        </div>
+     
+   </div>
+   
+   <div class="flex justify-between nav">
+        <div class="page-name">Session Connected</div>
+   </div>
+   <div class="border-line "></div>
+
+<div class="flex justify-center  mt-3">
+    <img src="assets/connected-pc.png" height="50" />
+</div>
+<div class="flex justify-center">
+    <span  class="heading profile-heading"><strong>Successfully Connected</strong></span>
+</div>
+<div class="border-line"></div>
+<mat-card class="mt-1  s-smaller" [ngClass]="disconnectSession ? 'opacity-20' : ''">
+   <div class="flex flex-row justify-between">
+       <span  class="heading profile-heading"><strong>Nasir Sayed</strong></span>
+       <div class="border-line"></div>
+       <img src="assets/1586650.png" height="50" />
+   </div>
+   <div class="border-line"></div>
+   <div class="flex flex-column justify-between">
+        <span  class="label-field">327 West Side Drive #302, Gaithersburg MD 20878</span>
+        <span  class="label-field">Cell: +1 408-477-7455</span>
+        <span  class="label-field">Email: nasir.us@gmail.com</span>
+    </div>
+    <div class="border-line"></div>
+    <div class="flex flex-row justify-between">
+        <strong  class="label-field">Time Check-In to this computer</strong>
+        <span  class="label-field">Oct-01-2021 11:01:00PM </span>
+    </div>
+    <div class="border-line"></div>
+    <div class="flex flex-row justify-between">
+        <strong  class="label-field">Total Time on this computer</strong>
+        <span  class="label-field">(1 hr 23 min) </span>
+    </div>
+    <div class="flex flex-row justify-between">
+        <strong  class="heading profile-heading">Cost</strong>
+        <span  class="heading profile-heading green">$ 40.0</span>
+    </div>
+    <div class="border-line"></div>
+    <div class="flex justify-between mt-3">
+        <button class="w-100" (click)="disconnectSession = true" color="warn" mat-flat-button><mat-icon>highlight_off</mat-icon>Disconnect</button>
+    </div>
+</mat-card>
+
+<div class="flex flex-warp admin-password" *ngIf="disconnectSession">
+    <mat-card class="mt-1  w-100 m-2 ">
+        <div class="flex flex-column  ">
+            <span  class="heading profile-heading  flex justify-between "><strong>Do you want to end the session?</strong></span>
+            <span class="label-field">Computer will be locked and can't retrieve the same session back.</span>
+            <mat-form-field appearance="outline"  [formGroup]="form">
+                <mat-icon matSuffix>lock</mat-icon>
+            
+                <input matInput type="password"  required formControlName="password">
+                <mat-error *ngIf="hasError('password', 'required')">Email is <strong>required</strong></mat-error>
+                <mat-error *ngIf="hasError('password', 'minlength')">password should be minimum 5 character length</mat-error>
+                <mat-error *ngIf="hasError('password', 'maxlength')">password should be below 30 character length</mat-error>
+                
+                
+            </mat-form-field>
+            <div class="flex justify-between">
+            <button color="primary" (click)="disconnectSession = false" mat-flat-button>No</button>
+            <button color="warn" (click)="onDisconnectSession()" mat-flat-button>Yes</button>
+
+        </div>
+        </div>
+    
+ 
+    </mat-card>
+ 
+ 
+ </div>

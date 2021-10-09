@@ -9,7 +9,14 @@ export class CustomerLookupComponent {
            
         }
     onCheckIn() {
-        const returnUrl = '/computerselection';
-        this.router.navigate([returnUrl]);
+        if (window.location.href.indexOf('selfcheckin') != -1) {
+            const returnUrl = '/connectedcomputer';
+            this.router.navigate([returnUrl]);    
+        }
+        else {
+            const returnUrl = '/computerselection';
+            this.router.navigate([returnUrl]);
+        }
+        
     }
 }

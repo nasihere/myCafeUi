@@ -88,14 +88,36 @@
     text-align: center;
     font-size: 5rem;
 }
+.access-code-input  {
+    height: 5rem;
+    font-size: 2rem!important;
+    background: #fff;
+    border: 2px solid green;
+}
+.access-code-input > .mat-form-field-infix {
+    height: 5rem;
+    font-size: 3rem;
+}
 .admin-password {
     position: absolute;
+    background-color: #fff;
     top: 10rem;
     width: 100%;
     -webkit-box-shadow: 5px 5px 35px 5px #000000; 
 box-shadow: 5px 5px 35px 5px #000000;
 }
-
+.options-prompt-access-code {
+    background-color: #e3ede3;
+    border: 2px solid #1f4c15;
+    margin: 0 0 1rem 0;
+    padding: .5rem;
+    color: #000;
+    font-size: 0.7rem;
+    text-align: center;
+    height: 10rem;
+    -webkit-box-shadow: 5px 5px 14px -5px #000000; 
+    box-shadow: 5px 5px 14px -5px #000000;
+}
 .options-prompt {
     background-color: #e2e6f3;
     border: 2px solid #172f52;

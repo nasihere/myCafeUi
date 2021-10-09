@@ -18,30 +18,39 @@
 
      <div class="bg-white pl-1 flex justify-between pr-1 mlr-1">
           <span class="heading">Don't have an account?</span>
-          <button routerLink="/customer" mat-stroked-button color="primary" >New Customer</button>
+          <button (click)="helpPageNewCustomer = true" mat-stroked-button color="primary" >New Customer</button>
      </div>
      <div class="border-line "></div>
-        <mat-card class="p-3 mlr-1"  [ngClass]="adminPassword ? 'opacity-20' : ''">
+        <mat-card class="p-3 mlr-1"  [ngClass]="(helpPageNewCustomer || adminPassword) ? 'opacity-20' : ''">
+          
+          <div *ngIf="step==1">
+               <div class="options-prompt-access-code flex flex-column">
+                    <span class="label-field">Access Code</span>
+                    <mat-form-field appearance="outline" [formGroup]="form" class="access-code-input text-center">
+                         <mat-icon matSuffix>code</mat-icon>
+                         <input matInput  formControlName="accessCode"  >
+                    </mat-form-field>
+     
+                         
+                    <div class="flex justify-center">
+                              <button (click)="onAccessCodeLogin()" mat-flat-button color="primary" class="text-center"><mat-icon>key</mat-icon>Unlock</button>
+                    </div>
+          </div>
+          <span class="flex justify-center">OR</span>
           <div *ngIf="step==1" class="flex justify-between flex-column">
                <div class="options-prompt flex">
                     <button (click)="step = 2" class="w-100" mat-button><mat-icon>smartphone</mat-icon>
-                    <span>Self Check IN</span></button>
+                    <span>Self Login</span></button>
                </div>
-               <div class="options-prompt flex">
-                    <button  (click)="step = 4"  class="w-100" mat-button><mat-icon>tag_faces</mat-icon>
-                    <span>Need Assistance in Check IN</span></button>
-               </div>
-               
-               <div class="options-prompt flex">
-                    <button  (click)="adminPassword = true"  class="w-100" mat-button><mat-icon>lock</mat-icon>
-                    <span>Check Out</span></button>
-               </div>
+             
+          </div>
+          
           </div>
           <div *ngIf="step==2">
                <span class="label-field">Cell Phone Number</span>
                <mat-form-field appearance="outline" [formGroup]="form">
                     <mat-icon matSuffix>smartphone</mat-icon>
-                    <input matInput  formControlName="cellphone"  >
+                    <input matInput  formControlName="cellphone"  class="access-code-input" >
                     <mat-error *ngIf="hasError('cellphone','required')">
                          Phone Number is <strong>required</strong>
                     </mat-error>
@@ -70,7 +79,7 @@
                <span class="label-field">Verify OTP</span>
                <mat-form-field appearance="outline" [formGroup]="form">
                     <mat-icon matSuffix>textsms</mat-icon>
-                    <input matInput  formControlName="otpverify" >
+                    <input matInput  formControlName="otpverify" class="access-code-input" >
                     <mat-error *ngIf="hasError('otpverify','required')">
                          OTP Number is <strong>required</strong>
                     </mat-error>
@@ -123,6 +132,21 @@
                  
              </mat-form-field>
              <button color="primary" (click)="onVerifyAdminPassword()" mat-stroked-button>Verify</button>
+         </div>
+     
+ 
+     </mat-card>
+ 
+ 
+ </div>
+
+ 
+<div class="flex flex-warp admin-password" *ngIf="helpPageNewCustomer">
+     <mat-card class="mt-1  w-100 m-2 ">
+         <div class="flex flex-column  ">
+             <span  class="heading profile-heading  flex justify-between "><strong>Please call customer assistance for creating a new account.</strong></span>
+             
+             <button color="primary" (click)="helpPageNewCustomer = false" mat-stroked-button>OK</button>
          </div>
      
  
