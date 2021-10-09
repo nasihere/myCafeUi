@@ -24,7 +24,7 @@ import { ComputerSelectionComponent } from './computer-selection/computer-select
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AgentSetupComponent } from './agent-setup/agent-setup.component';
-
+import {  AdminDashboardComponent } from './admin-dashboard/admin-dashboard-component';
 @NgModule({
     
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -47,7 +47,8 @@ import { AgentSetupComponent } from './agent-setup/agent-setup.component';
         CheckInOutComponent,
         CustomerLookupComponent,
         ComputerSelectionComponent,
-        AgentSetupComponent
+        AgentSetupComponent,
+        AdminDashboardComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

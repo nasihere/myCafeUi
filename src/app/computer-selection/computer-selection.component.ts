@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 export class ComputerSelectionComponent  implements OnInit {
     form: FormGroup;
     step: number = 1;
+    cashDeposit: boolean = false;
     pcCode: number = 0;
     constructor(        private router: Router,
 
@@ -44,6 +45,12 @@ export class ComputerSelectionComponent  implements OnInit {
     onPCCodeVerify() {
         console.log('onPCCodeVerify');
         this.pcCode = 0;
+          const returnUrl = '/checkinout';
+        this.router.navigate([returnUrl]);
+    }
+    onCashDepposit() {
+        console.log('onCashDepposit');
+        this.cashDeposit = true;
           const returnUrl = '/checkinout';
         this.router.navigate([returnUrl]);
     }

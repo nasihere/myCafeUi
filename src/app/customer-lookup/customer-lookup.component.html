@@ -31,8 +31,28 @@
         
     </div>
     <div class="border-line"></div>
+    <div class="flex">
+    <div class="notify flex flex-column justify-between ">
+        <span>Intellectual Property Rights</span>
+               
+        <div class="flex flex-column"><span class="text-medium">Other than the content you own, under these Terms, Cafe and/or its licensors own all the intellectual property rights.
+            You are granted limited license only for purposes of accessing the material.</span></div>
+        <span>Unacceptable use of the internet </span>
+           
+        <div class="flex flex-column"><span class="text-medium">Sending or posting discriminatory, harassing, or threatening messages or images on the Internet 
+            Using computers to perpetrate any form of fraud, and/or software, film or music piracy
+            Stealing, using, or disclosing someone else's password without authorization
+            Downloading, copying or pirating software and electronic files that are copyrighted or without authorization
+            Sharing confidential material, trade secrets, or proprietary information outside of the organizatio
+            Hacking into unauthorized websites
+            Sending or posting information that is defamatory to the company, its products/services, Introducing malicious software onto the network and/or jeopardizing the security of the organization's electronic communications systems
+            Sending or posting chain letters, solicitations, or advertisements not related to business purposes or activities
+            Passing off personal views as representing those of the organization.</span></div>
+      </div
+    ></div>
+    <div class="border-line"></div>
     <div class="flex flex-row justify-between">
-        <button (click)="onCheckIn()" color="primary" mat-flat-button><mat-icon>check</mat-icon>Check-IN</button>
-        <button disabled="true" color="warn" mat-flat-button><mat-icon>highlight_off</mat-icon>Check-Out</button>
+        <button (click)="onCheckIn()" color="primary" mat-flat-button><mat-icon>check</mat-icon>Agreed</button>
+        <button routerLink="/checkinout" color="warn" mat-flat-button><mat-icon>highlight_off</mat-icon>Disagreed</button>
     </div>
 </mat-card>

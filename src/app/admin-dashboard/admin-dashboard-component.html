@@ -1,0 +1,129 @@
+
+     <div class="header opacity-0 p-1  flex justify-between">
+        <div class="flex  p-2">
+             <mat-icon>toll</mat-icon>
+             <span class="title">Cyber Cafe</span>
+             
+        </div>
+     
+   </div>
+   
+   <div class="flex justify-between nav">
+        <div class="page-name">Admin Dashboard</div>
+   </div>
+   <div class="notify flex " *ngIf="step == 1">
+        <mat-icon>info</mat-icon> 
+        <div class="flex flex-column"><span class="text-medium"></span><span class="text-smaller">Welcome to cyber cafe, To access cafe computer, We request you to please sign-in first. If you have already account created? Feel free to search your account by your mobile number, driving licenses, email address.</span></div>
+   </div>
+
+   <div class="bg-white pl-1 flex justify-between pr-1 mlr-1">
+        <span class="heading">Don't have an account?</span>
+        <button routerLink="/customer" mat-stroked-button color="primary" >New Customer</button>
+   </div>
+   <div class="border-line "></div>
+      <mat-card class="p-3 mlr-1"  [ngClass]="adminPassword ? 'opacity-20' : ''">
+        <div *ngIf="step==1" class="flex justify-between flex-column">
+        
+             <div class="options-prompt flex">
+                  <button  (click)="step = 4"  class="w-100" mat-button><mat-icon>tag_faces</mat-icon>
+                  <span>Need Assistance in Check IN</span></button>
+             </div>
+             
+             <div class="options-prompt flex">
+                  <button  routerLink="/computerselection"  class="w-100" mat-button><mat-icon>pages</mat-icon>
+                  <span>Terminal Status</span></button>
+             </div>
+        </div>
+        <div *ngIf="step==2">
+             <span class="label-field">Cell Phone Number</span>
+             <mat-form-field appearance="outline" [formGroup]="form">
+                  <mat-icon matSuffix>smartphone</mat-icon>
+                  <input matInput  formControlName="cellphone"  >
+                  <mat-error *ngIf="hasError('cellphone','required')">
+                       Phone Number is <strong>required</strong>
+                  </mat-error>
+                  <mat-error *ngIf="hasError('cellphone', 'minlength')">cell phone number should be 10 digit</mat-error>
+                  <mat-error *ngIf="hasError('cellphone', 'maxlength')">cell phone number should be 10 digit</mat-error>
+                  <mat-error *ngIf="hasError('cellphone', 'pattern')">cell phone number is incorrect</mat-error>
+                  
+ 
+                </mat-form-field>
+ 
+              <mat-card-actions>
+                   
+                 <div class="flex justify-between">
+                       <button (click)="step = 1" mat-button color="primary" class="text-center"><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
+                     <button (click)="onSendOTP()" mat-flat-button color="primary" class="text-center"><mat-icon>textsms</mat-icon>Send OTP</button>
+                </div>
+              </mat-card-actions>
+           </div>
+           <div *ngIf="step==3">
+                
+             <div class="notify flex ">
+                  <mat-icon>info</mat-icon> 
+                  <div class="flex flex-column"><span class="text-medium"></span><span class="text-smaller">OTP has been sent to your cell phone number. We need to verify your identity through OTP</span></div>
+             </div>
+
+             <span class="label-field">Verify OTP</span>
+             <mat-form-field appearance="outline" [formGroup]="form">
+                  <mat-icon matSuffix>textsms</mat-icon>
+                  <input matInput  formControlName="otpverify" >
+                  <mat-error *ngIf="hasError('otpverify','required')">
+                       OTP Number is <strong>required</strong>
+                  </mat-error>
+                  
+ 
+                </mat-form-field>
+ 
+              <mat-card-actions>
+                   
+                 <div class="flex justify-between">
+                  <button (click)="step = 2" mat-button color="primary" class="text-center"><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
+                  <button (click)="onVerifyOTP()" mat-flat-button color="primary" class="text-center"><mat-icon>dialpad</mat-icon>Verify OTP</button>
+                </div>
+              </mat-card-actions>
+           </div>
+        <div *ngIf="step==4">
+          <span class="label-field">Customer Identification (e.g: cell number, email id, driving license no.)</span>
+          <mat-form-field appearance="outline" [formGroup]="form">
+               <mat-icon matSuffix>search</mat-icon>
+               <input matInput  formControlName="search" >
+               <mat-error *ngIf="hasError('search','required')">
+                  search is <strong>required</strong>
+             </mat-error>
+
+             </mat-form-field>
+
+           <mat-card-actions>
+                
+              <div class="flex">
+                  <button (click)="onSubmit()" mat-flat-button color="primary" class="text-center"><mat-icon>search</mat-icon>Search</button>
+             </div>
+           </mat-card-actions>
+        </div>
+   </mat-card>
+
+   
+<div class="flex flex-warp admin-password" *ngIf="adminPassword">
+   <mat-card class="mt-1  w-100 m-2 ">
+       <div class="flex flex-column  ">
+           <span  class="heading profile-heading  flex justify-between "><strong>Verify the administrator password</strong></span>
+           <span class="label-field">Password (required)</span>
+           <mat-form-field appearance="outline"  [formGroup]="form">
+               <mat-icon matSuffix>lock</mat-icon>
+           
+               <input matInput type="password"  required formControlName="password">
+               <mat-error *ngIf="hasError('password', 'required')">Email is <strong>required</strong></mat-error>
+               <mat-error *ngIf="hasError('password', 'minlength')">password should be minimum 5 character length</mat-error>
+               <mat-error *ngIf="hasError('password', 'maxlength')">password should be below 30 character length</mat-error>
+               
+               
+           </mat-form-field>
+           <button color="primary" (click)="onVerifyAdminPassword()" mat-stroked-button>Verify</button>
+       </div>
+   
+
+   </mat-card>
+
+
+</div>

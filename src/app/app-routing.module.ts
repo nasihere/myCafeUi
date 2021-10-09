@@ -11,8 +11,10 @@ import { CheckInOutComponent } from './check-in-out/check-in-out.component';
 import { CustomerLookupComponent } from './customer-lookup/customer-lookup.component';
 import { ComputerSelectionComponent } from './computer-selection/computer-selection.component';
 import { AgentSetupComponent } from './agent-setup/agent-setup.component';
+import {  AdminDashboardComponent } from './admin-dashboard/admin-dashboard-component';
 const routes: Routes = [
     { path: '', component: LoginComponent, canActivate: [AuthGuard] },
+    { path: 'admindashboard', component: AdminDashboardComponent, canActivate: [AuthGuard] },
     { path: 'agentsetup', component: AgentSetupComponent, canActivate: [AuthGuard] },
 
     { path: 'computerselection', component: ComputerSelectionComponent, canActivate: [AuthGuard] },
