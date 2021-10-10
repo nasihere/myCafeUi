@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-@Component({ templateUrl: 'computer-selection.component.html' })
+@Component({selector: 'terminal-status', templateUrl: 'computer-selection.component.html' })
 export class ComputerSelectionComponent  implements OnInit {
     form: FormGroup;
     step: number = 1;
