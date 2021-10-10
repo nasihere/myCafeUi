@@ -1,7 +1,7 @@
     <mat-card class="mt-1  opacity-90 fs-smaller" *ngFor="let row of dataSource">
         <div>
             <div class="flex justify-between ">
-                <div class="heading">{{row.computer}} <span *ngIf="row.maxSessionTime" class="green"> (Session Time Set: {{row.maxSessionTime}})</span></div>
+                <div class="heading">{{row.computer}} <span *ngIf="row.maxSessionTime" class="green"> (Session: {{row.maxSessionTime}})</span></div>
                 <button *ngIf="row.session" color="warn" mat-flat-button><mat-icon class="fs-smaller">lock</mat-icon>Lock</button>
             </div>
             

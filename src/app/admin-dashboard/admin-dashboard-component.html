@@ -3,9 +3,7 @@
         <button mat-stroked-button color="primary" (click)="step = 1" *ngIf="step != 1"  ><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
         <div class="page-name">Administrator</div>
         <button routerLink="/settings" *ngIf="step == 1"  mat-stroked-button color="primary" ><mat-icon>settings</mat-icon>Settings</button>
-        <button  routerLink="/computerselection"  *ngIf="step == 1"  color="primary" mat-button><mat-icon>pages</mat-icon>
-          <span>Terminal Status</span>
-         </button>
+        
    </div>
    <div class="notify flex " *ngIf="step == 1">
         <mat-icon>info</mat-icon> 
