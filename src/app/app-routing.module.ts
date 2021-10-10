@@ -15,7 +15,7 @@ import {  AdminDashboardComponent } from './admin-dashboard/admin-dashboard-comp
 import { ConnectedComputerComponent } from './connected-computer/connection-computer.component';
 import { CashDepositComponent } from './cash-deposit/cash-deposit-component';
 import { SettingsComponent } from './settings/settings.component';
-
+import { HoursSelectionComponent} from './hour-cost/hour.cost-component';
 const routes: Routes = [
     { path: '', component: LoginComponent, canActivate: [AuthGuard] },
     { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
@@ -24,6 +24,8 @@ const routes: Routes = [
     { path: 'agentsetup', component: AgentSetupComponent, canActivate: [AuthGuard] },
     { path: 'cashdeposit', component: CashDepositComponent, canActivate: [AuthGuard] },
     
+    { path: 'hoursselection', component: HoursSelectionComponent, canActivate: [AuthGuard] },
+
     { path: 'computerselection', component: ComputerSelectionComponent, canActivate: [AuthGuard] },
     { path: 'customerlookup', component: CustomerLookupComponent, canActivate: [AuthGuard] },
     { path: 'customerlookup/:ref', component: CustomerLookupComponent, canActivate: [AuthGuard] },

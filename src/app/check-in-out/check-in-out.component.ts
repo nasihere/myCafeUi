@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import {ViewEncapsulation } from '@angular/core';
 
-@Component({ templateUrl: 'check-in-out.component.html' })
+@Component({ templateUrl: 'check-in-out.component.html', encapsulation: ViewEncapsulation.None })
 export class CheckInOutComponent implements OnInit  {
     adminPassword: boolean = false;
     helpPageNewCustomer: boolean = false;
@@ -62,8 +63,8 @@ export class CheckInOutComponent implements OnInit  {
     onVerifyOTP() {
         console.log(this.f.otpverify.value)
         console.log('onVerifyOTP');
-        const returnUrl = '/customerlookup';
-        this.router.navigate([returnUrl, {ref:'selfcheckin'}]);
+        const returnUrl = '/customerlookup/selfcheckin';
+        this.router.navigate([returnUrl]);
     }
     onVerifyAdminPassword() {
         

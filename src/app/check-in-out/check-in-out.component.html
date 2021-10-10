@@ -40,7 +40,7 @@
           </div>
           <div *ngIf="step==2">
                <span class="label-field">Cell Phone Number</span>
-               <mat-form-field appearance="outline" [formGroup]="form">
+               <mat-form-field appearance="outline" [formGroup]="form" class="border-line green">
                     <mat-icon matSuffix>smartphone</mat-icon>
                     <input matInput  formControlName="cellphone"  class="access-code-input" >
                     <mat-error *ngIf="hasError('cellphone','required')">

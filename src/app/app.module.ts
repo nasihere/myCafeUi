@@ -29,6 +29,7 @@ import { ConnectedComputerComponent } from './connected-computer/connection-comp
 import { SettingsComponent } from './settings/settings.component';
 
 import { CashDepositComponent } from './cash-deposit/cash-deposit-component';
+import { HoursSelectionComponent} from './hour-cost/hour.cost-component';
 
 @NgModule({
     
@@ -56,7 +57,8 @@ import { CashDepositComponent } from './cash-deposit/cash-deposit-component';
         AdminDashboardComponent,
         ConnectedComputerComponent,
         CashDepositComponent,
-        SettingsComponent
+        SettingsComponent,
+        HoursSelectionComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

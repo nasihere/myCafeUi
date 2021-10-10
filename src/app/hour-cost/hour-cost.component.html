@@ -1,0 +1,38 @@
+
+<div class="flex justify-between nav">
+    <button mat-stroked-button color="primary" routerLink="/checkinout"  ><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
+    <div class="page-name">Session Limit</div>
+</div>
+<div class="border-line"></div>
+<mat-card class="mt-1  s-smaller">
+   <div class="flex flex-row justify-between">
+       <span  class="heading profile-heading"><strong>How long do you want to use this computer?</strong></span>
+       <div class="border-line"></div>
+       <img src="assets/1586650.png" height="50" />
+   </div>
+   <div class="border-line"></div>
+    <div class="flex flex-column">
+        <button mat-button><mat-icon>schedule</mat-icon>15 Minute</button>
+        <div class="border-line"></div>
+        <button mat-button><mat-icon>schedule</mat-icon>30 Minute</button>
+        <div class="border-line"></div>
+        <button mat-button><mat-icon>schedule</mat-icon>45 Minute</button>
+        <div class="border-line"></div>
+        <button mat-button><mat-icon>schedule</mat-icon>1 hour</button>
+        <div class="border-line"></div>
+        <button mat-button><mat-icon>schedule</mat-icon>2 hour</button>
+        <div class="border-line"></div>
+        <button mat-button><mat-icon>schedule</mat-icon>3 Hour</button>
+        <div class="border-line"></div>
+        <button mat-button><mat-icon>schedule</mat-icon>4 Hour</button>
+        <div class="border-line"></div>
+
+    </div>
+    <mat-card-actions>
+        
+        <div class="flex justify-between">
+            <button routerLink="/connectedcomputer" mat-flat-button color="accent"><mat-icon>cable</mat-icon>No Limit</button>
+            <button routerLink="/connectedcomputer" mat-flat-button color="primary"><mat-icon>cable</mat-icon>Connect Me</button>
+        </div>
+    </mat-card-actions>
+</mat-card>

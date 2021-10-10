@@ -10,7 +10,7 @@ export class CustomerLookupComponent {
         }
     onCheckIn() {
         if (window.location.href.indexOf('selfcheckin') != -1) {
-            const returnUrl = '/connectedcomputer';
+            const returnUrl = '/hoursselection';
             this.router.navigate([returnUrl]);    
         }
         else {
