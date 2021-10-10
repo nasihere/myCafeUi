@@ -14,8 +14,11 @@ import { AgentSetupComponent } from './agent-setup/agent-setup.component';
 import {  AdminDashboardComponent } from './admin-dashboard/admin-dashboard-component';
 import { ConnectedComputerComponent } from './connected-computer/connection-computer.component';
 import { CashDepositComponent } from './cash-deposit/cash-deposit-component';
+import { SettingsComponent } from './settings/settings.component';
+
 const routes: Routes = [
     { path: '', component: LoginComponent, canActivate: [AuthGuard] },
+    { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
     { path: 'connectedcomputer', component: ConnectedComputerComponent, canActivate: [AuthGuard] },
     { path: 'admindashboard', component: AdminDashboardComponent, canActivate: [AuthGuard] },
     { path: 'agentsetup', component: AgentSetupComponent, canActivate: [AuthGuard] },

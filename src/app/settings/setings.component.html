@@ -1,0 +1,70 @@
+
+     <div class="header opacity-0 p-1  flex justify-between">
+        <div class="flex  p-2">
+             <mat-icon>toll</mat-icon>
+             <span class="title">Cyber Cafe</span>
+             
+        </div>
+     
+   </div>
+   
+   <div class="flex justify-between nav">
+    <button routerLink="/admindashboard" mat-stroked-button color="primary"   ><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
+        <div class="page-name">Settings</div>
+   </div>
+   <div class="border-line "></div>
+
+   <div class="flex justify-center  mt-3">
+    <img src="assets/settings-cafe.jpg" height="100" />
+</div>
+<div class="flex justify-center">
+    <span  class="heading profile-heading"><strong>Cafe Information & Settings</strong></span>
+</div>
+<div class="border-line"></div>
+<mat-card class="p-3 mlr-1"  >
+    <div class="flex justify-between">
+        <span class="heading">Cafe Name:</span>
+        <input mat-input />
+    </div>
+    <div class="border-line"></div>
+    <div class="flex justify-between">
+        <span class="heading">Cell Number:</span>
+        <input mat-input />
+    </div>
+    <div class="border-line"></div>
+    <div class="flex justify-between">
+        <span class="heading">Cafe Address:</span>
+        <input mat-input />
+    </div>
+    <div class="border-line"></div>
+    <div class="flex justify-center">
+        <span class="heading">Product & Services</span>
+    </div>
+    <div class="border-line"></div>
+    <div class="flex justify-center">
+        <mat-table class="w-100" [dataSource]="dataSource" >
+            <ng-container matColumnDef="product">
+                <mat-header-cell *matHeaderCellDef> Product </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.product}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="desc">
+                <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.desc}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="perCost">
+                <mat-header-cell *matHeaderCellDef> Per Item Cost </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.perCost}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
+                <mat-cell *matCellDef="let element"> <button mat-icon-button color="warn"   ><mat-icon>close</mat-icon></button> </mat-cell>
+              </ng-container>
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+    </div>
+    <div class="flex justify-between">
+        <button  mat-flat-button color="accent"   ><mat-icon>add</mat-icon>Add New Product</button>
+        <button routerLink="/admindashboard" mat-flat-button color="primary"   ><mat-icon>check</mat-icon>Save</button>
+    </div>
+</mat-card>

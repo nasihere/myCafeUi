@@ -26,6 +26,7 @@ import { MatInputModule } from '@angular/material/input';
 import { AgentSetupComponent } from './agent-setup/agent-setup.component';
 import {  AdminDashboardComponent } from './admin-dashboard/admin-dashboard-component';
 import { ConnectedComputerComponent } from './connected-computer/connection-computer.component';
+import { SettingsComponent } from './settings/settings.component';
 
 import { CashDepositComponent } from './cash-deposit/cash-deposit-component';
 
@@ -54,7 +55,8 @@ import { CashDepositComponent } from './cash-deposit/cash-deposit-component';
         AgentSetupComponent,
         AdminDashboardComponent,
         ConnectedComputerComponent,
-        CashDepositComponent
+        CashDepositComponent,
+        SettingsComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
