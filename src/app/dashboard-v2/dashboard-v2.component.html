@@ -1,27 +1,28 @@
-
-    
-    <div class="flex justify-between nav">
-        <button mat-stroked-button color="primary" routerLink="/admindashboard"  ><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
-
-        <div class="page-name">Dashboard - Terminal Status</div>
-   </div>
     <mat-card class="mt-1  opacity-90 fs-smaller" *ngFor="let row of dataSource">
         <div>
             <div class="flex justify-between ">
-                <div class="heading">{{row.computer}}</div>
-                <button color="warn" mat-button><mat-icon class="fs-smaller">lock</mat-icon>Lock</button>
+                <div class="heading">{{row.computer}} <span *ngIf="row.maxSessionTime" class="green"> (Session Time Set: {{row.maxSessionTime}})</span></div>
+                <button *ngIf="row.session" color="warn" mat-flat-button><mat-icon class="fs-smaller">lock</mat-icon>Lock</button>
             </div>
             
             <div class="border-line"></div>
-            <div class="flex justify-between">
+            <div class="flex  flex-row justify-between">
                 <span class="flex"><button color="primary" mat-icon-button><mat-icon class="fs-smaller">verified_user</mat-icon>{{row.customer}}</button></span>
-                <div class="flex"><button color="primary"  mat-button><mat-icon class="fs-smaller green">monetization_on</mat-icon>{{row.cost}}</button></div>
+                <span *ngIf="row.paid"><mat-chip-list><mat-chip class="bg-green white mt-3">Paid</mat-chip></mat-chip-list></span>
+                <span *ngIf="!row.paid"><mat-chip-list><mat-chip class="bg-red white mt-3">Not Paid</mat-chip></mat-chip-list></span>
                 
+                
+               
             </div> 
             <div class="flex justify-between">
-                <div  class="flex"><mat-chip-list><mat-chip class="green"><mat-icon class="fs-smaller mt-2">av_timer</mat-icon>{{row.timeIN}}</mat-chip></mat-chip-list></div>
-                <div  class="flex"><mat-chip-list><mat-chip><mat-icon class="fs-smaller mt-2">access_alarms</mat-icon>{{row.timeOUT}}</mat-chip></mat-chip-list></div>
-                <div class="flex"><button color="primary"  mat-button><mat-icon class="fs-smaller green">access_time</mat-icon>{{row.duration}}</button></div>
+                <div  class="flex">
+                    <mat-chip-list>
+                        <mat-chip class=""><mat-icon class="fs-smaller mt-2">av_timer</mat-icon>{{row.timeIN}}</mat-chip>
+                        <mat-chip class=""><mat-icon class="fs-smaller mt-2">access_alarms</mat-icon>{{row.timeOUT}}</mat-chip>
+                        <mat-chip><mat-icon class="fs-smaller mt-2 green">access_time</mat-icon>{{row.duration}}</mat-chip>
+                    </mat-chip-list></div>
+                    <div class="flex"><button color="primary"  mat-button><mat-icon class="fs-smaller green">monetization_on</mat-icon>{{row.cost}}</button></div>
+                
 
             </div>
             
