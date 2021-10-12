@@ -389,3 +389,13 @@ box-shadow: 5px 5px 35px 5px #000000;
     background: #efefef!important;
     border: 2px solid #7f7e7e!important;
    }
+   .sticky-div-l {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0px;
+    height: 4rem;
+    z-index: 99999;
+    background-color: #1154AA;
+    color: #fff;
+    width: 1rem;
+   }
