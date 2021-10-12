@@ -40,7 +40,9 @@
     </div>
     <div class="border-line"></div>
     <div class="flex justify-between mt-3">
-        <button class="w-100" (click)="disconnectSession = true" color="warn" mat-flat-button><mat-icon>highlight_off</mat-icon>Disconnect</button>
+        
+        <button  (click)="disconnectSession = true" color="warn" mat-flat-button><mat-icon>highlight_off</mat-icon>Disconnect</button>
+        <button  (click)="onConnectedSession()" color="primary" class="bg-green" mat-flat-button><mat-icon>restore</mat-icon>Start & Ready</button>
     </div>
 </mat-card>
 

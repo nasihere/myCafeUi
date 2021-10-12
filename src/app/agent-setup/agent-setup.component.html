@@ -9,20 +9,30 @@
 
 <div class="flex flex-warp" *ngIf="step == 1">
     <mat-card class="mt-1  w-100 m-2 ">
+        <div  class="flex flex-column  ">
+            <span class="label-field">New Cafe Agent Computer Name (required)</span>
+            <mat-form-field appearance="outline"  [formGroup]="form">
+                <mat-icon matSuffix>computer</mat-icon>
+                <input matInput required formControlName="computerName" placeholder="PC - 232" maxlength="8">
+            
+                
+            </mat-form-field>
+            
+        </div>
         <div class="flex flex-column  ">
             <span  class="heading profile-heading  flex justify-between "><strong>Verify the administrator password</strong></span>
             <span class="label-field">Password (required)</span>
             <mat-form-field appearance="outline"  [formGroup]="form">
                 <mat-icon matSuffix>lock</mat-icon>
             
-                <input matInput type="password"  required formControlName="password">
+                <input matInput type="password" placeholder="******"  required formControlName="password">
                 <mat-error *ngIf="hasError('password', 'required')">Email is <strong>required</strong></mat-error>
                 <mat-error *ngIf="hasError('password', 'minlength')">password should be minimum 5 character length</mat-error>
                 <mat-error *ngIf="hasError('password', 'maxlength')">password should be below 30 character length</mat-error>
                 
                 
             </mat-form-field>
-            <button color="primary" (click)="onVerifyAdminPassword()" mat-stroked-button>Verify</button>
+            <button color="primary" (click)="onVerifyAdminPassword()" mat-flat-button>Verify</button>
         </div>
     
 
@@ -32,7 +42,7 @@
 </div>
 <div class="flex flex-warp" *ngIf="step == 2">
    
-        <div class="notify flex justify-between ">
+        <div class="notify flex justify-center ">
             <mat-icon>devices</mat-icon>
             <div class="flex flex-column"><span class="text-medium">Cafe agent application needs to be install in the client PC for controling the lock/unlock remotely.</span><span class="text-smaller">Please follow the below instructions to setup the app in the desktop.</span></div>
           </div>
@@ -44,10 +54,9 @@
         <small>Last Updated: 10/8/2021</small>
     </mat-card>
 
-
       <mat-card class="mt-1  w-100 m-2 ">
         <div class="flex flex-column  ">
-            <span  class="heading profile-heading  flex justify-between "><strong>To download cafe-agent software though download link, system will send download link address to your email account directly.</strong></span>
+            <span  class="heading profile-heading  flex justify-between "><strong>To download cafe-agent software though download link, system will send download link address and secret key to your email account directly.</strong></span>
             <span class="label-field">Email</span>
             <mat-form-field appearance="outline"   [formGroup]="form">
                 <mat-icon matSuffix>alternate_email</mat-icon>
@@ -67,11 +76,16 @@
 
 <div class="flex flex-warp" *ngIf="step == 3">
    
-    <div class="notify flex justify-between ">
+    <div class="notify flex justify-center ">
         <mat-icon>info</mat-icon>
         <div class="flex flex-column"><span class="text-medium">Check your email account for download cafe-agent link and instructions.</span><span class="text-smaller"></span></div>
     </div>
     <mat-card class="mt-1  w-100 m-2 ">
-        <span>After your finished downloading the cafe-agent application in the desktop and authenticate with your admin account in the cafe-agent window application. That client machine will automatically shows up in the mobile app for customer selection.</span>
+        <span>After your finished downloading the cafe-agent software in the desktop and save secret key<div class="border-line"></div><strong>1. run as administrator</strong> <div class="border-line"></div> <strong>2. Enter the secret key from the email to the desktop cafe-agent application.</strong> <div class="border-line"></div>Secret key will be sent along with your download link. Do not share the cafe secret key or delete it from the email after the use. You can generate secret key anytime from the admin app. <div class="border-line"></div> That client machine will automatically shows up in the mobile app for customer selection.</span>
     </mat-card>
+    
+    <mat-card class="mt-1  w-100 m-2 ">
+        <span>You also need to put <strong>cafe-agent.exe to the startup</strong> and lock the controlpanel, taskmanager, and all the necessary feature to the users. </span>
+    </mat-card>
+    
 </div>

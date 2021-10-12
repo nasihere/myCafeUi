@@ -17,7 +17,6 @@ import { CashDepositComponent } from './cash-deposit/cash-deposit-component';
 import { SettingsComponent } from './settings/settings.component';
 import { HoursSelectionComponent} from './hour-cost/hour.cost-component';
 const routes: Routes = [
-    { path: '', component: LoginComponent, canActivate: [AuthGuard] },
     { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
     { path: 'connectedcomputer', component: ConnectedComputerComponent, canActivate: [AuthGuard] },
     { path: 'admindashboard', component: AdminDashboardComponent, canActivate: [AuthGuard] },

@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({ templateUrl: 'agent-setup.component.html' })
 export class AgentSetupComponent implements OnInit {
     form: FormGroup;
-    step: number = 2;
+    step: number = 1;
     constructor(        private router: Router,
 
         ) { 
@@ -14,6 +14,7 @@ export class AgentSetupComponent implements OnInit {
 
         ngOnInit() {
             this.form = new FormGroup({
+                computerName: new FormControl('', [Validators.required]),
                 email: new FormControl('', [Validators.required, Validators.email]),
                 password: new FormControl('',[Validators.required,
                     Validators.minLength(5),

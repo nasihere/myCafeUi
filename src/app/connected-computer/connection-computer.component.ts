@@ -33,9 +33,16 @@ export class ConnectedComputerComponent implements OnInit  {
     // convenience getter for easy access to form fields
     get f() { return this.form.controls; }
     onDisconnectSession() {
+        //@ts-ignore
+        electronDisconnectSession();
         console.log('onDisconnectSession');
         const returnUrl = '/checkinout';
         this.router.navigate([returnUrl]);
 
     }
+    onConnectedSession() {
+      //@ts-ignore
+      electronConnectSession();
+
+  }
 }

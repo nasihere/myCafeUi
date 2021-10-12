@@ -74,9 +74,11 @@ export class CheckInOutComponent implements OnInit  {
         this.router.navigate([returnUrl]);
     }
     onAccessCodeLogin() {
+       
         console.log(this.f.accessCode.value)
         console.log('onAccessCodeLogin');
         const returnUrl = '/connectedcomputer';
         this.router.navigate([returnUrl]);
     }
+    
 }
