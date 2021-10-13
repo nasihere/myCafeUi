@@ -2,7 +2,7 @@
      <div class="flex justify-between nav">
           <div class="page-name">Add New Account</div>
      </div>
-     <div class="notify flex ">
+     <div class="notify flex nav-yellow">
           <mat-icon>info</mat-icon> 
           <div class="flex flex-column"><span class="text-medium">Thanks for choosing Cyber Cafe App. We request you to make an cafe account to secure the system.</span><span class="text-smaller"></span></div>
      </div>
@@ -16,15 +16,7 @@
                
           <mat-card-actions>
                
-               <span class="label-field">Username (required)</span>
-               <mat-form-field appearance="outline"  [formGroup]="form">
-                    <mat-icon matSuffix>account_circle</mat-icon>
-                    <input matInput formControlName="username">
-                    <mat-error *ngIf="hasError('username', 'required')">Username is <strong>required</strong></mat-error>
-                    <mat-error *ngIf="hasError('username', 'minlength')">Username should be minimum 5 character length</mat-error>
-                    <mat-error *ngIf="hasError('username', 'maxlength')">Username should be below 30 character length</mat-error>
-
-               </mat-form-field>
+              
                <span class="label-field">Email Address (required)</span>
                <mat-form-field appearance="outline"   [formGroup]="form">
                     <mat-icon matSuffix>alternate_email</mat-icon>
@@ -63,6 +55,15 @@
                     </mat-error>
                     <mat-error *ngIf="hasError('cellphone', 'minlength')">phone number should be 7 digit</mat-error>
                     <mat-error *ngIf="hasError('cellphone', 'maxlength')">phone number should be 12 digit</mat-error>
+                    
+               </mat-form-field>
+
+               <span class="label-field">Country (required)</span>
+               <mat-form-field appearance="outline"  [formGroup]="form">
+                    <mat-icon matSuffix>flag</mat-icon>
+                    <select matNativeControl required formControlName="country">
+                         <option *ngFor="let item of countryList" value="{{item}}">{{item}}</option>
+                       </select>
                     
                </mat-form-field>
           </mat-card-actions>

@@ -1,0 +1,39 @@
+
+        <div class="flex justify-between nav">
+            <button mat-stroked-button color="primary" routerLink="/login"  ><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
+            <div class="page-name">Verify Email account</div>
+       </div>
+       <div class="border-line "></div>
+       
+         <div class="notify flex " *ngIf="authEmailVerify">
+              <mat-icon>info</mat-icon> 
+              <div class="flex flex-column">
+                   <span class="text-medium">Code is incorrect, please check again</span>
+                   
+              </div>
+         </div>
+         
+       <div class="bg-white pl-1 flex justify-between pr-1 mlr-1">
+           
+       </div>
+       <mat-card class="p-3 opacity-90 mlr-1">
+                 
+            <mat-card-actions>
+                 
+                 <span class="heading">Please enter the verification code that was sent to <strong>{{f.username.value}}</strong> </span>
+                 <div class="border-line"></div>
+                 
+                 
+                 <mat-form-field [formGroup]="loginForm" appearance="outline">
+                      <mat-icon matSuffix>lock</mat-icon>
+                      <input matInput formControlName="verify" required>
+                      <mat-error *ngIf="hasError('verify', 'required')">Password is required</mat-error>
+                      <mat-error *ngIf="hasError('verify', 'minlength')">Password should be minimum 5 character length</mat-error>
+                      
+                 </mat-form-field>
+  
+            </mat-card-actions>
+            <div class="flex">
+                 <button (click)="onSubmit()" mat-flat-button color="primary" class="w-100">Verify</button>
+            </div>
+          </mat-card>

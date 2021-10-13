@@ -1,18 +1,19 @@
-﻿import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
 
-import { AuthenticationService, FormService } from '@app/_services';
+import { AuthenticationService, FormService } from '../_services';
 
-@Component({ templateUrl: 'login.component.html' })
-export class LoginComponent implements OnInit {
+@Component({ templateUrl: 'verifyemailaccount.component.html' })
+export class VerifyEmailAccountComponent implements OnInit {
     loginForm: FormGroup;
     loading = false;
     submitted = false;
     error = '';
     authFailed: boolean = false;
-
+    authEmailVerify: boolean = false;
+    filter$: any;
     constructor(
         public formService: FormService,
         private formBuilder: FormBuilder,
@@ -24,10 +25,17 @@ export class LoginComponent implements OnInit {
     }
    
     ngOnInit() {
+        
         this.loginForm = new FormGroup({
-            username: new FormControl('nasz.letter@gmail.com', [Validators.required, Validators.email]),
-            password: new FormControl('Nasir@1234', [Validators.required, Validators.minLength(5), Validators.maxLength(30)])
+            username: new FormControl('test@gmail.com', [Validators.required, Validators.email]),
+            verify: new FormControl('546454', [Validators.required, Validators.minLength(5), Validators.maxLength(6)])
           });
+
+          
+        this.filter$ = this.route.params.subscribe(params => {
+                this.f.username.setValue(params['accountemailid']);
+                return params['accountemailid']
+            });
 
     }
 
@@ -48,21 +56,21 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-        console.log(this.f.username.value, this.f.password.value)
+        console.log(this.f.username.value, this.f.verify.value)
         const payload = {
             "username": this.f.username.value,
-            "password": this.f.password.value
+            "code": this.f.verify.value
         }
-        this.formService.authSignIn(payload).subscribe( res => {
+        this.formService.authEmailVerify(payload).subscribe( res => {
             console.log('res', res)
             const returnUrl = '/admindashboard';
             this.router.navigate([returnUrl]);
-            this.authFailed = false;
+            this.authEmailVerify = false;
         }, err => {
             //422 Unprocessable Entity (wrong email and password)
             //400 Bad Request (right email and password)
             console.log(err, 'error')
-            this.authFailed = true;
+            this.authEmailVerify = true;
             this.formService.hideLoading();
         });
         // this.authenticationService.login(this.f.username.value, this.f.password.value)

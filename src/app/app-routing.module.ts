@@ -16,6 +16,8 @@ import { ConnectedComputerComponent } from './connected-computer/connection-comp
 import { CashDepositComponent } from './cash-deposit/cash-deposit-component';
 import { SettingsComponent } from './settings/settings.component';
 import { HoursSelectionComponent} from './hour-cost/hour.cost-component';
+import { VerifyEmailAccountComponent} from './verifyemailaccount/verifyemailaccount.component';
+
 const routes: Routes = [
     { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
     { path: 'connectedcomputer', component: ConnectedComputerComponent, canActivate: [AuthGuard] },
@@ -24,7 +26,8 @@ const routes: Routes = [
     { path: 'cashdeposit', component: CashDepositComponent, canActivate: [AuthGuard] },
     
     { path: 'hoursselection', component: HoursSelectionComponent, canActivate: [AuthGuard] },
-
+    { path: 'verifyemailaccount/:accountemailid', component: VerifyEmailAccountComponent, canActivate: [AuthGuard] },
+    
     { path: 'computerselection', component: ComputerSelectionComponent, canActivate: [AuthGuard] },
     { path: 'customerlookup', component: CustomerLookupComponent, canActivate: [AuthGuard] },
     { path: 'customerlookup/:ref', component: CustomerLookupComponent, canActivate: [AuthGuard] },

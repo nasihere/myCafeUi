@@ -4,7 +4,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // used to create fake backend
-import { fakeBackendProvider } from './_helpers';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -30,6 +29,9 @@ import { SettingsComponent } from './settings/settings.component';
 
 import { CashDepositComponent } from './cash-deposit/cash-deposit-component';
 import { HoursSelectionComponent} from './hour-cost/hour.cost-component';
+import { VerifyEmailAccountComponent} from './verifyemailaccount/verifyemailaccount.component';
+
+
 
 @NgModule({
     
@@ -58,7 +60,8 @@ import { HoursSelectionComponent} from './hour-cost/hour.cost-component';
         ConnectedComputerComponent,
         CashDepositComponent,
         SettingsComponent,
-        HoursSelectionComponent
+        HoursSelectionComponent,
+        VerifyEmailAccountComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

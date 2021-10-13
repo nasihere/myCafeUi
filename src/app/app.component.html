@@ -10,3 +10,8 @@
     </div>
 </div>
 <router-outlet></router-outlet>
+<div id="overlay" *ngIf="formService.loading" ></div>
+<mat-spinner style="    top: 50%;
+left: 45%;
+position: absolute; margin:0 auto;" 
+*ngIf="formService.loading"></mat-spinner>

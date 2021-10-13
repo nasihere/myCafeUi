@@ -4,6 +4,15 @@
         </div>
         <div class="border-line "></div>
         
+          <div class="notify flex " *ngIf="authFailed">
+               <mat-icon>info</mat-icon> 
+               <div class="flex flex-column">
+                    <span class="text-medium">You have entered an invalid username or password</span>
+                    <span class="text-medium">OR</span>
+                    <span class="text-medium">You didn't verify your email account yet. <button mat-flat-button color="primary" routerLink="/verifyemailaccount/{{f.username.value}}" >Verify my email account</button></span>
+               </div>
+          </div>
+          
         <div class="bg-white pl-1 flex justify-between pr-1 mlr-1">
              <span class="heading">Don't have an account?</span>
              <button mat-stroked-button color="primary" routerLink="/register"  >Create Account</button>
@@ -12,14 +21,14 @@
                   
              <mat-card-actions>
                   
-                  <span class="label-field">Username (required)</span>
+                  <span class="label-field">Email (required)</span>
                   <mat-form-field  [formGroup]="loginForm" appearance="outline">
                        <mat-icon matSuffix>account_circle</mat-icon>
                        <input matInput formControlName="username">
-                       <mat-error *ngIf="hasError('username', 'required')">Username is required</mat-error>
-                       <mat-error *ngIf="hasError('username', 'minlength')">Username should be minimum 5 character length</mat-error>
-                       <mat-error *ngIf="hasError('username', 'maxlength')">Username should be below 30 character length</mat-error>
-
+                       
+                       <mat-error *ngIf="hasError('username', 'required')">Email is <strong>required</strong></mat-error>
+                       <mat-error *ngIf="hasError('username', 'email')">Enter a valid email address</mat-error>
+                     
                   </mat-form-field>
                   <span class="label-field">Password (required)</span>
                   <mat-form-field [formGroup]="loginForm" appearance="outline">
