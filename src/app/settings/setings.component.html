@@ -1,4 +1,5 @@
 
+
    
    <div class="flex justify-between nav">
     <button routerLink="/admindashboard" mat-stroked-button color="primary"   ><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
@@ -12,26 +13,32 @@
 <div class="flex justify-center">
     <span  class="heading profile-heading"><strong>Cafe Information & Settings</strong></span>
 </div>
+<div class="flex mt-3 justify-center">
+    <span>Username: <strong>{{userData.email}}</strong>, Verfiied: <strong class="green" *ngIf="userData.emailVerified">Yes</strong><strong class="red" *ngIf="!userData.emailVerified">No</strong></span>
+</div>
 <div class="border-line"></div>
+
 <mat-card class="p-3 mlr-1"  >
     <div class="flex justify-between">
-        <span class="heading">Cafe Name:</span>
-        <input mat-input />
+        <mat-form-field  [formGroup]="form" >
+
+        <span >Cafe Name:</span>
+        <input matInput formControlName="cafeName" />
+        </mat-form-field>
     </div>
     <div class="border-line"></div>
     <div class="flex justify-between">
-        <span class="heading">Cell Number:</span>
-        <input mat-input />
+        <mat-form-field  [formGroup]="form" >
+        <span >Cell Number:</span>
+        <input matInput  formControlName="cellphone" />
+        </mat-form-field>
     </div>
     <div class="border-line"></div>
     <div class="flex justify-between">
-        <span class="heading">Cafe Address:</span>
-        <input mat-input />
-    </div>
-    <div class="border-line"></div>
-    <div class="flex justify-between">
-        <span class="heading">Country:</span>
-        <input mat-input value="india"/>
+        <mat-form-field  [formGroup]="form" >
+        <span>Cafe Address:</span>
+        <input matInput  formControlName="cafeAddress" />
+        </mat-form-field>
     </div>
     
     <div class="border-line"></div>
@@ -49,27 +56,37 @@
         <mat-table class="w-100" [dataSource]="dataSource" >
             <ng-container matColumnDef="product">
                 <mat-header-cell *matHeaderCellDef> Product </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.product}} </mat-cell>
+                <mat-cell *matCellDef="let element" > 
+                    <mat-form-field  [formGroup]="form" >
+                        <input matInput [formControlName]="element.product" [placeholder]="element.product" />
+                    </mat-form-field>
+                     </mat-cell>
               </ng-container>
               <ng-container matColumnDef="desc">
                 <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.desc}} </mat-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <mat-form-field  [formGroup]="form" >
+                        <input matInput [formControlName]="element.desc" [placeholder]="element.desc" />
+                    </mat-form-field>
+                     </mat-cell>
               </ng-container>
               <ng-container matColumnDef="perCost">
                 <mat-header-cell *matHeaderCellDef> Per Item Cost </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.perCost}} </mat-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <mat-form-field  [formGroup]="form" >
+                        <input matInput [formControlName]="element.perCost" [placeholder]="element.perCost" />
+                    </mat-form-field> </mat-cell>
               </ng-container>
               <ng-container matColumnDef="action">
                 <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
-                <mat-cell *matCellDef="let element"> <button mat-icon-button color="warn"   ><mat-icon>close</mat-icon></button> </mat-cell>
+                <mat-cell *matCellDef="let element"> </mat-cell>
               </ng-container>
               <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
               <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
     </div>
     <div class="flex justify-between">
-        <button  mat-flat-button color="accent"   ><mat-icon>add</mat-icon>Add New Product</button>
-        <button routerLink="/admindashboard" mat-flat-button color="primary"   ><mat-icon>check</mat-icon>Save</button>
+        <button (click)="onSave()" mat-flat-button color="primary"   ><mat-icon>check</mat-icon>Save</button>
     </div>
 
 </mat-card>

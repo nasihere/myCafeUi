@@ -271,7 +271,7 @@ export class HomeComponent implements OnInit {
     ngOnInit() {
         this.form = new FormGroup({
             cellphone: new FormControl('4084667445', [Validators.required,  Validators.minLength(7), Validators.maxLength(12)]),
-            orgname: new FormControl('Cyber Cafe', [Validators.required]),
+            cafeName: new FormControl('Cyber Cafe', [Validators.required]),
             country: new FormControl('India', [Validators.required]),
             email: new FormControl('nasz.letter@gmail.com', [Validators.required, Validators.email]),
             password: new FormControl('Nasir@1234',[Validators.required,
@@ -305,7 +305,7 @@ export class HomeComponent implements OnInit {
             "gender": "male",
             "country": this.f.country.value,
             "name": this.f.cellphone.value,
-            "family_name": this.f.orgname.value
+            "family_name": this.f.cafeName.value
         }
         
         this.formService.createRegister(payload).subscribe( res => {

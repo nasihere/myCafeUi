@@ -71,4 +71,16 @@ export class FormService {
                 return res;
             }))
     }
+    updateUser(payload): Observable<any> {
+        this.showLoading();
+        return this.http.post(`${environment.apiUrl}/auth/updateuser`, payload).pipe(
+            map(res => { 
+                this.hideLoading();
+                this.response.resAuthSignIn.data.Item = { ...this.response.resAuthSignIn.data.Item, ...res['req']};
+                return res
+            }, res => {
+                this.hideLoading();
+                return res;
+            }))
+    }
 }
