@@ -10,7 +10,8 @@ export class FormService {
     loading: boolean = false;
     response = {
         resAuthSignUp: null,
-        resAuthSignIn: null
+        resAuthSignIn: null,
+        resCustomer: null
     }
     
     constructor(private http: HttpClient) { }
@@ -77,6 +78,19 @@ export class FormService {
             map(res => { 
                 this.hideLoading();
                 this.response.resAuthSignIn.data.Item = { ...this.response.resAuthSignIn.data.Item, ...res['req']};
+                return res
+            }, res => {
+                this.hideLoading();
+                return res;
+            }))
+    }
+
+    createCustomer(payload): Observable<any> {
+        this.showLoading();
+        return this.http.post(`${environment.apiUrl}/customer/create`, payload).pipe(
+            map(res => { 
+                this.hideLoading();
+                this.response.resCustomer = res;
                 return res
             }, res => {
                 this.hideLoading();

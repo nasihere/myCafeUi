@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FormService } from '../_services';
 
 @Component({ templateUrl: 'customer.component.html' })
 export class CustomerComponent implements OnInit {
@@ -14,7 +15,7 @@ export class CustomerComponent implements OnInit {
 
 
 
-    constructor(        private router: Router,
+    constructor(     public formService: FormService,        private router: Router,
 
         ) { 
            
@@ -48,8 +49,8 @@ export class CustomerComponent implements OnInit {
         get f() { return this.form.controls; }
     
         onSubmit() {
-            const returnUrl = '/checkinout';
-            this.router.navigate([returnUrl]);
+            // const returnUrl = '/checkinout';
+            // this.router.navigate([returnUrl]);
             console.log(this.f.name.value,
                 
                 this.f.idprofilepic.value,
@@ -69,9 +70,17 @@ export class CustomerComponent implements OnInit {
                 )
             // stop here if form is invalid
             if (this.form.invalid) {
+                console.log('form is invalid ')
                 return;
             }
-
+            this.formService.createCustomer(this.form.value).subscribe( res => {
+                console.log('res', res)
+                const returnUrl = `/admindashboard`;
+                this.router.navigate([returnUrl]);
+                
+            }, err => {
+                
+            });
             this.loading = true;
            
             
