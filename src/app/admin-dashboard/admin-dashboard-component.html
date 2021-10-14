@@ -16,7 +16,12 @@
    </div>
    <div class="border-line "></div>
       <mat-card class="p-3 mlr-1"  [ngClass]="adminPassword ? 'opacity-20' : ''">
-        
+        <div *ngIf="customerNotFound">
+          <div class="notify flex nav-red" *ngIf="step == 1">
+               <mat-icon>info</mat-icon> 
+               <div class="flex flex-column"><span class="text-medium"></span><span class="text-smaller">Can't find the customer.</span></div>
+          </div>
+        </div>
        
         <div *ngIf="step==1">
           <span class="label-field">Customer Identification (e.g: cell number, email id, driving license no.)</span>

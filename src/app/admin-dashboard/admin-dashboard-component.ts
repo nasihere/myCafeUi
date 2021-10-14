@@ -13,6 +13,7 @@ export class AdminDashboardComponent implements OnInit  {
     loading: boolean;
     authenticationService: any;
     error: any;
+    customerNotFound: boolean = false;
     constructor(    public formService: FormService,    private router: Router,
 
     ) { 
@@ -48,6 +49,7 @@ export class AdminDashboardComponent implements OnInit  {
             return;
         }
         console.log(this.f.search.value)
+        this.customerNotFound = false;
         this.formService.findByCustomerSearchText({searchText: this.f.search.value}).subscribe( res => {
         if (res) {
             
@@ -55,7 +57,8 @@ export class AdminDashboardComponent implements OnInit  {
             this.router.navigate([returnUrl]);
         }
         else {
-            this.step = this.step + 1        
+                console.log('cant find the customer')   
+                this.customerNotFound = true;
             }
         })
             
