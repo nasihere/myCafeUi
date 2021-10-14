@@ -11,7 +11,10 @@ export class FormService {
     response = {
         resAuthSignUp: null,
         resAuthSignIn: null,
-        resCustomer: null
+        resCustomer: null,
+        resPCSelected: null,
+        resCustomerList: null,
+        resPCCreated: null
     }
     
     constructor(private http: HttpClient) { }
@@ -91,6 +94,7 @@ export class FormService {
             map(res => { 
                 this.hideLoading();
                 this.response.resCustomer = res;
+                this.response.resCustomerList = res;
                 return res
             }, res => {
                 this.hideLoading();
@@ -104,9 +108,11 @@ export class FormService {
                 this.hideLoading();
                 if (res['data'].Count) {
                     this.response.resCustomer = res['data'].Items[0];
+                    this.response.resCustomerList = res['data'].Items;
                 }
                 else {
                     this.response.resCustomer = null;
+                    this.response.resCustomerList = null;
                 }
                 
                 return this.response.resCustomer;
@@ -115,4 +121,63 @@ export class FormService {
                 return res;
             }))
     }
+    findByCustomerSearchText(payload): Observable<any> {
+        this.showLoading();
+        return this.http.post(`${environment.apiUrl}/customer/findBySearchText`, payload).pipe(
+            map(res => { 
+                this.hideLoading();
+                if (res['data'].Count) {
+                    this.response.resCustomer = res['data'].Items[0];
+                    this.response.resCustomerList = res['data'].Items;
+                    
+                }
+                
+                else {
+                    this.response.resCustomer = null;
+                    this.response.resCustomerList = null;
+                }
+                
+                return this.response.resCustomer;
+            }, res => {
+                this.hideLoading();
+                return res;
+            }))
+    }
+    findByPCName(payload): Observable<any> {
+        this.showLoading();
+        return this.http.post(`${environment.apiUrl}/agent/findByPCName`, payload).pipe(
+            map(res => { 
+                this.hideLoading();
+                if (res['data'].Count) {
+                    this.response.resPCSelected = res['data'].Items[0];
+                }
+                else {
+                    this.response.resPCSelected = null;
+                }
+                
+                return this.response.resPCSelected;
+            }, res => {
+                this.hideLoading();
+                return res;
+            }))
+    }
+    createAgent(payload): Observable<any> {
+        this.showLoading();
+        return this.http.post(`${environment.apiUrl}/agent/create`, payload).pipe(
+            map(res => { 
+                this.hideLoading();
+                if (res['data'].Count) {
+                    this.response.resPCCreated = res['data'].Item;
+                }
+                else {
+                    this.response.resPCCreated = null;
+                }
+                
+                return this.response.resPCCreated;
+            }, res => {
+                this.hideLoading();
+                return res;
+            }))
+    }
+    
 }

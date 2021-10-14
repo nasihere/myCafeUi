@@ -1,10 +1,14 @@
 
 <div class="flex justify-between nav">
     <button mat-stroked-button color="primary" [routerLink]="ref"  ><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
-    <div class="page-name capitalize">Mr/Ms. {{data.name}} (<span *ngIf="data.gender=='m'">Male</span> <span *ngIf="data.gender=='f'">female</span>)</div>
+    <div *ngIf="singleCustomer" class="page-name capitalize">Mr/Ms. {{data[0].name}} (<span *ngIf="data[0].gender=='m'">Male</span> <span *ngIf="data[0].gender=='f'">female</span>)</div>
+    <div *ngIf="!singleCustomer" class="page-name capitalize">List of Matching Customer</div>
 </div>
 <div class="border-line"></div>
-<mat-card class="mt-1  s-smaller">
+<mat-card class="mt-1  s-smaller" *ngFor="let data of dataList">
+    <div class="flex justify-center">
+        <div *ngIf="singleCustomer" class="page-name capitalize">Mr/Ms. {{data.name}} (<span *ngIf="data.gender=='m'">Male</span> <span *ngIf="data.gender=='f'">female</span>)</div>
+    </div>
    <div class="flex flex-row justify-between">
        <span  class="heading profile-heading"><strong> {{data.name}} </strong></span>
        <div class="border-line"></div>
@@ -35,7 +39,7 @@
     </div>
     <div class="border-line"></div>
     <div class="flex">
-    <div class="notify flex flex-column justify-between ">
+    <div class="notify flex flex-column justify-between " *ngIf="data.uncollapsed">
         <span>Intellectual Property Rights</span>
                
         <div class="flex flex-column"><span class="text-medium">Other than the content you own, under these Terms, Cafe and/or its licensors own all the intellectual property rights.
@@ -53,10 +57,15 @@
             Passing off personal views as representing those of the organization.</span></div>
       </div
     ></div>
-    <div class="border-line"></div>
-    <div class="flex flex-row justify-between">
+    <div class="border-line" *ngIf="data.uncollapsed"></div>
+    <div class="flex flex-row justify-between" *ngIf="data.uncollapsed">
         <button [routerLink]="ref" color="warn" mat-flat-button><mat-icon>highlight_off</mat-icon>Disagree</button>
         <button (click)="onCheckIn()" color="primary" mat-flat-button><mat-icon>check</mat-icon>Agree</button>
         
     </div>
+    <div class="flex flex-row justify-between" *ngIf="!data.uncollapsed">
+        <button (click)="data.uncollapsed = true" color="primary" class="green" mat-flat-button><mat-icon>check</mat-icon>Select</button>
+        
+    </div>
+    
 </mat-card>

@@ -7,6 +7,7 @@
 </div>
 <div class="border-line"></div>
 
+
 <div class="flex flex-warp" *ngIf="step == 1">
     <mat-card class="mt-1  w-100 m-2 ">
         <div  class="flex flex-column  ">
@@ -20,6 +21,17 @@
             
         </div>
         <div class="flex flex-column  ">
+            
+            <div *ngIf="adminValidPassword" class="notify flex nav-red">
+                <mat-icon>info</mat-icon> 
+                <div class="flex flex-column "><span class="text-medium">Admin Password doesn't matched.</span><span class="text-smaller"></span></div>
+            </div>
+
+            <div *ngIf="pcNameExists" class="notify flex ">
+                <mat-icon>info</mat-icon> 
+                <div class="flex flex-column"><span class="text-medium">PC Name already exists in the record.</span><span class="text-smaller"></span></div>
+            </div>
+
             <span  class="heading profile-heading  flex justify-between "><strong>Verify the administrator password</strong></span>
             <span class="label-field">Password (required)</span>
             <mat-form-field appearance="outline"  [formGroup]="form">
@@ -83,8 +95,15 @@
         <mat-icon>info</mat-icon>
         <div class="flex flex-column"><span class="text-medium">Check your email account for download cafe-agent link and instructions.</span><span class="text-smaller"></span></div>
     </div>
+    
     <mat-card class="mt-1  w-100 m-2 ">
-        <span>After your finished downloading the cafe-agent software in the desktop and save secret key<div class="border-line"></div><strong>1. run as administrator</strong> <div class="border-line"></div> <strong>2. Enter the secret key from the email to the desktop cafe-agent application.</strong> <div class="border-line"></div>Secret key will be sent along with your download link. Do not share the cafe secret key or delete it from the email after the use. You can generate secret key anytime from the admin app. <div class="border-line"></div> That client machine will automatically shows up in the mobile app for customer selection.</span>
+        <span>Unique Secret key is <strong>{{pcCreated.id}}</strong></span>
+        <div class="border-line"></div>
+        <span>Agent Name: {{pcCreated.pcname}}</span>
+    </mat-card>
+    
+    <mat-card class="mt-1  w-100 m-2 ">
+        <span>After your finished downloading the cafe-agent software in the desktop and save secret key<div class="border-line"></div><strong>1. run as administrator</strong> <div class="border-line"></div> <strong>2. Enter the secret key (<strong>{{pcCreated.id}}</strong>) to the desktop cafe-agent application.</strong> <div class="border-line"></div>Secret key will be sent along with your download link. Do not share the cafe secret key or delete it from the email after the use.  <div class="border-line"></div> That client machine will automatically shows up in the mobile app for customer selection.</span>
     </mat-card>
     
     <mat-card class="mt-1  w-100 m-2 ">

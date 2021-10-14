@@ -7,6 +7,9 @@ export class CustomerLookupComponent {
     data = null;
     cellphone: number = null;
     ref: string = '';
+    singleCustomer: boolean = false;
+    resCustomerList: any;
+    dataList: any;
     constructor(   private route: ActivatedRoute,      public formService: FormService,     private router: Router,
 
         ) { 
@@ -14,9 +17,14 @@ export class CustomerLookupComponent {
         }
 
     ngOnInit() {
-        
-        this.data = this.formService.response.resCustomer;
-              
+        if (this.formService.response.resCustomerList == null) {
+            const returnUrl = '/admindashboard';
+            this.router.navigate([returnUrl]);    
+            return;
+        }
+        this.dataList = this.formService.response.resCustomerList;
+        this.singleCustomer = this.formService.response.resCustomerList && 
+                                this.formService.response.resCustomerList.length == 1;      
         this.route.params.subscribe(params => {
             this.cellphone = params['cellphone'];
             this.ref = '/'+params['ref'];

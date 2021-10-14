@@ -48,10 +48,10 @@ export class CustomerComponent implements OnInit {
                 cellphone: new FormControl('4084667445', [Validators.required,  Validators.minLength(10), Validators.maxLength(10)]),
                 address: new FormControl('327 West Side Drive #302 Gaithersburg MD 20878', [Validators.required]),
                 gender: new FormControl('m', [Validators.required]),
-                iddirivinlicenseno: new FormControl('', []),
-                idpancard: new FormControl('', []),
+                iddirivinlicenseno: new FormControl('DLV-34534', []),
+                idpancard: new FormControl('PAN943534', []),
                 idadharcard: new FormControl('ADR123456', []),
-                idothercard: new FormControl('', []),
+                idothercard: new FormControl('OTH-23423', []),
 
                 picProfilePic: new FormControl('', []),
                 picdirivinlicenseno: new FormControl('', []),
@@ -78,7 +78,7 @@ export class CustomerComponent implements OnInit {
             this.onUploadDrivingPictures();
             this.onUploadOtherPictures();
             this.onUploadPANPictures();
-            
+            this.onUploadFinished();
            
             
     
@@ -303,8 +303,8 @@ export class CustomerComponent implements OnInit {
 
             this.formService.createCustomer(this.form.value).subscribe( res => {
                 console.log('res', res)
-                // const returnUrl = `/admindashboard`;
-                // this.router.navigate([returnUrl]);
+                const returnUrl = `/customerlookup/`+this.f.cellphone.value + "/admindashboard";
+                this.router.navigate([returnUrl]);
 
                 this.loading = false;
             }, err => {

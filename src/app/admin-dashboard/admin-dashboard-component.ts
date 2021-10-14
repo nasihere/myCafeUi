@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FormService } from '../_services';
 
 @Component({ templateUrl: 'admin-dashboard-component.html' })
 export class AdminDashboardComponent implements OnInit  {
@@ -12,7 +13,7 @@ export class AdminDashboardComponent implements OnInit  {
     loading: boolean;
     authenticationService: any;
     error: any;
-    constructor(        private router: Router,
+    constructor(    public formService: FormService,    private router: Router,
 
     ) { 
        
@@ -38,17 +39,27 @@ export class AdminDashboardComponent implements OnInit  {
     get f() { return this.form.controls; }
 
     onSubmit() {
-        const returnUrl = '/customerlookup';
-        this.router.navigate([returnUrl]);
-        this.submitted = true;
         
-        // stop here if form is invalid
-        if (this.form.invalid) {
-            return;
-        }
+        this.submitted = true;
+   
 
         this.loading = true;
+        if (!this.f.search.valid) {
+            return;
+        }
         console.log(this.f.search.value)
+        this.formService.findByCustomerSearchText({searchText: this.f.search.value}).subscribe( res => {
+        if (res) {
+            
+            const returnUrl = '/customerlookup/' + this.formService.response.resCustomer.cellphone + '/admindashboard';
+            this.router.navigate([returnUrl]);
+        }
+        else {
+            this.step = this.step + 1        
+            }
+        })
+            
+        
         
 
     }
