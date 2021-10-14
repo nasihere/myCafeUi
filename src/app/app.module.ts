@@ -30,13 +30,17 @@ import { SettingsComponent } from './settings/settings.component';
 import { CashDepositComponent } from './cash-deposit/cash-deposit-component';
 import { HoursSelectionComponent} from './hour-cost/hour.cost-component';
 import { VerifyEmailAccountComponent} from './verifyemailaccount/verifyemailaccount.component';
+import { FormsModule } from '@angular/forms';
 
+import { HttpModule } from '@angular/http';
 
 
 @NgModule({
     
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
     imports: [
+        HttpModule,
+        FormsModule,
         BrowserModule,
         ReactiveFormsModule,
         MatFormFieldModule,
@@ -46,6 +50,7 @@ import { VerifyEmailAccountComponent} from './verifyemailaccount/verifyemailacco
         BrowserAnimationsModule,
         MaterialModule    ],
     declarations: [
+        
         AppComponent,
         HomeComponent,
         LoginComponent,

@@ -29,7 +29,7 @@ const routes: Routes = [
     { path: 'verifyemailaccount/:accountemailid', component: VerifyEmailAccountComponent, canActivate: [AuthGuard] },
     
     { path: 'computerselection', component: ComputerSelectionComponent, canActivate: [AuthGuard] },
-    { path: 'customerlookup', component: CustomerLookupComponent, canActivate: [AuthGuard] },
+    { path: 'customerlookup/:cellphone/:ref', component: CustomerLookupComponent, canActivate: [AuthGuard] },
     { path: 'customerlookup/:ref', component: CustomerLookupComponent, canActivate: [AuthGuard] },
     { path: 'checkinout', component: CheckInOutComponent, canActivate: [AuthGuard] },
     { path: 'dashboardv2', component: DashboardV2Component, canActivate: [AuthGuard] },

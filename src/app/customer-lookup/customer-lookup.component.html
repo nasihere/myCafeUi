@@ -1,27 +1,36 @@
 
 <div class="flex justify-between nav">
-    <button mat-stroked-button color="primary" routerLink="/checkinout"  ><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
-    <div class="page-name">Mr. Nasir Sayed (Male)</div>
+    <button mat-stroked-button color="primary" [routerLink]="ref"  ><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
+    <div class="page-name capitalize">Mr/Ms. {{data.name}} (<span *ngIf="data.gender=='m'">Male</span> <span *ngIf="data.gender=='f'">female</span>)</div>
 </div>
 <div class="border-line"></div>
 <mat-card class="mt-1  s-smaller">
    <div class="flex flex-row justify-between">
-       <span  class="heading profile-heading"><strong>Nasir Sayed</strong></span>
+       <span  class="heading profile-heading"><strong> {{data.name}} </strong></span>
        <div class="border-line"></div>
-       <img src="assets/1586650.png" height="50" />
+
+       <img *ngIf="!data.picProfilePic" src="assets/1586650.png" height="50" />
+       <img *ngIf="data.picProfilePic" [src]="data.picProfilePic" height="50" />
    </div>
    <div class="border-line"></div>
    <div class="flex flex-column justify-between">
-        <span  class="label-field">327 West Side Drive #302, Gaithersburg MD 20878</span>
-        <span  class="label-field">Cell: +1 408-477-7455</span>
-        <span  class="label-field">Email: nasir.us@gmail.com</span>
+        <span  class="label-field">{{data.address}}</span>
+        <span  class="label-field">Cell: {{data.cellphone}} </span>
+        <span  class="label-field">Email: {{data.email}}</span>
     </div>
     <div class="border-line"></div>
    <div class="flex flex-column justify-between">
-        <span  class="label-field">Driving License: 124548940215156</span>
-        <span  class="label-field"><img src="assets/dl-license-sample.jpg" height="180" /></span>
-        <span  class="label-field">Adhar Card: 1251 1662 1254 1236</span>
-        <span  class="label-field"><img src="assets/adhar-card-sample.jpg" height="180" /></span>
+        <span *ngIf="data.iddirivinlicenseno" class="label-field">Driving License: {{data.iddirivinlicenseno}}</span>
+        <span *ngIf="data.picdirivinlicenseno" class="label-field"><img [src]="data.picdirivinlicenseno" height="180" /></span>
+
+        <span *ngIf="data.idadharcard" class="label-field">Adhar Card: {{data.idadharcard}}</span>
+        <span *ngIf="data.picadharcard" class="label-field"><img [src]="data.picadharcard" height="180" /></span>
+        
+        <span *ngIf="data.idpancard" class="label-field">PAN Card: {{data.idpancard}}</span>
+        <span *ngIf="data.picpancard" class="label-field"><img [src]="data.picpancard" height="180" /></span>
+        
+        <span *ngIf="data.idothercard" class="label-field">Other Card: {{data.idothercard}}</span>
+        <span *ngIf="data.picothercard" class="label-field"><img [src]="data.picothercard" height="180" /></span>
         
     </div>
     <div class="border-line"></div>
@@ -46,7 +55,8 @@
     ></div>
     <div class="border-line"></div>
     <div class="flex flex-row justify-between">
+        <button [routerLink]="ref" color="warn" mat-flat-button><mat-icon>highlight_off</mat-icon>Disagree</button>
         <button (click)="onCheckIn()" color="primary" mat-flat-button><mat-icon>check</mat-icon>Agree</button>
-        <button routerLink="/checkinout" color="warn" mat-flat-button><mat-icon>highlight_off</mat-icon>Disagree</button>
+        
     </div>
 </mat-card>

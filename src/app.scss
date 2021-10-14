@@ -80,7 +80,7 @@
     margin: 1rem;
     padding: 1rem;
     float: left;
-    width: 97%;
+    width: 96%;
     border-radius: 6px;
     margin-bottom: 20px;
 }
@@ -415,4 +415,12 @@ box-shadow: 5px 5px 35px 5px #000000;
   .nav-yellow {
     background-color: #e8e6d5;
     border: 2px solid #868c2c;
+  }
+  .nav-red {
+    
+    background-color: #cc9e9e;
+    border: 2px solid #d43434;
+  }
+  .capitalize {
+    text-transform: capitalize;
   }

@@ -48,10 +48,4 @@ export class ComputerSelectionComponent  implements OnInit {
           const returnUrl = '/checkinout';
         this.router.navigate([returnUrl]);
     }
-    onCashDepposit() {
-        console.log('onCashDepposit');
-        this.cashDeposit = true;
-          const returnUrl = '/checkinout';
-        this.router.navigate([returnUrl]);
-    }
 }

@@ -1,4 +1,3 @@
-
      <div class="flex justify-between nav">
           <div class="page-name">New Customer</div>
      </div>
@@ -7,6 +6,7 @@
           <div class="flex flex-column"><span class="text-medium">The government of India issues a gazettes notifying that no cyber café can run freely without any registration, registration from appropriate authority is very needful and compulsory. The owner running the cafe must contain the records of all the users and the staffs working inside the cafe.</span><span class="text-smaller">On 11 September 2011,</span></div>
         </div>
 
+        
         <div class="bg-white pl-1 flex justify-between pr-1 mlr-1 pt-2">
              <span class="heading">Already have account?</span>
              <button mat-stroked-button color="primary" routerLink="/admindashboard"  >Find Customer</button>
@@ -15,7 +15,6 @@
      
         <mat-card class="p-3 opacity-90 mlr-1">
                   
-             <mat-card-actions>
                <div *ngIf="step <= 1">
                   <span class="label-field">Name (Required)</span>
                   <mat-form-field appearance="outline"  [formGroup]="form">
@@ -28,46 +27,49 @@
 
                   
                 </div>    
+               
                 <div *ngIf="step <= 1">
                    
-                    <mat-form-field  [formGroup]="form">
-
-                    <div class="profilepic" (click)="picUploader('myFileInput')">
-                         <span>Profile Picture</span>
-                         <button mat-icon-button><mat-icon matSuffix>camera_enhance</mat-icon></button>
-                         <input id="myFileInput" formControlName="profilepic" hidden type="file" accept="image/*;capture=camera">
-
+                    <div class="flex justify-center">
+                         <span><small>less than 2MB</small></span>
+                            
+                         <label class="hoverable" for="fileInput">
+                              <img [src]="tmpProfilepic ? tmpProfilepic : 'assets/img_avatar.png'"> 
+                              <mat-icon matSuffix>camera_enhance</mat-icon>
+                              <div class="hover-text">Profile Pic</div>
+                              <div class="background"></div>
+                            </label>
+                            
+                         <input id="fileInput" type='file' (change)="onSelectFileProfilePic($event)">
                     </div>
-                    <input formControlName="idprofilepic" matInput hidden>
-
-               </mat-form-field>
+                    
 
 
   
                   </div>            
                 <div *ngIf="step == 2">
-                  <span class="label-field">Email Address (Optional)</span>
-                  <mat-form-field appearance="outline"   [formGroup]="form">
-                       <mat-icon matSuffix>alternate_email</mat-icon>
-                       
-                       <input matInput formControlName="email">
-                       <mat-error *ngIf="hasError('email', 'required')">Email is <strong>required</strong></mat-error>
-                       <mat-error *ngIf="hasError('email', 'email')">Enter a valid email address</mat-error>
-                       
-                  </mat-form-field>
+                    <span class="label-field">Cell Phone Number (Required)</span>
+                    <mat-form-field appearance="outline"  [formGroup]="form">
+                         <mat-icon matSuffix>phone_android</mat-icon>
+                         <input   matInput  formControlName="cellphone" maxlength="10" >
+                         <mat-error *ngIf="hasError('cellphone','required')">
+                              Phone Number is <strong>required</strong>
+                         </mat-error>
+                         <mat-error *ngIf="hasError('cellphone', 'minlength')">phone number should be 10 digit</mat-error>
+                         <mat-error *ngIf="hasError('cellphone', 'maxlength')">phone number should be 10 digit</mat-error>
+                         
+                    </mat-form-field>
                 </div>
                 <div *ngIf="step == 3">
-                  <span class="label-field">Cell Phone Number (Required)</span>
-                  <mat-form-field appearance="outline"  [formGroup]="form">
-                       <mat-icon matSuffix>phone_android</mat-icon>
-                       <input matInput required  formControlName="cellphone" maxlength="12">
-                       <mat-error *ngIf="hasError('cellphone','required')">
-                            Phone Number is <strong>required</strong>
-                       </mat-error>
-                       <mat-error *ngIf="hasError('cellphone', 'minlength')">phone number should be 7 digit</mat-error>
-                       <mat-error *ngIf="hasError('cellphone', 'maxlength')">phone number should be 12 digit</mat-error>
-                       
-                  </mat-form-field>
+                    <span class="label-field">Email Address (Optional)</span>
+                    <mat-form-field appearance="outline"   [formGroup]="form">
+                         <mat-icon matSuffix>alternate_email</mat-icon>
+                         
+                         <input matInput formControlName="email">
+                         <mat-error *ngIf="hasError('email', 'required')">Email is <strong>required</strong></mat-error>
+                         <mat-error *ngIf="hasError('email', 'email')">Enter a valid email address</mat-error>
+                         
+                    </mat-form-field>
                 </div>
                   <div *ngIf="step == 4">
                   <span class="label-field">Home Address Of Your Current Residence (Optional)</span>
@@ -90,67 +92,133 @@
                 </div>
                 <div *ngIf="step == 6">
                     <span class="label-field">Identification Proof (Required)</span>
+                    <div class="border-line"></div>
 
-                    <div class="flex">
+                    
+               <div>
+                    <mat-form-field  [formGroup]="form">
+                         <input formControlName="iddirivinlicenseno" matInput placeholder="Driving License Number">
+                    </mat-form-field>
+               </div>
+               <div class="flex justify-center">
+                    
+                       
+                    <label class="hoverable-id" for="fileInputDrivingPic">
+                         <img class="img-id" [src]="tmpDrivingCardpic ? tmpDrivingCardpic : 'assets/driving-license-sample.jpg'" > 
+                         <mat-icon matSuffix>camera_enhance</mat-icon>
+                         <div class="background"></div>
+                    </label>
+                    <input class="fileInput" id="fileInputDrivingPic" type='file' (change)="onSelectFileDrivingPic($event)">
+                    <br />
+                    
+
+               </div>
+
+
+                    
+                    <div class="border-line"></div>
+
+                    <div>
                          <mat-form-field  [formGroup]="form">
-                         <div class="profilepic" (click)="picUploader('myFileInputDL')">
-                              <span>Driving License</span>
-                              <button mat-icon-button><mat-icon matSuffix>camera_enhance</mat-icon></button>
-                              <input id="myFileInputDL" hidden formControlName="picdirivinlicenseno" type="file" accept="image/*;capture=camera">
-                         </div>
-                         <input formControlName="iddirivinlicenseno" matInput placeholder="number">
+                              <input formControlName="idpancard" matInput placeholder="PAN Card Number">
                          </mat-form-field>
                     </div>
-                    <div class="border-line"></div>
-                    <div class="flex">
-                         <mat-form-field  [formGroup]="form">
-
-                    <div class="profilepic" (click)="picUploader('myFileInputPN')">
-                         <span>PAN Card</span>
-                         <button mat-icon-button><mat-icon matSuffix>camera_enhance</mat-icon></button>
-                         <input formControlName="picpancard" id="myFileInputPN" hidden type="file" accept="image/*;capture=camera">
+                    <div class="flex justify-center">
+                         
+                            
+                         <label class="hoverable-id" for="fileInputPANPic">
+                              <img class="img-id" [src]="tmpPANCardpic ? tmpPANCardpic : 'assets/pan-card-sample.jpg'" > 
+                              <mat-icon matSuffix>camera_enhance</mat-icon>
+                              <div class="background"></div>
+                         </label>
+                         <input class="fileInput" id="fileInputPANPic" type='file' (change)="onSelectFilePANPic($event)">
+                         <br />
+                         
+     
                     </div>
-                    <input formControlName="idpancard" matInput placeholder="description">
+
+
+                    
+               <div class="border-line"></div>
+
+
+               <div>
+                    <mat-form-field  [formGroup]="form">
+                         <input formControlName="idadharcard" matInput placeholder="Adhar Card Number">
                     </mat-form-field>
+               </div>
+               <div class="flex justify-center">
+                    
+                       
+                    <label class="hoverable-id" for="fileInputAdharCard">
+                         <img class="img-id" [src]="tmpAdharCardpic ? tmpAdharCardpic : 'assets/adhar-card-sample.png'" > 
+                         <mat-icon matSuffix>camera_enhance</mat-icon>
+                         <div class="background"></div>
+                    </label>
+                    <input class="fileInput" id="fileInputAdharCard" type='file' (change)="onSelectFileAdharPic($event)">
+                    <br />
+                    
 
                </div>
+
+
+
+                 
                <div class="border-line"></div>
-                    <div class="flex">
+
+               
+               <div>
                     <mat-form-field  [formGroup]="form">
-                    <div class="profilepic" (click)="picUploader('myFileInputAD')">
-                         <span>Adhar Card</span>
-                         <button mat-icon-button><mat-icon matSuffix>camera_enhance</mat-icon></button>
-                         <input formControlName="picadharcard" id="myFileInputAD" hidden type="file" accept="image/*;capture=camera">
-                    </div>
-                    <input formControlName="idadharcard" matInput placeholder="description">
-               </mat-form-field>
+                         <input formControlName="idothercard" matInput placeholder="Other Id">
+                    </mat-form-field>
                </div>
-               <div class="border-line"></div>
-               <div class="flex">
-                    <mat-form-field  [formGroup]="form">
-                    <div class="profilepic" (click)="picUploader('myFileInputODID')">
-                         <span>Other ID</span>
-                         <button mat-icon-button><mat-icon matSuffix>camera_enhance</mat-icon></button>
-                         <input formControlName="picothercard"  id="myFileInputODID" hidden type="file" accept="image/*;capture=camera">
-                    </div>
-                    <input formControlName="idothercard" matInput placeholder="description">
-               </mat-form-field>
+               <div class="flex justify-center">
+                    
+                       
+                    <label class="hoverable-id" for="fileInputOtherPic">
+                         <img class="img-id" [src]="tmpOtherCardpic ? tmpOtherCardpic : 'assets/idproof.png'" > 
+                         <mat-icon matSuffix>camera_enhance</mat-icon>
+                         <div class="background"></div>
+                    </label>
+                    <input class="fileInput" id="fileInputOtherPic" type='file' (change)="onSelectFileOtherPic($event)">
+                    <br />
+                    
+
                </div>
 
-                  </div>
-                  <div class="border-line "></div>
 
-             </mat-card-actions>
+
+
+          </div>
+          <div class="border-line "></div>
+
+       
 
              <div class="flex justify-between"  *ngIf="step != 6">
                <button mat-stroked-button color="primary"  *ngIf="step == 1" routerLink="/admindashboard"><mat-icon>keyboard_arrow_left</mat-icon>Back</button> 
-               <button mat-stroked-button color="primary" *ngIf="step != 1"  (click)="step = step - 1; step = step == 0 ? 1 : step"><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
-                <button mat-flat-button color="primary"  (click)="step = step + 1">Next</button>
+               <button mat-stroked-button color="primary" *ngIf="step != 1"  (click)="onPrevPage();"><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
+                <button mat-flat-button color="primary"  (click)="onNextPage()">Next</button>
            </div>
 
              <div class="flex justify-between"  *ngIf="step == 6">
-                    <button mat-stroked-button color="primary" (click)="step = step - 1"><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
+                    <button mat-stroked-button color="primary" (click)="onPrevPage()"><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
 
                   <button  (click)="onSubmit()" mat-flat-button color="primary" >Create Customer</button>
              </div>
-           </mat-card>
+</mat-card>
+
+
+<div class="flex flex-warp admin-password" *ngIf="cellPhoneAlreadyExists">
+     <mat-card class="mt-1  w-100 m-2 ">
+         <div class="flex flex-column  ">
+             <span  class="heading profile-heading  flex justify-center"><mat-icon>info</mat-icon><strong>That cell phone number is taken. </strong></span>
+             <span class="label-field">That cell phone number already exists in our record. Do you want to load this customer profile for signin?</span>
+               <div class="border-line"></div>
+             <div class="flex justify-between mt-3">
+               <button color="primary" (click)="cellPhoneAlreadyExists = false" mat-stroked-button>No</button>
+               <button color="primary" routerLink="/customerlookup/{{f.cellphone.value}}/customer" mat-flat-button>Yes</button>
+          </div>
+         </div>
+     </mat-card>
+  </div>
+

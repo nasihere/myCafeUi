@@ -8,7 +8,12 @@ import { FormService } from './_services/form.service';
 @Component({ selector: 'app', templateUrl: 'app.component.html' })
 export class AppComponent {
     currentUser: User;
-
+  
+    
+    
+      ngOnInit() {
+      
+      }
     constructor(
         public formService: FormService,
         private router: Router,

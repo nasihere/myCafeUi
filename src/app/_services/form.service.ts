@@ -97,4 +97,22 @@ export class FormService {
                 return res;
             }))
     }
+    findByCellPhone(payload): Observable<any> {
+        this.showLoading();
+        return this.http.post(`${environment.apiUrl}/customer/findByCellPhone`, payload).pipe(
+            map(res => { 
+                this.hideLoading();
+                if (res['data'].Count) {
+                    this.response.resCustomer = res['data'].Items[0];
+                }
+                else {
+                    this.response.resCustomer = null;
+                }
+                
+                return this.response.resCustomer;
+            }, res => {
+                this.hideLoading();
+                return res;
+            }))
+    }
 }
