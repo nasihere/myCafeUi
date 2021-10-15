@@ -13,42 +13,31 @@
             matTooltip="Start Cafe-Agent.exe in client machine and pass the secret key {{item.id}}"  mat-icon-button color="primary"  (click)="infoSetupIncomplete = true" *ngIf="item.lastResponseAt == null" ><mat-icon>live_help</mat-icon> </button>
         </div>
         
-        <mat-icon class="computer-prompt-icon red"  *ngIf="item.lastResponseAt == null" >desktop_mac</mat-icon>
-        <mat-icon class="computer-prompt-icon green"  *ngIf="item.lastResponseAt" >desktop_mac</mat-icon>
+        <mat-icon class="computer-prompt-icon red"  *ngIf="item.lastResponseAt == null || item.pcstatus == 'busy'" >desktop_mac</mat-icon>
+        <mat-icon class="computer-prompt-icon green"  *ngIf="item.lastResponseAt && item.pcstatus == 'ready'" >desktop_mac</mat-icon>
         <span class="red" *ngIf="item.lastResponseAt == null">Setup Incomplete</span>
-        <span class="green" *ngIf="item.lastResponseAt">Ready</span>
-        <div class="flex justify-between"  *ngIf="item.lastResponseAt">
-          <button  mat-icon-button ><mat-icon>remove_circle_outline</mat-icon></button>
-          <span class="mt-2">1 hr</span>
-          <button  mat-icon-button ><mat-icon>add_circle_outline</mat-icon></button>
+        <span class="red" *ngIf="item.pcstatus == 'busy'">Busy</span>
+        <span class="green" *ngIf="item.pcstatus == 'ready'">Ready</span>
+        <span class="green" *ngIf="item.pcstatus == 'waiting'">Waiting</span>
+        
+        <div class="flex justify-between"  *ngIf="item.lastResponseAt && item.pcstatus == 'ready'" >
+          <button  mat-icon-button (click)="item.timerI = !item.timerI ? 3 : (item.timerI - 1); "><mat-icon>remove_circle_outline</mat-icon></button>
+          
+          <span class="mt-2">{{timerList[item.timerI || 4].label}}</span>
+          <button  mat-icon-button (click)="item.timerI = !item.timerI ? 5 : (item.timerI + 1); " ><mat-icon>add_circle_outline</mat-icon></button>
         </div>
         <div  *ngIf="item.lastResponseAt == null">
             <button  mat-flat-button color="primary" (click)="item.showSecretKey = true" ><mat-icon>key</mat-icon> Secret Key </button>
             <small *ngIf="item.showSecretKey">{{item.id}}</small>
         </div>
-        <button (click)="onAvailablePC()"  color="primary" *ngIf="item.lastResponseAt" mat-stroked-button>Available</button>
+        <button *ngIf="item.pcstatus == 'ready'" (click)="onAvailablePC(item)"  color="primary"  mat-stroked-button>Available</button>
+        <button *ngIf="item.pcstatus == 'busy'" color="warn" mat-stroked-button>Lock</button>
+
     </div>
     
  
  </mat-card>
  
-
-<mat-card class="mt-1  s-smaller computer-prompt">
-    <div class="flex flex-column  ">
-        
-        <span  class="heading profile-heading flex justify-between "><strong>PC - 002</strong></span>
-     
-        
-     <mat-icon class="computer-prompt-icon red">desktop_mac</mat-icon>
-        <span class="red">Busy</span>
-        <div class="flex justify-between">
-          <span class="mt-3">(</span>
-          <span class="mt-3">1hr 30m</span>
-          <span class="mt-3">)</span>
-       </div>
-        <button color="warn" mat-stroked-button>Lock</button>
-    </div>
- </mat-card>
 
  <mat-card class="mt-1  s-smaller computer-prompt">
     <div class="flex flex-column  ">

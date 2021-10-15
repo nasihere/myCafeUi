@@ -15,7 +15,8 @@ export class FormService {
         resPCSelected: null,
         resCustomerList: null,
         resPCCreated: null,
-        resAllPCs: null
+        resAllPCs: null,
+        resAgent: null
     }
     
     constructor(private http: HttpClient) { }
@@ -198,5 +199,59 @@ export class FormService {
                 return res;
             }))
     }
+    onlineAgent(payload): Observable<any> {
+        this.showLoading();
+        return this.http.post(`${environment.apiUrl}/agent/onlineAgent`, payload).pipe(
+            map(res => { 
+                this.hideLoading();
+                return res;
+            }, res => {
+                this.hideLoading();
+                return res;
+            }))
+    }
+    findAgent(payload): Observable<any> {
+        this.showLoading();
+        return this.http.post(`${environment.apiUrl}/agent/findAgentDetail`, payload).pipe(
+            map(res => { 
+                this.hideLoading();
+                if (res) {
+                    this.response.resAgent = res['data'].Item;
+                }
+                else {
+                    this.response.resAgent  = null;
+                }
+                
+                return this.response.resAgent ;
+            }, res => {
+                this.hideLoading();
+                return res;
+            }))
+    }
+    bookAgent(payload): Observable<any> {
+        this.showLoading();
+        return this.http.post(`${environment.apiUrl}/agent/bookAgent`, payload).pipe(
+            map(res => { 
+                this.hideLoading();
+               
+                
+                return res;
+            }, res => {
+                this.hideLoading();
+                return res;
+            }))
+    }
+    unlockAgent(payload): Observable<any> {
+        this.showLoading();
+        return this.http.post(`${environment.apiUrl}/agent/unlockAgent`, payload).pipe(
+            map(res => { 
+                this.hideLoading();
+                return res;
+            }, res => {
+                this.hideLoading();
+                return res;
+            }))
+    }
     
+
 }

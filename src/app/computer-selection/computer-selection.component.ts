@@ -10,30 +10,18 @@ export class ComputerSelectionComponent  implements OnInit {
     cashDeposit: boolean = false;
     pcCode: number = 0;
     data: any;
-    pcAgentsList: any = [
-        {
-          "createdAt": "2021-10-14T19:14:51.940Z",
-          "username": "nasz.letter@gmail.com",
-          "pcname": "PC - 442",
-          "id": "01d3b640-2d23-11ec-a9bb-195273d63f97",
-          "lastResponseAt": null
-        },
-        {
-          "createdAt": "2021-10-14T19:26:01.473Z",
-          "username": "nasz.letter@gmail.com",
-          "pcname": "PC - 429",
-          "id": "90e65710-2d24-11ec-8f1c-41101a9fce7b",
-          "lastResponseAt": null
-        },
-        {
-          "createdAt": "2021-10-14T14:24:07.995Z",
-          "username": "nasz.letter@gmail.com",
-          "pcname": "PC - 939",
-          "id": "646cf0b0-2cfa-11ec-85bb-bd84721c532e",
-          "lastResponseAt": "2021-10-14T14:24:07.996Z"
-        }
-      ]
-      ;
+    timerList = [
+        {label: '0min', value: 0},
+        {label: '15min', value: 15},
+        {label: '30min', value: 30},
+        {label: '45min', value: 45},
+        {label: '1hr', value: 60},
+        {label: '1hr 30min', value: 90},
+        {label: '2hr', value: 120},
+        {label: '2hr 30min', value: 180},
+        {label: '3hr', value: 240}
+    ];
+    pcAgentsList: any = null;
     infoSetupIncomplete: boolean = false;
     constructor(   public formService: FormService,      private router: Router,
 
@@ -42,13 +30,19 @@ export class ComputerSelectionComponent  implements OnInit {
         }
 
         ngOnInit() {
-            // this.data = this.formService.response.resAuthSignIn.data.Item;
-            // this.form = new FormGroup({
-            //     password: new FormControl('',[Validators.required,
-            //         Validators.minLength(5),
-            //         Validators.maxLength(30)])
-            //   });
-            // this.getAllAgentPC();
+         
+            if (this.formService.response.resAuthSignIn == null) {
+                const returnUrl = `/login`;
+                this.router.navigate([returnUrl]);
+                return;
+            }
+            this.data = this.formService.response.resAuthSignIn.data.Item;
+            this.form = new FormGroup({
+                password: new FormControl('',[Validators.required,
+                    Validators.minLength(5),
+                    Validators.maxLength(30)])
+              });
+            this.getAllAgentPC();
         }
         
         getAllAgentPC() {
@@ -79,9 +73,27 @@ export class ComputerSelectionComponent  implements OnInit {
             return;
         }
     }
-    onAvailablePC() {
-        console.log('onAvailablePC');
+    onAvailablePC(item) {
+        
         this.pcCode = Math.floor(1000 + Math.random() * 9000);
+        item.accessCode = this.pcCode;
+        item.accessAt = new Date().toISOString();
+        if (item.timerI)
+            item.timer = this.timerList[item.timerI].value || 60;
+        else 
+            item.timer = 60;
+        item.pcstatus = 'waiting';
+        console.log('onAvailablePC', item);
+        
+        this.formService.bookAgent(item).subscribe( res => {
+            if (res) {
+              
+              
+            }
+            else {
+               
+            }
+        })
     }
     onPCCodeVerify() {
         console.log('onPCCodeVerify');

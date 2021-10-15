@@ -1,8 +1,25 @@
 
-     
-     <div class="flex justify-between nav">
-          <div class="page-name">Access Cafe - Check IN</div>
+<div class="notify flex nav-red" *ngIf="!accessCodeVerified">
+     <mat-icon>info</mat-icon> 
+     <div class="flex flex-column">
+          <span class="text-medium">Access Code Denied</span>
      </div>
+</div>
+
+<div class="notify flex nav-red" *ngIf="!agentVerified">
+     <mat-icon>info</mat-icon> 
+     <div class="flex flex-column">
+          <span class="text-medium">Agent is offline</span>
+     </div>
+</div>
+     
+
+<div *ngIf="agentVerified">
+          
+     <div class="flex justify-between nav">
+          <div class="page-name">{{agentDetail.pcname}} <strong>({{agentDetail.pcstatus}})</strong></div>
+     </div>
+     
      <div class="notify flex " *ngIf="step == 1">
           <mat-icon>info</mat-icon> 
           <div class="flex flex-column"><span class="text-medium"></span><span class="text-smaller">Welcome to cyber cafe, To access cafe computer, We request you to please sign-in first. If you have already account created? Feel free to search your account by your mobile number, driving licenses, email address.</span></div>
@@ -87,24 +104,6 @@
                   </div>
                 </mat-card-actions>
              </div>
-          <div *ngIf="step==4">
-            <span class="label-field">Customer Identification (e.g: cell number, email id, driving license no.)</span>
-            <mat-form-field appearance="outline" [formGroup]="form">
-                 <mat-icon matSuffix>search</mat-icon>
-                 <input matInput  formControlName="search" >
-                 <mat-error *ngIf="hasError('search','required')">
-                    search is <strong>required</strong>
-               </mat-error>
-
-               </mat-form-field>
-
-             <mat-card-actions>
-                  
-                <div class="flex">
-                    <button (click)="onSubmit()" mat-flat-button color="primary" class="text-center"><mat-icon>search</mat-icon>Search</button>
-               </div>
-             </mat-card-actions>
-          </div>
      </mat-card>
 
      
@@ -146,3 +145,4 @@
  
  
  </div>
+</div>

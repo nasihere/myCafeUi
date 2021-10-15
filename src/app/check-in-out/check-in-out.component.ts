@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {ViewEncapsulation } from '@angular/core';
+import { FormService } from '../_services';
 
 @Component({ templateUrl: 'check-in-out.component.html', encapsulation: ViewEncapsulation.None })
 export class CheckInOutComponent implements OnInit  {
@@ -14,7 +15,12 @@ export class CheckInOutComponent implements OnInit  {
     loading: boolean;
     authenticationService: any;
     error: any;
-    constructor(        private router: Router,
+    paramId: number = null;
+    agentVerified: boolean = false;
+    agentDetail: any;
+    accessCodeVerified: boolean = true;
+    constructor(     public formService: FormService,
+        private route: ActivatedRoute,     private router: Router,
 
     ) { 
        
@@ -31,9 +37,60 @@ export class CheckInOutComponent implements OnInit  {
                 Validators.minLength(5),
                 Validators.maxLength(30)])
           });
-
+          this.route.params.subscribe(params => {
+                this.paramId = params['agentId'];
+                this.findAgentDetail(true);
+                return params;
+            });
+    
     }
-
+    findAgentDetail(execute) {
+        if (!this.paramId) return;
+        const payload = {
+            id: this.paramId
+        }
+        this.formService.findAgent(payload).subscribe( res => {
+            if (res) {
+                this.agentDetail = res;
+                this.agentVerified = true;
+                if (res.pcstatus == 'busy') {
+                    const returnUrl = '/connectedcomputer';
+                    this.router.navigate([returnUrl]);
+    
+                    return;
+                }
+                if (execute) {
+                    this.onlineAgent();
+                }
+                
+            }
+            else {
+                this.agentDetail = null;
+                this.agentVerified = false;
+            
+            }
+            
+        });
+    }
+    onlineAgent() {
+       
+        if (!this.paramId) return;
+        const payload = {
+            id: this.paramId,
+            online: true
+        }
+        this.formService.onlineAgent(payload).subscribe( res => {
+            if (res.success) {
+                this.agentVerified = true;
+                this.findAgentDetail(false);
+            }
+            else {
+                this.agentVerified = false;
+            
+            }
+            
+        });
+    }
     public hasError = (controlName: string, errorName: string) =>{
         return this.form.controls[controlName].hasError(errorName);
       }
@@ -74,11 +131,42 @@ export class CheckInOutComponent implements OnInit  {
         this.router.navigate([returnUrl]);
     }
     onAccessCodeLogin() {
-       
-        console.log(this.f.accessCode.value)
-        console.log('onAccessCodeLogin');
-        const returnUrl = '/connectedcomputer';
-        this.router.navigate([returnUrl]);
+        if (!this.paramId) return;
+        const payload = {
+            id: this.paramId,
+            accessCode: this.f.accessCode.value
+        }
+        this.formService.unlockAgent(payload).subscribe( res => {
+            if (res.data.Count) {
+                this.accessCodeVerified = true;
+                this.onCafeTimerStart(res.data.Items[0]);            
+               
+            }
+            else {
+                this.accessCodeVerified = false;
+            
+            }
+            
+        });
     }
     
+    onCafeTimerStart(item) {
+        
+        
+        item.accessCode = null;
+        item.accessAt = new Date().toISOString();
+        item.pcstatus = 'busy';
+        
+        
+        this.formService.bookAgent(item).subscribe( res => {
+            if (res) {
+                const returnUrl = '/connectedcomputer';
+                this.router.navigate([returnUrl]);
+              
+            }
+            else {
+               
+            }
+        })
+    }
 }
