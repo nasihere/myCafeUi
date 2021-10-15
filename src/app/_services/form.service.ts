@@ -14,7 +14,8 @@ export class FormService {
         resCustomer: null,
         resPCSelected: null,
         resCustomerList: null,
-        resPCCreated: null
+        resPCCreated: null,
+        resAllPCs: null
     }
     
     constructor(private http: HttpClient) { }
@@ -174,6 +175,24 @@ export class FormService {
                 }
                 
                 return this.response.resPCCreated;
+            }, res => {
+                this.hideLoading();
+                return res;
+            }))
+    }
+    getAllAgentPC(payload): Observable<any> {
+        this.showLoading();
+        return this.http.post(`${environment.apiUrl}/agent/findAllPcs`, payload).pipe(
+            map(res => { 
+                this.hideLoading();
+                if (res['data'].Count) {
+                    this.response.resAllPCs = res['data'].Items;
+                }
+                else {
+                    this.response.resAllPCs = null;
+                }
+                
+                return this.response.resAllPCs;
             }, res => {
                 this.hideLoading();
                 return res;

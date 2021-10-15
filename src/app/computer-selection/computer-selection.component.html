@@ -1,38 +1,32 @@
-
 <div class="flex justify-between nav">
     <button mat-stroked-button color="primary" routerLink="/admindashboard"  ><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
     <div class="page-name">Terminal Available</div>
 </div>
 <div class="border-line"></div>
 <div class="flex flex-warp"  [ngClass]="pcCode || step != 1 ? 'opacity-20' : ''">
-<mat-card class="mt-1  s-smaller computer-prompt">
-   <div class="flex flex-column  ">
-    <span  class="heading profile-heading  flex justify-between "><strong>PC - 001</strong></span>
-    <mat-icon class="computer-prompt-icon green">desktop_mac</mat-icon>
-       <span class="green">Ready</span>
-       <div class="flex justify-between">
-          <button  mat-icon-button ><mat-icon>remove_circle_outline</mat-icon></button>
-          <span class="mt-2">1 hr</span>
-          <button  mat-icon-button ><mat-icon>add_circle_outline</mat-icon></button>
-       </div>
-       <button (click)="onAvailablePC()" color="primary" mat-stroked-button>Available</button>
-   </div>
-   
 
-</mat-card>
-
-<mat-card class="mt-1  s-smaller computer-prompt">
-    <div class="flex flex-column  ">
-     <span  class="heading profile-heading flex justify-between"><strong>PC - 006</strong></span>
-     <mat-icon class="computer-prompt-icon green">desktop_mac</mat-icon>
- 
-        <span class="green">Ready</span>
+<mat-card class="mt-1  s-smaller computer-prompt" *ngFor="let item of pcAgentsList" >
+    <div class="flex flex-column  " >
         <div class="flex justify-between">
+            <span  class="heading profile-heading flex justify-between"><strong>{{item.pcname}}</strong></span>
+            <button 
+            matTooltip="Start Cafe-Agent.exe in client machine and pass the secret key {{item.id}}"  mat-icon-button color="primary"  (click)="infoSetupIncomplete = true" *ngIf="item.lastResponseAt == null" ><mat-icon>live_help</mat-icon> </button>
+        </div>
+        
+        <mat-icon class="computer-prompt-icon red"  *ngIf="item.lastResponseAt == null" >desktop_mac</mat-icon>
+        <mat-icon class="computer-prompt-icon green"  *ngIf="item.lastResponseAt" >desktop_mac</mat-icon>
+        <span class="red" *ngIf="item.lastResponseAt == null">Setup Incomplete</span>
+        <span class="green" *ngIf="item.lastResponseAt">Ready</span>
+        <div class="flex justify-between"  *ngIf="item.lastResponseAt">
           <button  mat-icon-button ><mat-icon>remove_circle_outline</mat-icon></button>
           <span class="mt-2">1 hr</span>
           <button  mat-icon-button ><mat-icon>add_circle_outline</mat-icon></button>
-       </div>
-        <button color="primary" mat-stroked-button>Available</button>
+        </div>
+        <div  *ngIf="item.lastResponseAt == null">
+            <button  mat-flat-button color="primary" (click)="item.showSecretKey = true" ><mat-icon>key</mat-icon> Secret Key </button>
+            <small *ngIf="item.showSecretKey">{{item.id}}</small>
+        </div>
+        <button (click)="onAvailablePC()"  color="primary" *ngIf="item.lastResponseAt" mat-stroked-button>Available</button>
     </div>
     
  
