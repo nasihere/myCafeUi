@@ -60,7 +60,7 @@
     <div class="border-line" *ngIf="data.uncollapsed"></div>
     <div class="flex flex-row justify-between" *ngIf="data.uncollapsed">
         <button [routerLink]="ref" color="warn" mat-flat-button><mat-icon>highlight_off</mat-icon>Disagree</button>
-        <button (click)="onCheckIn()" color="primary" mat-flat-button><mat-icon>check</mat-icon>Agree</button>
+        <button (click)="onCheckIn(data.id)" color="primary" mat-flat-button><mat-icon>check</mat-icon>Agree</button>
         
     </div>
     <div class="flex flex-row justify-between" *ngIf="!data.uncollapsed">

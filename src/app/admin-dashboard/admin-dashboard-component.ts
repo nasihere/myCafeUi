@@ -20,7 +20,11 @@ export class AdminDashboardComponent implements OnInit  {
        
     }
     ngOnInit() {
-
+        if (this.formService.response.resAuthSignIn == null) {
+            const returnUrl = `/login`;
+            this.router.navigate([returnUrl]);
+            return;
+        }
         let MOBILE_PATTERN = /[0-9\+\-\ ]/;
         this.form = new FormGroup({
             otpverify: new FormControl('', [Validators.required]),
@@ -39,18 +43,20 @@ export class AdminDashboardComponent implements OnInit  {
     // convenience getter for easy access to form fields
     get f() { return this.form.controls; }
 
-    onSubmit() {
+    onSubmit(searchText) {
         
         this.submitted = true;
-   
-
+        
+        if (!searchText) {
+            searchText = this.f.search.value;
+        }
         this.loading = true;
-        if (!this.f.search.valid) {
+        if (!searchText) {
             return;
         }
-        console.log(this.f.search.value)
+        console.log(searchText)
         this.customerNotFound = false;
-        this.formService.findByCustomerSearchText({searchText: this.f.search.value}).subscribe( res => {
+        this.formService.findByCustomerSearchText({searchText}).subscribe( res => {
         if (res) {
             
             const returnUrl = '/customerlookup/' + this.formService.response.resCustomer.cellphone + '/admindashboard';
@@ -66,6 +72,7 @@ export class AdminDashboardComponent implements OnInit  {
         
 
     }
+    
     onSendOTP() {
         console.log(this.f.cellphone.value)
         console.log('onSendOTP');

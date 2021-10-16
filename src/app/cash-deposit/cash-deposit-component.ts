@@ -84,11 +84,44 @@ export class CashDepositComponent implements OnInit  {
         const payload = {
           billingId: this.billingDetail.id,
           billTotal: this.totalSum,
+          agentid: this.billingDetail.agentid,
+          productCode1: this.getProduct(1),
+          productCode2: this.getProduct(2),
+          productCode3: this.getProduct(3),
+          productCode4: this.getProduct(4),
+          productCode5: this.getProduct(5),
+          productCode6: this.getProduct(6),
+          productCode7: this.getProduct(7),
+          productCode8: this.getProduct(8),
+          productCode9: this.getProduct(9),
+
+
+          productCost1: this.getCost(1),
+          productCost2: this.getCost(2),
+          productCost3: this.getCost(3),
+          productCost4: this.getCost(4),
+          productCost5: this.getCost(5),
+          productCost6: this.getCost(6),
+          productCost7: this.getCost(7),
+          productCost8: this.getCost(8),
+          productCost9: this.getCost(9),
+
+          productQty1: this.getQtyVal(1),
+          productQty2: this.getQtyVal(2),
+          productQty3: this.getQtyVal(3),
+          productQty4: this.getQtyVal(4),
+          productQty5: this.getQtyVal(5),
+          productQty6: this.getQtyVal(6),
+          productQty7: this.getQtyVal(7),
+          productQty8: this.getQtyVal(8),
+          productQty9: this.getQtyVal(9)
+          
+          
           ///start here...
         }
         // const returnUrl = '/admindashboard';
         // this.router.navigate([returnUrl]);
-       this.formService.makeBillpaid({}).subscribe( res => {
+       this.formService.makeBillpaid(payload).subscribe( res => {
             if (res) {
               
               this.paymentMaking = true;
@@ -113,6 +146,20 @@ export class CashDepositComponent implements OnInit  {
     getCost(index) {
       if (!this.accountDetail) return null;
       return this.accountDetail[`perCost${index}`] ? this.accountDetail[`perCost${index}`] : null ;
+    }
+    getQtyVal(index) {
+      if (!this.accountDetail) return null;
+      if (document.getElementById(`txtQty${index}`)) {
+        //@ts-ignore
+        if ( Number(document.getElementById(`txtQty${index}`).value)) {
+          //@ts-ignore
+          return Number(document.getElementById(`txtQty${index}`).value);
+        }
+        else {
+          return null;
+        }
+        
+      }
     }
     onCalculate() {
       this.totalSum = 0;

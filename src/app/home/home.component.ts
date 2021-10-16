@@ -310,6 +310,7 @@ export class HomeComponent implements OnInit {
         
         this.formService.createRegister(payload).subscribe( res => {
             console.log('res', res)
+            this.createDefaultCustmomer();
             const returnUrl = `/verifyemailaccount/${this.f.email.value}`;
             this.router.navigate([returnUrl]);
             
@@ -318,5 +319,30 @@ export class HomeComponent implements OnInit {
         });
         
 
+    }
+    createDefaultCustmomer() {
+           
+            const payload = {
+                "username": this.f.email.value,
+                "name": "Public",
+                "email": "public@mycafe.com",
+                "cellphone": "8888555538",
+                "address": "390 Monroe St Santa Clara MD 20878",
+                "gender": "m",
+                "iddirivinlicenseno": "",
+                "idpancard": "",
+                "idadharcard": "",
+                "idothercard": "",
+                "picProfilePic": "",
+                "picdirivinlicenseno": "",
+                "picpancard": "",
+                "picadharcard": "",
+                "picothercard": ""
+            }
+            this.formService.createCustomer(payload).subscribe( res => {
+             
+            });
+       
+       
     }
 }

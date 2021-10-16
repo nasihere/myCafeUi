@@ -34,13 +34,13 @@ export class CustomerLookupComponent {
     
         }   
         
-    onCheckIn() {
+    onCheckIn(custid) {
         if (window.location.href.indexOf('selfcheckin') != -1) {
             const returnUrl = '/hoursselection';
             this.router.navigate([returnUrl]);    
         }
         else {
-            const returnUrl = '/computerselection/'+ this.data['id'];
+            const returnUrl = '/computerselection/'+ custid;
             this.router.navigate([returnUrl]);
         }
         
@@ -48,7 +48,7 @@ export class CustomerLookupComponent {
     getCustomerInfo(cellphone) {
         this.formService.findByCellPhone({cellphone}).subscribe( res => {
             if (res) {
-                this.data = res;
+                this.data = [res];
             }
             else {
                this.data = null;    
