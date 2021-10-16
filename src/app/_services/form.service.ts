@@ -16,7 +16,8 @@ export class FormService {
         resCustomerList: null,
         resPCCreated: null,
         resAllPCs: null,
-        resAgent: null
+        resAgent: null,
+        resBilling: null
     }
     
     constructor(private http: HttpClient) { }
@@ -46,6 +47,17 @@ export class FormService {
             map(res => { 
                 this.hideLoading();
                 this.response.resAuthSignIn = res;
+                return res
+            }, res => {
+                this.hideLoading();
+                return res;
+            }))
+    }
+    getSettings(payload): Observable<any> {
+        this.showLoading();
+        return this.http.post(`${environment.apiUrl}/auth/settings`, payload).pipe(
+            map(res => { 
+                this.hideLoading();
                 return res
             }, res => {
                 this.hideLoading();
@@ -98,6 +110,26 @@ export class FormService {
                 this.response.resCustomer = res;
                 this.response.resCustomerList = res;
                 return res
+            }, res => {
+                this.hideLoading();
+                return res;
+            }))
+    }
+    findCustomerById(payload): Observable<any> {
+        this.showLoading();
+        return this.http.post(`${environment.apiUrl}/customer/findCustomerById`, payload).pipe(
+            map(res => { 
+                this.hideLoading();
+                if (res['data']) {
+                    this.response.resCustomer = res['data'].Item;
+                    this.response.resCustomerList = [res['data'].Item];
+                }
+                else {
+                    this.response.resCustomer = null;
+                    this.response.resCustomerList = null;
+                }
+                
+                return this.response.resCustomer;
             }, res => {
                 this.hideLoading();
                 return res;
@@ -252,6 +284,35 @@ export class FormService {
                 return res;
             }))
     }
+    findBillingDetail(payload): Observable<any> {
+        this.showLoading();
+        return this.http.post(`${environment.apiUrl}/customer/findBillingId`, payload).pipe(
+            map(res => { 
+                this.hideLoading();
+                if (res['data']) {
+                    this.response.resBilling = res['data'].Item;
+                }
+                else {
+                    this.response.resBilling = null;
+                }
+                
+                return this.response.resBilling;
+            }, res => {
+                this.hideLoading();
+                return res;
+            }))
+    }
     
-
+    makeBillpaid(payload): Observable<any> {
+        this.showLoading();
+        return this.http.post(`${environment.apiUrl}/agent/billpaid`, payload).pipe(
+            map(res => { 
+                this.hideLoading();
+               
+                return res;
+            }, res => {
+                this.hideLoading();
+                return res;
+            }))
+    }
 }

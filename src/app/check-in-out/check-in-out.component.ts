@@ -6,7 +6,6 @@ import { FormService } from '../_services';
 
 @Component({ templateUrl: 'check-in-out.component.html', encapsulation: ViewEncapsulation.None })
 export class CheckInOutComponent implements OnInit  {
-    adminPassword: boolean = false;
     helpPageNewCustomer: boolean = false;
     step: number = 1;
     form: FormGroup;
@@ -54,7 +53,7 @@ export class CheckInOutComponent implements OnInit  {
                 this.agentDetail = res;
                 this.agentVerified = true;
                 if (res.pcstatus == 'busy') {
-                    const returnUrl = '/connectedcomputer';
+                    const returnUrl = '/connectedcomputer/'+ res.id;
                     this.router.navigate([returnUrl]);
     
                     return;
@@ -123,13 +122,6 @@ export class CheckInOutComponent implements OnInit  {
         const returnUrl = '/customerlookup/selfcheckin';
         this.router.navigate([returnUrl]);
     }
-    onVerifyAdminPassword() {
-        
-        console.log(this.f.password.value)
-        console.log('onVerifyAdminPassword');
-        const returnUrl = '/computerselection';
-        this.router.navigate([returnUrl]);
-    }
     onAccessCodeLogin() {
         if (!this.paramId) return;
         const payload = {
@@ -156,11 +148,11 @@ export class CheckInOutComponent implements OnInit  {
         item.accessCode = null;
         item.accessAt = new Date().toISOString();
         item.pcstatus = 'busy';
-        
-        
+        item.agentid = this.paramId,
+        item.customerid = this.agentDetail.customerId;
         this.formService.bookAgent(item).subscribe( res => {
             if (res) {
-                const returnUrl = '/connectedcomputer';
+                const returnUrl = '/connectedcomputer/' + item.id;
                 this.router.navigate([returnUrl]);
               
             }

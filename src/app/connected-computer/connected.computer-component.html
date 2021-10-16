@@ -1,5 +1,4 @@
 
-   
    <div class="flex justify-between nav">
         <div class="page-name">Session Connected</div>
    </div>
@@ -13,16 +12,30 @@
 </div>
 <div class="border-line"></div>
 <mat-card class="mt-1  s-smaller" [ngClass]="disconnectSession ? 'opacity-20' : ''">
+    
    <div class="flex flex-row justify-between">
-       <span  class="heading profile-heading"><strong>Nasir Sayed</strong></span>
+       <span  class="heading profile-heading capitalize"><strong> {{customerDetail.name}} </strong> (<span *ngIf="customerDetail.gender=='m'">Male</span> <span *ngIf="customerDetail.gender=='f'">female</span>)</span>
        <div class="border-line"></div>
-       <img src="assets/1586650.png" height="50" />
+
+       <img *ngIf="!customerDetail.picProfilePic" src="assets/1586650.png" height="50" />
+       <img *ngIf="customerDetail.picProfilePic" [src]="customerDetail.picProfilePic" height="50" />
    </div>
    <div class="border-line"></div>
    <div class="flex flex-column justify-between">
-        <span  class="label-field">327 West Side Drive #302, Gaithersburg MD 20878</span>
-        <span  class="label-field">Cell: +1 408-477-7455</span>
-        <span  class="label-field">Email: nasir.us@gmail.com</span>
+        <span  class="label-field">{{customerDetail.address}}</span>
+        <span  class="label-field">Cell: {{customerDetail.cellphone}} </span>
+        <span  class="label-field">Email: {{customerDetail.email}}</span>
+    </div>
+    <div class="border-line"></div>
+   <div class="flex flex-column justify-between">
+        <span *ngIf="customerDetail.iddirivinlicenseno" class="label-field">Driving License: {{customerDetail.iddirivinlicenseno}}</span>
+
+        <span *ngIf="customerDetail.idadharcard" class="label-field">Adhar Card: {{customerDetail.idadharcard}}</span>
+        
+        <span *ngIf="customerDetail.idpancard" class="label-field">PAN Card: {{customerDetail.idpancard}}</span>
+        
+        <span *ngIf="customerDetail.idothercard" class="label-field">Other Card: {{customerDetail.idothercard}}</span>
+        
     </div>
     <div class="border-line"></div>
     <div class="flex flex-row justify-between">
@@ -42,7 +55,8 @@
     <div class="flex justify-between mt-3">
         
         <button  (click)="disconnectSession = true" color="warn" mat-flat-button><mat-icon>highlight_off</mat-icon>Disconnect</button>
-        <button  (click)="onConnectedSession()" color="primary" class="bg-green" mat-flat-button><mat-icon>restore</mat-icon>Start & Ready</button>
+        <button  (click)="onConnectedSession()" color="primary" class="bg-green" mat-flat-button><mat-icon>restore</mat-icon>Continue
+        </button>
     </div>
 </mat-card>
 

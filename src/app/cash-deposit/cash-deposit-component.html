@@ -1,6 +1,4 @@
-
-   
-   <div class="flex justify-between nav">
+<div class="flex justify-between nav">
         <div class="page-name">Billing</div>
    </div>
    <div class="border-line "></div>
@@ -12,20 +10,28 @@
     <span  class="heading profile-heading"><strong>Payment Deposit</strong></span>
 </div>
 <div class="border-line"></div>
-<mat-card class="mt-1  s-smaller" [ngClass]="(paymentMaking || overlaybackground) ? 'opacity-20' : ''">
-   <div class="flex flex-row justify-between">
-       <span  class="heading profile-heading"><strong>Nasir Sayed</strong></span>
-       <div class="border-line"></div>
-       <img src="assets/1586650.png" height="50" />
-   </div>
+<mat-card class="mt-1  s-smaller" [ngClass]="(paymentMaking || overlaybackground) ? 'opacity-20' : ''" >
+    <div  *ngIf="customerDetail" class="flex flex-row justify-between">
+        <span  class="heading profile-heading capitalize"><strong> {{customerDetail.name}} </strong></span>
+        <div class="border-line"></div>
+ 
+        <img *ngIf="!customerDetail.picProfilePic" src="assets/1586650.png" height="50" />
+        <img *ngIf="customerDetail.picProfilePic" [src]="customerDetail.picProfilePic" height="50" />
+    </div>
    <div class="border-line"></div>
-   <div class="flex flex-column justify-between">
-    <span  class="label-field">327 West Side Drive #302, Gaithersburg MD 20878</span>
-    <span  class="label-field">Cell: +1 408-477-7455</span>
-    <span  class="label-field">Email: nasir.us@gmail.com</span>
+   <div  *ngIf="customerDetail" class="flex flex-column justify-between">
+    <span  class="label-field">{{customerDetail.address}}</span>
+    <span  class="label-field">Cell: {{customerDetail.cellphone}} </span>
+    <span  class="label-field">Email: {{customerDetail.email}}</span>
 </div>
 <div class="border-line"></div>
-
+<div *ngIf="billingDetail" class="flex flex-column justify-between">
+    <span  class="label-field">Bill Date: {{billingDetail.billDt}} </span>
+    <span  class="label-field">Start Time: {{billingDetail.checkIn}}</span>
+    <span  class="label-field">Out Time: {{billingDetail.checkout}}</span>
+    <span  class="label-field">Timer: {{billingDetail.timer}}min</span>
+    
+</div>
 </mat-card>
 
 <mat-card class="mt-1  s-smaller" [ngClass]="(paymentMaking || overlaybackground) ? 'opacity-20' : ''">
@@ -34,58 +40,21 @@
     <span  class="heading profile-heading"><strong>Billing</strong></span>
     
     <div>
-        <div class="flex justify-between">
-            <span  class="label-field w-min-25">Internet Access</span>
-            <span  class="label-field w-min-25">$10 per hour</span>
-            <span>x</span>
-            <input type="text" class="mb-3 w-10"/> 
-            <span>=</span>
-            <span  class="label-field w-min-25 green text-right">$ 30</span>
+        <div  class="flex justify-between" *ngFor="let i of [1,2,3,4,5,6,7,8,9]" >
+            <span [ngClass]="getProduct(i) == null ? 'dp' : ''" class="label-field w-min-25">{{getProduct(i)}}</span>
+            <span  [ngClass]="getProduct(i) == null ? 'dp' : ''" class="label-field w-min-25">{{getDescription(i)}}</span>
+            <span [ngClass]="getProduct(i) == null ? 'dp' : ''">x</span>
+            <input [ngClass]="getProduct(i) == null ? 'dp' : ''" type="text" id="txtQty{{i}}" (keyup)="onCalculate()" class="mb-3 w-10"/> 
+            <span [ngClass]="getProduct(i) == null ? 'dp' : ''" >=</span>
+            <span [ngClass]="getProduct(i) == null ? 'dp' : ''" class="label-field w-min-25 green text-right">{{getCost(i)}}</span>
         </div>
         <div class="border-line"></div>
     </div>
 
       
-    <div>
-        <div class="flex justify-between">
-            <span  class="label-field w-min-25">Printer</span>
-            <span  class="label-field w-min-25">$0.23 per page</span>
-            <span>x</span>
-            <input type="text" class="mb-3 w-10"/>
-            <span>=</span>
-            <span  class="label-field w-min-25 green text-right">$ 0</span>
-        </div>
-        <div class="border-line"></div>
-    </div>
-
-    <div>
-        <div class="flex justify-between">
-            <span  class="label-field w-min-25">Scanner</span>
-            <span  class="label-field w-min-25">$0.20 per page</span>
-            <span>x</span>
-            <input type="text" class="mb-3 w-10"/>
-            <span>=</span>
-            <span  class="label-field w-min-25 green text-right">$ 0</span>
-        </div>
-        <div class="border-line"></div>
-    </div>
-
-    
-    <div>
-        <div class="flex justify-between">
-            <span  class="label-field w-min-25">Game</span>
-            <span  class="label-field w-min-25">$2 per hour</span>
-            <span>x</span>
-            <input type="text" class="mb-3 w-10"/>
-            <span>=</span>
-            <span  class="label-field w-min-25 green text-right">$ 15</span>
-        </div>
-        <div class="border-line"></div>
-    </div>
-
     <div class="flex justify-between">
         <span  class="heading profile-heading"><strong>Total</strong></span>
-        <span  class="heading profile-heading"><strong>$150.00</strong></span>
+        <span  class="heading profile-heading"><strong>{{totalSum}}</strong></span>
     </div>
     <div class="border-line"></div>
 

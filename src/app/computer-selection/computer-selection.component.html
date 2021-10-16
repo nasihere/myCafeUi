@@ -1,6 +1,7 @@
 <div class="flex justify-between nav">
     <button mat-stroked-button color="primary" routerLink="/admindashboard"  ><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
     <div class="page-name">Terminal Available</div>
+    <button mat-stroked-button color="primary" (click)="ngOnInit();"  ><mat-icon>refresh</mat-icon>Refresh</button>
 </div>
 <div class="border-line"></div>
 <div class="flex flex-warp"  [ngClass]="pcCode || step != 1 ? 'opacity-20' : ''">
@@ -14,11 +15,15 @@
         </div>
         
         <mat-icon class="computer-prompt-icon red"  *ngIf="item.lastResponseAt == null || item.pcstatus == 'busy'" >desktop_mac</mat-icon>
-        <mat-icon class="computer-prompt-icon green"  *ngIf="item.lastResponseAt && item.pcstatus == 'ready'" >desktop_mac</mat-icon>
+        <mat-icon class="computer-prompt-icon green"  *ngIf="(!item.pcstatus &&   item.lastResponseAt) || item.pcstatus == 'ready'" >desktop_mac</mat-icon>
+        <mat-icon class="computer-prompt-icon "  *ngIf="item.pcstatus == 'finished'" >monetization_on</mat-icon>
+        
         <span class="red" *ngIf="item.lastResponseAt == null">Setup Incomplete</span>
         <span class="red" *ngIf="item.pcstatus == 'busy'">Busy</span>
-        <span class="green" *ngIf="item.pcstatus == 'ready'">Ready</span>
-        <span class="green" *ngIf="item.pcstatus == 'waiting'">Waiting</span>
+        <span class="green" *ngIf="(!item.pcstatus &&   item.lastResponseAt) || item.pcstatus == 'ready'">Ready</span>
+        <span  *ngIf="item.pcstatus == 'finished'">Billing</span>
+        <span *ngIf="item.pcstatus == 'waiting'">Waiting <br/>Access Code: <strong>{{item.accessCode}}</strong></span>
+        
         
         <div class="flex justify-between"  *ngIf="item.lastResponseAt && item.pcstatus == 'ready'" >
           <button  mat-icon-button (click)="item.timerI = !item.timerI ? 3 : (item.timerI - 1); "><mat-icon>remove_circle_outline</mat-icon></button>
@@ -30,8 +35,10 @@
             <button  mat-flat-button color="primary" (click)="item.showSecretKey = true" ><mat-icon>key</mat-icon> Secret Key </button>
             <small *ngIf="item.showSecretKey">{{item.id}}</small>
         </div>
-        <button *ngIf="item.pcstatus == 'ready'" (click)="onAvailablePC(item)"  color="primary"  mat-stroked-button>Available</button>
-        <button *ngIf="item.pcstatus == 'busy'" color="warn" mat-stroked-button>Lock</button>
+        <button *ngIf="(!item.pcstatus && item.lastResponseAt) || item.pcstatus == 'ready'" (click)="onAvailablePC(item)"  color="primary"  mat-stroked-button>Available</button>
+        <button *ngIf="item.pcstatus == 'busy'" color="warn" (click)="onLockPC(item)" mat-stroked-button>Lock</button>
+        <button *ngIf="item.pcstatus == 'waiting'" color="accent" (click)="onCancelWaiting(item)" mat-flat-button>Cancel Waiting</button>
+        <button *ngIf="item.pcstatus == 'finished'" color="primary"  routerLink="/cashdeposit/{{item.billingId}}"  mat-flat-button>Bill</button>
 
     </div>
     
@@ -97,12 +104,12 @@
     <mat-card class="mt-1  w-100 m-2 ">
         <div class="flex flex-column  ">
 
-            <span  class="heading profile-heading  flex justify-center "><mat-icon>security</mat-icon><strong>PC 001 - Access code generated</strong></span>
+            <span  class="heading profile-heading  flex justify-center "><mat-icon>security</mat-icon><strong>{{selectedAgent.pcname}} - Access code generated</strong></span>
             <div class="border-line"></div>
             <span class="access-code">{{pcCode}}</span>
             <div class="notify flex justify-center ">
                 <mat-icon>devices</mat-icon>
-                <div class="flex flex-column"><span class="text-medium">Go to the PC - 001 and enter the above code to unlock the computer.</span><span class="text-smaller"></span></div>
+                <div class="flex flex-column"><span class="text-medium">Go to the {{selectedAgent.pcname}} and enter the above code to unlock the computer.</span><span class="text-smaller"></span></div>
               </div>
             <div class="flex justify-center">
                 <button color="primary" routerLink="/cashdeposit" mat-flat-button>Cash Deposit</button>

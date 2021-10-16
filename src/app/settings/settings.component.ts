@@ -298,20 +298,20 @@ export class SettingsComponent implements OnInit  {
             cafeAddress: new FormControl(this.userData.cafeAddress, []) ,
             cellphone: new FormControl(this.userData.cellPhone, [Validators.required,  Validators.minLength(10), Validators.maxLength(10),Validators.pattern(MOBILE_PATTERN)]),
             
-            product1: new FormControl(this.userData.product1, []) ,
-            product2: new FormControl(this.userData.product2, []) ,
-            product3: new FormControl(this.userData.product3, []) ,
-            product4: new FormControl(this.userData.product4, []) ,
+            product1: new FormControl(this.userData.product1 || 'Internet', []) ,
+            product2: new FormControl(this.userData.product2 || 'Printer', []) ,
+            product3: new FormControl(this.userData.product3 || 'Scanner', []) ,
+            product4: new FormControl(this.userData.product4 || 'Game', []) ,
             product5: new FormControl(this.userData.product5, []) ,
             product6: new FormControl(this.userData.product6, []) ,
             product7: new FormControl(this.userData.product7, []) ,
             product8: new FormControl(this.userData.product8, []) ,
             product9: new FormControl(this.userData.product9, []) ,
 
-            desc1: new FormControl(this.userData.desc1, []) ,
-            desc2: new FormControl(this.userData.desc2, []) ,
-            desc3: new FormControl(this.userData.desc3, []) ,
-            desc4: new FormControl(this.userData.desc4, []) ,
+            desc1: new FormControl(this.userData.desc1 || 'Rs 20/- Per Hour', []) ,
+            desc2: new FormControl(this.userData.desc2 || 'Rs 1/- Per Page', []) ,
+            desc3: new FormControl(this.userData.desc3 || 'Rs 5/- Per Page', []) ,
+            desc4: new FormControl(this.userData.desc4 || 'Rs 15/- Per Hour', []) ,
             desc5: new FormControl(this.userData.desc5, []) ,
             desc6: new FormControl(this.userData.desc6, []) ,
             desc7: new FormControl(this.userData.desc7, []) ,
@@ -319,10 +319,10 @@ export class SettingsComponent implements OnInit  {
             desc9: new FormControl(this.userData.desc9, []) ,
 
             
-            perCost1: new FormControl(this.userData.perCost1, []) ,
-            perCost2: new FormControl(this.userData.perCost2, []) ,
-            perCost3: new FormControl(this.userData.perCost3, []) ,
-            perCost4: new FormControl(this.userData.perCost4, []) ,
+            perCost1: new FormControl(this.userData.perCost1 || '20', []) ,
+            perCost2: new FormControl(this.userData.perCost2 || '1', []) ,
+            perCost3: new FormControl(this.userData.perCost3 || '5', []) ,
+            perCost4: new FormControl(this.userData.perCost4 || '15', []) ,
             perCost5: new FormControl(this.userData.perCost5, []) ,
             perCost6: new FormControl(this.userData.perCost6, []) ,
             perCost7: new FormControl(this.userData.perCost7, []) ,
@@ -343,6 +343,62 @@ export class SettingsComponent implements OnInit  {
     
 
         this.loading = true;
+        const product1:string = this.form.get('product1').value
+        this.form.get('product1').setValue(product1.replace(/\ /g,''))
+        
+        const product2:string = this.form.get('product2').value
+        this.form.get('product2').setValue(product2.replace(/\ /g,''))
+        
+        const product3:string = this.form.get('product3').value
+        this.form.get('product3').setValue(product3.replace(/\ /g,''))
+        
+        const product4:string = this.form.get('product4').value
+        this.form.get('product4').setValue(product4.replace(/\ /g,''))
+        
+        const product5:string = this.form.get('product5').value
+        this.form.get('product5').setValue(product5.replace(/\ /g,''))
+        
+        const product6:string = this.form.get('product6').value
+        this.form.get('product6').setValue(product6.replace(/\ /g,''))
+        
+        const product7:string = this.form.get('product7').value
+        this.form.get('product7').setValue(product7.replace(/\ /g,''))
+        
+        
+        const product8:string = this.form.get('product8').value
+        this.form.get('product8').setValue(product8.replace(/\ /g,''))
+        
+        const product9:string = this.form.get('product9').value
+        this.form.get('product9').setValue(product9.replace(/\ /g,''))
+        
+        const perCost1:string = this.form.get('perCost1').value
+        this.form.get('perCost1').setValue(perCost1.replace(/[A-Za-z]/g,''))
+
+        const perCost2:string = this.form.get('perCost2').value
+        this.form.get('perCost2').setValue(perCost2.replace(/[A-Za-z]/g,''))
+
+        const perCost3:string = this.form.get('perCost3').value
+        this.form.get('perCost3').setValue(perCost3.replace(/[A-Za-z]/g,''))
+
+        const perCost4:string = this.form.get('perCost4').value
+        this.form.get('perCost4').setValue(perCost4.replace(/[A-Za-z]/g,''))
+
+        const perCost5:string = this.form.get('perCost5').value
+        this.form.get('perCost5').setValue(perCost5.replace(/[A-Za-z]/g,''))
+
+        const perCost6:string = this.form.get('perCost6').value
+        this.form.get('perCost6').setValue(perCost6.replace(/[A-Za-z]/g,''))
+
+        const perCost7:string = this.form.get('perCost7').value
+        this.form.get('perCost7').setValue(perCost7.replace(/[A-Za-z]/g,''))
+
+        const perCost8:string = this.form.get('perCost8').value
+        this.form.get('perCost8').setValue(perCost8.replace(/[A-Za-z]/g,''))
+
+        
+        const perCost9:string = this.form.get('perCost9').value
+        this.form.get('perCost9').setValue(perCost9.replace(/[A-Za-z]/g,''))
+
         const payload = { ...this.form.value }
         this.formService.updateUser(payload).subscribe( res => {
             console.log('res', res)

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormService } from '../_services';
 
 @Component({selector: 'terminal-status', templateUrl: 'computer-selection.component.html' })
@@ -23,7 +23,9 @@ export class ComputerSelectionComponent  implements OnInit {
     ];
     pcAgentsList: any = null;
     infoSetupIncomplete: boolean = false;
-    constructor(   public formService: FormService,      private router: Router,
+    selectedAgent: any;
+    paramCustId: any;
+    constructor(      private route: ActivatedRoute,   public formService: FormService,      private router: Router,
 
         ) { 
            
@@ -42,6 +44,12 @@ export class ComputerSelectionComponent  implements OnInit {
                     Validators.minLength(5),
                     Validators.maxLength(30)])
               });
+
+            
+            this.route.params.subscribe(params => {
+                this.paramCustId = params['customerid'];
+                return params;
+            });
             this.getAllAgentPC();
         }
         
@@ -73,6 +81,45 @@ export class ComputerSelectionComponent  implements OnInit {
             return;
         }
     }
+    onLockPC(item) {
+        this.pcCode = null;
+        item.accessCode = null;
+        item.accessAt = null;
+        item.timer = null;
+        item.customerId = null;    
+        item.agentid = item.id;
+        item.pcstatus = 'finished';
+        console.log('onCancelWaiting', item);
+        this.selectedAgent = item;
+        this.formService.bookAgent(item).subscribe( res => {
+            if (res) {
+              
+              
+            }
+            else {
+               
+            }
+        })
+    }
+    onCancelWaiting(item) {
+        this.pcCode = null;
+        item.accessCode = null;
+        item.accessAt = null;
+        item.timer = null;
+        item.customerId = null;
+        item.pcstatus = 'ready';
+        console.log('onCancelWaiting', item);
+        this.selectedAgent = item;
+        this.formService.bookAgent(item).subscribe( res => {
+            if (res) {
+              
+              
+            }
+            else {
+               
+            }
+        })
+    }
     onAvailablePC(item) {
         
         this.pcCode = Math.floor(1000 + Math.random() * 9000);
@@ -83,8 +130,9 @@ export class ComputerSelectionComponent  implements OnInit {
         else 
             item.timer = 60;
         item.pcstatus = 'waiting';
+        item.customerId = this.paramCustId;
         console.log('onAvailablePC', item);
-        
+        this.selectedAgent = item;
         this.formService.bookAgent(item).subscribe( res => {
             if (res) {
               

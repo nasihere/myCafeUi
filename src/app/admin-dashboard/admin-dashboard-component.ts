@@ -77,11 +77,11 @@ export class AdminDashboardComponent implements OnInit  {
         const returnUrl = '/customerlookup';
         this.router.navigate([returnUrl]);
     }
-    onVerifyAdminPassword() {
+    // onVerifyAdminPassword() {
         
-        console.log(this.f.password.value)
-        console.log('onVerifyAdminPassword');
-        const returnUrl = '/computerselection';
-        this.router.navigate([returnUrl]);
-    }
+    //     console.log(this.f.password.value)
+    //     console.log('onVerifyAdminPassword');
+    //     const returnUrl = '/computerselection';
+    //     this.router.navigate([returnUrl]);
+    // }
 }

@@ -21,15 +21,15 @@ import { VerifyEmailAccountComponent} from './verifyemailaccount/verifyemailacco
 const routes: Routes = [
     { path: '', component: LoginComponent },
     { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
-    { path: 'connectedcomputer', component: ConnectedComputerComponent, canActivate: [AuthGuard] },
+    { path: 'connectedcomputer/:agentId', component: ConnectedComputerComponent, canActivate: [AuthGuard] },
     { path: 'admindashboard', component: AdminDashboardComponent, canActivate: [AuthGuard] },
     { path: 'agentsetup', component: AgentSetupComponent, canActivate: [AuthGuard] },
-    { path: 'cashdeposit', component: CashDepositComponent, canActivate: [AuthGuard] },
+    { path: 'cashdeposit/:billingid', component: CashDepositComponent, canActivate: [AuthGuard] },
     
     { path: 'hoursselection', component: HoursSelectionComponent, canActivate: [AuthGuard] },
     { path: 'verifyemailaccount/:accountemailid', component: VerifyEmailAccountComponent, canActivate: [AuthGuard] },
     
-    { path: 'computerselection', component: ComputerSelectionComponent, canActivate: [AuthGuard] },
+    { path: 'computerselection/:customerid', component: ComputerSelectionComponent, canActivate: [AuthGuard] },
     { path: 'customerlookup/:cellphone/:ref', component: CustomerLookupComponent, canActivate: [AuthGuard] },
     { path: 'customerlookup/:ref', component: CustomerLookupComponent, canActivate: [AuthGuard] },
     { path: 'checkinout/:agentId', component: CheckInOutComponent, canActivate: [AuthGuard] },

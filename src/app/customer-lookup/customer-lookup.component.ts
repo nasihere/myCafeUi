@@ -40,7 +40,7 @@ export class CustomerLookupComponent {
             this.router.navigate([returnUrl]);    
         }
         else {
-            const returnUrl = '/computerselection';
+            const returnUrl = '/computerselection/'+ this.data['id'];
             this.router.navigate([returnUrl]);
         }
         
