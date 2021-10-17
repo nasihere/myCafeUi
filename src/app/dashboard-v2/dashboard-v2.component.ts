@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormService } from '../_services';
-
+import * as moment from 'moment';
 @Component({selector:'dashboard-terminal', templateUrl: 'dashboard-v2.component.html' })
 export class DashboardV2Component implements OnInit   {
   lockMachine: boolean = false;
@@ -17,6 +17,7 @@ export class DashboardV2Component implements OnInit   {
   displayedColumns: string[] = ['computer','customer', 'verify',   'timeIN', 'timeOUT', 'duration', 'cost','lock'];
   dataSource = this.ELEMENT_DATA;
   data: any;
+  pcAgentsList: any;
   
   constructor(    public formService: FormService,   
 
@@ -24,7 +25,23 @@ export class DashboardV2Component implements OnInit   {
        
     }
     ngOnInit() {
-      this.onGetTopBilling();    
+     
+      this.getAllAgentPC(); 
+    }
+    
+    getAllAgentPC() {
+      const payload = {
+          username: this.formService.response.resAuthSignIn.data.Item.username
+      }
+      this.formService.getAllAgentPC(payload).subscribe( res => {
+          if (res) {
+              this.pcAgentsList = res;
+              this.onGetTopBilling();   
+          }
+          else {
+            this.pcAgentsList = null;
+          }
+      })
     }
   onGetTopBilling() {
         
@@ -37,6 +54,24 @@ export class DashboardV2Component implements OnInit   {
     if (res) {
 
       this.data = res.sort((a,b) => new Date(b.billDt).getTime() - new Date(a.billDt).getTime());
+      this.data = this.data.map(item => {
+        const agentid = item.agentid;
+        const agent = this.pcAgentsList.filter(i => {
+          return i.id == agentid;
+        });
+        if (agent && agent.length) {
+          item.agentName = agent[0].pcname;
+        }
+        var start = moment(item.checkIn).toDate().getTime();
+        var end = moment(item.checkOut).toDate().getTime();
+        var timespan = end - start;
+        const duration = moment(timespan).format('hh:mm');
+        item.duration =  duration 
+        item.checkInDate = moment(item.checkIn).format('YYYY-MM-DD');
+        item.checkInTime = moment(item.checkIn).format('HH:mm:ss');
+        item.checkOutTime = moment(item.checkOut).format('HH:mm:ss');
+        return item;
+      });
     }
     })
         

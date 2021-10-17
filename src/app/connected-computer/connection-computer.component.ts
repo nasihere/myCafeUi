@@ -58,6 +58,7 @@ export class ConnectedComputerComponent implements OnInit  {
       item.accessAt = null;
       item.timer = null;
       item.customerId = null;    
+      item.customerName = this.customerDetail.name;
       item.pcstatus = 'finished';
       console.log('onDisconnectPC', item);
      

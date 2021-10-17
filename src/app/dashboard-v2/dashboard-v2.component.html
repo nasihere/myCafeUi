@@ -4,7 +4,7 @@
 <mat-card class="mt-1  opacity-90 fs-smaller" *ngFor="let row of data">
         <div>
             <div class="flex justify-between ">
-                <div class="heading">{{row.agentid}} <span *ngIf="row.maxSessionTime" class="green"> (Session: {{row.maxSessionTime}})</span></div>
+                <div class="heading">{{row.agentName}} <span *ngIf="row.timer" class="green"> (Session: {{row.timer}}min)</span></div>
                 <button *ngIf="row.checkIn && row.checkout == null" color="warn" (click)="lockMachine = true; lockItem = row;" mat-flat-button><mat-icon class="fs-smaller">lock</mat-icon>Lock</button>
                 <button *ngIf="row.billPaid == false && (row.checkIn && row.checkout)" color="primary"  routerLink="/cashdeposit/{{row.id}}"  mat-flat-button>Bill</button>
                  
@@ -12,7 +12,7 @@
             
             <div class="border-line"></div>
             <div class="flex  flex-row justify-between">
-                <span class="flex"><button color="primary" mat-icon-button><mat-icon class="fs-smaller">verified_user</mat-icon>{{row.customerid}}</button></span>
+                <span class="flex"><button color="primary" mat-icon-button><mat-icon class="fs-smaller">verified_user</mat-icon>{{row.checkInDate}} - {{row.customerName}}</button></span>
                 <span *ngIf="row.billPaid"><mat-chip-list><mat-chip class="bg-green white mt-3">Paid</mat-chip></mat-chip-list></span>
                 <span *ngIf="!row.billPaid"><mat-chip-list><mat-chip class="bg-red white mt-3">Not Paid</mat-chip></mat-chip-list></span>
                 
@@ -22,14 +22,15 @@
             <div class="flex justify-between">
                 <div  class="flex">
                     <mat-chip-list>
-                        <mat-chip *ngIf="row.checkIn" class=""><mat-icon class="fs-smaller mt-2">av_timer</mat-icon>{{row.checkIn}}</mat-chip>
-                        <mat-chip *ngIf="row.checkout" class=""><mat-icon class="fs-smaller mt-2">access_alarms</mat-icon>{{row.checkout}}</mat-chip>
-                        <mat-chip *ngIf="row.checkIn && row.checkout"><mat-icon class="fs-smaller mt-2 green">access_time</mat-icon>{{row.duration}}</mat-chip>
+                        <mat-chip *ngIf="row.checkIn" class=""><mat-icon class="fs-smaller mt-2">av_timer</mat-icon>In: {{row.checkInTime}}</mat-chip>
+                        <mat-chip *ngIf="row.checkout" class=""><mat-icon class="fs-smaller mt-2">access_alarms</mat-icon>Out: {{row.checkOutTime}}</mat-chip>
+                        <mat-chip *ngIf="row.checkIn && row.checkout"><mat-icon class="fs-smaller mt-2 green">access_time</mat-icon>Duration: {{row.duration}}</mat-chip>
                     </mat-chip-list></div>
                     <div class="flex"><button color="primary"  mat-button><mat-icon class="fs-smaller green">monetization_on</mat-icon>{{row.billTotal}}</button></div>
                 
 
             </div>
+          
             
         </div>
          <mat-card-actions>
@@ -49,7 +50,7 @@
             <span class="label-field">Do you want to disconnect and lock the client machine remotely? </span>
             
             <button color="primary" (click)="lockMachine = false" mat-stroked-button>Cancel</button>
-            <button color="warn" (click)="onLockPC(lockItem)" mat-flat-button><mat-icon class="fs-smaller">lock</mat-icon>Lock</button>
+            <button color="warn" (click)="onLockPC(lockItem); lockMachine = false" mat-flat-button><mat-icon class="fs-smaller">lock</mat-icon>Lock</button>
 
         </div>
     

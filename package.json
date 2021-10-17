@@ -24,6 +24,7 @@
     "@angular/router": "^10.0.3",
     "electron": "^15.1.2",
     "material-icons": "^1.8.1",
+    "moment": "^2.29.1",
     "ng2-file-upload": "^1.4.0",
     "rxjs": "^6.5.5",
     "tslib": "^2.0.0",
