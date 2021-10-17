@@ -120,6 +120,23 @@ export class ComputerSelectionComponent  implements OnInit {
             }
         })
     }
+    onMiscServices() {
+        const payload = {
+            agentid: 'PC-MISC',
+            customerid: this.paramCustId,
+            username: this.data.username   
+        }
+        this.formService.billingStart(payload).subscribe( res => {
+            if (res) {
+                
+                const returnUrl = '/cashdeposit/' + res.billingId;
+                this.router.navigate([returnUrl]);
+            }
+            else {
+               
+            }
+        })
+    }
     onAvailablePC(item) {
         
         this.pcCode = Math.floor(1000 + Math.random() * 9000);

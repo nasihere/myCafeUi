@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormService } from '../_services';
 
 @Component({selector:'dashboard-terminal', templateUrl: 'dashboard-v2.component.html' })
-export class DashboardV2Component {
-  
+export class DashboardV2Component implements OnInit   {
+  lockMachine: boolean = false;
+  lockItem: any;  
  ELEMENT_DATA  = [
     {maxSessionTime: '1 hour', session: true, paid: false, customer: 'Nasir Sayed', cost: '$20.00', verify: 'Yes', computer: 'PC 1 - 003',timeIN: '10:01:03',timeOUT: '11:01:03',duration:"1 hr 3 min"},
     {maxSessionTime: '', session: false, paid: false, customer: 'Zakir Shaihh', cost: '$10.00', verify: 'NO', computer: 'PC 2 - 992',timeIN: '10:01:03',timeOUT: '11:01:03',duration:"2 hr 3 min"},
@@ -14,4 +16,54 @@ export class DashboardV2Component {
   ];
   displayedColumns: string[] = ['computer','customer', 'verify',   'timeIN', 'timeOUT', 'duration', 'cost','lock'];
   dataSource = this.ELEMENT_DATA;
+  data: any;
+  
+  constructor(    public formService: FormService,   
+
+    ) { 
+       
+    }
+    ngOnInit() {
+      this.onGetTopBilling();    
+    }
+  onGetTopBilling() {
+        
+   
+    const payload = {
+        pageLimit: 30,
+        username: this.formService.response.resAuthSignIn.data.Item.username
+    }
+    this.formService.getLatestBilling(payload).subscribe( res => {
+    if (res) {
+
+      this.data = res.sort((a,b) => new Date(b.billDt).getTime() - new Date(a.billDt).getTime());
+    }
+    })
+        
+    
+    
+
+}
+onLockPC(row) {
+      const item = {
+        
+        billingId: row.id,
+        agentid: row.agentid,
+        id: row.id,
+        customerId: row.customerid,
+        pcstatus: 'finished'
+      };
+      row.customerid = null;
+      row.pcstatus = 'finished';
+      console.log('onLockPC', item);
+      this.formService.bookAgent(item).subscribe( res => {
+          if (res) {
+            
+            
+          }
+          else {
+            
+          }
+      })
+    }
 }

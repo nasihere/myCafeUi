@@ -55,8 +55,12 @@ export class AdminDashboardComponent implements OnInit  {
             return;
         }
         console.log(searchText)
+        const payload = {
+            searchText,
+            username: this.formService.response.resAuthSignIn.data.Item.username
+        }
         this.customerNotFound = false;
-        this.formService.findByCustomerSearchText({searchText}).subscribe( res => {
+        this.formService.findByCustomerSearchText(payload).subscribe( res => {
         if (res) {
             
             const returnUrl = '/customerlookup/' + this.formService.response.resCustomer.cellphone + '/admindashboard';

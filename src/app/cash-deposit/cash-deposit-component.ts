@@ -5,6 +5,7 @@ import { FormService } from '../_services';
 
 @Component({ templateUrl: 'cash-deposit-component.html' })
 export class CashDepositComponent implements OnInit  {
+    
     overlaybackground:boolean = false;  
     paymentMaking: boolean = false;
     step: number = 1;
@@ -17,7 +18,7 @@ export class CashDepositComponent implements OnInit  {
   paramId: any;
   billingDetail: any;
   customerDetail: any;
-  accountDetail: any;
+  accountDetail: any = true;
   totalSum: number = 0;
     constructor(   public formService: FormService,       private route: ActivatedRoute,             private router: Router,
 
@@ -65,10 +66,12 @@ export class CashDepositComponent implements OnInit  {
     }
     findSettings(username) {
       this.formService.getSettings({username,password:'abc'}).subscribe( res => {
-           this.accountDetail = res.data.Item;
-           if (!this.accountDetail.product3) {
-            this.accountDetail.product3 = null;
+           if (res.data.Item.product1 == undefined) {
+            this.accountDetail = null;   
+            return;
            }
+           this.accountDetail = res.data.Item;
+           
         }, err => {
           this.accountDetail = null;
         });

@@ -10,7 +10,7 @@
     <span  class="heading profile-heading"><strong>Payment Deposit</strong></span>
 </div>
 <div class="border-line"></div>
-<mat-card class="mt-1  s-smaller" [ngClass]="(paymentMaking || overlaybackground) ? 'opacity-20' : ''" >
+<mat-card class="mt-1  s-smaller" [ngClass]="(!accountDetail || paymentMaking || overlaybackground) ? 'opacity-20' : ''" >
     <div  *ngIf="customerDetail" class="flex flex-row justify-between">
         <span  class="heading profile-heading capitalize"><strong> {{customerDetail.name}} </strong></span>
         <div class="border-line"></div>
@@ -34,7 +34,7 @@
 </div>
 </mat-card>
 
-<mat-card class="mt-1  s-smaller" [ngClass]="(paymentMaking || overlaybackground) ? 'opacity-20' : ''">
+<mat-card class="mt-1  s-smaller" [ngClass]="(!accountDetail || paymentMaking || overlaybackground) ? 'opacity-20' : ''">
 
     <div class="flex flex-column justify-between">
     <span  class="heading profile-heading"><strong>Billing</strong></span>
@@ -86,3 +86,19 @@
  
  
  </div>
+ 
+<div class="flex flex-warp admin-password" *ngIf="!accountDetail">
+    <mat-card class="mt-1  w-100 m-2 ">
+        <div class="flex flex-column  ">
+            <span  class="heading profile-heading  flex justify-between "><strong>Product and Services are missing</strong></span>
+            <span class="label-field">No Product and services has been added for this account. Click ok to redirect to settings for adding product and services first. </span>
+            
+            <button color="primary" routerLink="/settings" mat-flat-button>Ok</button>
+        </div>
+    
+ 
+    </mat-card>
+ 
+ 
+ </div>
+ 

@@ -312,6 +312,7 @@ export class CustomerComponent implements OnInit {
             });
             this.loading = true;
        }
+       
 
        onNextPage() {
         if (this.form.invalid) {

@@ -344,60 +344,90 @@ export class SettingsComponent implements OnInit  {
 
         this.loading = true;
         const product1:string = this.form.get('product1').value
-        this.form.get('product1').setValue(product1.replace(/\ /g,''))
+        this.form.get('product1').setValue(product1 && product1.replace(/\ /g,'') || null)
         
         const product2:string = this.form.get('product2').value
-        this.form.get('product2').setValue(product2.replace(/\ /g,''))
+        this.form.get('product2').setValue(product2 && product2.replace(/\ /g,'') || null)
         
         const product3:string = this.form.get('product3').value
-        this.form.get('product3').setValue(product3.replace(/\ /g,''))
+        this.form.get('product3').setValue(product3 && product3.replace(/\ /g,'') || null)
         
         const product4:string = this.form.get('product4').value
-        this.form.get('product4').setValue(product4.replace(/\ /g,''))
+        this.form.get('product4').setValue(product4 && product4.replace(/\ /g,'') || null)
         
         const product5:string = this.form.get('product5').value
-        this.form.get('product5').setValue(product5.replace(/\ /g,''))
+        this.form.get('product5').setValue(product5 && product5.replace(/\ /g,'') || null)
         
         const product6:string = this.form.get('product6').value
-        this.form.get('product6').setValue(product6.replace(/\ /g,''))
+        this.form.get('product6').setValue(product6 && product6.replace(/\ /g,'') || null)
         
         const product7:string = this.form.get('product7').value
-        this.form.get('product7').setValue(product7.replace(/\ /g,''))
+        this.form.get('product7').setValue(product7 && product7.replace(/\ /g,'') || null)
         
         
         const product8:string = this.form.get('product8').value
-        this.form.get('product8').setValue(product8.replace(/\ /g,''))
+        this.form.get('product8').setValue(product8 && product8.replace(/\ /g,'') || null)
         
         const product9:string = this.form.get('product9').value
-        this.form.get('product9').setValue(product9.replace(/\ /g,''))
+        this.form.get('product9').setValue(product9 && product9.replace(/\ /g,'') || null)
         
         const perCost1:string = this.form.get('perCost1').value
-        this.form.get('perCost1').setValue(perCost1.replace(/[A-Za-z]/g,''))
+        this.form.get('perCost1').setValue(perCost1 && perCost1.replace(/[A-Za-z]/g,'') || null)
 
         const perCost2:string = this.form.get('perCost2').value
-        this.form.get('perCost2').setValue(perCost2.replace(/[A-Za-z]/g,''))
+        this.form.get('perCost2').setValue(perCost2 && perCost2.replace(/[A-Za-z]/g,'') || null)
 
         const perCost3:string = this.form.get('perCost3').value
-        this.form.get('perCost3').setValue(perCost3.replace(/[A-Za-z]/g,''))
+        this.form.get('perCost3').setValue(perCost3 && perCost3.replace(/[A-Za-z]/g,'') || null)
 
         const perCost4:string = this.form.get('perCost4').value
-        this.form.get('perCost4').setValue(perCost4.replace(/[A-Za-z]/g,''))
+        this.form.get('perCost4').setValue(perCost4 && perCost4.replace(/[A-Za-z]/g,'') || null)
 
         const perCost5:string = this.form.get('perCost5').value
-        this.form.get('perCost5').setValue(perCost5.replace(/[A-Za-z]/g,''))
+        this.form.get('perCost5').setValue(perCost5 && perCost5.replace(/[A-Za-z]/g,'') || null)
 
         const perCost6:string = this.form.get('perCost6').value
-        this.form.get('perCost6').setValue(perCost6.replace(/[A-Za-z]/g,''))
+        this.form.get('perCost6').setValue(perCost6 && perCost6.replace(/[A-Za-z]/g,'') || null)
 
         const perCost7:string = this.form.get('perCost7').value
-        this.form.get('perCost7').setValue(perCost7.replace(/[A-Za-z]/g,''))
+        this.form.get('perCost7').setValue(perCost7 && perCost7.replace(/[A-Za-z]/g,'') || null)
 
         const perCost8:string = this.form.get('perCost8').value
-        this.form.get('perCost8').setValue(perCost8.replace(/[A-Za-z]/g,''))
+        this.form.get('perCost8').setValue(perCost8 && perCost8.replace(/[A-Za-z]/g,'') || null)
 
         
         const perCost9:string = this.form.get('perCost9').value
-        this.form.get('perCost9').setValue(perCost9.replace(/[A-Za-z]/g,''))
+        this.form.get('perCost9').setValue(perCost9 && perCost9.replace(/[A-Za-z]/g,'') || null)
+
+
+        
+        const perDesc1:string = this.form.get('desc1').value
+        this.form.get('desc1').setValue(perDesc1 && perDesc1 || null)
+
+        const perDesc2:string = this.form.get('desc2').value
+        this.form.get('desc2').setValue(perDesc2 && perDesc2 || null)
+
+        const perDesc3:string = this.form.get('desc3').value
+        this.form.get('desc3').setValue(perDesc3 && perDesc3 || null)
+
+        const perDesc4:string = this.form.get('desc4').value
+        this.form.get('desc4').setValue(perDesc4 && perDesc4 || null)
+
+        const perDesc5:string = this.form.get('desc5').value
+        this.form.get('desc5').setValue(perDesc5 && perDesc5 || null)
+
+        const perDesc6:string = this.form.get('desc6').value
+        this.form.get('desc6').setValue(perDesc6 && perDesc6 || null)
+
+        const perDesc7:string = this.form.get('desc7').value
+        this.form.get('desc7').setValue(perDesc7 && perDesc7 || null)
+
+        const perDesc8:string = this.form.get('desc8').value
+        this.form.get('desc8').setValue(perDesc8 && perDesc8 || null)
+
+        
+        const perDesc9:string = this.form.get('desc9').value
+        this.form.get('desc9').setValue(perDesc9 && perDesc9 || null)
 
         const payload = { ...this.form.value }
         this.formService.updateUser(payload).subscribe( res => {

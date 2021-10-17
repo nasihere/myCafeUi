@@ -63,13 +63,14 @@ export class ConnectedComputerComponent implements OnInit  {
      
       this.formService.bookAgent(item).subscribe( res => {
           if (res) {
+            this.disconnectSession = false;
             const returnUrl = '/checkinout/'+ item.id;
             this.router.navigate([returnUrl]);
 
             
           }
           else {
-             
+             this.disconnectSession = false;
           }
       })
   }

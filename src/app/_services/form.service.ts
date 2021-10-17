@@ -17,7 +17,8 @@ export class FormService {
         resPCCreated: null,
         resAllPCs: null,
         resAgent: null,
-        resBilling: null
+        resBilling: null,
+        resLatestBilling: null
     }
     
     constructor(private http: HttpClient) { }
@@ -260,6 +261,18 @@ export class FormService {
                 return res;
             }))
     }
+    
+    billingStart(payload): Observable<any> {
+        this.showLoading();
+        return this.http.post(`${environment.apiUrl}/agent/billingStart`, payload).pipe(
+            map(res => { 
+                this.hideLoading();
+                return res;
+            }, res => {
+                this.hideLoading();
+                return res;
+            }))
+    }
     bookAgent(payload): Observable<any> {
         this.showLoading();
         return this.http.post(`${environment.apiUrl}/agent/bookAgent`, payload).pipe(
@@ -312,6 +325,24 @@ export class FormService {
                 return res;
             }, res => {
                 this.hideLoading();
+                return res;
+            }))
+    }
+    getLatestBilling(payload): Observable<any> {
+        this.showLoading();
+        return this.http.post(`${environment.apiUrl}/agent/billingSessions`, payload).pipe(
+            map(res => { 
+                this.hideLoading();
+                if (res['data']) {
+                    if (res['data'].Count) {
+                        this.response.resLatestBilling = res['data'].Items;
+                    }
+                }
+                
+                return this.response.resLatestBilling;
+            }, res => {
+                this.hideLoading();
+                this.response.resLatestBilling = null;
                 return res;
             }))
     }
