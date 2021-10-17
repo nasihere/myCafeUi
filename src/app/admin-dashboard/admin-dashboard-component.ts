@@ -25,6 +25,7 @@ export class AdminDashboardComponent implements OnInit  {
             this.router.navigate([returnUrl]);
             return;
         }
+       
         let MOBILE_PATTERN = /[0-9\+\-\ ]/;
         this.form = new FormGroup({
             otpverify: new FormControl('', [Validators.required]),

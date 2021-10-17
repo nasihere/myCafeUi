@@ -48,6 +48,7 @@ export class FormService {
             map(res => { 
                 this.hideLoading();
                 this.response.resAuthSignIn = res;
+                localStorage.setItem('resAuthSignIn', JSON.stringify(res));
                 return res
             }, res => {
                 this.hideLoading();
@@ -71,6 +72,7 @@ export class FormService {
             map(res => { 
                 this.hideLoading();
                 this.response.resAuthSignIn = res;
+                localStorage.setItem('resAuthSignIn', JSON.stringify(res));
                 return res
             }, res => {
                 this.hideLoading();
@@ -84,6 +86,7 @@ export class FormService {
             map(res => { 
                 this.hideLoading();
                 this.response.resAuthSignIn = res;
+                localStorage.setItem('resAuthSignIn', JSON.stringify(res));
                 return res
             }, res => {
                 this.hideLoading();
