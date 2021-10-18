@@ -122,6 +122,8 @@ export class ConnectedComputerComponent implements OnInit  {
         if (distance < 0) {
           clearInterval(x);
           self.displayCountDown  = "EXPIRED";
+          //@ts-ignore
+          electronShowAgent();
           this.onDisconnectSession();
         }
       }, 1000);
@@ -158,12 +160,16 @@ export class ConnectedComputerComponent implements OnInit  {
         console.log('onDisconnectSession');
          this.onDisconnectPC();
         //@ts-ignore
-        electronDisconnectSession();
+        electronCleanSession();
+        //@ts-ignore
+        electronLogOffSession()
 
     }
     onConnectedSession() {
       //@ts-ignore
       electronConnectSession();
+      //@ts-ignore
+      electronHideAgent();
 
   }
 }
