@@ -4922,7 +4922,7 @@ class CustomerComponent {
         formData.append('uploadedImage', this.tmpProfilePicFile);
         formData.append('agentId', '401');
         this.uploader.profilePic = false;
-        this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl}/uploadfile`, formData).subscribe(response => {
+        this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].filUploadHost}/uploadfile`, formData).subscribe(response => {
             if (response.statusCode === 200) {
                 console.log(response);
                 this.tmpProfilepicS3Url = response.s3URL;
@@ -4953,7 +4953,7 @@ class CustomerComponent {
         formData.append('uploadedImage', this.tmpAdharCardPicFile);
         formData.append('agentId', '401');
         this.uploader.adharCard = false;
-        this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl}/uploadfile`, formData).subscribe(response => {
+        this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].filUploadHost}/uploadfile`, formData).subscribe(response => {
             if (response.statusCode === 200) {
                 console.log(response);
                 this.tmpAdharCardpicS3Url = response.s3URL;
@@ -4984,7 +4984,7 @@ class CustomerComponent {
         formData.append('uploadedImage', this.tmpOtherCardPicFile);
         formData.append('agentId', '401');
         this.uploader.otherid = false;
-        this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl}/uploadfile`, formData).subscribe(response => {
+        this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].filUploadHost}/uploadfile`, formData).subscribe(response => {
             if (response.statusCode === 200) {
                 console.log(response);
                 this.tmpOtherCardpicS3Url = response.s3URL;
@@ -5015,7 +5015,7 @@ class CustomerComponent {
         formData.append('uploadedImage', this.tmpDrivingCardPicFile);
         formData.append('agentId', '401');
         this.uploader.drivingLicense = false;
-        this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl}/uploadfile`, formData).subscribe(response => {
+        this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].filUploadHost}/uploadfile`, formData).subscribe(response => {
             if (response.statusCode === 200) {
                 console.log(response);
                 this.tmpDrivingCardpicS3Url = response.s3URL;
@@ -5046,7 +5046,7 @@ class CustomerComponent {
         formData.append('uploadedImage', this.tmpPANCardPicFile);
         formData.append('agentId', '401');
         this.uploader.panCard = false;
-        this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiUrl}/uploadfile`, formData).subscribe(response => {
+        this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].filUploadHost}/uploadfile`, formData).subscribe(response => {
             if (response.statusCode === 200) {
                 console.log(response);
                 this.tmpPANCardpicS3Url = response.s3URL;
@@ -7810,8 +7810,8 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 const environment = {
     production: false,
-    apiUrl: 'http://localhost:5000',
-    filUploadHost: 'http://localhost:3000'
+    apiUrl: 'http://ec2-3-132-213-115.us-east-2.compute.amazonaws.com:5000',
+    filUploadHost: 'http://ec2-3-132-213-115.us-east-2.compute.amazonaws.com:3000'
 };
 /*
  * For easier debugging in development mode, you can import the following file
