@@ -3,6 +3,7 @@ import { escapeRegExp } from '@angular/compiler/src/util';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { environment } from '@environments/environment';
 import { FormService } from '../_services';
 
 @Component({ styleUrls: ['./customer.component.scss'], templateUrl: 'customer.component.html' })
@@ -115,7 +116,7 @@ export class CustomerComponent implements OnInit {
 
             this.uploader.profilePic = false;
 
-            this.http.post<any>('http://localhost:3000/uploadfile', formData).subscribe(response => {
+            this.http.post<any>(`${environment.apiUrl}/uploadfile`, formData).subscribe(response => {
                     if (response.statusCode === 200) {
                         console.log(response);
                         this.tmpProfilepicS3Url = response.s3URL;
@@ -156,7 +157,7 @@ export class CustomerComponent implements OnInit {
 
              this.uploader.adharCard = false;
 
-             this.http.post<any>('http://localhost:3000/uploadfile', formData).subscribe(response => {
+             this.http.post<any>(`${environment.apiUrl}/uploadfile`, formData).subscribe(response => {
                      if (response.statusCode === 200) {
                          console.log(response);
                          this.tmpAdharCardpicS3Url = response.s3URL;
@@ -197,7 +198,7 @@ export class CustomerComponent implements OnInit {
              formData.append('agentId', '401');
 
              this.uploader.otherid = false;
-             this.http.post<any>('http://localhost:3000/uploadfile', formData).subscribe(response => {
+             this.http.post<any>(`${environment.apiUrl}/uploadfile`, formData).subscribe(response => {
                      if (response.statusCode === 200) {
                          console.log(response);
                          this.tmpOtherCardpicS3Url = response.s3URL;
@@ -239,7 +240,7 @@ export class CustomerComponent implements OnInit {
 
              this.uploader.drivingLicense = false;
 
-             this.http.post<any>('http://localhost:3000/uploadfile', formData).subscribe(response => {
+             this.http.post<any>(`${environment.apiUrl}/uploadfile`, formData).subscribe(response => {
                      if (response.statusCode === 200) {
                          console.log(response);
                          this.tmpDrivingCardpicS3Url = response.s3URL;
@@ -280,7 +281,7 @@ export class CustomerComponent implements OnInit {
              formData.append('agentId', '401');
 
              this.uploader.panCard = false;
-             this.http.post<any>('http://localhost:3000/uploadfile', formData).subscribe(response => {
+             this.http.post<any>(`${environment.apiUrl}/uploadfile`, formData).subscribe(response => {
                      if (response.statusCode === 200) {
                          console.log(response);
                          this.tmpPANCardpicS3Url = response.s3URL;
