@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { escapeRegExp } from '@angular/compiler/src/util';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -328,7 +329,15 @@ export class CustomerComponent implements OnInit {
         if (this.step == 2) {
             this.formService.findByCellPhone({cellphone: this.f.cellphone.value, username: this.f.username.value}).subscribe( res => {
                 if (res) {
-                    this.cellPhoneAlreadyExists = true;
+                    if (res.customerNotFound) {
+                        this.cellPhoneAlreadyExists = false;
+                        this.step = this.step + 1        
+                        return;
+                    }
+                    else {
+                        this.cellPhoneAlreadyExists = true;
+                    }
+                    
                 }
                 else {
                     this.step = this.step + 1        

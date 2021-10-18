@@ -64,6 +64,7 @@
         <div class="border-line"></div>
         <div class="flex justify-between">
             <span class="flex blue"><mat-icon>file_copy</mat-icon>cafe-agent.exe (windows)</span>
+            <span>https://my-cafe-file-uploader.s3.us-east-2.amazonaws.com/cafe-agent/out.zip</span>
             <small>Last Updated: 10/8/2021</small>
             <img src="assets/cafe-agent-snapshot.png" height="200"  />
         </div>
@@ -71,8 +72,10 @@
 
       <mat-card class="mt-1  w-100 m-2 ">
         <div class="flex flex-column  ">
-            <span  class="heading profile-heading  flex justify-between "><strong>To download cafe-agent software though download link, system will send download link address and secret key to your email account directly.</strong></span>
-            <span class="label-field">Email</span>
+            <span  class="heading profile-heading  flex justify-between ">To download cafe-agent software please copy this url and open in the client browser machine  </span>
+            <span><strong>https://my-cafe-file-uploader.s3.us-east-2.amazonaws.com/cafe-agent/out.zip</strong></span>
+            <span>Use the above secret key in the client agent application.</span>
+            <!-- <span class="label-field">Email</span>
             <mat-form-field appearance="outline"   [formGroup]="form">
                 <mat-icon matSuffix>alternate_email</mat-icon>
                 
@@ -80,8 +83,8 @@
                 <mat-error *ngIf="hasError('email', 'required')">Email is <strong>required</strong></mat-error>
                 <mat-error *ngIf="hasError('email', 'email')">Enter a valid email address</mat-error>
                 
-           </mat-form-field>
-            <button color="primary" (click)="onDownloadLinkEmail()" mat-flat-button>Download link</button>
+           </mat-form-field> -->
+            <button color="primary" (click)="onDownloadLinkEmail()" mat-flat-button>Done</button>
         </div>
     
 

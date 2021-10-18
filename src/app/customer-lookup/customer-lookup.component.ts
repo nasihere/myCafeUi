@@ -63,6 +63,10 @@ export class CustomerLookupComponent {
         this.formService.findByCellPhone({cellphone, username: this.userData.username}).subscribe( res => {
             if (res) {
                 this.data = [res];
+                
+                this.dataList = this.formService.response.resCustomerList;
+                this.singleCustomer = this.formService.response.resCustomerList && 
+                                        this.formService.response.resCustomerList.length == 1;    
             }
             else {
                this.data = null;    
