@@ -64,7 +64,7 @@ export class DashboardV2Component implements OnInit   {
         }
         var start = moment(item.checkIn).toDate().getTime();
         var end = moment(item.checkOut).toDate().getTime();
-        var timespan = end - start;
+        var timespan = start - end;
         const duration = moment(timespan).format('hh:mm');
         item.duration =  duration 
         item.checkInDate = moment(item.checkIn).format('YYYY-MM-DD');

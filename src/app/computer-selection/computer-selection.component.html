@@ -22,7 +22,7 @@
         <span class="red" *ngIf="item.pcstatus == 'busy'">Busy</span>
         <span class="green" *ngIf="(!item.pcstatus &&   item.lastResponseAt) || item.pcstatus == 'ready'">Ready</span>
         <span  *ngIf="item.pcstatus == 'finished'">Billing</span>
-        <span *ngIf="item.pcstatus == 'waiting'">Waiting <br/>Access Code: <strong>{{item.accessCode}}</strong></span>
+        <span *ngIf="item.pcstatus == 'waiting'">Waiting <br/>Access Code: <strong *ngIf="!item.selfCheckin">{{item.accessCode}}</strong><strong *ngIf="item.selfCheckin"><span matTooltip="Customer Secret OTP {{item.accessCode}}. Please share if really need it." >OTP</span></strong></span>
         
         
         <div class="flex justify-between"  *ngIf="item.lastResponseAt && item.pcstatus == 'ready'" >

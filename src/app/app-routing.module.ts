@@ -30,6 +30,7 @@ const routes: Routes = [
     { path: 'verifyemailaccount/:accountemailid', component: VerifyEmailAccountComponent, canActivate: [AuthGuard] },
     
     { path: 'computerselection/:customerid', component: ComputerSelectionComponent, canActivate: [AuthGuard] },
+    { path: 'customerlookup/:cellphone/:ref/:agentId', component: CustomerLookupComponent, canActivate: [AuthGuard] },
     { path: 'customerlookup/:cellphone/:ref', component: CustomerLookupComponent, canActivate: [AuthGuard] },
     { path: 'customerlookup/:ref', component: CustomerLookupComponent, canActivate: [AuthGuard] },
     { path: 'checkinout/:agentId', component: CheckInOutComponent, canActivate: [AuthGuard] },

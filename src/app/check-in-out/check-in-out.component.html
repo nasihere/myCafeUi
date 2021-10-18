@@ -6,6 +6,23 @@
      </div>
 </div>
 
+
+
+<div class="notify flex nav-red" *ngIf="customerNotExists">
+     <mat-icon>info</mat-icon> 
+     <div class="flex flex-column">
+          <span class="text-medium">No record found in this cafe. Please ask admin to create an account for you.</span>
+     </div>
+</div>
+
+
+<div class="notify flex nav-red" *ngIf="invalidCellPhone">
+     <mat-icon>info</mat-icon> 
+     <div class="flex flex-column">
+          <span class="text-medium">Invalid Cell Phone Number</span>
+     </div>
+</div>
+
 <div class="notify flex nav-red" *ngIf="!agentVerified">
      <mat-icon>info</mat-icon> 
      <div class="flex flex-column">
@@ -17,7 +34,7 @@
 <div *ngIf="agentVerified">
           
      <div class="flex justify-between nav">
-          <div class="page-name">{{agentDetail.pcname}} <strong>({{agentDetail.pcstatus}})</strong></div>
+          <div class="page-name">{{agentDetail.pcname}} <strong class="capitalize">({{agentDetail.pcstatus}})</strong></div>
      </div>
      
      <div class="notify flex " *ngIf="step == 1">
@@ -48,12 +65,47 @@
           <span class="flex justify-center">OR</span>
           <div *ngIf="step==1" class="flex justify-between flex-column">
                <div class="options-prompt flex">
-                    <button (click)="step = 2" class="w-100" mat-button><mat-icon>smartphone</mat-icon>
+                    <button (click)="step = 4" class="w-100" mat-button><mat-icon>smartphone</mat-icon>
                     <span>Self Login</span></button>
                </div>
              
           </div>
           
+          </div>
+          <div *ngIf="step == 4">
+              
+               <mat-card class="mt-1  s-smaller">
+                    <div class="flex flex-row justify-between">
+                    <span  class="heading profile-heading"><strong>How long do you want to use this computer?</strong></span>
+                    <div class="border-line"></div>
+                    <img src="assets/1586650.png" height="50" />
+                    </div>
+                    <div class="border-line"></div>
+                    <div class="flex flex-column">
+                         <button  (click)="timerLimit=15; step=2" mat-button><mat-icon>schedule</mat-icon>15 Minute</button>
+                         <div class="border-line"></div>
+                         <button  (click)="timerLimit=30; step=2" mat-button><mat-icon>schedule</mat-icon>30 Minute</button>
+                         <div class="border-line"></div>
+                         <button  (click)="timerLimit=45; step=2" mat-button><mat-icon>schedule</mat-icon>45 Minute</button>
+                         <div class="border-line"></div>
+                         <button (click)="timerLimit=60; step=2"  mat-button><mat-icon>schedule</mat-icon>1 hour</button>
+                         <div class="border-line"></div>
+                         <button (click)="timerLimit=120; step=2"  mat-button><mat-icon>schedule</mat-icon>2 hour</button>
+                         <div class="border-line"></div>
+                         <button (click)="timerLimit=180; step=2"  mat-button><mat-icon>schedule</mat-icon>3 Hour</button>
+                         <div class="border-line"></div>
+                         <button (click)="timerLimit=240; step=2" mat-button><mat-icon>schedule</mat-icon>4 Hour</button>
+                         <div class="border-line"></div>
+               
+                    </div>
+                    <mat-card-actions>
+                         
+                         <div class="flex justify-between">
+                         <button (click)="timerLimit=1440; step=2" mat-flat-button color="accent"><mat-icon>cable</mat-icon>No Limit</button>
+                         <button (click)="step=2" mat-flat-button color="primary"><mat-icon>check</mat-icon>Next</button>
+                         </div>
+                    </mat-card-actions>
+               </mat-card>
           </div>
           <div *ngIf="step==2">
                <span class="label-field">Cell Phone Number</span>
@@ -73,7 +125,7 @@
                 <mat-card-actions>
                      
                    <div class="flex justify-between">
-                         <button (click)="step = 1" mat-button color="primary" class="text-center"><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
+                         <button (click)="accessCodeVerified = false; customerNotExists = false; invalidCellPhone = false; step = 1" mat-button color="primary" class="text-center"><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
                        <button (click)="onSendOTP()" mat-flat-button color="primary" class="text-center"><mat-icon>textsms</mat-icon>Send OTP</button>
                   </div>
                 </mat-card-actions>

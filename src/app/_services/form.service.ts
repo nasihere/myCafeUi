@@ -144,6 +144,9 @@ export class FormService {
         return this.http.post(`${environment.apiUrl}/customer/findByCellPhone`, payload).pipe(
             map(res => { 
                 this.hideLoading();
+                if (res['customerNotFound'] == true) {
+                    return res;
+                }
                 if (res['data'].Count) {
                     this.response.resCustomer = res['data'].Items[0];
                     this.response.resCustomerList = res['data'].Items;
@@ -275,7 +278,34 @@ export class FormService {
                 this.hideLoading();
                 return res;
             }))
+    
     }
+    setSmsSend(payload): Observable<any> {
+        this.showLoading();
+        return this.http.post(`${environment.apiUrl}/check/sms-otp`, payload).pipe(
+            map(res => { 
+                this.hideLoading();
+               
+                
+                return res;
+            }, res => {
+                this.hideLoading();
+                return res;
+            }))
+    }
+    checkSmsVerify(payload): Observable<any> {
+        this.showLoading();
+        return this.http.post(`${environment.apiUrl}/check/sms-verify`, payload).pipe(
+            map(res => { 
+                this.hideLoading();
+                
+                return res;
+            }, res => {
+                this.hideLoading();
+                return res;
+            }))
+    }
+
     bookAgent(payload): Observable<any> {
         this.showLoading();
         return this.http.post(`${environment.apiUrl}/agent/bookAgent`, payload).pipe(

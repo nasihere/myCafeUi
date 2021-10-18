@@ -302,7 +302,7 @@ export class SettingsComponent implements OnInit  {
             product2: new FormControl(this.userData.product2 || 'Printer', []) ,
             product3: new FormControl(this.userData.product3 || 'Scanner', []) ,
             product4: new FormControl(this.userData.product4 || 'Game', []) ,
-            product5: new FormControl(this.userData.product5, []) ,
+            product5: new FormControl(this.userData.product5 || 'OTP Charges', []) ,
             product6: new FormControl(this.userData.product6, []) ,
             product7: new FormControl(this.userData.product7, []) ,
             product8: new FormControl(this.userData.product8, []) ,
@@ -312,7 +312,7 @@ export class SettingsComponent implements OnInit  {
             desc2: new FormControl(this.userData.desc2 || 'Rs 1/- Per Page', []) ,
             desc3: new FormControl(this.userData.desc3 || 'Rs 5/- Per Page', []) ,
             desc4: new FormControl(this.userData.desc4 || 'Rs 15/- Per Hour', []) ,
-            desc5: new FormControl(this.userData.desc5, []) ,
+            desc5: new FormControl(this.userData.desc5 || 'Rs 3/- Per Login' , []) ,
             desc6: new FormControl(this.userData.desc6, []) ,
             desc7: new FormControl(this.userData.desc7, []) ,
             desc8: new FormControl(this.userData.desc8, []) ,
@@ -323,7 +323,7 @@ export class SettingsComponent implements OnInit  {
             perCost2: new FormControl(this.userData.perCost2 || '1', []) ,
             perCost3: new FormControl(this.userData.perCost3 || '5', []) ,
             perCost4: new FormControl(this.userData.perCost4 || '15', []) ,
-            perCost5: new FormControl(this.userData.perCost5, []) ,
+            perCost5: new FormControl(this.userData.perCost5 || '3', []) ,
             perCost6: new FormControl(this.userData.perCost6, []) ,
             perCost7: new FormControl(this.userData.perCost7, []) ,
             perCost8: new FormControl(this.userData.perCost8, []) ,
@@ -439,5 +439,11 @@ export class SettingsComponent implements OnInit  {
             
         });
         
+    }
+    logout() {
+        localStorage.setItem("resAuthSignIn", null);
+        const returnUrl = `/login`;
+        this.router.navigate([returnUrl]);
+                    
     }
 }

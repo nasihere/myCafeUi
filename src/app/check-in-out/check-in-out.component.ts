@@ -18,6 +18,11 @@ export class CheckInOutComponent implements OnInit  {
     agentVerified: boolean = false;
     agentDetail: any;
     accessCodeVerified: boolean = true;
+    timerLimit: number;
+    userData: any;
+    invalidCellPhone: boolean;
+    customerNotExists: boolean;
+    accessCode: number;
     constructor(     public formService: FormService,
         private route: ActivatedRoute,     private router: Router,
 
@@ -25,6 +30,7 @@ export class CheckInOutComponent implements OnInit  {
        
     }
     ngOnInit() {
+        this.userData = this.formService.response.resAuthSignIn.data.Item;
 
         let MOBILE_PATTERN = /[0-9\+\-\ ]/;
         this.form = new FormGroup({
@@ -111,16 +117,81 @@ export class CheckInOutComponent implements OnInit  {
         
 
     }
+    onAvailablePC() {
+        this.accessCode = Math.floor(1000 + Math.random() * 9000);
+        let item = {
+            id: this.paramId,
+            accessCode: this.accessCode,
+            accessAt: new Date().toISOString(),
+            timer: this.timerLimit || 60,
+            pcstatus: 'waiting',
+            customerId: this.formService.response.resCustomer.id,
+            billingId: null,
+            selfCheckin: true,
+            cellphone: this.f.cellphone.value
+        };
+        
+        console.log('onAvailablePC', item);
+        this.invalidCellPhone = false;
+        this.formService.setSmsSend(item).subscribe( res => {
+            if (res) {
+              
+              
+            }
+            else {
+               
+            }
+        })
+    }
     onSendOTP() {
+        if (!this.f.cellphone.valid) {
+            this.invalidCellPhone = true;
+            return;
+        }
         console.log(this.f.cellphone.value)
         console.log('onSendOTP');
-        this.step = 3;
+        this.customerNotExists = false;
+        this.formService.findByCellPhone({cellphone: this.f.cellphone.value, username: this.userData.username}).subscribe( res => {
+            if (res) {
+                if (res.customerNotFound) {
+                    this.customerNotExists = true;
+                }
+                else {
+                    this.onAvailablePC();
+                    this.step = 3;
+                }
+                
+            }
+        })
+       
+       
     }
     onVerifyOTP() {
         console.log(this.f.otpverify.value)
         console.log('onVerifyOTP');
-        const returnUrl = '/customerlookup/selfcheckin';
-        this.router.navigate([returnUrl]);
+        if (Number(this.f.otpverify.value) != this.accessCode) {
+            this.accessCodeVerified = false;
+            return;
+        }
+        const payload = {
+            username: this.userData.username,
+            cellphone: this.f.cellphone.value,
+            verifyOTP: this.f.otpverify.value
+        };
+        this.formService.checkSmsVerify(payload).subscribe( res => {
+            if (res.data.Count) {
+                this.accessCodeVerified = true;
+                this.f.accessCode.setValue(this.f.otpverify.value);
+                this.onAccessCodeLogin();
+                
+            }
+            else {
+                this.accessCodeVerified = false;
+            
+            }
+            
+        });
+       
     }
     onAccessCodeLogin() {
         if (!this.paramId) return;
@@ -149,7 +220,7 @@ export class CheckInOutComponent implements OnInit  {
         item.accessAt = new Date().toISOString();
         item.pcstatus = 'busy';
         item.agentid = this.paramId,
-        item.customerid = this.agentDetail.customerId;
+        item.customerid = this.formService.response.resCustomer.id || this.agentDetail.customerId;
         this.formService.bookAgent(item).subscribe( res => {
             if (res) {
                 const returnUrl = '/connectedcomputer/' + item.id;

@@ -10,6 +10,8 @@ export class CustomerLookupComponent {
     singleCustomer: boolean = false;
     resCustomerList: any;
     dataList: any;
+    userData: any;
+    agentId: string;
     constructor(   private route: ActivatedRoute,      public formService: FormService,     private router: Router,
 
         ) { 
@@ -17,17 +19,29 @@ export class CustomerLookupComponent {
         }
 
     ngOnInit() {
+        if (this.formService.response.resAuthSignIn == null) {
+            const returnUrl = `/login`;
+            this.router.navigate([returnUrl]);
+            return;
+        }
+
         if (this.formService.response.resCustomerList == null) {
             const returnUrl = '/admindashboard';
             this.router.navigate([returnUrl]);    
             return;
         }
+        
+        this.userData = this.formService.response.resAuthSignIn.data.Item;
+
         this.dataList = this.formService.response.resCustomerList;
         this.singleCustomer = this.formService.response.resCustomerList && 
                                 this.formService.response.resCustomerList.length == 1;      
         this.route.params.subscribe(params => {
             this.cellphone = params['cellphone'];
             this.ref = '/'+params['ref'];
+            if (params['ref'] == 'checkinout') {
+                this.ref = `/checkinout/${params['agentId']}`;
+            }
             this.getCustomerInfo(this.cellphone);
             return params;
         });
@@ -46,7 +60,7 @@ export class CustomerLookupComponent {
         
     }
     getCustomerInfo(cellphone) {
-        this.formService.findByCellPhone({cellphone}).subscribe( res => {
+        this.formService.findByCellPhone({cellphone, username: this.userData.username}).subscribe( res => {
             if (res) {
                 this.data = [res];
             }

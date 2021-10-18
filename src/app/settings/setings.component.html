@@ -4,17 +4,19 @@
    <div class="flex justify-between nav">
     <button routerLink="/admindashboard" mat-stroked-button color="primary"   ><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
         <div class="page-name">Settings</div>
+        <button (click)="logout()" mat-stroked-button color="primary"   ><mat-icon>logout</mat-icon>Logout</button>
+
    </div>
    <div class="border-line "></div>
 
    <div class="flex justify-center  mt-3">
     <img src="assets/settings-cafe.jpg" height="100" />
 </div>
-<div class="flex justify-center">
+<div class="flex justify-center"> 
     <span  class="heading profile-heading"><strong>Cafe Information & Settings</strong></span>
 </div>
 <div class="flex mt-3 justify-center">
-    <span>Username: <strong>{{userData.email}}</strong>, Verfiied: <strong class="green" *ngIf="userData.emailVerified">Yes</strong><strong class="red" *ngIf="!userData.emailVerified">No</strong></span>
+    <span>Username: <strong>{{userData.username}}</strong></span>
 </div>
 <div class="border-line"></div>
 

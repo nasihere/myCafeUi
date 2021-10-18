@@ -34,15 +34,22 @@ export class CustomerComponent implements OnInit {
            
         }
         ngOnInit() {
+            
+            if (this.formService.response.resAuthSignIn == null) {
+                const returnUrl = `/login`;
+                this.router.navigate([returnUrl]);
+                return;
+            }
+
             this.fileUploadForm = this.formBuilder.group({
                 uploadedImage: ['']
               });
               
-            //   this.userData = this.formService.response.resAuthSignIn.data.Item;
+            this.userData = this.formService.response.resAuthSignIn.data.Item;
 
             this.form = new FormGroup({
-                //username : new FormControl(this.userData.username, []),
-                username : new FormControl('nasz.letter@gmail.com', []),
+                username : new FormControl(this.userData.username, []),
+                
                 name: new FormControl('daniyal sayed', [Validators.required]),
                 email: new FormControl('dani@gmail.com', [Validators.required, Validators.email]),
                 cellphone: new FormControl('4084667445', [Validators.required,  Validators.minLength(10), Validators.maxLength(10)]),
@@ -319,7 +326,7 @@ export class CustomerComponent implements OnInit {
             return;
         }
         if (this.step == 2) {
-            this.formService.findByCellPhone({cellphone: this.f.cellphone.value}).subscribe( res => {
+            this.formService.findByCellPhone({cellphone: this.f.cellphone.value, username: this.f.username.value}).subscribe( res => {
                 if (res) {
                     this.cellPhoneAlreadyExists = true;
                 }

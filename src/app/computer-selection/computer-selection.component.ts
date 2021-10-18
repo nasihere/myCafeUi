@@ -147,6 +147,7 @@ export class ComputerSelectionComponent  implements OnInit {
         else 
             item.timer = 60;
         item.pcstatus = 'waiting';
+        item.selfCheckin = false;
         item.customerId = this.paramCustId;
         console.log('onAvailablePC', item);
         this.selectedAgent = item;
