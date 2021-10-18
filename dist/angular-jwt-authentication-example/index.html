@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="/" />
+    <title>Cafe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script>
+          const { ipcRenderer } = require('electron');
+
+            // Some data that will be sent to the main process
+            let Data = {
+                message: "Hi",
+                someData: "Let's go"
+            };
+
+            // Send information to the main process
+            // if a listener has been set, then the main process
+            // will react to the request !
+            ipcRenderer.send('request-mainprocess-action', Data);
+            function electronHideAgent() {
+                ipcRenderer.send('request-agent-hide', {});
+            }
+            function electronShowAgent() {
+                ipcRenderer.send('request-agent-show', {});
+            }
+            function electronDisconnectSession() {
+                ipcRenderer.send('request-agent-disconnect', {});
+            }
+            function electronConnectSession() {
+                ipcRenderer.send('request-agent-connect', {});
+            }
+            
+            function electronShutDownSession() {
+                ipcRenderer.send('request-agent-shutdown', {});
+            }
+
+            function electronCleanSession() {
+                ipcRenderer.send('request-agent-clean-session', {});
+            }
+            
+            function electronLogOffSession() {
+                ipcRenderer.send('request-agent-log-off', {});
+            }
+            
+    </script>
+</head>
+<body class="app">
+    <app>Loading...</app>
+<script src="runtime.js" defer></script><script src="polyfills.js" defer></script><script src="styles.js" defer></script><script src="vendor.js" defer></script><script src="main.js" defer></script></body>
+</html>
