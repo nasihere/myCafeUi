@@ -111,7 +111,7 @@
                <span class="label-field">Cell Phone Number</span>
                <mat-form-field appearance="outline" [formGroup]="form" class="border-line green">
                     <mat-icon matSuffix>smartphone</mat-icon>
-                    <input matInput  formControlName="cellphone"  class="access-code-input" >
+                    <input matInput  formControlName="cellphone"  maxlength="10" class="access-code-input" >
                     <mat-error *ngIf="hasError('cellphone','required')">
                          Phone Number is <strong>required</strong>
                     </mat-error>
@@ -125,7 +125,7 @@
                 <mat-card-actions>
                      
                    <div class="flex justify-between">
-                         <button (click)="accessCodeVerified = false; customerNotExists = false; invalidCellPhone = false; step = 1" mat-button color="primary" class="text-center"><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
+                         <button (click)="accessCodeVerified = true; customerNotExists = false; invalidCellPhone = false; step = 1" mat-button color="primary" class="text-center"><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
                        <button (click)="onSendOTP()" mat-flat-button color="primary" class="text-center"><mat-icon>textsms</mat-icon>Send OTP</button>
                   </div>
                 </mat-card-actions>
@@ -140,7 +140,7 @@
                <span class="label-field">Verify OTP</span>
                <mat-form-field appearance="outline" [formGroup]="form">
                     <mat-icon matSuffix>textsms</mat-icon>
-                    <input matInput  formControlName="otpverify" class="access-code-input" >
+                    <input matInput  maxlength="4"  formControlName="otpverify" class="access-code-input" >
                     <mat-error *ngIf="hasError('otpverify','required')">
                          OTP Number is <strong>required</strong>
                     </mat-error>
