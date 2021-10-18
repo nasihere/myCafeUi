@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as moment from 'moment';
 import { FormService } from '../_services';
 
 @Component({ templateUrl: 'connected.computer-component.html' })
@@ -17,6 +18,8 @@ export class ConnectedComputerComponent implements OnInit  {
     paramId: number = null;
   customerDetail: any;
   agentDetail: any;
+  billingDetail: any;
+  displayCountDown: any;
     constructor( public formService: FormService,       private route: ActivatedRoute,        private router: Router,
 
     ) { 
@@ -51,7 +54,9 @@ export class ConnectedComputerComponent implements OnInit  {
     }
     
     onDisconnectPC() {
+      
       const item = this.agentDetail;
+      if (item.pcstatus == 'finished')  return;
       item.id = this.paramId;
       item.agentid = this.paramId;
       item.accessCode = null;
@@ -75,6 +80,53 @@ export class ConnectedComputerComponent implements OnInit  {
           }
       })
   }
+  findBillingId(billingId) {
+      
+    const payload = {
+        id: billingId
+    }
+    this.formService.findBillingDetail(payload).subscribe( res => {
+        if (res) {
+           this.billingDetail = res;
+           this.startTimer();
+        }
+        
+    });
+  }
+   startTimer() {
+   // Set the date we're counting down to
+
+      const timerTime = moment(this.billingDetail.checkIn).add(this.billingDetail.timer, 'minutes')
+      var countDownDate = moment(timerTime).toDate().getTime();
+      const self = this;
+      // Update the count down every 1 second
+      var x = setInterval(function() {
+
+        // Get today's date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the result in the element with id="demo"
+        self.displayCountDown = hours + "h "
+        + minutes + "m " + seconds + "s ";
+
+        // If the count down is finished, write some text
+        if (distance < 0) {
+          clearInterval(x);
+          self.displayCountDown  = "EXPIRED";
+          this.onDisconnectSession();
+        }
+      }, 1000);
+    }
+
     findAgentDetail(execute) {
       if (!this.paramId) return;
       const payload = {
@@ -83,6 +135,7 @@ export class ConnectedComputerComponent implements OnInit  {
       this.formService.findAgent(payload).subscribe( res => {
           if (res) {
               this.agentDetail = res;
+              this.findBillingId(this.agentDetail.billingId);
               if (res.pcstatus != 'busy') {
                   const returnUrl = '/checkinout/'+ res.id;
                   this.router.navigate([returnUrl]);
@@ -104,27 +157,6 @@ export class ConnectedComputerComponent implements OnInit  {
     onDisconnectSession() {
         console.log('onDisconnectSession');
          this.onDisconnectPC();
-        // const item = {
-        //   id: 
-        // };
-        // item.lastResponseAt = new Date().toISOString();
-        
-            
-        // item.pcstatus = 'ready';
-        // console.log('onCancelWaiting', item);
-        // this.selectedAgent = item;
-        // this.formService.bookAgent(item).subscribe( res => {
-        //     if (res) {
-              
-              
-        //     }
-        //     else {
-               
-        //     }
-        // })
-        // const returnUrl = '/checkinout';
-        // this.router.navigate([returnUrl]);
-        
         //@ts-ignore
         electronDisconnectSession();
 

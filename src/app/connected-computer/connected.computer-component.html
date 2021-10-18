@@ -1,4 +1,3 @@
-
    <div class="flex justify-between nav">
         <div class="page-name">Session Connected</div>
    </div>
@@ -40,17 +39,20 @@
     <div class="border-line"></div>
     <div class="flex flex-row justify-between">
         <strong  class="label-field">Time Check-In to this computer</strong>
-        <span  class="label-field">Oct-01-2021 11:01:00PM </span>
+        <span  class="label-field">{{billingDetail.checkIn}} </span>
     </div>
     <div class="border-line"></div>
     <div class="flex flex-row justify-between">
-        <strong  class="label-field">Total Time on this computer</strong>
-        <span  class="label-field">(1 hr 23 min) </span>
+        <strong  class="label-field">Timer</strong>
+        <span  class="label-field">{{billingDetail.timer}}min</span>
     </div>
+    
+    <div class="border-line"></div>
     <div class="flex flex-row justify-between">
-        <strong  class="heading profile-heading">Cost</strong>
-        <span  class="heading profile-heading green">$ 40.0</span>
+        <strong  class="label-field">Time Left</strong>
+        <span  class="label-field">{{displayCountDown}}</span>
     </div>
+    
     <div class="border-line"></div>
     <div class="flex justify-between mt-3">
         
