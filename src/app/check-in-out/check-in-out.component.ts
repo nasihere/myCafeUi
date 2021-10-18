@@ -219,8 +219,14 @@ export class CheckInOutComponent implements OnInit  {
         item.accessCode = null;
         item.accessAt = new Date().toISOString();
         item.pcstatus = 'busy';
-        item.agentid = this.paramId,
-        item.customerid = this.formService.response.resCustomer.id || this.agentDetail.customerId;
+        item.agentid = this.paramId;
+        if (this.formService.response.resCustomer) {
+            item.customerid = this.formService.response.resCustomer.id 
+        }
+        else {
+            item.customerid = this.agentDetail.customerId;
+        }
+        
         this.formService.bookAgent(item).subscribe( res => {
             if (res) {
                 const returnUrl = '/connectedcomputer/' + item.id;
