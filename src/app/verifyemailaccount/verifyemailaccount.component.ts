@@ -27,8 +27,8 @@ export class VerifyEmailAccountComponent implements OnInit {
     ngOnInit() {
         
         this.loginForm = new FormGroup({
-            username: new FormControl('test@gmail.com', [Validators.required, Validators.email]),
-            verify: new FormControl('546454', [Validators.required, Validators.minLength(5), Validators.maxLength(6)])
+            username: new FormControl('', [Validators.required, Validators.email]),
+            verify: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(6)])
           });
 
           

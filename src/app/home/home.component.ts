@@ -270,11 +270,11 @@ export class HomeComponent implements OnInit {
     }
     ngOnInit() {
         this.form = new FormGroup({
-            cellphone: new FormControl('4084667445', [Validators.required,  Validators.minLength(7), Validators.maxLength(12)]),
-            cafeName: new FormControl('Cyber Cafe', [Validators.required]),
+            cellphone: new FormControl('', [Validators.required,  Validators.minLength(7), Validators.maxLength(12)]),
+            cafeName: new FormControl('', [Validators.required]),
             country: new FormControl('India', [Validators.required]),
-            email: new FormControl('nasz.letter@gmail.com', [Validators.required, Validators.email]),
-            password: new FormControl('Nasir@1234',[Validators.required,
+            email: new FormControl('', [Validators.required, Validators.email]),
+            password: new FormControl('',[Validators.required,
               Validators.minLength(5),
               Validators.maxLength(30)])
           });
