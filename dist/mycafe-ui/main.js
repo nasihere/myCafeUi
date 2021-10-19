@@ -4897,6 +4897,9 @@ class CustomerComponent {
     onSubmit() {
         // const returnUrl = '/checkinout';
         // this.router.navigate([returnUrl]);
+        if (this.form.invalid) {
+            return;
+        }
         this.onUploadProfilePictures();
         this.onUploadAdharPictures();
         this.onUploadDrivingPictures();
@@ -5086,9 +5089,6 @@ class CustomerComponent {
         this.loading = true;
     }
     onNextPage() {
-        if (this.form.invalid) {
-            return;
-        }
         if (this.step == 2) {
             this.formService.findByCellPhone({ cellphone: this.f.cellphone.value, username: this.f.username.value }).subscribe(res => {
                 if (res) {
