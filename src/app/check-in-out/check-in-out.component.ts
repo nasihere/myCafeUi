@@ -19,10 +19,10 @@ export class CheckInOutComponent implements OnInit  {
     agentDetail: any;
     accessCodeVerified: boolean = true;
     timerLimit: number;
-    userData: any;
     invalidCellPhone: boolean;
     customerNotExists: boolean;
     accessCode: number;
+    username: any;
     constructor(     public formService: FormService,
         private route: ActivatedRoute,     private router: Router,
 
@@ -30,7 +30,6 @@ export class CheckInOutComponent implements OnInit  {
        
     }
     ngOnInit() {
-        this.userData = this.formService.response.resAuthSignIn.data.Item;
 
         let MOBILE_PATTERN = /[0-9\+\-\ ]/;
         this.form = new FormGroup({
@@ -58,6 +57,7 @@ export class CheckInOutComponent implements OnInit  {
             if (res) {
                 this.agentDetail = res;
                 this.agentVerified = true;
+                this.username = res.username;
                 if (res.pcstatus == 'busy') {
                     const returnUrl = '/connectedcomputer/'+ res.id;
                     this.router.navigate([returnUrl]);
@@ -151,7 +151,7 @@ export class CheckInOutComponent implements OnInit  {
         console.log(this.f.cellphone.value)
         console.log('onSendOTP');
         this.customerNotExists = false;
-        this.formService.findByCellPhone({cellphone: this.f.cellphone.value, username: this.userData.username}).subscribe( res => {
+        this.formService.findByCellPhone({cellphone: this.f.cellphone.value, username: this.username}).subscribe( res => {
             if (res) {
                 if (res.customerNotFound) {
                     this.customerNotExists = true;
@@ -174,7 +174,7 @@ export class CheckInOutComponent implements OnInit  {
             return;
         }
         const payload = {
-            username: this.userData.username,
+            username: this.username,
             cellphone: this.f.cellphone.value,
             verifyOTP: this.f.otpverify.value
         };

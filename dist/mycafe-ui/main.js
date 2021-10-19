@@ -2776,7 +2776,6 @@ class CheckInOutComponent {
         };
     }
     ngOnInit() {
-        this.userData = this.formService.response.resAuthSignIn.data.Item;
         let MOBILE_PATTERN = /[0-9\+\-\ ]/;
         this.form = new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormGroup"]({
             accessCode: new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]),
@@ -2803,6 +2802,7 @@ class CheckInOutComponent {
             if (res) {
                 this.agentDetail = res;
                 this.agentVerified = true;
+                this.username = res.username;
                 if (res.pcstatus == 'busy') {
                     const returnUrl = '/connectedcomputer/' + res.id;
                     this.router.navigate([returnUrl]);
@@ -2878,7 +2878,7 @@ class CheckInOutComponent {
         console.log(this.f.cellphone.value);
         console.log('onSendOTP');
         this.customerNotExists = false;
-        this.formService.findByCellPhone({ cellphone: this.f.cellphone.value, username: this.userData.username }).subscribe(res => {
+        this.formService.findByCellPhone({ cellphone: this.f.cellphone.value, username: this.username }).subscribe(res => {
             if (res) {
                 if (res.customerNotFound) {
                     this.customerNotExists = true;
@@ -2898,7 +2898,7 @@ class CheckInOutComponent {
             return;
         }
         const payload = {
-            username: this.userData.username,
+            username: this.username,
             cellphone: this.f.cellphone.value,
             verifyOTP: this.f.otpverify.value
         };
