@@ -6,8 +6,8 @@ const app = express();
 app.use(express.static('./dist/mycafe-ui'))
 app.set('view engine', 'pug');
 
-app.get('/', (req, res) => {
-    res.sendFile('index.html',{root:__dirname})
+app.get('/*', (req, res) => {
+    res.sendFile('/dist/mycafe-ui/index.html',{root:__dirname})
 });
 
 
