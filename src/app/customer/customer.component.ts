@@ -81,7 +81,9 @@ export class CustomerComponent implements OnInit {
         onSubmit() {
             // const returnUrl = '/checkinout';
             // this.router.navigate([returnUrl]);
-           
+            if ( this.form.invalid) {
+                return;
+            }
             this.onUploadProfilePictures();
             this.onUploadAdharPictures();
             this.onUploadDrivingPictures();
@@ -324,9 +326,7 @@ export class CustomerComponent implements OnInit {
        
 
        onNextPage() {
-        if (this.form.invalid) {
-            return;
-        }
+        
         if (this.step == 2) {
             this.formService.findByCellPhone({cellphone: this.f.cellphone.value, username: this.f.username.value}).subscribe( res => {
                 if (res) {
