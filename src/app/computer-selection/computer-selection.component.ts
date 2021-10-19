@@ -124,7 +124,12 @@ export class ComputerSelectionComponent  implements OnInit {
         const payload = {
             agentid: 'PC-MISC',
             customerid: this.paramCustId,
-            username: this.data.username   
+            username: this.data.username,
+            customerName: 'Public'
+
+        }
+        if (this.formService.response.resCustomer) {
+            payload.customerName = this.formService.response.resCustomer.name 
         }
         this.formService.billingStart(payload).subscribe( res => {
             if (res) {
@@ -134,6 +139,32 @@ export class ComputerSelectionComponent  implements OnInit {
             }
             else {
                
+            }
+        })
+    }
+    onCashDeposit() {
+        
+        const item = {
+            accessCode: null,
+            accessAt: new Date().toISOString(),
+            pcstatus: 'busy',
+            agentid: 'PC-MISC',
+            customerid: 'public',
+            customerName: 'public',
+        }  
+        
+        if (this.formService.response.resCustomer) {
+            item.customerid = this.formService.response.resCustomer.id;
+            item.customerName = this.formService.response.resCustomer.name;
+        }
+        this.formService.bookAgent(item).subscribe( res => {
+            if (res) {
+                const returnUrl = '/connectedcomputer/' + res.id;
+                this.router.navigate([returnUrl]);
+              
+            }
+            else {
+              
             }
         })
     }

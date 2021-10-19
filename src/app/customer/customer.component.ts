@@ -53,10 +53,10 @@ export class CustomerComponent implements OnInit {
                 username : new FormControl(this.userData.username, []),
                 
                 name: new FormControl('', [Validators.required]),
-                email: new FormControl('', [Validators.required, Validators.email]),
+                email: new FormControl('', [Validators.email]),
                 cellphone: new FormControl('', [Validators.required,  Validators.minLength(10), Validators.maxLength(10)]),
                 address: new FormControl('', [Validators.required]),
-                gender: new FormControl('', [Validators.required]),
+                gender: new FormControl('m', [Validators.required]),
                 iddirivinlicenseno: new FormControl('', []),
                 idpancard: new FormControl('', []),
                 idadharcard: new FormControl('', []),
@@ -351,9 +351,7 @@ export class CustomerComponent implements OnInit {
         
        }
        onPrevPage() {
-        if (this.form.invalid) {
-            return;
-        }
+       
         this.step = this.step - 1; 
         this.step = this.step == 0 ? 1 : this.step;
        }

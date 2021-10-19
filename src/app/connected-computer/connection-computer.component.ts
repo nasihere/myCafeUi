@@ -129,6 +129,7 @@ export class ConnectedComputerComponent implements OnInit  {
       }, 1000);
     }
 
+  
     findAgentDetail(execute) {
       if (!this.paramId) return;
       const payload = {
