@@ -1,9 +1,9 @@
-<div class="flex justify-between nav">
+<div *ngIf="!limitedView" class="flex justify-between nav">
     <button mat-stroked-button color="primary" routerLink="/admindashboard"  ><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
     <div class="page-name">Terminal Available</div>
     <button mat-stroked-button color="primary" (click)="ngOnInit();"  ><mat-icon>refresh</mat-icon>Refresh</button>
 </div>
-<div class="border-line"></div>
+<div *ngIf="!limitedView" class="border-line"></div>
 <div class="flex flex-warp"  [ngClass]="pcCode || step != 1 ? 'opacity-20' : ''">
 
 <mat-card class="mt-1  s-smaller computer-prompt" *ngFor="let item of pcAgentsList" >
@@ -46,7 +46,7 @@
  </mat-card>
  
 
- <mat-card class="mt-1  s-smaller computer-prompt">
+ <mat-card *ngIf="!limitedView" class="mt-1  s-smaller computer-prompt">
     <div class="flex flex-column  ">
      <span  class="heading profile-heading  flex justify-between"><strong>Misc</strong></span>
      <mat-icon class="computer-prompt-icon orange">desktop_mac</mat-icon>
@@ -58,7 +58,7 @@
 
 
  
- <mat-card class="mt-1  s-smaller computer-prompt">
+ <mat-card *ngIf="!limitedView" class="mt-1  s-smaller computer-prompt">
     <div class="flex flex-column  ">
      <span  class="heading profile-heading "><strong>PC - NEW</strong></span>
      <span>New</span>
@@ -70,7 +70,7 @@
 </div>
 
 
-<div class="flex flex-warp admin-password" *ngIf="step != 1">
+<div  class="flex flex-warp admin-password" *ngIf="step != 1">
     <mat-card class="mt-1  w-100 m-2 ">
         <div class="flex flex-column  ">
 
@@ -100,7 +100,7 @@
 </div>
 
 
-<div class="flex flex-warp admin-password" *ngIf="pcCode">
+<div  class="flex flex-warp admin-password" *ngIf="pcCode">
     <mat-card class="mt-1  w-100 m-2 ">
         <div class="flex flex-column  ">
 

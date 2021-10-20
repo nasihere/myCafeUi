@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormService } from '../_services';
 
 @Component({selector: 'terminal-status', templateUrl: 'computer-selection.component.html' })
 export class ComputerSelectionComponent  implements OnInit {
+    @Input() limitedView = false ;
     form: FormGroup;
     step: number = 1;
     cashDeposit: boolean = false;

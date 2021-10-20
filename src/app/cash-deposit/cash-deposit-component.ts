@@ -53,7 +53,10 @@ export class CashDepositComponent implements OnInit  {
       });
     }
     findCustomerById(customerId) {
-      
+      if (!customerId) {
+        this.customerDetail = [];
+        return;
+      };
       const payload = {
           id: customerId
       }
