@@ -27,10 +27,10 @@
                 ipcRenderer.send('request-agent-show', {});
             }
             function electronDisconnectSession() {
-                // ipcRenderer.send('request-agent-disconnect', {});
+                ipcRenderer.send('request-agent-disconnect', {});
             }
             function electronConnectSession() {
-                // ipcRenderer.send('request-agent-connect', {});
+                ipcRenderer.send('request-agent-connect', {});
             }
             
             function electronShutDownSession() {
