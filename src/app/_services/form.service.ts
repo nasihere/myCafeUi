@@ -379,4 +379,15 @@ export class FormService {
                 return res;
             }))
     }
+    socketAPI(payload): Observable<any> {
+        
+        return this.http.post(`${environment.apiUrl}/agent/SOCKET/HIDE`, payload).pipe(
+            map(res => { 
+               
+                return res
+            }, res => {
+                
+                return res;
+            }))
+    }
 }

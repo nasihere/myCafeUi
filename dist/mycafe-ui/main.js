@@ -886,6 +886,13 @@ class FormService {
             return res;
         }));
     }
+    socketAPI(payload) {
+        return this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].apiUrl}/agent/SOCKET/HIDE`, payload).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(res => {
+            return res;
+        }, res => {
+            return res;
+        }));
+    }
 }
 FormService.ɵfac = function FormService_Factory(t) { return new (t || FormService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"])); };
 FormService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: FormService, factory: FormService.ɵfac, providedIn: 'root' });
@@ -3511,6 +3518,20 @@ class ComputerSelectionComponent {
         this.selectedAgent = item;
         this.formService.bookAgent(item).subscribe(res => {
             if (res) {
+                this.onSocketCall(item.agentid, 'LOCK');
+            }
+            else {
+            }
+        });
+    }
+    onSocketCall(agentid, action, timer = 30) {
+        const payload = {
+            agentid,
+            action,
+            timer
+        };
+        this.formService.socketAPI(payload).subscribe(res => {
+            if (res) {
             }
             else {
             }
@@ -5554,6 +5575,20 @@ class DashboardV2Component {
         row.pcstatus = 'finished';
         console.log('onLockPC', item);
         this.formService.bookAgent(item).subscribe(res => {
+            if (res) {
+                this.onSocketCall(item.agentid, 'LOCK');
+            }
+            else {
+            }
+        });
+    }
+    onSocketCall(agentid, action, timer = 30) {
+        const payload = {
+            agentid,
+            action,
+            timer
+        };
+        this.formService.socketAPI(payload).subscribe(res => {
             if (res) {
             }
             else {

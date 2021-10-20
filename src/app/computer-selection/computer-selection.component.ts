@@ -94,6 +94,22 @@ export class ComputerSelectionComponent  implements OnInit {
         this.selectedAgent = item;
         this.formService.bookAgent(item).subscribe( res => {
             if (res) {
+              this.onSocketCall(item.agentid, 'LOCK')
+              
+            }
+            else {
+               
+            }
+        })
+    }
+    onSocketCall(agentid, action, timer = 30) {
+        const payload = {
+            agentid,
+            action,
+            timer
+        }
+        this.formService.socketAPI(payload).subscribe( res => {
+            if (res) {
               
               
             }
