@@ -1,6 +1,6 @@
-<div *ngIf="!limitedView" class="flex justify-between nav">
-    <button mat-stroked-button color="primary" routerLink="/admindashboard"  ><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
-    <div class="page-name">Terminal Available</div>
+<div  class="flex justify-between nav">
+    <button  *ngIf="!limitedView" mat-stroked-button color="primary" routerLink="/admindashboard"  ><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
+    <div class="page-name">Terminal Status</div>
     <button mat-stroked-button color="primary" (click)="ngOnInit();"  ><mat-icon>refresh</mat-icon>Refresh</button>
 </div>
 <div *ngIf="!limitedView" class="border-line"></div>
@@ -36,7 +36,7 @@
             <small *ngIf="item.showSecretKey">{{item.id}}</small>
         </div>
         <button *ngIf="!limitedView && ((!item.pcstatus && item.lastResponseAt) || item.pcstatus == 'ready')" (click)="onAvailablePC(item)"  color="primary"  mat-stroked-button>Available</button>
-        <button *ngIf="item.pcstatus == 'busy'" color="warn"  (click)="lockMachine = true; lockItem = row;" mat-stroked-button>Lock</button>
+        <button *ngIf="item.pcstatus == 'busy'" color="warn"  (click)="lockItem = item; lockMachine = true; " mat-stroked-button>Lock</button>
         <button *ngIf="item.pcstatus == 'waiting'" color="accent" (click)="onCancelWaiting(item)" mat-flat-button>Cancel Waiting</button>
         <button *ngIf="item.pcstatus == 'finished'" color="primary"  routerLink="/cashdeposit/{{item.billingId}}"  mat-flat-button>Bill</button>
 
@@ -131,10 +131,10 @@
         <div class="flex flex-column  ">
             <span  class="heading profile-heading  flex justify-between "><strong>Are you sure?</strong></span>
             <span class="label-field">Do you want to disconnect and lock the client machine remotely? </span>
-            
-            <button color="primary" (click)="lockMachine = false" mat-stroked-button>Cancel</button>
-            <button color="warn" (click)="onLockPC(lockItem); lockMachine = false" mat-flat-button><mat-icon class="fs-smaller">lock</mat-icon>Lock</button>
-
+            <div class="flex justify-between"> 
+                <button color="primary" (click)="lockMachine = false" mat-stroked-button>Cancel</button>
+                <button color="warn" (click)="onLockPC(lockItem); lockMachine = false" mat-flat-button><mat-icon class="fs-smaller">lock</mat-icon>LockX</button>
+            </div>           
         </div>
     
  

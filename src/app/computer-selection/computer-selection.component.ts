@@ -18,12 +18,11 @@ export class ComputerSelectionComponent  implements OnInit {
         {label: '0min', value: 0},
         {label: '15min', value: 15},
         {label: '30min', value: 30},
-        {label: '45min', value: 45},
         {label: '1hr', value: 60},
-        {label: '1hr 30min', value: 90},
         {label: '2hr', value: 120},
-        {label: '2hr 30min', value: 180},
-        {label: '3hr', value: 240}
+        {label: '3hr', value: 180},
+        {label: '4hr', value: 240},
+        {label: 'No Limit', value: 2400}
     ];
     pcAgentsList: any = null;
     infoSetupIncomplete: boolean = false;

@@ -27,9 +27,9 @@ export class AgentSetupComponent implements OnInit {
            this.data = this.formService.response.resAuthSignIn.data.Item;
             
             this.form = new FormGroup({
-                computerName: new FormControl('PC - 444', [Validators.required]),
-                email: new FormControl('nasihere@gmail.com', [Validators.required, Validators.email]),
-                password: new FormControl('Nasir@1234',[Validators.required,
+                computerName: new FormControl('', [Validators.required]),
+                email: new FormControl('', [Validators.required, Validators.email]),
+                password: new FormControl('',[Validators.required,
                     Validators.minLength(5),
                     Validators.maxLength(30)])
               });

@@ -50,10 +50,10 @@
         <div class="flex flex-column  ">
             <span  class="heading profile-heading  flex justify-between "><strong>Are you sure?</strong></span>
             <span class="label-field">Do you want to disconnect and lock the client machine remotely? </span>
-            
-            <button color="primary" (click)="lockMachine = false" mat-stroked-button>Cancel</button>
-            <button color="warn" (click)="onLockPC(lockItem); lockMachine = false" mat-flat-button><mat-icon class="fs-smaller">lock</mat-icon>Lock</button>
-
+            <div class="flex justify-between">
+                <button color="primary" (click)="lockMachine = false" mat-stroked-button>Cancel</button>
+                <button color="warn" (click)="onLockPC(lockItem); lockMachine = false" mat-flat-button><mat-icon class="fs-smaller">lock</mat-icon>Lock</button>
+            </div>
         </div>
     
  
