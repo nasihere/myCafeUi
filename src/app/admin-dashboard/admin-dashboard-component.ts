@@ -19,6 +19,9 @@ export class AdminDashboardComponent implements OnInit  {
     ) { 
        
     }
+    reload() {
+        window.location.reload()
+    }
     ngOnInit() {
         if (this.formService.response.resAuthSignIn == null) {
             const returnUrl = `/login`;

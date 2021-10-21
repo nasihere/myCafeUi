@@ -60,7 +60,7 @@
                 <mat-header-cell *matHeaderCellDef> Product </mat-header-cell>
                 <mat-cell *matCellDef="let element" > 
                     <mat-form-field  [formGroup]="form" >
-                        <input matInput  [formControlName]="element.product" [placeholder]="element.product" />
+                        <input matInput  [formControlName]="element.product" placeholder="Product/Services" />
                     </mat-form-field>
                      </mat-cell>
               </ng-container>
@@ -68,7 +68,7 @@
                 <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
                 <mat-cell *matCellDef="let element"> 
                     <mat-form-field  [formGroup]="form" >
-                        <input matInput [formControlName]="element.desc" [placeholder]="element.desc" />
+                        <input matInput [formControlName]="element.desc" placeholder="Description" />
                     </mat-form-field>
                      </mat-cell>
               </ng-container>
@@ -76,7 +76,7 @@
                 <mat-header-cell *matHeaderCellDef> Per Item Cost </mat-header-cell>
                 <mat-cell *matCellDef="let element"> 
                     <mat-form-field  [formGroup]="form" >
-                        <input matInput [formControlName]="element.perCost" [placeholder]="element.perCost" />
+                        <input matInput [formControlName]="element.perCost" placeholder="Cost" />
                     </mat-form-field> </mat-cell>
               </ng-container>
               <ng-container matColumnDef="action">

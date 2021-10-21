@@ -48,6 +48,10 @@ export class AgentSetupComponent implements OnInit {
         // const returnUrl = '/computerselection';
         // this.router.navigate([returnUrl]);
         // stop here if form is invalid
+        if (!this.f.computerName.value) {
+            
+            return;
+        }
         if (this.f.password.value != this.data.password) {
             this.adminValidPassword = true;
             return;

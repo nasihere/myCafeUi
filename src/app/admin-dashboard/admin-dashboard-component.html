@@ -1,8 +1,10 @@
    
    <div class="flex justify-between nav">
         <button mat-stroked-button color="primary" (click)="step = 1" *ngIf="step != 1"  ><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
+        <button mat-stroked-button color="primary" (click)="reload()"  ><mat-icon>refresh</mat-icon>Refresh</button>
         <div class="page-name">Administrator</div>
         <button routerLink="/settings" *ngIf="step == 1"  mat-stroked-button color="primary" ><mat-icon>settings</mat-icon>Settings</button>
+        
         
    </div>
    <div class="notify flex " *ngIf="step == 1">
@@ -10,9 +12,9 @@
         <div class="flex flex-column"><span class="text-medium"></span><span class="text-smaller">Welcome to cyber cafe, To access cafe computer, We request you to please sign-in first. If you have already account created? Feel free to search your account by your mobile number, driving licenses, email address.</span></div>
    </div>
 
-   <div class="bg-white pl-1  justify-between pr-1 mlr-1">
+   <div class="bg-white pl-1  justify-between pr-1 mlr-1 flex justify-between">
         <span class="heading">Don't have an customer account?</span>
-        <button routerLink="/customer" mat-stroked-button color="primary" >New Customer</button>
+        <button routerLink="/customer" mat-stroked-button color="primary" ><mat-icon>person</mat-icon>New Customer</button>
    </div>
    <div class="border-line "></div>
       <mat-card class="p-3 mlr-1"  [ngClass]="adminPassword ? 'opacity-20' : ''">
@@ -27,7 +29,7 @@
           <span class="label-field">Customer Identification (e.g: cell number, email id, driving license no.)</span>
           <mat-form-field appearance="outline" [formGroup]="form">
                <mat-icon matSuffix>search</mat-icon>
-               <input matInput  formControlName="search" >
+               <input matInput (keyup.enter)="onSubmit()" formControlName="search" >
                <mat-error *ngIf="hasError('search','required')">
                   search is <strong>required</strong>
              </mat-error>

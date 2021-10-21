@@ -1,7 +1,6 @@
 <div  class="flex justify-between nav">
     <button  *ngIf="!limitedView" mat-stroked-button color="primary" routerLink="/admindashboard"  ><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
     <div class="page-name">Terminal Status</div>
-    <button mat-stroked-button color="primary" (click)="ngOnInit();"  ><mat-icon>refresh</mat-icon>Refresh</button>
 </div>
 <div *ngIf="!limitedView" class="border-line"></div>
 <div class="flex flex-warp"  [ngClass]="pcCode || step != 1 ? 'opacity-20' : ''">
@@ -133,7 +132,7 @@
             <span class="label-field">Do you want to disconnect and lock the client machine remotely? </span>
             <div class="flex justify-between"> 
                 <button color="primary" (click)="lockMachine = false" mat-stroked-button>Cancel</button>
-                <button color="warn" (click)="onLockPC(lockItem); lockMachine = false" mat-flat-button><mat-icon class="fs-smaller">lock</mat-icon>LockX</button>
+                <button color="warn" (click)="onLockPC(lockItem); lockMachine = false" mat-flat-button><mat-icon class="fs-smaller">lock</mat-icon>Lock</button>
             </div>           
         </div>
     

@@ -15,7 +15,8 @@
             <mat-form-field appearance="outline"  [formGroup]="form">
                 <mat-icon matSuffix>computer</mat-icon>
                 <input matInput required formControlName="computerName" placeholder="PC - 232" maxlength="8">
-            
+                <mat-error *ngIf="hasError('computerName', 'required')">PC Name is <strong>required</strong></mat-error>
+               
                 
             </mat-form-field>
             
@@ -84,7 +85,9 @@
                 <mat-error *ngIf="hasError('email', 'email')">Enter a valid email address</mat-error>
                 
            </mat-form-field> -->
-            <button color="primary" (click)="onDownloadLinkEmail()" mat-flat-button>Done</button>
+            <div class="flex justify-center">
+                <button color="primary" (click)="onDownloadLinkEmail()" mat-flat-button>Done</button>
+            </div>
         </div>
     
 

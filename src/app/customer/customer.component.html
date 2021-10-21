@@ -1,5 +1,5 @@
      <div class="flex justify-between nav">
-          <div class="page-name">New Customer</div>
+          <div class="page-name"><mat-icon>person</mat-icon>New Customer</div>
      </div>
         <div class="notify flex ">
           <mat-icon>info</mat-icon> 
@@ -9,7 +9,7 @@
         
         <div class="bg-white pl-1 flex justify-between pr-1 mlr-1 pt-2">
              <span class="heading">Already have account?</span>
-             <button mat-stroked-button color="primary" routerLink="/admindashboard"  >Find Customer</button>
+             <button mat-stroked-button color="primary" routerLink="/admindashboard"  ><mat-icon>manage_search</mat-icon>Find Customer</button>
         </div>
         <div class="border-line "></div>
      
@@ -19,7 +19,7 @@
                   <span class="label-field">Name (Required)</span>
                   <mat-form-field appearance="outline"  [formGroup]="form">
                        <mat-icon matSuffix>account_circle</mat-icon>
-                       <input matInput  formControlName="name" >
+                       <input tabindex="0" matInput (keyup.enter)="onNextPage()"  formControlName="name" >
                        <mat-error *ngIf="hasError('name','required')">
                          name is <strong>required</strong>
                     </mat-error>
@@ -51,7 +51,7 @@
                     <span class="label-field">Cell Phone Number (Required)</span>
                     <mat-form-field appearance="outline"  [formGroup]="form">
                          <mat-icon matSuffix>phone_android</mat-icon>
-                         <input   matInput  formControlName="cellphone" maxlength="10" >
+                         <input  tabindex="0"  (keyup.enter)="onNextPage()"   matInput  formControlName="cellphone" maxlength="10" >
                          <mat-error *ngIf="hasError('cellphone','required')">
                               Phone Number is <strong>required</strong>
                          </mat-error>
@@ -65,7 +65,7 @@
                     <mat-form-field appearance="outline"   [formGroup]="form">
                          <mat-icon matSuffix>alternate_email</mat-icon>
                          
-                         <input matInput formControlName="email">
+                         <input  (keyup.enter)="onNextPage()"  matInput formControlName="email">
                          <mat-error *ngIf="hasError('email', 'required')">Email is <strong>required</strong></mat-error>
                          <mat-error *ngIf="hasError('email', 'email')">Enter a valid email address</mat-error>
                          
@@ -75,7 +75,7 @@
                   <span class="label-field">Home Address Of Your Current Residence (Required)</span>
                   <mat-form-field appearance="outline"  [formGroup]="form">
                        <mat-icon matSuffix>book</mat-icon>
-                       <input matInput  formControlName="address">
+                       <input (keyup.enter)="onNextPage()"  matInput  formControlName="address">
                        <mat-error *ngIf="hasError('address', 'required')">address is <strong>required</strong></mat-error>
                      
                   </mat-form-field>
