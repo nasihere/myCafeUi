@@ -24,6 +24,8 @@ export class FormService {
     constructor(private http: HttpClient) { }
     showLoading() {
         this.loading = true;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
     }
     hideLoading() {
         this.loading = false;

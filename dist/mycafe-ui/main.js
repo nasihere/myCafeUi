@@ -579,6 +579,7 @@ class FormService {
     }
     showLoading() {
         this.loading = true;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     hideLoading() {
         this.loading = false;
