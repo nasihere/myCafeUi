@@ -67,16 +67,6 @@
         <div class="flex flex-column  ">
             <span  class="heading profile-heading  flex justify-between "><strong>Do you want to end the session?</strong></span>
             <span class="label-field">Computer will be locked and can't retrieve the same session back.</span>
-            <mat-form-field appearance="outline"  [formGroup]="form">
-                <mat-icon matSuffix>lock</mat-icon>
-            
-                <input matInput type="password"  required formControlName="password">
-                <mat-error *ngIf="hasError('password', 'required')">Email is <strong>required</strong></mat-error>
-                <mat-error *ngIf="hasError('password', 'minlength')">password should be minimum 5 character length</mat-error>
-                <mat-error *ngIf="hasError('password', 'maxlength')">password should be below 30 character length</mat-error>
-                
-                
-            </mat-form-field>
             <div class="flex justify-between">
             <button color="primary" (click)="disconnectSession = false" mat-flat-button>No</button>
             <button color="warn" (click)="onDisconnectSession()" mat-flat-button>Yes</button>

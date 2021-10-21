@@ -114,7 +114,7 @@ onLockPC(row) {
         customerId: row.customerid,
         pcstatus: 'finished'
       };
-      row.customerid = null;
+      //row.customerid = null;
       row.pcstatus = 'finished';
       console.log('onLockPC', item);
       this.formService.bookAgent(item).subscribe( res => {
