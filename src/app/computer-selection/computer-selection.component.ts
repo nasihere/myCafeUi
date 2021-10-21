@@ -6,6 +6,9 @@ import { FormService } from '../_services';
 @Component({selector: 'terminal-status', templateUrl: 'computer-selection.component.html' })
 export class ComputerSelectionComponent  implements OnInit {
     @Input() limitedView = false ;
+    lockItem: any;  
+    lockMachine: boolean = false;
+
     form: FormGroup;
     step: number = 1;
     cashDeposit: boolean = false;
