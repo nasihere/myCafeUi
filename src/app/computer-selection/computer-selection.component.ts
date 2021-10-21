@@ -186,7 +186,7 @@ export class ComputerSelectionComponent  implements OnInit {
         })
     }
     onAvailablePC(item) {
-        
+       
         this.pcCode = Math.floor(1000 + Math.random() * 9000);
         item.accessCode = this.pcCode;
         item.accessAt = new Date().toISOString();

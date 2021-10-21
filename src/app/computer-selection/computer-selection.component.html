@@ -25,7 +25,7 @@
         <span *ngIf="item.pcstatus == 'waiting'">Waiting <br/>Access Code: <strong *ngIf="!item.selfCheckin">{{item.accessCode}}</strong><strong *ngIf="item.selfCheckin"><span matTooltip="Customer Secret OTP {{item.accessCode}}. Please share if really need it." >OTP</span></strong></span>
         
         
-        <div class="flex justify-between"  *ngIf="item.lastResponseAt && item.pcstatus == 'ready'" >
+        <div class="flex justify-between"  *ngIf="!limitedView && (item.lastResponseAt && item.pcstatus == 'ready')" >
           <button  mat-icon-button (click)="item.timerI = !item.timerI ? 3 : (item.timerI - 1); "><mat-icon>remove_circle_outline</mat-icon></button>
           
           <span class="mt-2">{{timerList[item.timerI || 4].label}}</span>
@@ -35,7 +35,7 @@
             <button  mat-flat-button color="primary" (click)="item.showSecretKey = true" ><mat-icon>key</mat-icon> Secret Key </button>
             <small *ngIf="item.showSecretKey">{{item.id}}</small>
         </div>
-        <button *ngIf="(!item.pcstatus && item.lastResponseAt) || item.pcstatus == 'ready'" (click)="onAvailablePC(item)"  color="primary"  mat-stroked-button>Available</button>
+        <button *ngIf="!limitedView && ((!item.pcstatus && item.lastResponseAt) || item.pcstatus == 'ready')" (click)="onAvailablePC(item)"  color="primary"  mat-stroked-button>Available</button>
         <button *ngIf="item.pcstatus == 'busy'" color="warn" (click)="onLockPC(item)" mat-stroked-button>Lock</button>
         <button *ngIf="item.pcstatus == 'waiting'" color="accent" (click)="onCancelWaiting(item)" mat-flat-button>Cancel Waiting</button>
         <button *ngIf="item.pcstatus == 'finished'" color="primary"  routerLink="/cashdeposit/{{item.billingId}}"  mat-flat-button>Bill</button>

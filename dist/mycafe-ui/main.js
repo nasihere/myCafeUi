@@ -3243,6 +3243,7 @@ function ComputerSelectionComponent_mat_card_3_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
     const item_r9 = ctx.$implicit;
+    const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](item_r9.pcname);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
@@ -3264,11 +3265,11 @@ function ComputerSelectionComponent_mat_card_3_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", item_r9.pcstatus == "waiting");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", item_r9.lastResponseAt && item_r9.pcstatus == "ready");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !ctx_r2.limitedView && (item_r9.lastResponseAt && item_r9.pcstatus == "ready"));
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", item_r9.lastResponseAt == null);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !item_r9.pcstatus && item_r9.lastResponseAt || item_r9.pcstatus == "ready");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !ctx_r2.limitedView && (!item_r9.pcstatus && item_r9.lastResponseAt || item_r9.pcstatus == "ready"));
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", item_r9.pcstatus == "busy");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
@@ -4460,7 +4461,7 @@ class CustomerLookupComponent {
     }
 }
 CustomerLookupComponent.ɵfac = function CustomerLookupComponent_Factory(t) { return new (t || CustomerLookupComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services__WEBPACK_IMPORTED_MODULE_2__["FormService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"])); };
-CustomerLookupComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: CustomerLookupComponent, selectors: [["ng-component"]], decls: 9, vars: 4, consts: [[1, "flex", "justify-between", "nav"], ["mat-stroked-button", "", "color", "primary", 3, "routerLink"], ["class", "page-name capitalize", 4, "ngIf"], [1, "border-line"], ["class", "mt-1  s-smaller", 4, "ngFor", "ngForOf"], [1, "page-name", "capitalize"], [4, "ngIf"], [1, "mt-1", "s-smaller"], [1, "flex", "justify-center"], [1, "flex", "flex-row", "justify-between"], [1, "heading", "profile-heading"], ["src", "assets/1586650.png", "height", "50", 4, "ngIf"], ["height", "50", 3, "src", 4, "ngIf"], [1, "flex", "flex-column", "justify-between"], [1, "label-field"], ["class", "label-field", 4, "ngIf"], [1, "flex"], ["class", "notify flex flex-column justify-between ", 4, "ngIf"], ["class", "border-line", 4, "ngIf"], ["class", "flex flex-row justify-between", 4, "ngIf"], ["src", "assets/1586650.png", "height", "50"], ["height", "50", 3, "src"], ["height", "180", 3, "src"], [1, "notify", "flex", "flex-column", "justify-between"], [1, "flex", "flex-column"], [1, "text-medium"], ["color", "warn", "mat-flat-button", "", 3, "routerLink"], ["color", "primary", "mat-flat-button", "", 3, "click"], ["color", "primary", "mat-flat-button", "", 1, "green", 3, "click"]], template: function CustomerLookupComponent_Template(rf, ctx) { if (rf & 1) {
+CustomerLookupComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: CustomerLookupComponent, selectors: [["ng-component"]], decls: 9, vars: 4, consts: [[1, "flex", "justify-between", "nav"], ["mat-stroked-button", "", "color", "primary", 3, "routerLink"], ["class", "page-name capitalize", 4, "ngIf"], [1, "border-line"], ["class", "mt-1  s-smaller", 4, "ngFor", "ngForOf"], [1, "page-name", "capitalize"], [4, "ngIf"], [1, "mt-1", "s-smaller"], [1, "flex", "justify-center"], [1, "flex", "flex-row", "justify-between"], [1, "heading", "profile-heading"], ["src", "assets/1586650.png", "height", "50", 4, "ngIf"], ["height", "50", 3, "src", 4, "ngIf"], [1, "flex", "flex-column", "justify-between"], [1, "label-field"], ["class", "label-field", 4, "ngIf"], [1, "flex"], ["class", "notify flex flex-column justify-between ", 4, "ngIf"], ["class", "border-line", 4, "ngIf"], ["class", "flex flex-row justify-between", 4, "ngIf"], ["src", "assets/1586650.png", "height", "50"], ["height", "50", 3, "src"], ["height", "180", 3, "src"], [1, "notify", "flex", "flex-column", "justify-between"], [1, "flex", "flex-column"], [1, "text-medium"], ["color", "warn", "mat-flat-button", "", 3, "routerLink"], ["color", "primary", "mat-flat-button", "", 1, "bg-green", 3, "click"], ["color", "primary", "mat-flat-button", "", 1, "green", 3, "click"]], template: function CustomerLookupComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "button", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "mat-icon");
@@ -5359,7 +5360,7 @@ function DashboardV2Component_div_0_mat_card_1_span_17_Template(rf, ctx) { if (r
 function DashboardV2Component_div_0_mat_card_1_mat_chip_21_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-chip", 22);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "mat-icon", 23);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "av_timer");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "wifi");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -5371,7 +5372,7 @@ function DashboardV2Component_div_0_mat_card_1_mat_chip_21_Template(rf, ctx) { i
 function DashboardV2Component_div_0_mat_card_1_mat_chip_22_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-chip", 22);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "mat-icon", 23);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "access_alarms");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "wifi_off");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -5383,7 +5384,7 @@ function DashboardV2Component_div_0_mat_card_1_mat_chip_22_Template(rf, ctx) { i
 function DashboardV2Component_div_0_mat_card_1_mat_chip_23_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-chip");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "mat-icon", 24);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "check_circle");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "sync_alt");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -5428,7 +5429,7 @@ function DashboardV2Component_div_0_mat_card_1_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](24, "div", 11);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](25, "button", 15);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](26, "mat-icon", 16);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](27, "monetization_on");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](27, "currency_rupee");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](28);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -5516,6 +5517,19 @@ class DashboardV2Component {
         ];
         this.displayedColumns = ['computer', 'customer', 'verify', 'timeIN', 'timeOUT', 'duration', 'cost', 'lock'];
         this.dataSource = this.ELEMENT_DATA;
+        this.get_time_diff = (datetime, datetime2) => {
+            var date1 = new Date(datetime);
+            var date2 = new Date(datetime2);
+            var diff = date2.getTime() - date1.getTime();
+            var msec = diff;
+            var hh = Math.floor(msec / 1000 / 60 / 60);
+            msec -= hh * 1000 * 60 * 60;
+            var mm = Math.floor(msec / 1000 / 60);
+            msec -= mm * 1000 * 60;
+            var ss = Math.floor(msec / 1000);
+            msec -= ss * 1000;
+            return hh + ":" + mm + ":" + ss;
+        };
     }
     ngOnInit() {
         this.getAllAgentPC();
@@ -5550,14 +5564,15 @@ class DashboardV2Component {
                     if (agent && agent.length) {
                         item.agentName = agent[0].pcname;
                     }
-                    var start = moment__WEBPACK_IMPORTED_MODULE_1__(item.checkIn).toDate().getTime();
-                    var end = moment__WEBPACK_IMPORTED_MODULE_1__(item.checkOut).toDate().getTime();
-                    var timespan = start - end;
-                    const duration = moment__WEBPACK_IMPORTED_MODULE_1__(timespan).format('hh:mm');
-                    item.duration = duration;
-                    item.checkInDate = moment__WEBPACK_IMPORTED_MODULE_1__(item.checkIn).format('YYYY-MM-DD');
-                    item.checkInTime = moment__WEBPACK_IMPORTED_MODULE_1__(item.checkIn).format('HH:mm:ss');
-                    item.checkOutTime = moment__WEBPACK_IMPORTED_MODULE_1__(item.checkOut).format('HH:mm:ss');
+                    item.checkInDate = new Date(item.checkIn);
+                    item.checkOutDate = new Date(item.checkout);
+                    item.checkInDate = moment__WEBPACK_IMPORTED_MODULE_1__(item.checkInDate).format('YYYY-MM-DD');
+                    item.checkOutDate = moment__WEBPACK_IMPORTED_MODULE_1__(item.checkOutDate).format('YYYY-MM-DD');
+                    item.checkInTime = new Date(item.checkIn);
+                    item.checkOutTime = new Date(item.checkout);
+                    item.checkInTime = moment__WEBPACK_IMPORTED_MODULE_1__(item.checkInTime).format('hh:mm A');
+                    item.checkOutTime = moment__WEBPACK_IMPORTED_MODULE_1__(item.checkOutTime).format('hh:mm A');
+                    item.duration = this.get_time_diff(item.checkIn, item.checkout);
                     return item;
                 });
             }

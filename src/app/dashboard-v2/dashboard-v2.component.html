@@ -24,11 +24,11 @@
             <div class="flex justify-between">
                 <div  class="flex">
                     <mat-chip-list>
-                        <mat-chip *ngIf="row.checkIn" class=""><mat-icon class="fs-smaller mt-2">av_timer</mat-icon>In: {{row.checkInTime}}</mat-chip>
-                        <mat-chip *ngIf="row.checkout" class=""><mat-icon class="fs-smaller mt-2">access_alarms</mat-icon>Out: {{row.checkOutTime}}</mat-chip>
-                        <mat-chip *ngIf="row.checkIn && row.checkout"><mat-icon class="fs-smaller mt-2 green">check_circle</mat-icon>Duration: {{row.duration}}</mat-chip>
+                        <mat-chip *ngIf="row.checkIn" class=""><mat-icon class="fs-smaller mt-2">wifi</mat-icon>In: {{row.checkInTime}}</mat-chip>
+                        <mat-chip *ngIf="row.checkout" class=""><mat-icon class="fs-smaller mt-2">wifi_off</mat-icon>Out: {{row.checkOutTime}}</mat-chip>
+                        <mat-chip *ngIf="row.checkIn && row.checkout"><mat-icon class="fs-smaller mt-2 green">sync_alt</mat-icon>Duration: {{row.duration}}</mat-chip>
                     </mat-chip-list></div>
-                    <div class="flex"><button color="primary"  mat-button><mat-icon class="fs-smaller green">monetization_on</mat-icon>{{row.billTotal}}</button></div>
+                    <div class="flex"><button color="primary"  mat-button><mat-icon class="fs-smaller green">currency_rupee</mat-icon>{{row.billTotal}}</button></div>
                 
 
             </div>

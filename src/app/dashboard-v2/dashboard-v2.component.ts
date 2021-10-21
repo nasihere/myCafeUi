@@ -62,14 +62,24 @@ export class DashboardV2Component implements OnInit   {
         if (agent && agent.length) {
           item.agentName = agent[0].pcname;
         }
-        var start = moment(item.checkIn).toDate().getTime();
-        var end = moment(item.checkOut).toDate().getTime();
-        var timespan = start - end;
-        const duration = moment(timespan).format('hh:mm');
-        item.duration =  duration 
-        item.checkInDate = moment(item.checkIn).format('YYYY-MM-DD');
-        item.checkInTime = moment(item.checkIn).format('HH:mm:ss');
-        item.checkOutTime = moment(item.checkOut).format('HH:mm:ss');
+       
+        
+        
+        item.checkInDate = new Date(item.checkIn);
+        item.checkOutDate = new Date(item.checkout);
+
+
+        item.checkInDate = moment(item.checkInDate).format('YYYY-MM-DD');
+        item.checkOutDate = moment(item.checkOutDate).format('YYYY-MM-DD');
+
+        item.checkInTime = new Date(item.checkIn);
+        item.checkOutTime = new Date(item.checkout);
+
+        item.checkInTime = moment(item.checkInTime).format('hh:mm A');
+        item.checkOutTime = moment(item.checkOutTime).format('hh:mm A');
+        
+        item.duration =  this.get_time_diff( item.checkIn, item.checkout)
+
         return item;
       });
     }
@@ -78,6 +88,22 @@ export class DashboardV2Component implements OnInit   {
     
     
 
+}
+ get_time_diff = ( datetime, datetime2 ) => {
+  var date1 = new Date(datetime);
+  var date2 = new Date(datetime2);
+  
+  var diff = date2.getTime() - date1.getTime();
+  
+  var msec = diff;
+  var hh = Math.floor(msec / 1000 / 60 / 60);
+  msec -= hh * 1000 * 60 * 60;
+  var mm = Math.floor(msec / 1000 / 60);
+  msec -= mm * 1000 * 60;
+  var ss = Math.floor(msec / 1000);
+  msec -= ss * 1000;
+  
+  return hh + ":" + mm + ":" + ss;
 }
 onLockPC(row) {
       const item = {
