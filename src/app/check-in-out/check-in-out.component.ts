@@ -238,4 +238,8 @@ export class CheckInOutComponent implements OnInit  {
             }
         })
     }
+    hideElectron() {
+        //@ts-ignore
+        electronHideAgent();
+    }
 }
