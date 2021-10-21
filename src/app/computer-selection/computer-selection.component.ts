@@ -84,6 +84,9 @@ export class ComputerSelectionComponent  implements OnInit {
             return;
         }
     }
+    reload() {
+        window.location.reload()
+    }
     onLockPC(item) {
         this.pcCode = null;
         item.accessCode = null;
@@ -97,7 +100,7 @@ export class ComputerSelectionComponent  implements OnInit {
         this.formService.bookAgent(item).subscribe( res => {
             if (res) {
               this.onSocketCall(item.agentid, 'LOCK')
-              
+              this.reload();
             }
             else {
                

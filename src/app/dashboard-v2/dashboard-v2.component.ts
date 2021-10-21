@@ -120,7 +120,7 @@ onLockPC(row) {
       this.formService.bookAgent(item).subscribe( res => {
           if (res) {
             this.onSocketCall(item.agentid, 'LOCK')
-
+            this.reload();
           }
           else {
             
@@ -128,6 +128,9 @@ onLockPC(row) {
       })
     }
     
+    reload() {
+      window.location.reload()
+    }
     onSocketCall(agentid, action, timer = 30) {
       const payload = {
           agentid,

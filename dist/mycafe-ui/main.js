@@ -3563,6 +3563,9 @@ class ComputerSelectionComponent {
             return;
         }
     }
+    reload() {
+        window.location.reload();
+    }
     onLockPC(item) {
         this.pcCode = null;
         item.accessCode = null;
@@ -3576,6 +3579,7 @@ class ComputerSelectionComponent {
         this.formService.bookAgent(item).subscribe(res => {
             if (res) {
                 this.onSocketCall(item.agentid, 'LOCK');
+                this.reload();
             }
             else {
             }
@@ -5677,10 +5681,14 @@ class DashboardV2Component {
         this.formService.bookAgent(item).subscribe(res => {
             if (res) {
                 this.onSocketCall(item.agentid, 'LOCK');
+                this.reload();
             }
             else {
             }
         });
+    }
+    reload() {
+        window.location.reload();
     }
     onSocketCall(agentid, action, timer = 30) {
         const payload = {
