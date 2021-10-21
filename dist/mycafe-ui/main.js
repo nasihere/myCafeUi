@@ -1134,7 +1134,7 @@ class AdminDashboardComponent {
     }
 }
 AdminDashboardComponent.ɵfac = function AdminDashboardComponent_Factory(t) { return new (t || AdminDashboardComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services__WEBPACK_IMPORTED_MODULE_2__["FormService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"])); };
-AdminDashboardComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: AdminDashboardComponent, selectors: [["ng-component"]], decls: 29, vars: 6, consts: [[1, "flex", "justify-between", "nav"], ["mat-stroked-button", "", "color", "primary", 3, "click", 4, "ngIf"], ["mat-stroked-button", "", "color", "primary", 3, "click"], [1, "page-name"], ["routerLink", "/settings", "mat-stroked-button", "", "color", "primary", 4, "ngIf"], ["class", "notify flex ", 4, "ngIf"], [1, "bg-white", "pl-1", "justify-between", "pr-1", "mlr-1", "flex", "justify-between"], [1, "heading"], ["routerLink", "/customer", "mat-stroked-button", "", "color", "primary"], [1, "border-line"], [1, "p-3", "mlr-1", 3, "ngClass"], [4, "ngIf"], [1, "mlr-1"], ["limitedView", "true"], [1, "mt-3", "flex", "justify-between", "nav", "mlr-1"], ["routerLink", "/settings", "mat-stroked-button", "", "color", "primary"], [1, "notify", "flex"], [1, "flex", "flex-column"], [1, "text-medium"], [1, "text-smaller"], ["class", "notify flex nav-red", 4, "ngIf"], [1, "notify", "flex", "nav-red"], [1, "label-field"], ["appearance", "outline", 3, "formGroup"], ["matSuffix", ""], ["matInput", "", "formControlName", "search", 3, "keyup.enter"], [1, "flex", "justify-between"], ["mat-flat-button", "", "color", "primary", 1, "text-center", 3, "click"], ["mat-stroked-button", "", "color", "primary", 1, "text-center", 3, "click"]], template: function AdminDashboardComponent_Template(rf, ctx) { if (rf & 1) {
+AdminDashboardComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: AdminDashboardComponent, selectors: [["ng-component"]], decls: 29, vars: 6, consts: [[1, "flex", "justify-between", "nav"], ["mat-stroked-button", "", "color", "primary", 3, "click", 4, "ngIf"], ["mat-stroked-button", "", "color", "primary", 3, "click"], [1, "page-name"], ["routerLink", "/settings", "mat-stroked-button", "", "color", "primary", 4, "ngIf"], ["class", "notify flex ", 4, "ngIf"], [1, "bg-white", "pl-1", "justify-between", "pr-1", "mlr-1", "flex", "justify-between"], [1, "small-font"], ["routerLink", "/customer", "mat-stroked-button", "", "color", "primary"], [1, "border-line"], [1, "p-3", "mlr-1", 3, "ngClass"], [4, "ngIf"], [1, "mlr-1"], ["limitedView", "true"], [1, "mt-3", "flex", "justify-between", "nav", "mlr-1"], ["routerLink", "/settings", "mat-stroked-button", "", "color", "primary"], [1, "notify", "flex"], [1, "flex", "flex-column"], [1, "text-medium"], [1, "text-smaller"], ["class", "notify flex nav-red", 4, "ngIf"], [1, "notify", "flex", "nav-red"], [1, "label-field"], ["appearance", "outline", 3, "formGroup"], ["matSuffix", ""], ["matInput", "", "formControlName", "search", 3, "keyup.enter"], [1, "flex", "justify-between"], ["mat-flat-button", "", "color", "primary", 1, "text-center", 3, "click"], ["mat-stroked-button", "", "color", "primary", 1, "text-center", 3, "click"]], template: function AdminDashboardComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, AdminDashboardComponent_button_1_Template, 4, 0, "button", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "button", 2);
@@ -1151,8 +1151,8 @@ AdminDashboardComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵ
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](9, AdminDashboardComponent_div_9_Template, 7, 0, "div", 5);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "div", 6);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "span", 7);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](12, "Don't have an customer account?");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "small", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](12, "Don't have a customer account?");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "button", 8);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](14, "mat-icon");
@@ -2774,7 +2774,7 @@ function CheckInOutComponent_div_4_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](6, CheckInOutComponent_div_4_div_6_Template, 7, 0, "div", 8);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "div", 9);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "span", 10);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](9, "Don't have an account?");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](9, "Don't have a account?");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "button", 11);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function CheckInOutComponent_div_4_Template_button_click_10_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r40); const ctx_r39 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r39.helpPageNewCustomer = true; });
@@ -6377,7 +6377,7 @@ HomeComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComp
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](10, "div", 6);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "div", 7);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "span", 8);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](13, "Already have account?");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](13, "Already have an account?");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](14, "button", 9);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](15, "Login");
