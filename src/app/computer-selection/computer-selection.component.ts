@@ -179,7 +179,7 @@ export class ComputerSelectionComponent  implements OnInit {
         }
         this.formService.bookAgent(item).subscribe( res => {
             if (res) {
-                const returnUrl = '/connectedcomputer/' + res.id;
+                const returnUrl = '/cashdeposit/' + res.billingId;
                 this.router.navigate([returnUrl]);
               
             }
