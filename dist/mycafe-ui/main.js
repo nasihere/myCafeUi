@@ -5062,6 +5062,7 @@ class CustomerComponent {
     onSubmit() {
         // const returnUrl = '/checkinout';
         // this.router.navigate([returnUrl]);
+        this.formService.showLoading();
         if (this.form.invalid) {
             return;
         }
@@ -5247,11 +5248,10 @@ class CustomerComponent {
             console.log('res', res);
             const returnUrl = `/customerlookup/` + this.f.cellphone.value + "/admindashboard";
             this.router.navigate([returnUrl]);
-            this.loading = false;
+            this.formService.hideLoading();
         }, err => {
-            this.loading = false;
+            this.formService.hideLoading();
         });
-        this.loading = true;
     }
     onNextPage() {
         if (this.step == 2) {
