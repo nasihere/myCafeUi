@@ -173,6 +173,7 @@ export class ComputerSelectionComponent  implements OnInit {
             agentid: 'PC-MISC',
             customerid: 'public',
             customerName: 'public',
+            username: this.data.username
         }  
         
         if (this.formService.response.resCustomer) {

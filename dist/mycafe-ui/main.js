@@ -3642,6 +3642,7 @@ class ComputerSelectionComponent {
             agentid: 'PC-MISC',
             customerid: 'public',
             customerName: 'public',
+            username: this.data.username
         };
         if (this.formService.response.resCustomer) {
             item.customerid = this.formService.response.resCustomer.id;
