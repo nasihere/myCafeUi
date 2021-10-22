@@ -169,7 +169,7 @@
               <mat-icon matSuffix>lock</mat-icon>
           
               <input matInput type="password" placeholder="******"  required formControlName="password">
-              <mat-error *ngIf="hasError('password', 'required')">Email is <strong>required</strong></mat-error>
+              <mat-error *ngIf="hasError('password', 'required')">Password is <strong>required</strong></mat-error>
               <mat-error *ngIf="hasError('password', 'minlength')">password should be minimum 5 character length</mat-error>
               <mat-error *ngIf="hasError('password', 'maxlength')">password should be below 30 character length</mat-error>
               
