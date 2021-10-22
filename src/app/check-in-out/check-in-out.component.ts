@@ -249,9 +249,22 @@ export class CheckInOutComponent implements OnInit  {
             return;
         }
         this.verifingPasswordValid = false;
-        if (this.f.password.value == this.formService.response.resAuthSignIn.data.Item.password) {
-            //@ts-ignore
-            electronShutDownSession();
+
+        if (this.f.password.value) {
+            const payload = {
+                "username": this.username,
+                "password": this.f.password.value
+            }
+            this.formService.authSignIn(payload).subscribe( res => {
+                console.log('res', res)
+               //@ts-ignore
+                electronShutDownSession();
+            }, err => {
+                this.verifingPasswordValid = true;
+
+            });
+            
+           
         }
         else {
             this.verifingPasswordValid = true;
