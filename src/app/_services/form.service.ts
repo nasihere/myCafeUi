@@ -363,6 +363,18 @@ export class FormService {
                 return res;
             }))
     }
+    removeAgent(payload): Observable<any> {
+        this.showLoading();
+        return this.http.post(`${environment.apiUrl}/agent/remove`, payload).pipe(
+            map(res => { 
+                this.hideLoading();
+               
+                return res;
+            }, res => {
+                this.hideLoading();
+                return res;
+            }))
+    }
     getLatestBilling(payload): Observable<any> {
         this.showLoading();
         return this.http.post(`${environment.apiUrl}/agent/billingSessions`, payload).pipe(

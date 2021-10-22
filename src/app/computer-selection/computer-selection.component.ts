@@ -5,6 +5,10 @@ import { FormService } from '../_services';
 
 @Component({selector: 'terminal-status', templateUrl: 'computer-selection.component.html' })
 export class ComputerSelectionComponent  implements OnInit {
+    verifingPassword: boolean = false;
+    verifingPasswordValid: boolean = false;
+    selectedTerminalItem: any;
+
     @Input() limitedView = false ;
     lockItem: any;  
     lockMachine: boolean = false;
@@ -220,5 +224,32 @@ export class ComputerSelectionComponent  implements OnInit {
         this.pcCode = 0;
           const returnUrl = '/checkinout';
         this.router.navigate([returnUrl]);
+    }
+    
+    verifyPassword() {
+        if (this.f.password.invalid) {
+            return;
+        }
+        this.verifingPasswordValid = false;
+        if (this.f.password.value == this.formService.response.resAuthSignIn.data.Item.password) {
+            const payload = {
+                id: this.selectedTerminalItem.id
+            }
+           this.formService.removeAgent(payload).subscribe( res => {
+                if (res) {
+                   this.reload();
+                
+                }
+                else {
+                
+                }
+            })
+        }
+        else {
+            this.verifingPasswordValid = true;
+            this.verifingPassword = true;
+
+        }
+        
     }
 }

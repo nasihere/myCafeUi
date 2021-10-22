@@ -197,12 +197,11 @@
                <mat-error *ngIf="hasError('password', 'minlength')">password should be minimum 5 character length</mat-error>
                <mat-error *ngIf="hasError('password', 'maxlength')">password should be below 30 character length</mat-error>
                
-               
            </mat-form-field>
              <div class="flex justify-between">  
                <button mat-stroked-button color="primary" (click)="verifingPassword = false"  ><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
 
-               <button color="primary" (click)="verifyPassword()" mat-flat-button>Verify</button>
+               <button color="primary"  (click)="verifyPassword()" mat-flat-button>Verify</button>
              </div>
              
          </div>
