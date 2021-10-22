@@ -6,6 +6,8 @@ import { FormService } from '../_services';
 
 @Component({ templateUrl: 'check-in-out.component.html', encapsulation: ViewEncapsulation.None })
 export class CheckInOutComponent implements OnInit  {
+    verifingPassword: boolean = false;
+    verifingPasswordValid: boolean = false;
     helpPageNewCustomer: boolean = false;
     step: number = 1;
     form: FormGroup;
@@ -241,5 +243,21 @@ export class CheckInOutComponent implements OnInit  {
     hideElectron() {
         //@ts-ignore
         electronHideAgent();
+    }
+    verifyPassword() {
+        if (this.f.password.invalid) {
+            return;
+        }
+        this.verifingPasswordValid = false;
+        if (this.f.password.value == this.formService.response.resAuthSignIn.data.Item.password) {
+            //@ts-ignore
+            electronShutDownSession();
+        }
+        else {
+            this.verifingPasswordValid = true;
+            this.verifingPassword = true;
+
+        }
+        
     }
 }
