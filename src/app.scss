@@ -432,9 +432,12 @@ box-shadow: 5px 5px 35px 5px #000000;
       opacity: 0.5;
   }
   .dp {
-      display: none;
+      display: none!important;
   }
   .small-font {
       font-size: .7rem;
       margin: auto;
+  }
+  .center-div{
+      padding: 0 20% 0 20%;
   }

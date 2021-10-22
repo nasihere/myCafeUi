@@ -1,4 +1,4 @@
-     <div class="flex justify-between nav">
+<div class="flex justify-between nav">
           <div class="page-name"><mat-icon>person</mat-icon>New Customer</div>
      </div>
         <div class="notify flex ">
@@ -31,16 +31,33 @@
                 <div *ngIf="step <= 1">
                    
                     <div class="flex justify-center">
-                         <span><small>less than 2MB</small></span>
-                            
-                         <label class="hoverable" for="fileInput">
-                              <img [src]="tmpProfilepic ? tmpProfilepic : 'assets/img_avatar.png'"> 
-                              <mat-icon matSuffix>camera_enhance</mat-icon>
-                              <div class="hover-text">Profile Pic</div>
-                              <div class="background"></div>
-                            </label>
-                            
-                         <input id="fileInput" type='file' (change)="onSelectFileProfilePic($event)">
+                         <div class="flex flex-column">
+                              <small  *ngIf="webcamsAvailable">WebCam is available to take the picture</small>
+                              <span><small>less than 2MB {{webcamsAvailable}}</small></span>
+                         
+                         <div *ngIf="!webcamsAvailable">
+
+                              <label class="hoverable" for="fileInput">
+                                   <img [src]="tmpProfilepic ? tmpProfilepic : 'assets/img_avatar.png'"> 
+                                   <mat-icon matSuffix>camera_enhance</mat-icon>
+                                   <div class="hover-text">Profile Pic</div>
+                                   <div class="background"></div>
+                                 </label>
+                                 
+                              <input id="fileInput" type='file' (change)="onSelectFileProfilePic($event)">
+                         </div>
+                         <div *ngIf="webcamsAvailable">
+                              <label class="hoverable" (click)="onSelectFileProfilePic($event)">
+                                   <img [src]="tmpProfilepic ? tmpProfilepic : 'assets/img_avatar.png'"> 
+                                   <mat-icon matSuffix>camera_enhance</mat-icon>
+                                   <div class="hover-text">Profile Pic</div>
+                                   <div class="background"></div>
+                              </label>
+                              
+                              <input id="fileInput" type='file' (change)="onSelectFileProfilePic($event)">
+                              
+                         </div>
+                    </div>
                     </div>
                     
 
@@ -102,13 +119,23 @@
                </div>
                <div class="flex justify-center">
                     
-                       
-                    <label class="hoverable-id" for="fileInputDrivingPic">
-                         <img class="img-id" [src]="tmpDrivingCardpic ? tmpDrivingCardpic : 'assets/driving-license-sample.jpg'" > 
-                         <mat-icon matSuffix>camera_enhance</mat-icon>
-                         <div class="background"></div>
-                    </label>
-                    <input class="fileInput" id="fileInputDrivingPic" type='file' (change)="onSelectFileDrivingPic($event)">
+                    <div *ngIf="webcamsAvailable">
+                         <label class="hoverable-id" (click)="onSelectFileDrivingPic($event)">>
+                              <img class="img-id" [src]="tmpDrivingCardpic ? tmpDrivingCardpic : 'assets/driving-license-sample.jpg'" > 
+                              <mat-icon matSuffix>camera_enhance</mat-icon>
+                              <div class="background"></div>
+                         </label>
+                         <input class="fileInput" id="fileInputDrivingPic" type='file' (change)="onSelectFileDrivingPic($event)">
+                         
+                    </div>
+                    <div *ngIf="!webcamsAvailable">
+                         <label class="hoverable-id" for="fileInputDrivingPic">
+                              <img class="img-id" [src]="tmpDrivingCardpic ? tmpDrivingCardpic : 'assets/driving-license-sample.jpg'" > 
+                              <mat-icon matSuffix>camera_enhance</mat-icon>
+                              <div class="background"></div>
+                         </label>
+                         <input class="fileInput" id="fileInputDrivingPic" type='file' (change)="onSelectFileDrivingPic($event)">
+                    </div>
                     <br />
                     
 
@@ -124,14 +151,25 @@
                          </mat-form-field>
                     </div>
                     <div class="flex justify-center">
-                         
+                         <div *ngIf="webcamsAvailable">
+                              <label class="hoverable-id"  (click)="onSelectFilePANPic($event)">
+                                   <img class="img-id" [src]="tmpPANCardpic ? tmpPANCardpic : 'assets/pan-card-sample.jpg'" > 
+                                   <mat-icon matSuffix>camera_enhance</mat-icon>
+                                   <div class="background"></div>
+                              </label>
+                              <input class="fileInput" id="fileInputPANPic" type='file' (change)="onSelectFilePANPic($event)">
+                                 
+                         </div>
+                         <div *ngIf="!webcamsAvailable">
+                              <label class="hoverable-id" for="fileInputPANPic">
+                                   <img class="img-id" [src]="tmpPANCardpic ? tmpPANCardpic : 'assets/pan-card-sample.jpg'" > 
+                                   <mat-icon matSuffix>camera_enhance</mat-icon>
+                                   <div class="background"></div>
+                              </label>
+                              <input class="fileInput" id="fileInputPANPic" type='file' (change)="onSelectFilePANPic($event)">
+                             
+                         </div>
                             
-                         <label class="hoverable-id" for="fileInputPANPic">
-                              <img class="img-id" [src]="tmpPANCardpic ? tmpPANCardpic : 'assets/pan-card-sample.jpg'" > 
-                              <mat-icon matSuffix>camera_enhance</mat-icon>
-                              <div class="background"></div>
-                         </label>
-                         <input class="fileInput" id="fileInputPANPic" type='file' (change)="onSelectFilePANPic($event)">
                          <br />
                          
      
@@ -149,14 +187,25 @@
                </div>
                <div class="flex justify-center">
                     
-                       
-                    <label class="hoverable-id" for="fileInputAdharCard">
-                         <img class="img-id" [src]="tmpAdharCardpic ? tmpAdharCardpic : 'assets/adhar-card-sample.png'" > 
-                         <mat-icon matSuffix>camera_enhance</mat-icon>
-                         <div class="background"></div>
-                    </label>
-                    <input class="fileInput" id="fileInputAdharCard" type='file' (change)="onSelectFileAdharPic($event)">
-                    <br />
+                    <div *ngIf="webcamsAvailable">
+                         <label class="hoverable-id"  (click)="onSelectFileAdharPic($event)">
+                              <img class="img-id" [src]="tmpAdharCardpic ? tmpAdharCardpic : 'assets/adhar-card-sample.png'" > 
+                              <mat-icon matSuffix>camera_enhance</mat-icon>
+                              <div class="background"></div>
+                         </label>
+                         <input class="fileInput" id="fileInputAdharCard" type='file' (change)="onSelectFileAdharPic($event)">
+                             
+                    </div>
+                    <div *ngIf="!webcamsAvailable">
+                         <label class="hoverable-id" for="fileInputAdharCard">
+                              <img class="img-id" [src]="tmpAdharCardpic ? tmpAdharCardpic : 'assets/adhar-card-sample.png'" > 
+                              <mat-icon matSuffix>camera_enhance</mat-icon>
+                              <div class="background"></div>
+                         </label>
+                         <input class="fileInput" id="fileInputAdharCard" type='file' (change)="onSelectFileAdharPic($event)">
+                        
+                    </div>
+                  <br />
                     
 
                </div>
@@ -174,14 +223,27 @@
                </div>
                <div class="flex justify-center">
                     
-                       
-                    <label class="hoverable-id" for="fileInputOtherPic">
-                         <img class="img-id" [src]="tmpOtherCardpic ? tmpOtherCardpic : 'assets/idproof.png'" > 
-                         <mat-icon matSuffix>camera_enhance</mat-icon>
-                         <div class="background"></div>
-                    </label>
-                    <input class="fileInput" id="fileInputOtherPic" type='file' (change)="onSelectFileOtherPic($event)">
-                    <br />
+                    <div *ngIf="webcamsAvailable">
+                     
+                         <label class="hoverable-id"  (click)="onSelectFileOtherPic($event)">
+                              <img class="img-id" [src]="tmpOtherCardpic ? tmpOtherCardpic : 'assets/idproof.png'" > 
+                              <mat-icon matSuffix>camera_enhance</mat-icon>
+                              <div class="background"></div>
+                         </label>
+                         <input class="fileInput" id="fileInputOtherPic" type='file' (change)="onSelectFileOtherPic($event)">
+                         
+                    </div>
+                    <div *ngIf="!webcamsAvailable">
+                    
+                         <label class="hoverable-id" for="fileInputOtherPic">
+                              <img class="img-id" [src]="tmpOtherCardpic ? tmpOtherCardpic : 'assets/idproof.png'" > 
+                              <mat-icon matSuffix>camera_enhance</mat-icon>
+                              <div class="background"></div>
+                         </label>
+                         <input class="fileInput" id="fileInputOtherPic" type='file' (change)="onSelectFileOtherPic($event)">
+                     
+                    </div>
+                        <br />
                     
 
                </div>
@@ -222,3 +284,12 @@
      </mat-card>
   </div>
 
+
+
+  <div class="flex flex-warp admin-password"  [ngClass]="webcamsStart ? '' : 'dp'">
+     <mat-card class="mt-1  w-100 m-2 ">
+          <app-webcam-pictures (webCamClose)="webCamClose($event)" (webCamPic)="webPicListener($event)"  ></app-webcam-pictures>
+     </mat-card>
+  </div>
+
+  

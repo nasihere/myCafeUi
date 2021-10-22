@@ -4,11 +4,16 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from '@environments/environment';
+import { WebcamImage, WebcamUtil } from 'ngx-webcam';
 import { FormService } from '../_services';
 
 @Component({ styleUrls: ['./customer.component.scss'], templateUrl: 'customer.component.html' })
 export class CustomerComponent implements OnInit {
-    
+
+    // latest snapshot
+    webCamEnabled: boolean = false;
+    webCamDeviceId: string = '';
+    public webcamImage: WebcamImage = null;    
     cellPhoneAlreadyExists: boolean = false;
     step:number = 1;
     form: FormGroup;
@@ -20,6 +25,37 @@ export class CustomerComponent implements OnInit {
         profilePic: true,
         drivingLicense: true,
         otherid: true
+    }
+    webcamsAvailable: boolean;
+    webcamsStart:boolean = false;
+    webCamTypeSrc: any;
+    webPicListener(image) {
+        const picType = this.webCamTypeSrc;
+        if (picType == 'profilepic') {
+            this.tmpProfilepic = image.imageAsDataUrl;
+            this.tmpProfilePicFile = image.imageAsDataUrl;
+        }
+        else if (picType == 'adharpic') {
+            this.tmpAdharCardPicFile = image.imageAsDataUrl;
+            this.tmpAdharCardPicFile = image.imageAsDataUrl;
+        }
+        else if (picType == 'drivingpic') {
+            this.tmpDrivingCardPicFile = image.imageAsDataUrl;
+            this.tmpDrivingCardPicFile = image.imageAsDataUrl;
+        }
+        else if (picType == 'panpic') {
+            this.tmpPANCardPicFile = image.imageAsDataUrl;
+            this.tmpPANCardPicFile = image.imageAsDataUrl;
+        }
+        else if (picType == 'otherpic') {
+            this.tmpOtherCardPicFile = image.imageAsDataUrl;
+            this.tmpOtherCardPicFile = image.imageAsDataUrl;
+        }
+        
+        this.webCamClose({});
+    }
+    webCamClose(event) {
+        this.webcamsStart = false;
     }
     picUploader(id: string) {
         document.getElementById(id).click();
@@ -68,7 +104,17 @@ export class CustomerComponent implements OnInit {
                 picadharcard: new FormControl('', []),
                 picothercard: new FormControl('', []),
               });
-    
+              WebcamUtil.getAvailableVideoInputs()
+              .then((mediaDevices: MediaDeviceInfo[]) => {
+                
+                if (mediaDevices && mediaDevices.length >= 1) {
+                    
+                    this.webCamDeviceId = mediaDevices[0].deviceId;
+                    if (this.webCamDeviceId) {
+                        this.webcamsAvailable = true;
+                    }
+                }
+              });
         }
     
         public hasError = (controlName: string, errorName: string) =>{
@@ -81,10 +127,11 @@ export class CustomerComponent implements OnInit {
         onSubmit() {
             // const returnUrl = '/checkinout';
             // this.router.navigate([returnUrl]);
-            this.formService.showLoading();
             if ( this.form.invalid) {
+                alert('Some values are missing in the customer form.')
                 return;
             }
+            this.formService.showLoading();
             this.onUploadProfilePictures();
             this.onUploadAdharPictures();
             this.onUploadDrivingPictures();
@@ -100,6 +147,7 @@ export class CustomerComponent implements OnInit {
         tmpProfilePicFile: File = null;
         tmpProfilepicS3Url: string = '';
         onSelectFileProfilePic(event) {
+            if (this.checkWebCamExists('profilepic')) return
             if (event.target.files && event.target.files[0]) {
             this.tmpProfilePicFile =event.target.files[0];
             var reader = new FileReader();
@@ -111,15 +159,30 @@ export class CustomerComponent implements OnInit {
             }
             }
         }
+        
         onUploadProfilePictures() {
-            const formData = new FormData();
             if (!this.tmpProfilePicFile)  return;
-            formData.append('uploadedImage', this.tmpProfilePicFile);
-            formData.append('agentId', '401');
-
+            let url = 'uploadfile';
+            let payload = {};
+            if (this.webcamsAvailable) {
+                url = 'captureImage';
+                payload = {
+                    base64: this.tmpProfilePicFile
+                }
+            }
+            else {
+                
+                
+                const formData = new FormData();
+                
+                formData.append('uploadedImage', this.tmpProfilePicFile);
+                formData.append('agentId', '401');
+                payload = formData;
+            }
+                
             this.uploader.profilePic = false;
 
-            this.http.post<any>(`${environment.filUploadHost}/uploadfile`, formData).subscribe(response => {
+            this.http.post<any>(`${environment.filUploadHost}/uploadfile`, payload).subscribe(response => {
                     if (response.statusCode === 200) {
                         console.log(response);
                         this.tmpProfilepicS3Url = response.s3URL;
@@ -141,6 +204,8 @@ export class CustomerComponent implements OnInit {
          tmpAdharCardPicFile: File = null;
          tmpAdharCardpicS3Url: string = '';
          onSelectFileAdharPic(event) {
+            if (this.checkWebCamExists('adharpic')) return
+
              if (event.target.files && event.target.files[0]) {
              this.tmpAdharCardPicFile =event.target.files[0];
              var reader = new FileReader();
@@ -153,14 +218,30 @@ export class CustomerComponent implements OnInit {
              }
          }
          onUploadAdharPictures() {
-             const formData = new FormData();
-             if (!this.tmpAdharCardPicFile)  return;
-             formData.append('uploadedImage', this.tmpAdharCardPicFile);
-             formData.append('agentId', '401');
+            if (!this.tmpAdharCardPicFile)  return;
+            let url = 'uploadfile';
+            let payload = {};
+            if (this.webcamsAvailable) {
+                url = 'captureImage';
+                payload = {
+                    base64: this.tmpAdharCardPicFile
+                }
+            }
+            else {
+                
+               
+                const formData = new FormData();
+                if (!this.tmpAdharCardPicFile)  return;
+                formData.append('uploadedImage', this.tmpAdharCardPicFile);
+                formData.append('agentId', '401');
+                payload = formData;
+            }
+                
+            
 
              this.uploader.adharCard = false;
 
-             this.http.post<any>(`${environment.filUploadHost}/uploadfile`, formData).subscribe(response => {
+             this.http.post<any>(`${environment.filUploadHost}/uploadfile`, payload).subscribe(response => {
                      if (response.statusCode === 200) {
                          console.log(response);
                          this.tmpAdharCardpicS3Url = response.s3URL;
@@ -183,6 +264,8 @@ export class CustomerComponent implements OnInit {
          tmpOtherCardPicFile: File = null;
          tmpOtherCardpicS3Url: string = '';
          onSelectFileOtherPic(event) {
+            if (this.checkWebCamExists('otherpic')) return
+
              if (event.target.files && event.target.files[0]) {
              this.tmpOtherCardPicFile =event.target.files[0];
              var reader = new FileReader();
@@ -195,13 +278,30 @@ export class CustomerComponent implements OnInit {
              }
          }
          onUploadOtherPictures() {
-             const formData = new FormData();
+          
              if (!this.tmpOtherCardPicFile)  return;
-             formData.append('uploadedImage', this.tmpOtherCardPicFile);
-             formData.append('agentId', '401');
-
+             let url = 'uploadfile';
+             let payload = {};
+             if (this.webcamsAvailable) {
+                 url = 'captureImage';
+                 payload = {
+                     base64: this.tmpOtherCardPicFile
+                 }
+             }
+             else {
+                 
+                
+                const formData = new FormData();
+                if (!this.tmpOtherCardPicFile)  return;
+                formData.append('uploadedImage', this.tmpOtherCardPicFile);
+                formData.append('agentId', '401');
+   
+                 payload = formData;
+             }
+                
+             
              this.uploader.otherid = false;
-             this.http.post<any>(`${environment.filUploadHost}/uploadfile`, formData).subscribe(response => {
+             this.http.post<any>(`${environment.filUploadHost}/uploadfile`, payload).subscribe(response => {
                      if (response.statusCode === 200) {
                          console.log(response);
                          this.tmpOtherCardpicS3Url = response.s3URL;
@@ -217,13 +317,22 @@ export class CustomerComponent implements OnInit {
              });
          }
 
-
+         checkWebCamExists(type) {
+             if (this.webcamsAvailable) {
+                 this.webcamsStart = true;
+                 this.webCamTypeSrc = type;
+                 return true;
+             }
+             return false;
+         }
          
          /* ***** Driving License PIC *****/
          tmpDrivingCardpic: string = ''
          tmpDrivingCardPicFile: File = null;
          tmpDrivingCardpicS3Url: string = '';
          onSelectFileDrivingPic(event) {
+            if (this.checkWebCamExists('drivingpic')) return
+
              if (event.target.files && event.target.files[0]) {
              this.tmpDrivingCardPicFile =event.target.files[0];
              var reader = new FileReader();
@@ -236,14 +345,32 @@ export class CustomerComponent implements OnInit {
              }
          }
          onUploadDrivingPictures() {
-             const formData = new FormData();
-             if (!this.tmpDrivingCardPicFile)  return;
-             formData.append('uploadedImage', this.tmpDrivingCardPicFile);
-             formData.append('agentId', '401');
+            if (!this.tmpDrivingCardPicFile)  return;
+             let url = 'uploadfile';
+             let payload = {};
+             if (this.webcamsAvailable) {
+                 url = 'captureImage';
+                 payload = {
+                     base64: this.tmpDrivingCardPicFile
+                 }
+             }
+             else {
+                 
+                
+                const formData = new FormData();
+                if (!this.tmpDrivingCardPicFile)  return;
+                formData.append('uploadedImage', this.tmpDrivingCardPicFile);
+                formData.append('agentId', '401');
+   
+                 payload = formData;
+             }
+                
+             
+             
 
              this.uploader.drivingLicense = false;
 
-             this.http.post<any>(`${environment.filUploadHost}/uploadfile`, formData).subscribe(response => {
+             this.http.post<any>(`${environment.filUploadHost}/uploadfile`, payload).subscribe(response => {
                      if (response.statusCode === 200) {
                          console.log(response);
                          this.tmpDrivingCardpicS3Url = response.s3URL;
@@ -265,6 +392,8 @@ export class CustomerComponent implements OnInit {
          tmpPANCardPicFile: File = null;
          tmpPANCardpicS3Url: string = '';
          onSelectFilePANPic(event) {
+            if (this.checkWebCamExists('panpic')) return
+
              if (event.target.files && event.target.files[0]) {
              this.tmpPANCardPicFile =event.target.files[0];
              var reader = new FileReader();
@@ -277,14 +406,30 @@ export class CustomerComponent implements OnInit {
              }
          }
          onUploadPANPictures() {
-             const formData = new FormData();
-             if (!this.tmpPANCardPicFile)  return;
-
-             formData.append('uploadedImage', this.tmpPANCardPicFile);
-             formData.append('agentId', '401');
+            if (!this.tmpPANCardPicFile)  return;
+             let url = 'uploadfile';
+             let payload = {};
+             if (this.webcamsAvailable) {
+                 url = 'captureImage';
+                 payload = {
+                     base64: this.tmpPANCardPicFile
+                 }
+             }
+             else {
+                 
+                const formData = new FormData();
+                if (!this.tmpPANCardPicFile)  return;
+   
+                formData.append('uploadedImage', this.tmpPANCardPicFile);
+                formData.append('agentId', '401');
+   
+                 payload = formData;
+             }
+                
+             
 
              this.uploader.panCard = false;
-             this.http.post<any>(`${environment.filUploadHost}/uploadfile`, formData).subscribe(response => {
+             this.http.post<any>(`${environment.filUploadHost}/uploadfile`, payload).subscribe(response => {
                      if (response.statusCode === 200) {
                          console.log(response);
                          this.tmpPANCardpicS3Url = response.s3URL;
@@ -329,6 +474,12 @@ export class CustomerComponent implements OnInit {
        onNextPage() {
         
         if (this.step == 2) {
+            if (this.f.cellphone.invalid) {
+                return;
+            }
+            if (!Number(this.f.cellphone.value)) {
+                return;
+            }
             this.formService.findByCellPhone({cellphone: this.f.cellphone.value, username: this.f.username.value}).subscribe( res => {
                 if (res) {
                     if (res.customerNotFound) {
@@ -347,6 +498,11 @@ export class CustomerComponent implements OnInit {
             })
         }
         else {
+            if (this.step == 4)            {
+                if (this.f.address.invalid) {
+                    return;
+                }
+            }
             this.step = this.step + 1
         }
         

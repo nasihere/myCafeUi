@@ -2,6 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {WebcamModule} from 'ngx-webcam';
 
 // used to create fake backend
 
@@ -32,13 +33,15 @@ import { HoursSelectionComponent} from './hour-cost/hour.cost-component';
 import { VerifyEmailAccountComponent} from './verifyemailaccount/verifyemailaccount.component';
 import { FormsModule } from '@angular/forms';
 
-import { HttpModule } from '@angular/http';
+import { HttpModule } from '@angular/http';;
+import { WebcamPicturesComponent } from './webcam-pictures/webcam-pictures.component'
 
 
 @NgModule({
     
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
     imports: [
+        WebcamModule,
         HttpModule,
         FormsModule,
         BrowserModule,
@@ -66,7 +69,8 @@ import { HttpModule } from '@angular/http';
         CashDepositComponent,
         SettingsComponent,
         HoursSelectionComponent,
-        VerifyEmailAccountComponent
+        VerifyEmailAccountComponent,
+        WebcamPicturesComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
