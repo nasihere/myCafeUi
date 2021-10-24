@@ -5592,7 +5592,7 @@ class CustomerComponent {
             payload = formData;
         }
         this.uploader.profilePic = false;
-        this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].filUploadHost}/uploadfile`, payload).subscribe(response => {
+        this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].filUploadHost}/${url}`, payload).subscribe(response => {
             if (response.statusCode === 200) {
                 console.log(response);
                 this.tmpProfilepicS3Url = response.s3URL;
@@ -5638,7 +5638,7 @@ class CustomerComponent {
             payload = formData;
         }
         this.uploader.adharCard = false;
-        this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].filUploadHost}/uploadfile`, payload).subscribe(response => {
+        this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].filUploadHost}/${url}`, payload).subscribe(response => {
             if (response.statusCode === 200) {
                 console.log(response);
                 this.tmpAdharCardpicS3Url = response.s3URL;
@@ -5684,7 +5684,7 @@ class CustomerComponent {
             payload = formData;
         }
         this.uploader.otherid = false;
-        this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].filUploadHost}/uploadfile`, payload).subscribe(response => {
+        this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].filUploadHost}/${url}`, payload).subscribe(response => {
             if (response.statusCode === 200) {
                 console.log(response);
                 this.tmpOtherCardpicS3Url = response.s3URL;
@@ -5739,7 +5739,7 @@ class CustomerComponent {
             payload = formData;
         }
         this.uploader.drivingLicense = false;
-        this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].filUploadHost}/uploadfile`, payload).subscribe(response => {
+        this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].filUploadHost}/${url}`, payload).subscribe(response => {
             if (response.statusCode === 200) {
                 console.log(response);
                 this.tmpDrivingCardpicS3Url = response.s3URL;
@@ -5785,7 +5785,7 @@ class CustomerComponent {
             payload = formData;
         }
         this.uploader.panCard = false;
-        this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].filUploadHost}/uploadfile`, payload).subscribe(response => {
+        this.http.post(`${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].filUploadHost}/${url}`, payload).subscribe(response => {
             if (response.statusCode === 200) {
                 console.log(response);
                 this.tmpPANCardpicS3Url = response.s3URL;
@@ -8807,9 +8807,9 @@ __webpack_require__.r(__webpack_exports__);
 const environment = {
     production: false,
     apiUrl: 'http://ec2-3-132-213-115.us-east-2.compute.amazonaws.com:5000',
-    filUploadHost: 'http://ec2-3-132-213-115.us-east-2.compute.amazonaws.com:3000'
+    // filUploadHost: 'http://ec2-3-132-213-115.us-east-2.compute.amazonaws.com:3000'
     // apiUrl: 'http://localhost:5000',
-    // filUploadHost: 'http://localhost:3000'
+    filUploadHost: 'http://localhost:3000'
 };
 /*
  * For easier debugging in development mode, you can import the following file
