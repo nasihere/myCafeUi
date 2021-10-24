@@ -32,11 +32,22 @@
                    
                     <div class="flex justify-center">
                          <div class="flex flex-column">
+                              <div *ngIf="!webcamsAvailable">
+                                   <span *ngIf="!isMobile">
+                                        <strong>How to allow Chrome to access the web camera?</strong>
+                                        <ul>
+                                             <li>Navigate via address-bar to <u><a href='chrome://flags/#unsafely-treat-insecure-origin-as-secure' >chrome://flags/#unsafely-treat-insecure-origin-as-secure</a></u> in Chrome.</li>
+                                             <li>Add the address <u><a href="javascript:void(0)">http://ec2-3-132-213-115.us-east-2.compute.amazonaws.com:8080</a></u> to ignore the secure origin policy for.</li>
+                                             <li>Save and restart Chrome.</li>
+                                        </ul>
+                                   </span>
+          
+                                   </div>
                               <small  *ngIf="webcamsAvailable">WebCam is available to take the picture</small>
                               <span><small>less than 2MB {{webcamsAvailable}}</small></span>
                          
                          <div *ngIf="!webcamsAvailable">
-
+                              
                               <label class="hoverable" for="fileInput">
                                    <img [src]="tmpProfilepic ? tmpProfilepic : 'assets/img_avatar.png'"> 
                                    <mat-icon matSuffix>camera_enhance</mat-icon>
@@ -46,7 +57,9 @@
                                  
                               <input id="fileInput" type='file' (change)="onSelectFileProfilePic($event)">
                          </div>
+                        
                          <div *ngIf="webcamsAvailable">
+                              
                               <label class="hoverable" (click)="onSelectFileProfilePic($event)">
                                    <img [src]="tmpProfilepic ? tmpProfilepic : 'assets/img_avatar.png'"> 
                                    <mat-icon matSuffix>camera_enhance</mat-icon>

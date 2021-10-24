@@ -9,7 +9,8 @@ import { FormService } from '../_services';
 
 @Component({ styleUrls: ['./customer.component.scss'], templateUrl: 'customer.component.html' })
 export class CustomerComponent implements OnInit {
-
+    isMobile :boolean = ('ontouchstart' in document.documentElement && /mobi/i.test(navigator.userAgent));
+    ;
     // latest snapshot
     webCamEnabled: boolean = false;
     webCamDeviceId: string = '';
