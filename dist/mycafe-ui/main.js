@@ -5701,6 +5701,7 @@ class CustomerComponent {
         if (this.webcamsAvailable) {
             this.webcamsStart = true;
             this.webCamTypeSrc = type;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             return true;
         }
         return false;
