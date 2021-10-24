@@ -5440,19 +5440,19 @@ class CustomerComponent {
             this.tmpProfilePicFile = image.imageAsDataUrl;
         }
         else if (picType == 'adharpic') {
-            this.tmpAdharCardPicFile = image.imageAsDataUrl;
+            this.tmpAdharCardpic = image.imageAsDataUrl;
             this.tmpAdharCardPicFile = image.imageAsDataUrl;
         }
         else if (picType == 'drivingpic') {
-            this.tmpDrivingCardPicFile = image.imageAsDataUrl;
+            this.tmpDrivingCardpic = image.imageAsDataUrl;
             this.tmpDrivingCardPicFile = image.imageAsDataUrl;
         }
         else if (picType == 'panpic') {
-            this.tmpPANCardPicFile = image.imageAsDataUrl;
+            this.tmpPANCardpic = image.imageAsDataUrl;
             this.tmpPANCardPicFile = image.imageAsDataUrl;
         }
         else if (picType == 'otherpic') {
-            this.tmpOtherCardPicFile = image.imageAsDataUrl;
+            this.tmpOtherCardpic = image.imageAsDataUrl;
             this.tmpOtherCardPicFile = image.imageAsDataUrl;
         }
         this.webCamClose({});
