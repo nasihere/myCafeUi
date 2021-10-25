@@ -76,14 +76,11 @@ export class AgentSetupComponent implements OnInit {
 
     }
     onDownloadLinkEmail() {
-        console.log(this.f.email.value)
         this.step = 3;
         // const returnUrl = '/computerselection';
         // this.router.navigate([returnUrl]);
         // stop here if form is invalid
-        if (!this.f.email.valid) {
-            return;
-        }
+      
         const payload = {
             username: this.data.username,
             pcname: this.f.computerName.value,
