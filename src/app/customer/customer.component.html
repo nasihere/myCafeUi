@@ -34,10 +34,14 @@
                               <div *ngIf="!webcamsAvailable">
                                    <span *ngIf="!isMobile">
                                         <strong>How to allow Chrome to access the web camera?</strong>
+                                        <img src="assets/webcam_settings.png" height="50" class="img-reset" />
                                         <ul>
-                                             <li>Navigate via address-bar to <u><a href='chrome://flags/#unsafely-treat-insecure-origin-as-secure' >chrome://flags/#unsafely-treat-insecure-origin-as-secure</a></u> in Chrome.</li>
-                                             <li>Add the address <u><a href="javascript:void(0)">http://ec2-3-132-213-115.us-east-2.compute.amazonaws.com:8080</a></u> to ignore the secure origin policy for.</li>
-                                             <li>Save and restart Chrome.</li>
+                                             <li>Open Chrome and select the Chrome menu, represented by three vertical dots in the upper-right corner.</li>
+                                             <li>Select Settings. ...</li>
+                                             <li>Scroll down and select Advanced.</li>
+                                             <li>Under the Privacy and security section, select Site settings.</li>
+                                             <li>Select either Camera or Microphone to access either setting.</li>
+                                             <li>Save and refresh page.</li>
                                         </ul>
                                    </span>
           
