@@ -30,10 +30,10 @@
         
         
         <div class="flex justify-between"  *ngIf="!limitedView && (item.lastResponseAt && item.pcstatus == 'ready')" >
-          <button  mat-icon-button (click)="item.timerI = !item.timerI ? 3 : (item.timerI - 1); "><mat-icon>remove_circle_outline</mat-icon></button>
+          <button  mat-icon-button (click)="item.timerI = !item.timerI ? 2 : (item.timerI - 1); "><mat-icon>remove_circle_outline</mat-icon></button>
           
-          <span class="mt-2">{{timerList[item.timerI || 4].label}}</span>
-          <button  mat-icon-button (click)="item.timerI = !item.timerI ? 5 : (item.timerI + 1); " ><mat-icon>add_circle_outline</mat-icon></button>
+          <span class="mt-2">{{timerList[item.timerI || 3].label}}</span>
+          <button  mat-icon-button (click)="item.timerI = !item.timerI ? 4 : (item.timerI + 1); " ><mat-icon>add_circle_outline</mat-icon></button>
         </div>
         <div  *ngIf="item.lastResponseAt == null">
             <button  mat-flat-button color="primary" (click)="item.showSecretKey = true" ><mat-icon>key</mat-icon> Secret Key </button>

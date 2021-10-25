@@ -90,18 +90,7 @@
                          
                     </mat-form-field>
                 </div>
-                <div *ngIf="step == 3">
-                    <span class="label-field">Email Address (Optional)</span>
-                    <mat-form-field appearance="outline"   [formGroup]="form">
-                         <mat-icon matSuffix>alternate_email</mat-icon>
-                         
-                         <input  (keyup.enter)="onNextPage()"  matInput formControlName="email">
-                         <mat-error *ngIf="hasError('email', 'required')">Email is <strong>required</strong></mat-error>
-                         <mat-error *ngIf="hasError('email', 'email')">Enter a valid email address</mat-error>
-                         
-                    </mat-form-field>
-                </div>
-                  <div *ngIf="step == 4">
+                  <div *ngIf="step == 3">
                   <span class="label-field">Home Address Of Your Current Residence (Required)</span>
                   <mat-form-field appearance="outline"  [formGroup]="form">
                        <mat-icon matSuffix>book</mat-icon>
@@ -110,7 +99,7 @@
                      
                   </mat-form-field>
                 </div>
-                  <div *ngIf="step == 5">
+                  <div *ngIf="step == 4">
 
                   <span class="label-field"><mat-icon matSuffix>face</mat-icon>Gender</span>
                   <div class="mt-2"  [formGroup]="form">
@@ -120,7 +109,7 @@
                       </mat-radio-group> 
                     </div>
                 </div>
-                <div *ngIf="step == 6">
+                <div *ngIf="step == 5">
                     <span class="label-field">Identification Proof (Required)</span>
                     <div class="border-line"></div>
 
@@ -269,13 +258,13 @@
 
        
 
-             <div class="flex justify-between"  *ngIf="step != 6">
+             <div class="flex justify-between"  *ngIf="step != 5">
                <button mat-stroked-button color="primary"  *ngIf="step == 1" routerLink="/admindashboard"><mat-icon>keyboard_arrow_left</mat-icon>Back</button> 
                <button mat-stroked-button color="primary" *ngIf="step != 1"  (click)="onPrevPage();"><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
                 <button mat-flat-button color="primary"  (click)="onNextPage()">Next</button>
            </div>
 
-             <div class="flex justify-between"  *ngIf="step == 6">
+             <div class="flex justify-between"  *ngIf="step == 5">
                     <button mat-stroked-button color="primary" (click)="onPrevPage()"><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
 
                   <button  (click)="onSubmit()" mat-flat-button color="primary" >Create Customer</button>

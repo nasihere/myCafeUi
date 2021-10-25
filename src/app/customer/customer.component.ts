@@ -501,11 +501,12 @@ export class CustomerComponent implements OnInit {
             })
         }
         else {
-            if (this.step == 4)            {
+            if (this.step == 3)            {
                 if (this.f.address.invalid) {
                     return;
                 }
             }
+            
             this.step = this.step + 1
         }
         
