@@ -476,7 +476,7 @@ export class CustomerComponent implements OnInit {
 
        onNextPage() {
         
-        if (this.step == 2) {
+        if (this.step == 1) {
             if (this.f.cellphone.invalid) {
                 return;
             }
@@ -501,7 +501,7 @@ export class CustomerComponent implements OnInit {
             })
         }
         else {
-            if (this.step == 3)            {
+            if (this.step == 1)            {
                 if (this.f.address.invalid) {
                     return;
                 }
