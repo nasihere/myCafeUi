@@ -1,19 +1,18 @@
-<div class="flex justify-between nav">
+     <div class="flex justify-between nav">
           <div class="page-name"><mat-icon>person</mat-icon>New Customer</div>
      </div>
-        <div class="notify flex ">
+     <div class="notify flex ">
           <mat-icon>info</mat-icon> 
           <div class="flex flex-column"><span class="text-medium">The government of India issues a gazettes notifying that no cyber café can run freely without any registration, registration from appropriate authority is very needful and compulsory. The owner running the cafe must contain the records of all the users and the staffs working inside the cafe.</span><span class="text-smaller">On 11 September 2011,</span></div>
-        </div>
+     </div>
 
         
-        <div class="bg-white pl-1 flex justify-between pr-1 mlr-1 pt-2">
+     <div class="bg-white pl-1 flex justify-between pr-1 mlr-1 pt-2">
              <span class="heading">Already have account?</span>
              <button mat-stroked-button color="primary" routerLink="/admindashboard"  ><mat-icon>manage_search</mat-icon>Find Customer</button>
-        </div>
-        <div class="border-line "></div>
-     
-        <mat-card class="p-3 opacity-90 mlr-1">
+     </div>
+     <div class="border-line "></div>
+     <mat-card class="p-3  mlr-1"  [ngClass]="(webcamsStart) ? 'opacity-20' : ''">
                   
                <div *ngIf="step <= 1">
                   <span class="label-field">Name (Required)</span>
@@ -113,42 +112,45 @@
                     <span class="label-field">Identification Proof (Required)</span>
                     <div class="border-line"></div>
 
-                    
-               <div>
-                    <mat-form-field  [formGroup]="form">
-                         <input formControlName="iddirivinlicenseno" matInput placeholder="Driving License Number">
-                    </mat-form-field>
-               </div>
-               <div class="flex justify-center">
-                    
-                    <div *ngIf="webcamsAvailable">
-                         <label class="hoverable-id" (click)="onSelectFileDrivingPic($event)">>
-                              <img class="img-id" [src]="tmpDrivingCardpic ? tmpDrivingCardpic : 'assets/driving-license-sample.jpg'" > 
-                              <mat-icon matSuffix>camera_enhance</mat-icon>
-                              <div class="background"></div>
-                         </label>
-                         <input class="fileInput" id="fileInputDrivingPic" type='file' (change)="onSelectFileDrivingPic($event)">
-                         
-                    </div>
-                    <div *ngIf="!webcamsAvailable">
-                         <label class="hoverable-id" for="fileInputDrivingPic">
-                              <img class="img-id" [src]="tmpDrivingCardpic ? tmpDrivingCardpic : 'assets/driving-license-sample.jpg'" > 
-                              <mat-icon matSuffix>camera_enhance</mat-icon>
-                              <div class="background"></div>
-                         </label>
-                         <input class="fileInput" id="fileInputDrivingPic" type='file' (change)="onSelectFileDrivingPic($event)">
-                    </div>
-                    <br />
-                    
-
-               </div>
-
-
-                    
-                    <div class="border-line"></div>
-
+                <div class="flex justify-between">
+                              
                     <div>
-                         <mat-form-field  [formGroup]="form">
+                         <mat-form-field appearance="outline"  [formGroup]="form">
+                              <input formControlName="iddirivinlicenseno" matInput placeholder="Driving License Number">
+                         </mat-form-field>
+                    </div>
+                    <div class="flex justify-center">
+                         
+                         <div *ngIf="webcamsAvailable">
+                              <label class="hoverable-id" (click)="onSelectFileDrivingPic($event)">>
+                                   <img class="img-id" [src]="tmpDrivingCardpic ? tmpDrivingCardpic : 'assets/driving-license-sample.jpg'" > 
+                                   <mat-icon matSuffix>camera_enhance</mat-icon>
+                                   <div class="background"></div>
+                              </label>
+                              <input class="fileInput" id="fileInputDrivingPic" type='file' (change)="onSelectFileDrivingPic($event)">
+                              
+                         </div>
+                         <div *ngIf="!webcamsAvailable">
+                              <label class="hoverable-id" for="fileInputDrivingPic">
+                                   <img class="img-id" [src]="tmpDrivingCardpic ? tmpDrivingCardpic : 'assets/driving-license-sample.jpg'" > 
+                                   <mat-icon matSuffix>camera_enhance</mat-icon>
+                                   <div class="background"></div>
+                              </label>
+                              <input class="fileInput" id="fileInputDrivingPic" type='file' (change)="onSelectFileDrivingPic($event)">
+                         </div>
+                         <br />
+                         
+
+                    </div>
+
+
+
+                </div>
+                    
+               <div class="border-line"></div>
+               <div class="flex justify-between">
+                    <div>
+                         <mat-form-field appearance="outline"  [formGroup]="form">
                               <input formControlName="idpancard" matInput placeholder="PAN Card Number">
                          </mat-form-field>
                     </div>
@@ -177,17 +179,17 @@
      
                     </div>
 
-
+               </div>
                     
                <div class="border-line"></div>
 
-
-               <div>
-                    <mat-form-field  [formGroup]="form">
-                         <input formControlName="idadharcard" matInput placeholder="Adhar Card Number">
-                    </mat-form-field>
-               </div>
-               <div class="flex justify-center">
+               <div class="flex justify-between">
+                    <div>
+                         <mat-form-field appearance="outline"  [formGroup]="form">
+                              <input formControlName="idadharcard" matInput placeholder="Adhar Card Number">
+                         </mat-form-field>
+                    </div>
+                    <div class="flex justify-center">
                     
                     <div *ngIf="webcamsAvailable">
                          <label class="hoverable-id"  (click)="onSelectFileAdharPic($event)">
@@ -212,44 +214,43 @@
 
                </div>
 
-
-
-                 
+               </div>
                <div class="border-line"></div>
+               <div class="flex justify-between">
+                 
 
-               
-               <div>
-                    <mat-form-field  [formGroup]="form">
-                         <input formControlName="idothercard" matInput placeholder="Other Id">
-                    </mat-form-field>
-               </div>
-               <div class="flex justify-center">
-                    
-                    <div *ngIf="webcamsAvailable">
-                     
-                         <label class="hoverable-id"  (click)="onSelectFileOtherPic($event)">
-                              <img class="img-id" [src]="tmpOtherCardpic ? tmpOtherCardpic : 'assets/idproof.png'" > 
-                              <mat-icon matSuffix>camera_enhance</mat-icon>
-                              <div class="background"></div>
-                         </label>
-                         <input class="fileInput" id="fileInputOtherPic" type='file' (change)="onSelectFileOtherPic($event)">
                          
-                    </div>
-                    <div *ngIf="!webcamsAvailable">
-                    
-                         <label class="hoverable-id" for="fileInputOtherPic">
-                              <img class="img-id" [src]="tmpOtherCardpic ? tmpOtherCardpic : 'assets/idproof.png'" > 
-                              <mat-icon matSuffix>camera_enhance</mat-icon>
-                              <div class="background"></div>
-                         </label>
-                         <input class="fileInput" id="fileInputOtherPic" type='file' (change)="onSelectFileOtherPic($event)">
-                     
-                    </div>
-                        <br />
-                    
+                         <div>
+                              <mat-form-field appearance="outline"  [formGroup]="form">
+                                   <input formControlName="idothercard" matInput placeholder="Other Id">
+                              </mat-form-field>
+                         </div>
+                         <div class="flex justify-center">
+                              
+                              <div *ngIf="webcamsAvailable">
+                              
+                                   <label class="hoverable-id"  (click)="onSelectFileOtherPic($event)">
+                                        <img class="img-id" [src]="tmpOtherCardpic ? tmpOtherCardpic : 'assets/idproof.png'" > 
+                                        <mat-icon matSuffix>camera_enhance</mat-icon>
+                                        <div class="background"></div>
+                                   </label>
+                                   <input class="fileInput" id="fileInputOtherPic" type='file' (change)="onSelectFileOtherPic($event)">
+                                   
+                              </div>
+                              <div *ngIf="!webcamsAvailable">
+                              
+                                   <label class="hoverable-id" for="fileInputOtherPic">
+                                        <img class="img-id" [src]="tmpOtherCardpic ? tmpOtherCardpic : 'assets/idproof.png'" > 
+                                        <mat-icon matSuffix>camera_enhance</mat-icon>
+                                        <div class="background"></div>
+                                   </label>
+                                   <input class="fileInput" id="fileInputOtherPic" type='file' (change)="onSelectFileOtherPic($event)">
+                              
+                              </div>
+                              
 
+                         </div>
                </div>
-
 
 
 
