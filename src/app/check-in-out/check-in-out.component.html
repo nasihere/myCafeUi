@@ -65,9 +65,10 @@
           </div>
           <span class="flex justify-center">OR</span>
           <div *ngIf="step==1" class="flex justify-between flex-column">
-               <div class="options-prompt flex">
-                    <button (click)="step = 4" class="w-100" mat-button><mat-icon>smartphone</mat-icon>
-                    <span>Self Login</span></button>
+               <span *ngIf="!smsService"> SMS Login only available for India. Please request app developer to allow SMS login for your country.</span>
+               <div class="options-prompt flex" [ngClass]="smsService ? '' : 'opacity-20'">
+                    <button (click)="step = smsService ? 4 : 1" class="w-100" mat-button><mat-icon>smartphone</mat-icon>
+                    <span>SMS Login</span></button>
                </div>
              
           </div>

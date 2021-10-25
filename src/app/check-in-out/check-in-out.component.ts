@@ -12,6 +12,7 @@ export class CheckInOutComponent implements OnInit  {
     step: number = 1;
     form: FormGroup;
     submitted: boolean;
+    smsService: boolean = true;
     loginForm: any;
     loading: boolean;
     authenticationService: any;
@@ -25,12 +26,26 @@ export class CheckInOutComponent implements OnInit  {
     customerNotExists: boolean;
     accessCode: number;
     username: any;
+    accountDetail: any;
     constructor(     public formService: FormService,
         private route: ActivatedRoute,     private router: Router,
 
     ) { 
        
     }
+    findSettings(username) {
+        this.formService.getSettings({username,password:'abc'}).subscribe( res => {
+             if (res.data.Item.product1 == undefined) {
+              this.accountDetail = null;   
+              return;
+             }
+             this.accountDetail = res.data.Item;
+             this.smsService = this.accountDetail.country == 'India'
+             
+          }, err => {
+            this.accountDetail = null;
+          });
+      }
     ngOnInit() {
 
         let MOBILE_PATTERN = /[0-9\+\-\ ]/;
@@ -60,6 +75,7 @@ export class CheckInOutComponent implements OnInit  {
                 this.agentDetail = res;
                 this.agentVerified = true;
                 this.username = res.username;
+                this.findSettings(this.username);
                 if (res.pcstatus == 'busy') {
                     const returnUrl = '/connectedcomputer/'+ res.id;
                     this.router.navigate([returnUrl]);
