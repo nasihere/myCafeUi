@@ -3,6 +3,7 @@ import { FormService } from '../_services';
 import * as moment from 'moment';
 @Component({selector:'dashboard-terminal', templateUrl: 'dashboard-v2.component.html' })
 export class DashboardV2Component implements OnInit   {
+  productServicesShow: boolean = false;
   lockMachine: boolean = false;
   lockItem: any;  
  ELEMENT_DATA  = [
@@ -18,6 +19,7 @@ export class DashboardV2Component implements OnInit   {
   dataSource = this.ELEMENT_DATA;
   data: any;
   pcAgentsList: any;
+  customerProductServices: any;
   
   constructor(    public formService: FormService,   
 
@@ -146,5 +148,18 @@ onLockPC(row) {
              
           }
       })
+  }
+  showListOfProductServices(row) {
+    this.customerProductServices = row;
+    this.productServicesShow = true;
+  }
+  getProduct(i) {
+    if (!this.customerProductServices[`productQty${i}`]) {
+      return null;
+    }
+    const str = this.customerProductServices[`productCost${i}`] +  ' charged for ' + this.customerProductServices[`productCode${i}`] + ' and ' + this.customerProductServices[`productQty${i}`] + ' quantity applied';
+    return str;
+      
+
   }
 }

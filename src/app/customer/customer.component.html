@@ -46,8 +46,7 @@
                                    </span>
           
                                    </div>
-                              <small  *ngIf="webcamsAvailable">WebCam is available to take the picture</small>
-                              <span><small>less than 2MB {{webcamsAvailable}}</small></span>
+                              <span><small>less than 2MB </small></span>
                          
                          <div *ngIf="!webcamsAvailable">
                               
@@ -80,7 +79,7 @@
 
   
                   </div>            
-                <div *ngIf="step == 1">
+                <div *ngIf="step == 1" class="mt-3">
                     <span class="label-field">Cell Phone Number (Required)</span>
                     <mat-form-field appearance="outline"  [formGroup]="form">
                          <mat-icon matSuffix>phone_android</mat-icon>
@@ -112,11 +111,54 @@
                       </mat-radio-group> 
                     </div>
                 </div>
+                
+                     
+               <div class="border-line"></div>
+               <div *ngIf="step == 1">
+               <div class="flex flex-column mt-3">
+                 
+
+                         
+                      <span class="label-field">Proof of ID-Card</span>
+                        <div>
+                              <mat-form-field appearance="outline"  [formGroup]="form">
+                                   <input formControlName="idothercard" matInput placeholder="ID-Card Number">
+                              </mat-form-field>
+                         </div>
+                         <div class="flex justify-center">
+                              
+                              <div *ngIf="webcamsAvailable">
+                              
+                                   <label class="hoverable-id"  (click)="onSelectFileOtherPic($event)">
+                                        <img class="img-id" [src]="tmpOtherCardpic ? tmpOtherCardpic : 'assets/idproof.png'" > 
+                                        <mat-icon matSuffix>camera_enhance</mat-icon>
+                                        <div class="background"></div>
+                                   </label>
+                                   <input class="fileInput" id="fileInputOtherPic" type='file' (change)="onSelectFileOtherPic($event)">
+                                   
+                              </div>
+                              <div *ngIf="!webcamsAvailable">
+                              
+                                   <label class="hoverable-id" for="fileInputOtherPic">
+                                        <img class="img-id" [src]="tmpOtherCardpic ? tmpOtherCardpic : 'assets/idproof.png'" > 
+                                        <mat-icon matSuffix>camera_enhance</mat-icon>
+                                        <div class="background"></div>
+                                   </label>
+                                   <input class="fileInput" id="fileInputOtherPic" type='file' (change)="onSelectFileOtherPic($event)">
+                              
+                              </div>
+                              
+
+                         </div>
+               </div>
+
+
+                </div>
                 <div *ngIf="step == 2">
                     <span class="label-field">Identification Proof (Required)</span>
                     <div class="border-line"></div>
 
-                <div class="flex justify-between">
+                <div class="flex flex-column">
                               
                     <div>
                          <mat-form-field appearance="outline"  [formGroup]="form">
@@ -126,7 +168,7 @@
                     <div class="flex justify-center">
                          
                          <div *ngIf="webcamsAvailable">
-                              <label class="hoverable-id" (click)="onSelectFileDrivingPic($event)">>
+                              <label class="hoverable-id" (click)="onSelectFileDrivingPic($event)">
                                    <img class="img-id" [src]="tmpDrivingCardpic ? tmpDrivingCardpic : 'assets/driving-license-sample.jpg'" > 
                                    <mat-icon matSuffix>camera_enhance</mat-icon>
                                    <div class="background"></div>
@@ -142,7 +184,6 @@
                               </label>
                               <input class="fileInput" id="fileInputDrivingPic" type='file' (change)="onSelectFileDrivingPic($event)">
                          </div>
-                         <br />
                          
 
                     </div>
@@ -152,7 +193,7 @@
                 </div>
                     
                <div class="border-line"></div>
-               <div class="flex justify-between">
+               <div class="flex flex-column">
                     <div>
                          <mat-form-field appearance="outline"  [formGroup]="form">
                               <input formControlName="idpancard" matInput placeholder="PAN Card Number">
@@ -187,7 +228,7 @@
                     
                <div class="border-line"></div>
 
-               <div class="flex justify-between">
+               <div class="flex flex-column">
                     <div>
                          <mat-form-field appearance="outline"  [formGroup]="form">
                               <input formControlName="idadharcard" matInput placeholder="Adhar Card Number">
@@ -219,43 +260,6 @@
                </div>
 
                </div>
-               <div class="border-line"></div>
-               <div class="flex justify-between">
-                 
-
-                         
-                         <div>
-                              <mat-form-field appearance="outline"  [formGroup]="form">
-                                   <input formControlName="idothercard" matInput placeholder="Other Id">
-                              </mat-form-field>
-                         </div>
-                         <div class="flex justify-center">
-                              
-                              <div *ngIf="webcamsAvailable">
-                              
-                                   <label class="hoverable-id"  (click)="onSelectFileOtherPic($event)">
-                                        <img class="img-id" [src]="tmpOtherCardpic ? tmpOtherCardpic : 'assets/idproof.png'" > 
-                                        <mat-icon matSuffix>camera_enhance</mat-icon>
-                                        <div class="background"></div>
-                                   </label>
-                                   <input class="fileInput" id="fileInputOtherPic" type='file' (change)="onSelectFileOtherPic($event)">
-                                   
-                              </div>
-                              <div *ngIf="!webcamsAvailable">
-                              
-                                   <label class="hoverable-id" for="fileInputOtherPic">
-                                        <img class="img-id" [src]="tmpOtherCardpic ? tmpOtherCardpic : 'assets/idproof.png'" > 
-                                        <mat-icon matSuffix>camera_enhance</mat-icon>
-                                        <div class="background"></div>
-                                   </label>
-                                   <input class="fileInput" id="fileInputOtherPic" type='file' (change)="onSelectFileOtherPic($event)">
-                              
-                              </div>
-                              
-
-                         </div>
-               </div>
-
 
 
           </div>
@@ -263,13 +267,13 @@
 
        
 
-             <div class="flex justify-between"  *ngIf="step != 2">
+             <div class="flex justify-between"  *ngIf="step != 1">
                <button mat-stroked-button color="primary"  *ngIf="step == 1" routerLink="/admindashboard"><mat-icon>keyboard_arrow_left</mat-icon>Back</button> 
                <button mat-stroked-button color="primary" *ngIf="step != 1"  (click)="onPrevPage();"><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
                 <button mat-flat-button color="primary"  (click)="onNextPage()">Next</button>
            </div>
 
-             <div class="flex justify-between"  *ngIf="step == 2">
+             <div class="flex justify-between"  *ngIf="step == 1">
                     <button mat-stroked-button color="primary" (click)="onPrevPage()"><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
 
                   <button  (click)="onSubmit()" mat-flat-button color="primary" >Create Customer</button>

@@ -123,13 +123,14 @@
     min-width: 45%;
 }
 .admin-password {
-    position: absolute;
+    position: fixed!important;
+    z-index: 9999;
     background-color: #fff;
     top: 10rem;
     max-width: 768px;
     width: 100%;
     -webkit-box-shadow: 5px 5px 35px 5px #000000; 
-box-shadow: 5px 5px 35px 5px #000000;
+    box-shadow: 5px 5px 35px 5px #000000;
 }
 .options-prompt-access-code {
     background-color: #e3ede3;
