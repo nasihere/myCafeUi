@@ -223,7 +223,8 @@ export class CheckInOutComponent implements OnInit  {
         item.pcstatus = 'busy';
         item.agentid = this.paramId;
         if (this.formService.response.resCustomer) {
-            item.customerid = this.formService.response.resCustomer.id 
+            item.customerid = this.formService.response.resCustomer.id;
+            item.customerName = this.formService.response.resCustomer.name;
         }
         else {
             item.customerid = this.agentDetail.customerId;
