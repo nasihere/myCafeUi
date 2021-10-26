@@ -444,6 +444,7 @@ export class SettingsComponent implements OnInit  {
         localStorage.setItem("resAuthSignIn", null);
         const returnUrl = `/login`;
         this.router.navigate([returnUrl]);
+        localStorage.clear()
                     
     }
 }
