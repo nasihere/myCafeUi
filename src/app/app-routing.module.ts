@@ -20,8 +20,7 @@ import { VerifyEmailAccountComponent} from './verifyemailaccount/verifyemailacco
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 
 const routes: Routes = [
-    { path: '', component: WelcomePageComponent },
-    { path: 'welcome', component: WelcomePageComponent },
+    { path: '', component: LoginComponent },
     { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
     { path: 'connectedcomputer/:agentId', component: ConnectedComputerComponent, canActivate: [AuthGuard] },
     { path: 'admindashboard', component: AdminDashboardComponent, canActivate: [AuthGuard] },

@@ -20,14 +20,16 @@ export class AppComponent {
         this.router.events.subscribe(
             (event: any) => {
               if (event instanceof NavigationEnd) {
-                if (this.router.url == '/welcome') {
-                    this.appPage = false;
-                    window.location.href = 'assets/website';
-                }
+               
                 if (this.router.url == '/login' || this.router.url == '/register' || this.router.url == '/agentsetup') {
                     return;
                 }
-
+                if (this.formService.response.resAuthSignIn == null) {
+                    this.formService.response.resAuthSignIn = this.readFromCache('resAuthSignIn')
+                  }
+                  if ( this.formService.response.resAuthSignIn == null) {
+                    window.location.href = 'assets/website';
+                  }
               }
             }
           );
