@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormService } from '../_services';
 
 @Component({
   selector: 'app-welcome-page',
@@ -7,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WelcomePageComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(public formService: FormService,) { }
+  readFromCache = key => localStorage.getItem(key) && JSON.parse(localStorage.getItem(key)) || null
   ngOnInit(): void {
-    window.location.href = 'assets/website';
+    if (this.formService.response.resAuthSignIn == null) {
+      this.formService.response.resAuthSignIn = this.readFromCache('resAuthSignIn')
+    }
+    if ( this.formService.response.resAuthSignIn == null) {
+      window.location.href = 'assets/website';
+    }
+    
   }
 
 }
