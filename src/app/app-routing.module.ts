@@ -17,9 +17,11 @@ import { CashDepositComponent } from './cash-deposit/cash-deposit-component';
 import { SettingsComponent } from './settings/settings.component';
 import { HoursSelectionComponent} from './hour-cost/hour.cost-component';
 import { VerifyEmailAccountComponent} from './verifyemailaccount/verifyemailaccount.component';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 
 const routes: Routes = [
-    { path: '', component: LoginComponent },
+    { path: '', component: WelcomePageComponent },
+    { path: 'welcome', component: WelcomePageComponent },
     { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
     { path: 'connectedcomputer/:agentId', component: ConnectedComputerComponent, canActivate: [AuthGuard] },
     { path: 'admindashboard', component: AdminDashboardComponent, canActivate: [AuthGuard] },

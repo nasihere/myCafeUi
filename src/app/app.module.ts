@@ -34,7 +34,8 @@ import { VerifyEmailAccountComponent} from './verifyemailaccount/verifyemailacco
 import { FormsModule } from '@angular/forms';
 
 import { HttpModule } from '@angular/http';;
-import { WebcamPicturesComponent } from './webcam-pictures/webcam-pictures.component'
+import { WebcamPicturesComponent } from './webcam-pictures/webcam-pictures.component';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component'
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { WebcamPicturesComponent } from './webcam-pictures/webcam-pictures.compo
         HoursSelectionComponent,
         VerifyEmailAccountComponent,
         WebcamPicturesComponent
-    ],
+,
+        WelcomePageComponent    ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
