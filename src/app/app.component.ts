@@ -17,8 +17,7 @@ export class AppComponent {
             this.formService.response.resAuthSignIn = this.readFromCache('resAuthSignIn')
           }
           if ( this.formService.response.resAuthSignIn == null) {
-            const returnUrl = `/admindashboard`;
-            this.router.navigate([returnUrl]);
+            window.location.href = 'assets/website';
           }
           else {
             const returnUrl = `/admindashboard`;
