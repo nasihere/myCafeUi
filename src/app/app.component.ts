@@ -13,26 +13,21 @@ export class AppComponent {
     readFromCache = key => localStorage.getItem(key) && JSON.parse(localStorage.getItem(key)) || null
 
       ngOnInit() {
-        if (this.formService.response.resAuthSignIn == null) {
-            this.formService.response.resAuthSignIn = this.readFromCache('resAuthSignIn')
-          }
-          if ( this.formService.response.resAuthSignIn == null) {
-            window.location.href = 'assets/website';
-          }
-          else {
-            const returnUrl = `/admindashboard`;
-            this.router.navigate([returnUrl]);
-          }
+       
       }
     constructor(public formService: FormService,private router: Router,private authenticationService: AuthenticationService,  private route: ActivatedRoute,) {
         this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
         this.router.events.subscribe(
             (event: any) => {
               if (event instanceof NavigationEnd) {
-                console.log('this.router.url', this.router.url);
                 if (this.router.url == '/welcome') {
                     this.appPage = false;
+                    window.location.href = 'assets/website';
                 }
+                if (this.router.url == '/login' || this.router.url == '/register' || this.router.url == '/agentsetup') {
+                    return;
+                }
+
               }
             }
           );
