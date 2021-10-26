@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormService } from '../_services';
 
 @Component({
@@ -8,7 +9,7 @@ import { FormService } from '../_services';
 })
 export class WelcomePageComponent implements OnInit {
 
-  constructor(public formService: FormService,) { }
+  constructor(  private router: Router,public formService: FormService,) { }
   readFromCache = key => localStorage.getItem(key) && JSON.parse(localStorage.getItem(key)) || null
   ngOnInit(): void {
     if (this.formService.response.resAuthSignIn == null) {
@@ -17,7 +18,10 @@ export class WelcomePageComponent implements OnInit {
     if ( this.formService.response.resAuthSignIn == null) {
       window.location.href = 'assets/website';
     }
-    
+    else {
+      const returnUrl = `/admindashboard`;
+      this.router.navigate([returnUrl]);
+    }
   }
 
 }

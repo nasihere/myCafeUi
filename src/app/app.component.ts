@@ -10,9 +10,20 @@ export class AppComponent {
     currentUser: User;
     appPage: boolean = true;
     
-    
+    readFromCache = key => localStorage.getItem(key) && JSON.parse(localStorage.getItem(key)) || null
+
       ngOnInit() {
-      
+        if (this.formService.response.resAuthSignIn == null) {
+            this.formService.response.resAuthSignIn = this.readFromCache('resAuthSignIn')
+          }
+          if ( this.formService.response.resAuthSignIn == null) {
+            const returnUrl = `/admindashboard`;
+            this.router.navigate([returnUrl]);
+          }
+          else {
+            const returnUrl = `/admindashboard`;
+            this.router.navigate([returnUrl]);
+          }
       }
     constructor(public formService: FormService,private router: Router,private authenticationService: AuthenticationService,  private route: ActivatedRoute,) {
         this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
