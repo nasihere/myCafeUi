@@ -14,6 +14,9 @@ export class AdminDashboardComponent implements OnInit  {
     authenticationService: any;
     error: any;
     customerNotFound: boolean = false;
+    smsTotalBalance: number = 0;
+    smsUserBalance: number = 0;
+    smsFlag: boolean = false;
     constructor(    public formService: FormService,    private router: Router,
 
     ) { 
@@ -28,7 +31,11 @@ export class AdminDashboardComponent implements OnInit  {
             this.router.navigate([returnUrl]);
             return;
         }
-       
+        const resAuth = this.formService.response.resAuthSignIn['data']['Item'];
+        this.smsTotalBalance = resAuth['smsBalance'];
+        this.smsUserBalance = resAuth['usedSMS'];
+        
+        this.smsFlag = resAuth['country'] == 'India';
         let MOBILE_PATTERN = /[0-9\+\-\ ]/;
         this.form = new FormGroup({
             otpverify: new FormControl('', [Validators.required]),
@@ -58,7 +65,6 @@ export class AdminDashboardComponent implements OnInit  {
         if (!searchText) {
             return;
         }
-        console.log(searchText)
         const payload = {
             searchText,
             username: this.formService.response.resAuthSignIn.data.Item.username

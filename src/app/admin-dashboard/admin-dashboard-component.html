@@ -51,6 +51,10 @@
      <terminal-status limitedView="true"></terminal-status>
      </div>
 
+     <div class="mt-3 flex justify-between nav mlr-1" *ngIf="smsFlag">
+          <span class="page-name">Total SMS Left: <b>{{smsTotalBalance - smsUserBalance}}<mat-icon>textsms</mat-icon></b></span>
+     </div>
+
      <div class="mt-3 flex justify-between nav mlr-1">
           <span class="page-name">Customer Activity</span>
      </div>
