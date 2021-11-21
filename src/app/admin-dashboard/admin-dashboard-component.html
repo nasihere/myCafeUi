@@ -61,18 +61,20 @@
              </canvas>
           </mat-card>
 
-          <mat-card class="p-3 mlr-1 chart-card"   *ngIf="barChartLabels.length" >
-               <span class="page-name">Business Income</span>
-               <canvas baseChart 
-                    [datasets]="barChartData"
-                    [labels]="barChartLabels"
-                    [options]="barChartOptions"
-                    [plugins]="barChartPlugins"
-                    [legend]="barChartLegend"
-                    [chartType]="barChartType">
-                    </canvas>
-          </mat-card>
+          <mat-card class="p-3 mlr-1 chart-card"  >
+               <div  *ngIf="barChartLabels.length" >
 
+                    <span class="page-name">Business Income</span>
+                    <canvas baseChart 
+                         [datasets]="barChartData"
+                         [labels]="barChartLabels"
+                         [options]="barChartOptions"
+                         [plugins]="barChartPlugins"
+                         [legend]="barChartLegend"
+                         [chartType]="barChartType">
+                         </canvas>
+               </div>
+          </mat-card>
           <mat-card class="p-3 mlr-1 chart-card"  >
                <span class="page-name">Unpaid / Paid Customer</span>
                <canvas baseChart
