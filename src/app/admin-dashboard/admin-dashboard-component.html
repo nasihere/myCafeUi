@@ -73,15 +73,18 @@
                     </canvas>
           </mat-card>
 
-          <mat-card class="p-3 mlr-1 chart-card"   *ngIf="smsFlag" >
+          <mat-card class="p-3 mlr-1 chart-card"  >
                <span class="page-name">Unpaid / Paid Customer</span>
                <canvas baseChart
-                    [data]="doughnutChartData"
-                    [labels]="doughnutChartLabels"
+                    [data]="doughnutChartDataUnPaid"
+                    [labels]="doughnutChartLabelsUnPaid"
                     [chartType]="doughnutChartType">
              </canvas>
           </mat-card>
 
+          <mat-card class="p-3 mlr-1 chart-card"  >
+             
+          </mat-card>
      </div>
      <div class="mt-3 flex justify-between nav mlr-1">
           <span class="page-name">Customer Activity</span>

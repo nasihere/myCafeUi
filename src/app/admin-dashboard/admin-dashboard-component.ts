@@ -29,6 +29,11 @@ export class AdminDashboardComponent implements OnInit  {
     public doughnutChartData: MultiDataSet = [
       [350, 450],
     ];
+
+    public doughnutChartLabelsUnPaid: Label[] = ['Paid', 'UnPaid'];
+    public doughnutChartDataUnPaid: MultiDataSet = [
+      [350, 450],
+    ];
     public doughnutChartType: ChartType = 'doughnut';
 
     public barChartOptions: any = {
@@ -145,6 +150,7 @@ export class AdminDashboardComponent implements OnInit  {
             this.barChartData[0].data.push(dataMapPaid[key]);
         }
 
+        this.doughnutChartDataUnPaid = [paid.length, unpaid.length]
       }
     public hasError = (controlName: string, errorName: string) =>{
         return this.form.controls[controlName].hasError(errorName);
