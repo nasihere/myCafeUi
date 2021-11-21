@@ -38,6 +38,13 @@ export class LoginComponent implements OnInit {
     // convenience getter for easy access to form fields
     get f() { return this.loginForm.controls; }
 
+    navigateHomePage() {
+        localStorage.setItem("resAuthSignIn", null);
+        const returnUrl = `/login`;
+        this.router.navigate([returnUrl]);
+        localStorage.clear()
+        location.href = "/"
+    }
     onSubmit() {
          
         this.submitted = true;
