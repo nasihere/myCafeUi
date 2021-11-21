@@ -51,10 +51,38 @@
      <terminal-status limitedView="true"></terminal-status>
      </div>
 
-     <div class="mt-3 flex justify-between nav mlr-1" *ngIf="smsFlag">
-          <span class="page-name">Total SMS Left: <b>{{smsTotalBalance - smsUserBalance}}<mat-icon>textsms</mat-icon></b></span>
-     </div>
+     <div class="flex flex-wrap justify-center">
+          <mat-card class="p-3 mlr-1 chart-card"   *ngIf="smsFlag" >
+               <span class="page-name">Text Message Status</span>
+               <canvas baseChart
+                    [data]="doughnutChartData"
+                    [labels]="doughnutChartLabels"
+                    [chartType]="doughnutChartType">
+             </canvas>
+          </mat-card>
 
+          <mat-card class="p-3 mlr-1 chart-card"   *ngIf="barChartLabels.length" >
+               <span class="page-name">Business Income</span>
+               <canvas baseChart 
+                    [datasets]="barChartData"
+                    [labels]="barChartLabels"
+                    [options]="barChartOptions"
+                    [plugins]="barChartPlugins"
+                    [legend]="barChartLegend"
+                    [chartType]="barChartType">
+                    </canvas>
+          </mat-card>
+
+          <mat-card class="p-3 mlr-1 chart-card"   *ngIf="smsFlag" >
+               <span class="page-name">Unpaid / Paid Customer</span>
+               <canvas baseChart
+                    [data]="doughnutChartData"
+                    [labels]="doughnutChartLabels"
+                    [chartType]="doughnutChartType">
+             </canvas>
+          </mat-card>
+
+     </div>
      <div class="mt-3 flex justify-between nav mlr-1">
           <span class="page-name">Customer Activity</span>
      </div>

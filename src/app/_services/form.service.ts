@@ -18,7 +18,8 @@ export class FormService {
         resAllPCs: null,
         resAgent: null,
         resBilling: null,
-        resLatestBilling: null
+        resLatestBilling: null,
+        resBillingHistory: null
     }
     
     constructor(private http: HttpClient) { }
@@ -390,6 +391,25 @@ export class FormService {
             }, res => {
                 this.hideLoading();
                 this.response.resLatestBilling = null;
+                return res;
+            }))
+    }
+
+    getBillingHistory(payload): Observable<any> {
+        this.showLoading();
+        return this.http.post(`${environment.apiUrl}/agent/billingHistory`, payload).pipe(
+            map(res => { 
+                this.hideLoading();
+                if (res['data']) {
+                    if (res['data'].Count) {
+                        this.response.resBillingHistory = res['data'].Items;
+                    }
+                }
+                
+                return this.response.resBillingHistory;
+            }, res => {
+                this.hideLoading();
+                this.response.resBillingHistory = null;
                 return res;
             }))
     }

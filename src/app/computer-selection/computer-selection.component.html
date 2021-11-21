@@ -43,7 +43,7 @@
         <button *ngIf="item.pcstatus == 'busy'" color="warn"  (click)="lockItem = item; lockMachine = true; " mat-stroked-button>Lock</button>
         <button *ngIf="item.pcstatus == 'waiting'" color="accent" (click)="onCancelWaiting(item)" mat-flat-button>Cancel Waiting</button>
         <button *ngIf="item.pcstatus == 'finished'" color="primary"  routerLink="/cashdeposit/{{item.billingId}}"  mat-flat-button>Bill</button>
-        <button *ngIf="item.pcstatus == 'finished'" color="accent"   (click)="onCancelWaiting(item)" mat-flat-button>Already Paid</button>
+        <button *ngIf="item.pcstatus == 'finished'" color="accent" class="green"   (click)="onCancelWaiting(item)" mat-flat-button>Already ßPaid</button>
 
         <mat-menu #menu="matMenu">
             <button mat-menu-item (click)="selectedTerminalItem = item; verifingPassword= true">Remove</button>

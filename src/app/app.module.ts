@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {WebcamModule} from 'ngx-webcam';
+import { ChartsModule } from 'ng2-charts';
 
 // used to create fake backend
 
@@ -34,7 +35,8 @@ import { VerifyEmailAccountComponent} from './verifyemailaccount/verifyemailacco
 import { FormsModule } from '@angular/forms';
 
 import { HttpModule } from '@angular/http';;
-import { WebcamPicturesComponent } from './webcam-pictures/webcam-pictures.component';
+import { WebcamPicturesComponent } from './webcam-pictures/webcam-pictures.component'
+;
 import { WelcomePageComponent } from './welcome-page/welcome-page.component'
 
 
@@ -52,7 +54,8 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component'
         HttpClientModule,
         AppRoutingModule,
         BrowserAnimationsModule,
-        MaterialModule    ],
+        MaterialModule,
+        ChartsModule    ],
     declarations: [
         
         AppComponent,
@@ -70,7 +73,8 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component'
         CashDepositComponent,
         SettingsComponent,
         HoursSelectionComponent,
-        VerifyEmailAccountComponent,
+        VerifyEmailAccountComponent
+,
         WebcamPicturesComponent
 ,
         WelcomePageComponent    ],

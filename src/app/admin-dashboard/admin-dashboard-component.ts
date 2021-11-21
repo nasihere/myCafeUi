@@ -3,6 +3,11 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormService } from '../_services';
 
+import { ChartType } from 'chart.js';
+import { MultiDataSet, Label } from 'ng2-charts';
+
+
+
 @Component({ templateUrl: 'admin-dashboard-component.html' })
 export class AdminDashboardComponent implements OnInit  {
     adminPassword: boolean = false;
@@ -17,6 +22,35 @@ export class AdminDashboardComponent implements OnInit  {
     smsTotalBalance: number = 0;
     smsUserBalance: number = 0;
     smsFlag: boolean = false;
+    resAuth: any = null;
+
+
+    public doughnutChartLabels: Label[] = ['Total SMS', 'Used SMS'];
+    public doughnutChartData: MultiDataSet = [
+      [350, 450],
+    ];
+    public doughnutChartType: ChartType = 'doughnut';
+
+    public barChartOptions: any = {
+        responsive: true,
+        // We use these empty structures as placeholders for dynamic theming.
+        scales: { xAxes: [{}], yAxes: [{}] },
+        plugins: {
+          datalabels: {
+            anchor: 'end',
+            align: 'end',
+          }
+        }
+      };
+      public barChartLabels: Label[] = [];
+      public barChartType: ChartType = 'bar';
+      public barChartLegend = true;
+    
+      public barChartData: any[] =[
+        { data: [], label: 'Income' }
+      ]
+    
+    
     constructor(    public formService: FormService,    private router: Router,
 
     ) { 
@@ -31,11 +65,9 @@ export class AdminDashboardComponent implements OnInit  {
             this.router.navigate([returnUrl]);
             return;
         }
-        const resAuth = this.formService.response.resAuthSignIn['data']['Item'];
-        this.smsTotalBalance = resAuth['smsBalance'];
-        this.smsUserBalance = resAuth['usedSMS'];
-        
-        this.smsFlag = resAuth['country'] == 'India';
+        this.resAuth = this.formService.response.resAuthSignIn['data']['Item'];
+        this.getBillingHistory();
+        this.drawPieSMS();
         let MOBILE_PATTERN = /[0-9\+\-\ ]/;
         this.form = new FormGroup({
             otpverify: new FormControl('', [Validators.required]),
@@ -48,6 +80,72 @@ export class AdminDashboardComponent implements OnInit  {
 
     }
 
+    getBillingHistory() {
+        
+   
+        const payload = {
+            username: this.formService.response.resAuthSignIn.data.Item.username
+        }
+        this.formService.getBillingHistory(payload).subscribe( res => {
+            this.drawBusinessValue();
+
+        })
+            
+        
+        
+      
+      }
+    drawPieSMS() {
+        this.smsTotalBalance = this.resAuth['smsBalance'];
+        this.smsUserBalance = this.resAuth['usedSMS'];
+        this.smsFlag = this.resAuth['country'] == 'India';
+
+        this.doughnutChartData = [
+            [(this.smsTotalBalance - this.smsUserBalance), this.smsUserBalance],
+          ];
+    }
+    drawBusinessValue(): void {
+        console.log('temp', this.formService.response.resBillingHistory)
+        const data = this.formService.response.resBillingHistory;
+        if (!data || !data.length) {
+            return;
+        }
+        // const selfCheckIn = data.filter( item => item.selfCheckIn);
+        data.sort((a,b) => b.billDt - a.billDt)
+        const paid = data.filter( item => item.billPaid && item.billTotal > 0);
+        const unpaid = data.filter( item => !item.billPaid || item.billTotal == 0);
+       
+        let dataMapPaid = {
+
+        }
+        let dataMapUnPaid = {
+
+        }
+        for (const item of paid) {
+            const billDt = item.billDt && item.billDt.substr(0, 7);
+            if (dataMapPaid[billDt]) {
+                dataMapPaid[billDt] = dataMapPaid[billDt] + item.billTotal;
+            }
+            else {
+                dataMapPaid[billDt] = item.billTotal;
+            }
+        }
+        dataMapPaid = Object.keys(dataMapPaid).sort().reduce(
+            (obj, key) => { 
+              obj[key] = dataMapPaid[key]; 
+              return obj;
+            }, 
+            {}
+          );
+          
+        for (const key in dataMapPaid) {
+            this.barChartLabels.push(key);
+        }
+        for (const key in dataMapPaid) {
+            this.barChartData[0].data.push(dataMapPaid[key]);
+        }
+
+      }
     public hasError = (controlName: string, errorName: string) =>{
         return this.form.controls[controlName].hasError(errorName);
       }
