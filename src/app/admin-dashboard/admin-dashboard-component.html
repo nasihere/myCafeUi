@@ -51,8 +51,8 @@
      <terminal-status limitedView="true"></terminal-status>
      </div>
 
-     <div class="flex flex-wrap justify-center">
-          <mat-card class="p-3 mlr-1 chart-card"   *ngIf="smsFlag" >
+     <div class="flex p-1 flex-wrap justify-between">
+          <mat-card class="chart-card"   *ngIf="smsFlag" >
                <span class="page-name">Text Message Status</span>
                <canvas baseChart
                     [data]="doughnutChartData"
@@ -61,8 +61,8 @@
              </canvas>
           </mat-card>
 
-          <mat-card class="p-3 mlr-1 chart-card"  >
-               <div  *ngIf="barChartLabels.length" >
+          <mat-card class="chart-card" *ngIf="barChartLabels.length" >
+             
 
                     <span class="page-name">Business Income</span>
                     <canvas baseChart 
@@ -73,9 +73,9 @@
                          [legend]="barChartLegend"
                          [chartType]="barChartType">
                          </canvas>
-               </div>
+              
           </mat-card>
-          <mat-card class="p-3 mlr-1 chart-card"  >
+          <mat-card class="chart-card"  >
                <span class="page-name">Unpaid / Paid Customer</span>
                <canvas baseChart
                     [data]="doughnutChartDataUnPaid"
@@ -84,9 +84,6 @@
              </canvas>
           </mat-card>
 
-          <mat-card class="p-3 mlr-1 chart-card"  >
-             
-          </mat-card>
      </div>
      <div class="mt-3 flex justify-between nav mlr-1">
           <span class="page-name">Customer Activity</span>
