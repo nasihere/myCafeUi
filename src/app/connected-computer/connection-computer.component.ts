@@ -42,7 +42,8 @@ export class ConnectedComputerComponent implements OnInit  {
     findCustomerById(customerId) {
       
       const payload = {
-          id: customerId
+          id: customerId,
+          username: this.agentDetail.username
       }
       this.formService.findCustomerById(payload).subscribe( res => {
           if (res) {
@@ -134,7 +135,7 @@ export class ConnectedComputerComponent implements OnInit  {
         self.displayCountDown = hours + "h "
         + minutes + "m " + seconds + "s ";
 
-        if (minutes == 4 && seconds <= 59 && seconds >= 50) {
+        if (!self.lastFiveMin && minutes == 4 && seconds <= 59 && seconds >= 50) {
            self.lastFiveMin  = true;
            //@ts-ignore
            electronShowAgent();
@@ -167,7 +168,7 @@ export class ConnectedComputerComponent implements OnInit  {
                   return;
               }
               else {
-                this.findCustomerById(res.customerId);
+                this.findCustomerById(res.customerId || 'public');
               }
           }
           

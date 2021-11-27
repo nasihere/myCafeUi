@@ -27,6 +27,7 @@ export class CheckInOutComponent implements OnInit  {
     accessCode: number;
     username: any;
     accountDetail: any;
+    manualUnlock: boolean = false;
     constructor(     public formService: FormService,
         private route: ActivatedRoute,     private router: Router,
 
@@ -53,6 +54,7 @@ export class CheckInOutComponent implements OnInit  {
             accessCode: new FormControl('', [Validators.required]),
             otpverify: new FormControl('', [Validators.required]),
              search: new FormControl('', [Validators.required]),
+             customerdetails:  new FormControl('', [Validators.required]),
             cellphone: new FormControl('', [Validators.required,  Validators.minLength(10), Validators.maxLength(10),Validators.pattern(MOBILE_PATTERN)]),
             password: new FormControl('',[Validators.required,
                 Validators.minLength(5),
@@ -184,9 +186,59 @@ export class CheckInOutComponent implements OnInit  {
        
        
     }
+    onManualUnlock() {
+        console.log('onManualUnlock');
+        if (this.f.password.invalid) {
+            return;
+        }
+        this.verifingPasswordValid = false;
+
+        if (this.f.password.value) {
+            const payload = {
+                "username": this.username,
+                "password": this.f.password.value
+            }
+            this.formService.authSignIn(payload).subscribe( res => {
+                console.log('res', res)
+                const customerDetails = this.f.customerdetails.value;
+                this.OnCafeManualUnlockTimer(res.data.Item, customerDetails);            
+               
+            }, err => {
+                this.verifingPasswordValid = true;
+                this.formService.hideLoading();
+            });
+            
+           
+        }
+        else {
+            this.verifingPasswordValid = true;
+            this.verifingPassword = true;
+
+        }
+       
+    }
+    OnCafeManualUnlockTimer(item, customerDetails) {
+        item.accessCode =  null;
+        item.accessAt =  new Date().toISOString();
+        item.pcstatus =  'busy';
+        item.agentid =  this.paramId;
+        item.customerid =  'public';
+        item.customerName =  customerDetails || 'Public';
+    
+        
+       
+        this.formService.bookAgent(item).subscribe( res => {
+            if (res) {
+                const returnUrl = '/connectedcomputer/' + item.agentid;
+                this.router.navigate([returnUrl]);
+              
+            }
+            else {
+               
+            }
+        })
+    }
     onVerifyOTP() {
-        console.log(this.f.otpverify.value)
-        console.log('onVerifyOTP');
         if (Number(this.f.otpverify.value) != this.accessCode) {
             this.accessCodeVerified = false;
             return;
@@ -248,7 +300,7 @@ export class CheckInOutComponent implements OnInit  {
         
         this.formService.bookAgent(item).subscribe( res => {
             if (res) {
-                const returnUrl = '/connectedcomputer/' + item.id;
+                const returnUrl = '/connectedcomputer/' + item.agentid;
                 this.router.navigate([returnUrl]);
               
             }
@@ -278,7 +330,7 @@ export class CheckInOutComponent implements OnInit  {
                 electronShutDownSession();
             }, err => {
                 this.verifingPasswordValid = true;
-
+                this.formService.hideLoading();
             });
             
            

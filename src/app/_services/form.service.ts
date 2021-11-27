@@ -128,15 +128,15 @@ export class FormService {
             map(res => { 
                 this.hideLoading();
                 if (res['data']) {
-                    this.response.resCustomer = res['data'].Item;
-                    this.response.resCustomerList = [res['data'].Item];
+                    this.response.resCustomer = res['data'].Item || res['data'].Items[0];
+                    this.response.resCustomerList = [res['data'].Item] || [res['data'].Items[0]];
                 }
                 else {
                     this.response.resCustomer = null;
                     this.response.resCustomerList = null;
                 }
                 
-                return this.response.resCustomer;
+                return this.response.resCustomer || res['data'];
             }, res => {
                 this.hideLoading();
                 return res;

@@ -118,9 +118,9 @@ onLockPC(row) {
       };
       //row.customerid = null;
       row.pcstatus = 'finished';
-      console.log('onLockPC', item);
       this.formService.bookAgent(item).subscribe( res => {
           if (res) {
+            
             this.onSocketCall(item.agentid, 'LOCK')
             this.reload();
           }
