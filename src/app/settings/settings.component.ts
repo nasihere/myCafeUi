@@ -5,7 +5,7 @@ import { FormService } from '../_services';
 
 @Component({ templateUrl: 'setings.component.html' })
 export class SettingsComponent implements OnInit  {
-    displayedColumns = ['product', 'desc', 'perCost', 'action'];
+    displayedColumns = ['product', 'desc', 'perCost'];
     adminPassword: boolean = false;
     step: number = 1;
     form: FormGroup;
@@ -281,15 +281,15 @@ export class SettingsComponent implements OnInit  {
         }
         this.userData = this.formService.response.resAuthSignIn.data.Item;
         this.dataSource = [
-            {perCost: "perCost1", desc: "desc1", product: "product1",action: ""},
-            {perCost: "perCost2", desc: "desc2", product: "product2",action: ""},
-            {perCost:  "perCost3", desc: "desc3", product: "product3",action: ""},
-            {perCost: "perCost4", desc: "desc4", product: "product4",action: ""},
-            {perCost:  "perCost5", desc: "desc5", product: "product5",action: ""},
-            {perCost:  "perCost6", desc: "desc6", product: "product6",action: ""},
-            {perCost:  "perCost7", desc: "desc7", product: "product7",action: ""},
-            {perCost:  "perCost8", desc: "desc8", product: "product8",action: ""},
-            {perCost:  "perCost9", desc: "desc9", product: "product9",action: ""}
+            {perCost: "perCost1", desc: "desc1", product: "product1"},
+            {perCost: "perCost2", desc: "desc2", product: "product2"},
+            {perCost:  "perCost3", desc: "desc3", product: "product3"},
+            {perCost: "perCost4", desc: "desc4", product: "product4"},
+            {perCost:  "perCost5", desc: "desc5", product: "product5"},
+            {perCost:  "perCost6", desc: "desc6", product: "product6"},
+            {perCost:  "perCost7", desc: "desc7", product: "product7"},
+            {perCost:  "perCost8", desc: "desc8", product: "product8"},
+            {perCost:  "perCost9", desc: "desc9", product: "product9"}
         ];
         let MOBILE_PATTERN = /[0-9\+\-\ ]/;
         this.form = new FormGroup({
