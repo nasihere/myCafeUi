@@ -27,8 +27,15 @@
         <span class="green" *ngIf="(!item.pcstatus &&   item.lastResponseAt) || item.pcstatus == 'ready'">Ready</span>
         <span  *ngIf="item.pcstatus == 'finished'">Billing</span>
         <span *ngIf="item.pcstatus == 'waiting'">Waiting <br/>Access Code: <strong *ngIf="!item.selfCheckin">{{item.accessCode}}</strong><strong *ngIf="item.selfCheckin"><span matTooltip="Customer Secret OTP {{item.accessCode}}. Please share if really need it." >OTP</span></strong></span>
-        
-        
+        <div  *ngIf="item.pcstatus == 'finished'">
+            <div class="border-line"></div>
+
+            <div>Start <span class="blue">{{getBillingDetails(item.billingId).checkInTime}} </span> </div>
+            <div>End <span class="blue">{{getBillingDetails(item.billingId).checkOutTime}} </span> </div>
+            <div class="border-line"></div>
+            <div>Duration <span class="green">{{getBillingDetails(item.billingId).duration}} </span> </div>
+    
+        </div>
         <div class="flex justify-between"  *ngIf="!limitedView && (item.lastResponseAt && item.pcstatus == 'ready')" >
           <button  mat-icon-button (click)="item.timerI = !item.timerI ? 2 : (item.timerI - 1); "><mat-icon>remove_circle_outline</mat-icon></button>
           
@@ -42,9 +49,13 @@
         <button *ngIf="!limitedView && ((!item.pcstatus && item.lastResponseAt) || item.pcstatus == 'ready')" (click)="onAvailablePC(item)"  color="primary"  mat-stroked-button>Available</button>
         <button *ngIf="item.pcstatus == 'busy'" color="warn"  (click)="lockItem = item; lockMachine = true; " mat-stroked-button>Lock</button>
         <button *ngIf="item.pcstatus == 'waiting'" color="accent" (click)="onCancelWaiting(item)" mat-flat-button>Cancel Waiting</button>
-        <button *ngIf="item.pcstatus == 'finished'" color="primary"  routerLink="/cashdeposit/{{item.billingId}}"  mat-flat-button>Bill</button>
-        <button *ngIf="item.pcstatus == 'finished'" color="accent" class="green"   (click)="onCancelWaiting(item)" mat-flat-button>Already ßPaid</button>
-
+        <button *ngIf="item.pcstatus == 'finished' && item.customerId" color="primary"  routerLink="/cashdeposit/{{item.billingId}}"  mat-flat-button>Bill</button>
+        <button *ngIf="item.pcstatus == 'finished' && !item.customerId" color="primary"  class="bg-green"  (click)="onCancelWaiting(item)" mat-flat-button>Cancel</button>
+        <button *ngIf="item.pcstatus == 'finished'  && item.customerId" color="accent" class="bg-green"   (click)="onCancelWaiting(item)" mat-flat-button>Already Paid</button>
+        <!-- <pre>
+            {{item.billingId | json}}
+        </pre> -->
+       
         <mat-menu #menu="matMenu">
             <button mat-menu-item (click)="selectedTerminalItem = item; verifingPassword= true">Remove</button>
             

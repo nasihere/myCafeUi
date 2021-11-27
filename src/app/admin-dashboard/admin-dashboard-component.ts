@@ -110,7 +110,6 @@ export class AdminDashboardComponent implements OnInit  {
           ];
     }
     drawBusinessValue(): void {
-        console.log('temp', this.formService.response.resBillingHistory)
         const data = this.formService.response.resBillingHistory;
         if (!data || !data.length) {
             return;

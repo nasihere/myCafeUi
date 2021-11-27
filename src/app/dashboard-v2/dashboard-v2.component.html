@@ -27,10 +27,10 @@
      
     </div >
     
-<div  *ngIf="data">
+<div  *ngIf="data" class="scrollable-500px">
 
 
-<mat-card class="mt-1 fs-smaller" *ngFor="let row of data" [ngClass]="productServicesShow ? 'opacity-20' : ''">
+<mat-card class="mt-1 fs-smaller " *ngFor="let row of data" [ngClass]="productServicesShow ? 'opacity-20' : ''">
         <div>
             <span *ngIf="row.selfCheckIn">OTP Login: <strong class="green"><mat-icon>textsms</mat-icon>Yes</strong></span>
             <div class="flex justify-between ">

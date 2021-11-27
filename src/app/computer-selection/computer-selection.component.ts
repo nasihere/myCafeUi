@@ -58,8 +58,22 @@ export class ComputerSelectionComponent  implements OnInit {
                 return params;
             });
             this.getAllAgentPC();
+            
         }
-        
+        getBillingDetails(billingId) {
+            if (this.formService.response.resLatestBilling) {
+                for (const item of this.formService.response.resLatestBilling) {
+                    if (item.id == billingId) {
+                        return item;
+                    }
+                }
+            }
+            return {
+                checkInTime: null,
+                checkOutTime: null,
+                duration: null
+            }
+        }
         getAllAgentPC() {
             const payload = {
                 username: this.data.username
@@ -73,6 +87,7 @@ export class ComputerSelectionComponent  implements OnInit {
                 }
             })
         }
+        
         public hasError = (controlName: string, errorName: string) =>{
             return this.form.controls[controlName].hasError(errorName);
           }
@@ -155,7 +170,8 @@ export class ComputerSelectionComponent  implements OnInit {
 
         }
         if (this.formService.response.resCustomer) {
-            payload.customerName = this.formService.response.resCustomer.name 
+            payload.customerName = this.formService.response.resCustomer.name;
+            payload.customerid = this.formService.response.resCustomer.id;
         }
         this.formService.billingStart(payload).subscribe( res => {
             if (res) {

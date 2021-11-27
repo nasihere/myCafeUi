@@ -175,7 +175,6 @@
     color: #000;
     font-size: 0.9rem;
     text-align: center;
-    height: 14rem;
     -webkit-box-shadow: 5px 5px 14px -5px #000000; 
     box-shadow: 5px 5px 14px -5px #000000;
     margin: .5rem;
@@ -459,3 +458,16 @@
       width: 377px;
      
   }
+  .scrollable-500px {
+      max-height: 500px;
+      height: 500px;
+      overflow: auto;
+  }
+
+  .red {
+      color: red;
+  }
+  .text-bigger {
+      font-size: 16px;
+  }
+  

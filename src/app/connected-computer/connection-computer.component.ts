@@ -20,6 +20,8 @@ export class ConnectedComputerComponent implements OnInit  {
   agentDetail: any;
   billingDetail: any;
   displayCountDown: any;
+  countDownDate: any;
+  lastFiveMin: boolean = false;
     constructor( public formService: FormService,       private route: ActivatedRoute,        private router: Router,
 
     ) { 
@@ -100,15 +102,26 @@ export class ConnectedComputerComponent implements OnInit  {
    // Set the date we're counting down to
 
       const timerTime = moment(this.billingDetail.checkIn).add(this.billingDetail.timer, 'minutes')
+      const checkInTime =  moment(this.billingDetail.checkIn).toDate().getTime();
       var countDownDate = moment(timerTime).toDate().getTime();
       const self = this;
       // Update the count down every 1 second
       var x = setInterval(function() {
-
+       
         // Get today's date and time
         var now = new Date().getTime();
 
         // Find the distance between now and the count down date
+        
+        var distance2 =  now - checkInTime ;
+
+        var hours1 = Math.floor((distance2 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes1 = Math.floor((distance2 % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds1 = Math.floor((distance2 % (1000 * 60)) / 1000);
+
+        self.countDownDate = hours1 + "h "
+        + minutes1 + "m " + seconds1 + "s ";
+
         var distance = countDownDate - now;
 
         // Time calculations for days, hours, minutes and seconds
@@ -121,13 +134,18 @@ export class ConnectedComputerComponent implements OnInit  {
         self.displayCountDown = hours + "h "
         + minutes + "m " + seconds + "s ";
 
+        if (minutes == 4 && seconds <= 59 && seconds >= 50) {
+           self.lastFiveMin  = true;
+           //@ts-ignore
+           electronShowAgent();
+        }
         // If the count down is finished, write some text
         if (distance < 0) {
           clearInterval(x);
           self.displayCountDown  = "EXPIRED";
           //@ts-ignore
           electronShowAgent();
-          this.onDisconnectSession();
+          self.onDisconnectSession();
         }
       }, 1000);
     }
@@ -166,7 +184,9 @@ export class ConnectedComputerComponent implements OnInit  {
         //@ts-ignore
         electronCleanSession();
         //@ts-ignore
-        electronLogOffSession()
+        electronShowAgent();
+        // //@ts-ignore
+        // electronLogOffSession()
 
     }
     onConnectedSession() {

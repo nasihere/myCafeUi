@@ -10,7 +10,14 @@
     <span  class="heading profile-heading"><strong>Successfully Connected</strong></span>
 </div>
 <div class="border-line"></div>
-<mat-card class="mt-1  s-smaller" [ngClass]="disconnectSession ? 'opacity-20' : ''">
+<div class="flex flex-row justify-between " *ngIf="lastFiveMin">
+    <span class="options-prompt green text-bigger flex-column flex">
+        <b>5 Minutes left</b>  
+        <span>Your session will be ended in 5 minutes. Please close all the programs and browsers tabs.</span>
+    </span>
+</div>
+<div class="border-line"></div>
+<mat-card class="mt-1  s-smaller" [ngClass]="disconnectSession || lastFiveMin ? 'opacity-20' : ''">
     
    <div class="flex flex-row justify-between">
        <span  class="heading profile-heading capitalize"><strong> {{customerDetail.name}} </strong> (<span *ngIf="customerDetail.gender=='m'">Male</span> <span *ngIf="customerDetail.gender=='f'">female</span>)</span>
@@ -43,25 +50,33 @@
     </div>
     <div class="border-line"></div>
     <div class="flex flex-row justify-between">
-        <strong  class="label-field">Timer</strong>
-        <span  class="label-field">{{billingDetail.timer}}min</span>
-    </div>
-    
+        <strong  class="label-field">Computer timer set by admin</strong>
+        <span  class="label-field">{{billingDetail.timer}} min</span>
+    </div>  
     <div class="border-line"></div>
     <div class="flex flex-row justify-between">
-        <strong  class="label-field">Time Left</strong>
-        <span  class="label-field">{{displayCountDown}}</span>
+        <strong  class="label-field">Computer session time left</strong>
+        <span  class="label-field red">{{displayCountDown}}</span>
     </div>
     
+
     <div class="border-line"></div>
-    <div class="flex justify-between mt-3">
-        
-        <button  (click)="disconnectSession = true" color="warn" mat-flat-button><mat-icon>highlight_off</mat-icon>Disconnect</button>
-        <button  (click)="onConnectedSession()" color="primary" class="bg-green" mat-flat-button><mat-icon>restore</mat-icon>Continue
-        </button>
+    <div class="flex flex-row justify-between">
+        <strong  class="green">Computer Used Time</strong>
+        <span  class="green"><b>{{countDownDate}}</b></span>
     </div>
+
+ 
+    
 </mat-card>
 
+<div class="border-line"></div>
+<div class="flex justify-between mt-3">
+    
+    <button  (click)="disconnectSession = true" color="warn" mat-flat-button><mat-icon>highlight_off</mat-icon>Disconnect</button>
+    <button  (click)="onConnectedSession()" color="primary" class="bg-green" mat-flat-button><mat-icon>restore</mat-icon>Continue
+    </button>
+</div>
 <div class="flex flex-warp admin-password" *ngIf="disconnectSession">
     <mat-card class="mt-1  w-100 m-2 ">
         <div class="flex flex-column  ">
