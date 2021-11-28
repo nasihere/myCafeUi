@@ -66,7 +66,10 @@ export class ConnectedComputerComponent implements OnInit  {
       item.accessAt = null;
       item.timer = null;
       //item.customerId = null;    
-      if(this.customerDetail && this.customerDetail.name) {
+      if (this.billingDetail.customerid == 'public') {
+        item.customerName = this.billingDetail.customerName;
+      }
+      else if(this.customerDetail && this.customerDetail.name) {
         item.customerName = this.customerDetail.name;
       }
       
