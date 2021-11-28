@@ -58,7 +58,8 @@ export class CashDepositComponent implements OnInit  {
         return;
       };
       const payload = {
-          id: customerId
+          id: customerId,
+          username: this.formService.response.resAuthSignIn.data.Item.username
       }
       this.formService.findCustomerById(payload).subscribe( res => {
           if (res) {
