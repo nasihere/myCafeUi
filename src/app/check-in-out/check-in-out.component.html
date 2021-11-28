@@ -188,16 +188,18 @@
              <div *ngIf="step==10">
                <div *ngIf="verifingPasswordValid" class="red">Please check the admin password and try again.</div>
                <span class="label-field">Customer Name, Age, other details.</span>
+               <small>eg: Milild Sharma, 28, Dosti Elmore D, Thane, PAN: 1234567</small>
+                
                <mat-form-field appearance="outline" [formGroup]="form">
                     <mat-icon matSuffix>face</mat-icon>
-                    <input matInput  formControlName="customerdetails" placeholder="Nasir Sayed, 28, Dosti Elmore D, Mumbra, PAN: 1234567">
+                    <input matInput  formControlName="customerdetails" />
                     <mat-error *ngIf="hasError('otpverify','required')">
                         Missing... <strong>required</strong>
                     </mat-error>
                     
    
                   </mat-form-field>
-               
+                   
                <span class="label-field">Admin Password</span>
                <mat-form-field appearance="outline" [formGroup]="form">
                     <mat-icon matSuffix>password</mat-icon>
