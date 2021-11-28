@@ -49,9 +49,8 @@
         <button *ngIf="!limitedView && ((!item.pcstatus && item.lastResponseAt) || item.pcstatus == 'ready')" (click)="onAvailablePC(item)"  color="primary"  mat-stroked-button>Available</button>
         <button *ngIf="item.pcstatus == 'busy'" color="warn"  (click)="lockItem = item; lockMachine = true; " mat-stroked-button>Lock</button>
         <button *ngIf="item.pcstatus == 'waiting'" color="accent" (click)="onCancelWaiting(item)" mat-flat-button>Cancel Waiting</button>
-        <button *ngIf="item.pcstatus == 'finished' && item.customerId" color="primary"  routerLink="/cashdeposit/{{item.billingId}}"  mat-flat-button>Bill</button>
-        <button *ngIf="item.pcstatus == 'finished' && !item.customerId" color="primary"  class="bg-green"  (click)="onCancelWaiting(item)" mat-flat-button>Cancel</button>
-        <button *ngIf="item.pcstatus == 'finished'  && item.customerId" color="accent" class="bg-green"   (click)="onCancelWaiting(item)" mat-flat-button>Already Paid</button>
+        <button *ngIf="item.pcstatus == 'finished' && getBillingDetails(item.billingId).duration" color="primary"  routerLink="/cashdeposit/{{item.billingId}}"  mat-flat-button>Bill</button>
+        <button *ngIf="item.pcstatus == 'finished'  && getBillingDetails(item.billingId).duration" color="accent" class="bg-green"   (click)="onCancelWaiting(item)" mat-flat-button>Cancel</button>
         <!-- <pre>
             {{item.billingId | json}}
         </pre> -->
