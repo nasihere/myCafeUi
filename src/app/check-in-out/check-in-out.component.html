@@ -190,7 +190,7 @@
                <span class="label-field">Customer Name, Age, other details.</span>
                <mat-form-field appearance="outline" [formGroup]="form">
                     <mat-icon matSuffix>face</mat-icon>
-                    <input matInput  formControlName="customerdetails" >
+                    <input matInput  formControlName="customerdetails" placeholder="Nasir Sayed, 28, Dosti Elmore D, Mumbra, PAN: 1234567">
                     <mat-error *ngIf="hasError('otpverify','required')">
                         Missing... <strong>required</strong>
                     </mat-error>
