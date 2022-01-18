@@ -36,12 +36,13 @@
             <div>Duration <span class="green">{{getBillingDetails(item.billingId).duration}} </span> </div>
     
         </div>
-        <div class="flex justify-between"  *ngIf="!limitedView && (item.lastResponseAt && item.pcstatus == 'ready')" >
+       
+        <!-- <div class="flex justify-between"  *ngIf="!limitedView && (item.lastResponseAt && item.pcstatus == 'ready')" >
           <button  mat-icon-button (click)="item.timerI = !item.timerI ? 2 : (item.timerI - 1); "><mat-icon>remove_circle_outline</mat-icon></button>
           
           <span class="mt-2">{{timerList[item.timerI || 3].label}}</span>
           <button  mat-icon-button (click)="item.timerI = !item.timerI ? 4 : (item.timerI + 1); " ><mat-icon>add_circle_outline</mat-icon></button>
-        </div>
+        </div> -->
         <div  *ngIf="item.lastResponseAt == null">
             <button  mat-flat-button color="primary" (click)="item.showSecretKey = true" ><mat-icon>key</mat-icon> Secret Key </button>
             <small *ngIf="item.showSecretKey">{{item.id}}</small>
@@ -189,6 +190,52 @@
               <button mat-stroked-button color="primary" (click)="verifingPassword = false"  ><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
 
               <button color="primary"  (click)="verifyPassword()" mat-flat-button>Verify</button>
+            </div>
+            
+        </div>
+    
+ 
+    </mat-card>
+ 
+ 
+ </div>
+ 
+
+
+ 
+<div class="flex flex-warp admin-password" *ngIf="settingTime">
+    <mat-card class="mt-1  w-100 m-2 ">
+        <div class="flex flex-column  ">
+            <span  class="heading profile-heading  flex justify-between "><strong>Select the time to access computer</strong></span>
+            <h6>Access Granted Till : {{settingItem.timerILabel || '1 hour'}} </h6>
+            <div class="flex flex-column">
+                <button  (click)="settingItem.timerI=5; settingItem.timerILabel='5 Minutes';" mat-button><mat-icon>schedule</mat-icon>5 Minute</button>
+                <div class="border-line"></div>
+                <button  (click)="settingItem.timerI=10; settingItem.timerILabel='10 Minutes';" mat-button><mat-icon>schedule</mat-icon>10 Minute</button>
+                <div class="border-line"></div> 
+                <button  (click)="settingItem.timerI=15; settingItem.timerILabel='15 Minutes';" mat-button><mat-icon>schedule</mat-icon>15 Minute</button>
+                <div class="border-line"></div>
+                <button  (click)="settingItem.timerI=30;  settingItem.timerILabel='30 Minutes';" mat-button><mat-icon>schedule</mat-icon>30 Minute</button>
+                <div class="border-line"></div>
+                <button  (click)="settingItem.timerI=45;  settingItem.timerILabel='45 Minutes';" mat-button><mat-icon>schedule</mat-icon>45 Minute</button>
+                <div class="border-line"></div>
+                <button (click)="settingItem.timerI=60;  settingItem.timerILabel='1 Hour';"  mat-button><mat-icon>schedule</mat-icon>1 hour</button>
+                <div class="border-line"></div>
+                <button (click)="settingItem.timerI=120;  settingItem.timerILabel='2 Hour';"  mat-button><mat-icon>schedule</mat-icon>2 hour</button>
+                <div class="border-line"></div>
+                <button (click)="settingItem.timerI=180;  settingItem.timerILabel='3 Hour';"  mat-button><mat-icon>schedule</mat-icon>3 Hour</button>
+                <div class="border-line"></div>
+                <button (click)="settingItem.timerI=240; settingItem.timerILabel='4 Hour';" mat-button><mat-icon>schedule</mat-icon>4 Hour</button>
+                <div class="border-line"></div>
+                <button (click)="settingItem.timerI=1440; settingItem.timerILabel='No Limit';" mat-button><mat-icon>schedule</mat-icon>No Limit</button>
+                <div class="border-line"></div>
+      
+           </div>
+
+            <div class="flex justify-between">  
+              <button mat-stroked-button color="primary" (click)="verifingPassword = false"  ><mat-icon>keyboard_arrow_left</mat-icon>Back</button>
+
+              <button color="primary" class="green" (click)="onSelectedTime(settingItem)" mat-flat-button>Start</button>
             </div>
             
         </div>

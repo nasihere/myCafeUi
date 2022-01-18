@@ -143,7 +143,7 @@ export class CheckInOutComponent implements OnInit  {
             id: this.paramId,
             accessCode: this.accessCode,
             accessAt: new Date().toISOString(),
-            timer: this.timerLimit || 60,
+            timer: (this.timerLimit - 1) || 60,
             pcstatus: 'waiting',
             customerId: this.formService.response.resCustomer.id,
             billingId: null,
@@ -224,7 +224,7 @@ export class CheckInOutComponent implements OnInit  {
         item.agentid =  this.paramId;
         item.customerid =  'public';
         item.customerName =  customerDetails || 'Public';
-        item.timer = this.timerLimit || 60,
+        item.timer = (this.timerLimit - 1) || 60,
 
         
        

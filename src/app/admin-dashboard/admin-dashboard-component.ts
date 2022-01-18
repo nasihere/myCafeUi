@@ -50,7 +50,10 @@ export class AdminDashboardComponent implements OnInit  {
       public barChartLabels: Label[] = [];
       public barChartType: ChartType = 'bar';
       public barChartLegend = true;
-    
+      public timerReload = null;
+      public resetReload: boolean = true;
+      public triggerDone: boolean = false;
+      public lastReload:any = new Date();
       public barChartData: any[] =[
         { data: [], label: 'Income' }
       ]
@@ -62,7 +65,13 @@ export class AdminDashboardComponent implements OnInit  {
        
     }
     reload() {
-        window.location.reload()
+        const self = this;
+        self.resetReload = false;
+        setTimeout( () =>  {
+            self.lastReload = new Date();
+            self.resetReload = true;
+            clearTimeout(self.timerReload);
+        }, 1000);
     }
     ngOnInit() {
         if (this.formService.response.resAuthSignIn == null) {
@@ -82,7 +91,44 @@ export class AdminDashboardComponent implements OnInit  {
                 Validators.minLength(5),
                 Validators.maxLength(30)])
           });
-
+          const self = this;
+          document.addEventListener('visibilitychange', function (event) {
+            if (document.hidden) {
+                clearTimeout(self.timerReload)
+            } else {
+                self.resetReload = false;
+                self.timerReload = setTimeout( () =>  {
+                    self.lastReload = new Date();
+                    self.resetReload = true;
+                    clearTimeout(self.timerReload);
+                   }, 1000);
+            }
+        });
+        window.addEventListener('focus', function (event) {
+           self.resetReload = false;
+           self.timerReload = setTimeout( () =>  {
+            self.lastReload = new Date();
+            self.resetReload = true;
+            clearTimeout(self.timerReload);
+           }, 1000);
+           
+        });
+        document.onmousemove = function(event) {
+               // if (self.timerReload) return;
+                const currn:any = new Date();
+                var diff = self.lastReload - currn;
+                var minutes = Math.abs(Math.floor((diff/1000)/60));
+                if (minutes <= 5 ) {
+                    self.timerReload = setTimeout( () =>  {
+                        self.lastReload = new Date();
+                        self.resetReload = true;
+                        clearTimeout(self.timerReload);
+                    }, 1000);
+                }
+               
+            
+        }
+        
     }
 
     getBillingHistory() {

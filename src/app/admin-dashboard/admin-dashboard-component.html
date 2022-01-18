@@ -47,7 +47,7 @@
    </mat-card>
    <div class="border-line "></div>
 
-   <div class="mlr-1">
+   <div class="mlr-1"  *ngIf="resetReload">
      <terminal-status limitedView="true"></terminal-status>
      </div>
 
@@ -89,6 +89,6 @@
           <span class="page-name">Customer Activity</span>
      </div>
 
-   <div class="mlr-1">
+   <div class="mlr-1" *ngIf="resetReload">
      <dashboard-terminal></dashboard-terminal>
    </div>

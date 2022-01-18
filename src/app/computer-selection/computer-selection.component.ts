@@ -12,7 +12,7 @@ export class ComputerSelectionComponent  implements OnInit {
     @Input() limitedView = false ;
     lockItem: any;  
     lockMachine: boolean = false;
-
+    settingTime: boolean = false;
     form: FormGroup;
     step: number = 1;
     cashDeposit: boolean = false;
@@ -32,6 +32,7 @@ export class ComputerSelectionComponent  implements OnInit {
     infoSetupIncomplete: boolean = false;
     selectedAgent: any;
     paramCustId: any;
+    settingItem: any;
     constructor(      private route: ActivatedRoute,   public formService: FormService,      private router: Router,
 
         ) { 
@@ -212,12 +213,16 @@ export class ComputerSelectionComponent  implements OnInit {
         })
     }
     onAvailablePC(item) {
-       
+        this.settingTime = true;
+        this.settingItem = item;
+    }
+    onSelectedTime(item) {
+        this.settingTime = false;
         this.pcCode = Math.floor(1000 + Math.random() * 9000);
         item.accessCode = this.pcCode;
         item.accessAt = new Date().toISOString();
         if (item.timerI)
-            item.timer = this.timerList[item.timerI].value || 60;
+            item.timer = (item.timerI - 1) || 60;
         else 
             item.timer = 60;
         item.pcstatus = 'waiting';
@@ -234,6 +239,7 @@ export class ComputerSelectionComponent  implements OnInit {
                
             }
         })
+        this.settingItem = null;
     }
     onPCCodeVerify() {
         console.log('onPCCodeVerify');
