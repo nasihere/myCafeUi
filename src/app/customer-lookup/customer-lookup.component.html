@@ -70,7 +70,7 @@
     <div class="flex flex-row justify-between" *ngIf="!data.uncollapsed">
         <button (click)="data.uncollapsed = true" color="primary" class="green" mat-flat-button><mat-icon>check</mat-icon>Select</button>
 
-        <button (click)="data.activityFlag = true" color="warning" class="green" mat-flat-button><mat-icon>log</mat-icon>Activity Logs</button>
+        <button *ngIf="!activityFlag" (click)="data.activityFlag = true" color="warning" class="green" mat-flat-button><mat-icon>log</mat-icon>Activity Logs</button>
     </div>
     
 </mat-card>
