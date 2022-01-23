@@ -37,7 +37,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';;
 import { WebcamPicturesComponent } from './webcam-pictures/webcam-pictures.component'
 ;
-import { WelcomePageComponent } from './welcome-page/welcome-page.component'
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { CutomerActivityComponent } from './cutomer-activity/cutomer-activity.component'
 
 
 @NgModule({
@@ -77,7 +78,8 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component'
 ,
         WebcamPicturesComponent
 ,
-        WelcomePageComponent    ],
+        WelcomePageComponent ,
+        CutomerActivityComponent   ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

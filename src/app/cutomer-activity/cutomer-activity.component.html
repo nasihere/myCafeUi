@@ -1,0 +1,22 @@
+<p>cutomer-activity works!</p>
+
+<table class="w-100">
+    <tr>
+        <th>Time In</th>
+        <th>Time Out</th>
+        <th>Duration</th>
+        <th>Bill Paid</th>
+        <th>Bill Total</th>
+    </tr>
+    <tr *ngFor="let item of data">
+        
+        <td>{{item.checkInDate}}</td>
+        <td>{{item.checkOutDate}}</td>
+        <td>{{item.duration}}</td>
+        <td>{{item.billPaid ? 'Yes' : 'No'}}</td>
+        <td>{{item.billTotal}}</td>
+        
+    </tr>
+    
+
+</table>
