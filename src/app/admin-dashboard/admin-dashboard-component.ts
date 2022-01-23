@@ -118,7 +118,7 @@ export class AdminDashboardComponent implements OnInit  {
                 const currn:any = new Date();
                 var diff = self.lastReload - currn;
                 var minutes = Math.abs(Math.floor((diff/1000)/60));
-                if (minutes <= 5 ) {
+                if (minutes != 1 && minutes <= 5 ) {
                     self.timerReload = setTimeout( () =>  {
                         self.lastReload = new Date();
                         self.resetReload = true;
