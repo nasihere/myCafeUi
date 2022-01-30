@@ -224,7 +224,7 @@ export class CheckInOutComponent implements OnInit  {
         item.agentid =  this.paramId;
         item.customerid =  'public';
         item.customerName =  customerDetails || 'Public';
-        item.timer = (this.timerLimit - 1) || 60,
+        item.timer = this.timerLimit || 60,
 
         
        

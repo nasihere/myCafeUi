@@ -222,7 +222,7 @@ export class ComputerSelectionComponent  implements OnInit {
         item.accessCode = this.pcCode;
         item.accessAt = new Date().toISOString();
         if (item.timerI)
-            item.timer = (item.timerI - 1) || 60;
+            item.timer = item.timerI || 60;
         else 
             item.timer = 60;
         item.pcstatus = 'waiting';
