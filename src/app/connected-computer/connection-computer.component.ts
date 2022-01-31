@@ -192,6 +192,7 @@ export class ConnectedComputerComponent implements OnInit  {
         electronCleanSession();
         //@ts-ignore
         electronShowAgent();
+        this.isFullMode = true;
         // //@ts-ignore
         // electronLogOffSession()
 
