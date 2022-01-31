@@ -199,7 +199,7 @@ export class ConnectedComputerComponent implements OnInit  {
     }
     onConnectedSession() {
       //@ts-ignore
-      electronConnectSession();
+      //electronConnectSession();
       //@ts-ignore
       electronHideAgent();
       this.isFullMode = false;
