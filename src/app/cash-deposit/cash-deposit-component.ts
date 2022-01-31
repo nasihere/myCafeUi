@@ -47,7 +47,15 @@ export class CashDepositComponent implements OnInit  {
       this.formService.findBillingDetail(payload).subscribe( res => {
           if (res) {
              this.billingDetail = res;
-             this.findCustomerById(res.customerid) 
+             if (!res.customerid) {
+               this.customerDetail = res;
+               this.findSettings(this.customerDetail.username);
+
+             }
+             else {
+              this.findCustomerById(res.customerid) 
+             }
+             
           }
           
       });

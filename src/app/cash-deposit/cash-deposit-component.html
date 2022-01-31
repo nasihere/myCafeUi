@@ -1,3 +1,4 @@
+
 <div class="flex justify-between nav">
         <div class="page-name">Billing</div>
    </div>
@@ -12,7 +13,7 @@
 <div class="border-line"></div>
 <mat-card class="mt-1  s-smaller" [ngClass]="(!accountDetail || paymentMaking || overlaybackground) ? 'opacity-20' : ''" >
     <div  *ngIf="customerDetail" class="flex flex-row justify-between">
-        <span  class="heading profile-heading capitalize"><strong> {{customerDetail.name}} </strong></span>
+        <span  class="heading profile-heading capitalize"><strong> {{customerDetail.name || billingDetail.customerName}} </strong></span>
         <div class="border-line"></div>
  
         <img *ngIf="!customerDetail.picProfilePic" src="assets/1586650.png" height="50" />
@@ -102,4 +103,5 @@
  
  
  </div>
+
  

@@ -21,7 +21,6 @@
         <mat-icon class="computer-prompt-icon red"  *ngIf="item.lastResponseAt == null || item.pcstatus == 'busy'" >desktop_mac</mat-icon>
         <mat-icon class="computer-prompt-icon green"  *ngIf="(!item.pcstatus &&   item.lastResponseAt) || item.pcstatus == 'ready'" >desktop_mac</mat-icon>
         <mat-icon class="computer-prompt-icon "  *ngIf="item.pcstatus == 'finished'" >monetization_on</mat-icon>
-        
         <span class="red" *ngIf="item.lastResponseAt == null">Setup Incomplete</span>
         <span class="red" *ngIf="item.pcstatus == 'busy'">Busy</span>
         <span class="green" *ngIf="(!item.pcstatus &&   item.lastResponseAt) || item.pcstatus == 'ready'">Ready</span>
@@ -34,7 +33,7 @@
             <div>End <span class="blue">{{getBillingDetails(item.billingId).checkOutTime}} </span> </div>
             <div class="border-line"></div>
             <div>Duration <span class="green">{{getBillingDetails(item.billingId).duration}} </span> </div>
-    
+            
         </div>
        
         <!-- <div class="flex justify-between"  *ngIf="!limitedView && (item.lastResponseAt && item.pcstatus == 'ready')" >

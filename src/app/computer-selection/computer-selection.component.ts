@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as moment from 'moment';
 import { FormService } from '../_services';
 
 @Component({selector: 'terminal-status', templateUrl: 'computer-selection.component.html' })
@@ -82,6 +83,7 @@ export class ComputerSelectionComponent  implements OnInit {
             this.formService.getAllAgentPC(payload).subscribe( res => {
                 if (res) {
                     this.pcAgentsList = res;
+                    this.onGetTopBilling();   
                 }
                 else {
                    this.pcAgentsList = null;
@@ -185,6 +187,71 @@ export class ComputerSelectionComponent  implements OnInit {
             }
         })
     }
+
+  onGetTopBilling() {
+        
+   
+    const payload = {
+        pageLimit: 30,
+        username: this.formService.response.resAuthSignIn.data.Item.username
+    }
+    this.formService.getLatestBilling(payload).subscribe( res => {
+    if (res) {
+
+      this.data = res.sort((a,b) => new Date(b.billDt).getTime() - new Date(a.billDt).getTime());
+      this.data = this.data.map(item => {
+        const agentid = item.agentid;
+        const agent = this.pcAgentsList.filter(i => {
+          return i.id == agentid;
+        });
+        if (agent && agent.length) {
+          item.agentName = agent[0].pcname;
+        }
+       
+        
+        
+        item.checkInDate = new Date(item.checkIn);
+        item.checkOutDate = new Date(item.checkout);
+
+
+        item.checkInDate = moment(item.checkInDate).format('YYYY-MM-DD');
+        item.checkOutDate = moment(item.checkOutDate).format('YYYY-MM-DD');
+
+        item.checkInTime = new Date(item.checkIn);
+        item.checkOutTime = new Date(item.checkout);
+
+        item.checkInTime = moment(item.checkInTime).format('hh:mm A');
+        item.checkOutTime = moment(item.checkOutTime).format('hh:mm A');
+        
+        item.duration =  this.get_time_diff( item.checkIn, item.checkout)
+
+        return item;
+      });
+    }
+    })
+        
+    
+    
+
+}
+
+
+get_time_diff = ( datetime, datetime2 ) => {
+ var date1 = new Date(datetime);
+ var date2 = new Date(datetime2);
+ 
+ var diff = date2.getTime() - date1.getTime();
+ 
+ var msec = diff;
+ var hh = Math.floor(msec / 1000 / 60 / 60);
+ msec -= hh * 1000 * 60 * 60;
+ var mm = Math.floor(msec / 1000 / 60);
+ msec -= mm * 1000 * 60;
+ var ss = Math.floor(msec / 1000);
+ msec -= ss * 1000;
+ 
+ return hh + ":" + mm + ":" + ss;
+}
     onCashDeposit() {
         
         const item = {
