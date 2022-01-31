@@ -144,15 +144,14 @@ export class ConnectedComputerComponent implements OnInit  {
 
         if (!self.lastFiveMin && minutes == 4 && seconds <= 59 && seconds >= 50) {
            self.lastFiveMin  = true;
-           //@ts-ignore
-           electronShowAgent();
+           self.restoreFullmode();
         }
         // If the count down is finished, write some text
         if (distance < 0) {
           clearInterval(x);
           self.displayCountDown  = "EXPIRED";
           //@ts-ignore
-          electronShowAgent();
+          self.restoreFullmode();
           self.onDisconnectSession();
         }
       }, 1000);
