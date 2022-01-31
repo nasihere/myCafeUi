@@ -1,9 +1,10 @@
-﻿<div  >
+﻿
+<div>
 
-    <div class="sticky-div-l"  style="float: left;"></div>
-    <div class="sticky-div-l " style="float: right;"></div>
+    <div *ngIf="showHeader" class="sticky-div-l"  style="float: left;"></div>
+    <div *ngIf="showHeader"  class="sticky-div-l " style="float: right;"></div>
     
-    <div class="header opacity-0 p-1  flex justify-between">
+    <div *ngIf="showHeader"  class="header opacity-0 p-1  flex justify-between">
         <div class="flex  p-2 justify-equally">
             <mat-icon>toll</mat-icon>
             <span class="title">CyberCafeApp.com</span>

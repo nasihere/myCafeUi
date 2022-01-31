@@ -9,7 +9,7 @@ import { FormService } from './_services/form.service';
 export class AppComponent {
     currentUser: User;
     appPage: boolean = true;
-    
+    showHeader: boolean = true;
     readFromCache = key => localStorage.getItem(key) && JSON.parse(localStorage.getItem(key)) || null
 
       ngOnInit() {
@@ -39,5 +39,11 @@ export class AppComponent {
     logout() {
         this.authenticationService.logout();
         this.router.navigate(['/login']);
+    }
+    hideheaders() {
+      this.showHeader = false;
+    }
+    showHeaders() {
+      this.showHeader = true;
     }
 }

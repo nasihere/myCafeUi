@@ -1,96 +1,105 @@
-   <div class="flex justify-between nav">
-        <div class="page-name">Session Connected</div>
-   </div>
-   <div class="border-line "></div>
+<div class="clockTimer" *ngIf="!isFullMode" >
+        <button mat-flat-button color="primary" (click)="restoreFullmode()" >{{countDownDate}}</button>
 
-<div class="flex justify-center  mt-3">
-    <img src="assets/connected-pc.png" height="50" />
 </div>
-<div class="flex justify-center">
-    <span  class="heading profile-heading"><strong>Successfully Connected</strong></span>
-</div>
-<div class="border-line"></div>
-<div class="flex flex-row justify-between " *ngIf="lastFiveMin">
-    <span class="options-prompt green text-bigger flex-column flex">
-        <b>5 Minutes left</b>  
-        <span>Your session will be ended in 5 minutes. Please close all the programs and browsers tabs.</span>
-    </span>
-</div>
-<div class="border-line"></div>
-<mat-card class="mt-1  s-smaller" [ngClass]="disconnectSession || lastFiveMin ? 'opacity-20' : ''">
-    
-   <div class="flex flex-row justify-between">
-       <span  class="heading profile-heading capitalize"><strong> {{customerDetail.name}} </strong> (<span *ngIf="customerDetail.gender=='m'">Male</span> <span *ngIf="customerDetail.gender=='f'">female</span>)</span>
-       <div class="border-line"></div>
 
-       <img *ngIf="!customerDetail.picProfilePic" src="assets/1586650.png" height="50" />
-       <img *ngIf="customerDetail.picProfilePic" [src]="customerDetail.picProfilePic" height="50" />
-   </div>
-   <div class="border-line"></div>
-   <div class="flex flex-column justify-between">
-        <span  class="label-field">{{customerDetail.address}}</span>
-        <span  class="label-field">Cell: {{customerDetail.cellphone}} </span>
-        <span  class="label-field">Email: {{customerDetail.email}}</span>
-    </div>
-    <div class="border-line"></div>
-   <div class="flex flex-column justify-between">
-        <span *ngIf="customerDetail.iddirivinlicenseno" class="label-field">Driving License: {{customerDetail.iddirivinlicenseno}}</span>
+<div [style.display]="isFullMode ? 'block' : 'none'">
 
-        <span *ngIf="customerDetail.idadharcard" class="label-field">Adhar Card: {{customerDetail.idadharcard}}</span>
-        
-        <span *ngIf="customerDetail.idpancard" class="label-field">PAN Card: {{customerDetail.idpancard}}</span>
-        
-        <span *ngIf="customerDetail.idothercard" class="label-field">Other Card: {{customerDetail.idothercard}}</span>
-        
-    </div>
-    <div class="border-line"></div>
-    <div class="flex flex-row justify-between">
-        <strong  class="label-field">Time Check-In to this computer</strong>
-        <span  class="label-field">{{billingDetail.checkIn}} </span>
-    </div>
-    <div class="border-line"></div>
-    <div class="flex flex-row justify-between">
-        <strong  class="label-field">Computer timer set by admin</strong>
-        <span  class="label-field">{{billingDetail.timer}} min</span>
-    </div>  
-    <div class="border-line"></div>
-    <div class="flex flex-row justify-between">
-        <strong  class="label-field">Computer session time left</strong>
-        <span  class="label-field red">{{displayCountDown}}</span>
-    </div>
-    
-
-    <div class="border-line"></div>
-    <div class="flex flex-row justify-between">
-        <strong  class="green">Computer Used Time</strong>
-        <span  class="green"><b>{{countDownDate}}</b></span>
-    </div>
-
- 
-    
-</mat-card>
-
-<div class="border-line"></div>
-<div class="flex justify-between mt-3">
-    
-    <button  (click)="disconnectSession = true" color="warn" mat-flat-button><mat-icon>highlight_off</mat-icon>Disconnect</button>
-    <button  (click)="onConnectedSession()" color="primary" class="bg-green" mat-flat-button><mat-icon>restore</mat-icon>Continue
-    </button>
-</div>
-<div class="flex flex-warp admin-password" *ngIf="disconnectSession">
-    <mat-card class="mt-1  w-100 m-2 ">
-        <div class="flex flex-column  ">
-            <span  class="heading profile-heading  flex justify-between "><strong>Do you want to end the session?</strong></span>
-            <span class="label-field">Computer will be locked and can't retrieve the same session back.</span>
-            <div class="flex justify-between">
-            <button color="primary" (click)="disconnectSession = false" mat-flat-button>No</button>
-            <button color="warn" (click)="onDisconnectSession()" mat-flat-button>Yes</button>
-
+        <div class="flex justify-between nav">
+                <div class="page-name">Session Connected</div>
         </div>
+        <div class="border-line "></div>
+
+        <div class="flex justify-center  mt-3">
+            <img src="assets/connected-pc.png" height="50" />
         </div>
-    
- 
-    </mat-card>
- 
- 
- </div>
+        <div class="flex justify-center">
+            <span  class="heading profile-heading"><strong>Successfully Connected</strong></span>
+        </div>
+        <div class="border-line"></div>
+        <div class="flex flex-row justify-between " *ngIf="lastFiveMin">
+            <span class="options-prompt green text-bigger flex-column flex">
+                <b>5 Minutes left</b>  
+                <span>Your session will be ended in 5 minutes. Please close all the programs and browsers tabs.</span>
+            </span>
+        </div>
+        <div class="border-line"></div>
+        <mat-card class="mt-1  s-smaller" [ngClass]="disconnectSession || lastFiveMin ? 'opacity-20' : ''">
+            
+        <div class="flex flex-row justify-between">
+            <span  class="heading profile-heading capitalize"><strong> {{customerDetail.name}} </strong> (<span *ngIf="customerDetail.gender=='m'">Male</span> <span *ngIf="customerDetail.gender=='f'">female</span>)</span>
+            <div class="border-line"></div>
+
+            <img *ngIf="!customerDetail.picProfilePic" src="assets/1586650.png" height="50" />
+            <img *ngIf="customerDetail.picProfilePic" [src]="customerDetail.picProfilePic" height="50" />
+        </div>
+        <div class="border-line"></div>
+        <div class="flex flex-column justify-between">
+                <span  class="label-field">{{customerDetail.address}}</span>
+                <span  class="label-field">Cell: {{customerDetail.cellphone}} </span>
+                <span  class="label-field">Email: {{customerDetail.email}}</span>
+            </div>
+            <div class="border-line"></div>
+        <div class="flex flex-column justify-between">
+                <span *ngIf="customerDetail.iddirivinlicenseno" class="label-field">Driving License: {{customerDetail.iddirivinlicenseno}}</span>
+
+                <span *ngIf="customerDetail.idadharcard" class="label-field">Adhar Card: {{customerDetail.idadharcard}}</span>
+                
+                <span *ngIf="customerDetail.idpancard" class="label-field">PAN Card: {{customerDetail.idpancard}}</span>
+                
+                <span *ngIf="customerDetail.idothercard" class="label-field">Other Card: {{customerDetail.idothercard}}</span>
+                
+            </div>
+            <div class="border-line"></div>
+            <div class="flex flex-row justify-between">
+                <strong  class="label-field">Time Check-In to this computer</strong>
+                <span  class="label-field">{{billingDetail.checkIn}} </span>
+            </div>
+            <div class="border-line"></div>
+            <div class="flex flex-row justify-between">
+                <strong  class="label-field">Computer timer set by admin</strong>
+                <span  class="label-field">{{billingDetail.timer}} min</span>
+            </div>  
+            <div class="border-line"></div>
+            <div class="flex flex-row justify-between">
+                <strong  class="label-field">Computer session time left</strong>
+                <span  class="label-field red">{{displayCountDown}}</span>
+            </div>
+            
+
+            <div class="border-line"></div>
+            <div class="flex flex-row justify-between">
+                <strong  class="green">Computer Used Time</strong>
+                <span  class="green"><b>{{countDownDate}}</b></span>
+            </div>
+
+        
+            
+        </mat-card>
+
+        <div class="border-line"></div>
+        <div class="flex justify-between mt-3">
+            
+            <button  (click)="disconnectSession = true" color="warn" mat-flat-button><mat-icon>highlight_off</mat-icon>Disconnect</button>
+            <button  (click)="onConnectedSession()" color="primary" class="bg-green" mat-flat-button><mat-icon>restore</mat-icon>Continue
+            </button>
+        </div>
+        <div class="flex flex-warp admin-password" *ngIf="disconnectSession">
+            <mat-card class="mt-1  w-100 m-2 ">
+                <div class="flex flex-column  ">
+                    <span  class="heading profile-heading  flex justify-between "><strong>Do you want to end the session?</strong></span>
+                    <span class="label-field">Computer will be locked and can't retrieve the same session back.</span>
+                    <div class="flex justify-between">
+                    <button color="primary" (click)="disconnectSession = false" mat-flat-button>No</button>
+                    <button color="warn" (click)="onDisconnectSession()" mat-flat-button>Yes</button>
+
+                </div>
+                </div>
+            
+        
+            </mat-card>
+        
+        
+        </div>
+
+    </div>

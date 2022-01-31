@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AppComponent } from '@app/app.component';
 import * as moment from 'moment';
 import { FormService } from '../_services';
 
@@ -22,7 +23,8 @@ export class ConnectedComputerComponent implements OnInit  {
   displayCountDown: any;
   countDownDate: any;
   lastFiveMin: boolean = false;
-    constructor( public formService: FormService,       private route: ActivatedRoute,        private router: Router,
+  isFullMode: boolean = true;
+    constructor( private appComponent: AppComponent, public formService: FormService,       private route: ActivatedRoute,        private router: Router,
 
     ) { 
        
@@ -36,6 +38,8 @@ export class ConnectedComputerComponent implements OnInit  {
           this.route.params.subscribe(params => {
             this.paramId = params['agentId'];
             this.findAgentDetail(true);
+            console.log(window.location.href)
+            this.appComponent.hideheaders();
             return params;
         });
     }
@@ -198,6 +202,12 @@ export class ConnectedComputerComponent implements OnInit  {
       electronConnectSession();
       //@ts-ignore
       electronHideAgent();
+      this.isFullMode = false;
 
+  }
+  restoreFullmode() {
+    //@ts-ignore
+    electronShowAgent();
+    this.isFullMode = true;
   }
 }
