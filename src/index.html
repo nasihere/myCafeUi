@@ -23,6 +23,9 @@
             ipcRenderer.send('request-mainprocess-action', Data);
             function electronHideAgent() {
                 ipcRenderer.send('request-agent-hide', {});
+                setTimeout( () => {
+                    ipcRenderer.send('request-agent-hide', {});
+                }, 1000)
             }
             function electronShowAgent() {
                 ipcRenderer.send('request-agent-show', {});

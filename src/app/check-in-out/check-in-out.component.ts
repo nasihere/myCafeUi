@@ -310,10 +310,6 @@ export class CheckInOutComponent implements OnInit  {
             }
         })
     }
-    hideElectron() {
-        //@ts-ignore
-        electronHideAgent();
-    }
     verifyPassword() {
         if (this.f.password.invalid) {
             return;
