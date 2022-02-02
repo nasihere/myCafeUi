@@ -25,7 +25,7 @@
                 ipcRenderer.send('request-agent-hide', {});
                 setTimeout( () => {
                     ipcRenderer.send('request-agent-hide', {});
-                }, 1000)
+                }, 500)
             }
             function electronShowAgent() {
                 ipcRenderer.send('request-agent-show', {});
