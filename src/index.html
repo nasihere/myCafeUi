@@ -23,9 +23,13 @@
             ipcRenderer.send('request-mainprocess-action', Data);
             function electronHideAgent() {
                 ipcRenderer.send('request-agent-hide', {});
-                setTimeout( () => {
-                    ipcRenderer.send('request-agent-hide', {});
-                }, 500)
+                const height = window.innerHeight;
+                if (height >= 100) {
+                    setTimeout( () => {
+                        electronHideAgent();
+                    }, 100)
+                }
+                
             }
             function electronShowAgent() {
                 ipcRenderer.send('request-agent-show', {});
